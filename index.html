@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiki-Grounded Research Agent</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.5;
+  font-size: 17px;
+}
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 2em;
+  color: var(--accent);
+  margin: 0 0 0.25em;
+  letter-spacing: -0.01em;
+}
+header .tagline {
+  font-size: 1.15em;
+  font-weight: 700;
+  margin: 0.3em 0;
+}
+header .kicker {
+  font-style: italic;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.4em;
+  color: var(--accent);
+  margin-top: 2.2em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+blockquote {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+}
+blockquote p { margin: 0.25em 0; }
+.cta {
+  margin-top: 2.5em;
+  padding: 1.3em 1.4em;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  background: #fafcff;
+}
+.cta h2 {
+  color: var(--accent);
+  margin: 0 0 0.7em;
+  border: none;
+  padding: 0;
+  font-size: 1.35em;
+}
+.cta p { margin: 0.4em 0; }
+.cta .url {
+  margin-top: 0.9em;
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 1.05em;
+  color: var(--accent);
+  font-weight: 700;
+}
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body {
+    max-width: none;
+    margin: 1.2cm;
+    font-size: 10.5pt;
+  }
+  header h1 { font-size: 1.8em; }
+  h2 { page-break-after: avoid; font-size: 1.2em; }
+  h3 { page-break-after: avoid; font-size: 1.05em; }
+  .cta { page-break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Wiki-Grounded Research Agent</h1>
+  <p class="tagline">A shared wiki-memory for scientists and their AI agents.</p>
+  <p class="kicker">Configured to keep the AI honest, the collaboration durable, and the knowledge from walking out with the next graduating student.</p>
+</header>
+
+<h2>Memory that compounds</h2>
+
+<h3>Persistent, structured memory</h3>
+<p>Every ChatGPT and Claude session starts from zero. Retrieval-augmented generation over your group's documents helps on the current question but rediscovers the same chunks on every next one. Nothing compounds between conversations.</p>
+<p>The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent (Karpathy, 2026): a small set of cross-linked Markdown pages with typed relationships (<code>extends:</code>, <code>requires:</code>, <code>related:</code>), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended.</p>
+<div class="pair">
+  <p><strong>RAG:</strong> rediscovers your documents on every query. Nothing accumulates.</p>
+  <p><strong>Wiki:</strong> the memory itself. Grows across sessions, users, and machines.</p>
+</div>
+<blockquote>
+  <p><strong>Data sources.</strong> Off the shelf: papers, PDFs, notes, tables. For databases, APIs, or complex figures, small schema-driven connectors bring them into the wiki through the same ingest path.</p>
+</blockquote>
+
+<h3>Failure-path preservation</h3>
+<p>Journals publish the win. The abandoned method, the walked-back claim, the metric bug that inflated an earlier result: all deleted from the record. Every group has a student who repeated a failed method because no one told them.</p>
+<p>The Wiki-Grounded Research Agent is append-only by convention (Saboia Moreira et al., 2026). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a <em>Status</em> note pointing forward. A verification gate makes sure new claims are filed <em>alongside</em> the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.</p>
+<div class="pair">
+  <p><strong>Journal:</strong> the win. The abandoned path is noise.</p>
+  <p><strong>Wiki:</strong> the win, plus every walked-back claim and its correction. The trajectory is the documentation.</p>
+</div>
+
+<h2>Team scale</h2>
+
+<h3>Collaborative within a group</h3>
+<p>A postdoc and a student on the same project keep notes in three places: Slack, Google Docs, their own Jupyter notebooks. When the PI comes back a month later, half the trail is lost.</p>
+<p>The Wiki-Grounded Research Agent maintains a shared wiki with per-action attribution. Every entry carries a <code>by: &lt;human&gt;</code> line naming who claimed what; git preserves the full amendment history. When two collaborators write at the same time, the environment resolves mechanical conflicts automatically and routes semantic conflicts through an LLM-assisted merge. Both contributions land, neither overwrites the other, and the trail of who did what stays legible.</p>
+<div class="pair">
+  <p><strong>Slack + Google Docs:</strong> parallel notes that never combine. Trail decays with time.</p>
+  <p><strong>Wiki:</strong> one attributed memory. Contributions compound rather than pile up.</p>
+</div>
+
+<h3>Federated across groups</h3>
+<p>Comp-chem overlaps with materials science, biophysics, catalysis. Every group is quietly re-answering questions another campus group already answered last year. When a PI leaves, that group's institutional memory often walks with them.</p>
+<p>Wiki-Grounded Research Agents federate across projects. Each group runs its own wiki (its own memory, its own permissions), and its agent publishes an agent card that says what the group knows about and what channels it subscribes to. Your agent can query a peer group's memory for their DFT functional benchmarks, their tried-and-abandoned ML potentials, or the analysis workflow that produced a specific paper's figure, with the peer group's permission, and cited back to specific pages in the peer's wiki.</p>
+<div class="pair">
+  <p><strong>Institutional knowledge:</strong> locked in individual labs, walks out with the PI.</p>
+  <p><strong>Federated wikis:</strong> your peers' actual work, queryable through your agent.</p>
+</div>
+
+<h2>Agent capability</h2>
+
+<h3>Built-in expertise</h3>
+<p>A group Claude or ChatGPT subscription doesn't get you a workflow, it gets you access. Every student prompts differently, no one enforces discipline, and the AI's helpfulness depends entirely on how well each student happened to prompt it.</p>
+<p>The Wiki-Grounded Research Agent ships with the workflow already configured. A verification gate blocks the agent from filing numerical claims that aren't backed by real script output. Discipline gates catch universally-wrong rationalizations paired with the check that defeats them. Four built-in operations (ingest a source PDF, query the wiki, lint for staleness, verify a change before commit) run as single commands. The agent knows about them and reaches for the right one when the context calls, without waiting for the user to remember to type. Every session begins with a reminder to the agent that the wiki is project memory.</p>
+<div class="pair">
+  <p><strong>Raw AI subscription:</strong> every student prompts differently. Discipline lives in memory.</p>
+  <p><strong>Configured environment:</strong> the discipline is in the artifact. Every session starts from a known baseline.</p>
+</div>
+
+<h3>Multi-AI model</h3>
+<p>The AI vendor landscape churns every six months. Betting a group's workflow on a single subscription today locks you into one company's model choices, pricing changes, and terms of use tomorrow.</p>
+<p>The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from the model doing the work today (Claude, Cursor, or whoever comes next). Different coding assistants each read the wiki through their own set of commands and skills, while sharing the same policy files, discipline gates, and wiki schema. One student can use Claude Code and another can use Cursor on the same project; the <code>by: &lt;human&gt; via &lt;agent&gt;</code> line on every log entry captures which tool did which write. When a better model appears next year, adopting it is a new overlay, not a migration.</p>
+<div class="pair">
+  <p><strong>Vendor-locked AI:</strong> the memory lives with the vendor.</p>
+  <p><strong>Wiki-grounded:</strong> the memory is yours. Swap the AI.</p>
+</div>
+
+<div class="cta">
+  <h2>Get started.</h2>
+  <p><strong>Setup:</strong> new repository, or we bring the pattern into your existing one.</p>
+  <p><strong>Ingest:</strong> we help load your first papers, benchmarks, and lab data.</p>
+  <p><strong>Contact:</strong> Chris Sweet · <a href="mailto:csweet1@nd.edu">csweet1@nd.edu</a> · CRC, University of Notre Dame</p>
+  <p class="url">la3d.github.io/WGRA</p>
+</div>
+
+<footer>
+  <p>Wiki-Grounded Research Agent · Center for Research Computing, University of Notre Dame · Built on the <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a></p>
+</footer>
+</body>
+</html>
