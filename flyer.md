@@ -23,7 +23,7 @@ The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw
 
 Journals publish the win. The abandoned method, the walked-back claim, the metric bug that inflated an earlier result: all deleted from the record. Every group has a student who repeated a failed method because no one told them.
 
-The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira et al., 2026](https://doi.org/10.5281/zenodo.21213176)). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a *Status* note pointing forward. A verification gate makes sure new claims are filed *alongside* the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.
+The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira et al., 2026](https://doi.org/10.5281/zenodo.21213175)). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a *Status* note pointing forward. A verification gate makes sure new claims are filed *alongside* the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.
 
 **Journal:** the win. The abandoned path is noise.
 **Wiki:** the win, plus every walked-back claim and its correction. The trajectory is the documentation.
@@ -73,6 +73,8 @@ The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from t
 **Wiki-grounded:** the memory is yours. Swap the AI.
 
 ---
+
+**Learn more.** The substrate paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175). The reusable template: [crcresearch/llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template).
 
 ## Get started
 
