@@ -14,6 +14,7 @@ Live at [la3d.github.io/WGRA](https://la3d.github.io/WGRA).
 
 - Substrate paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175) — the templated substrate the WGRA is built on. (Concept DOI, tracks the latest Zenodo version.)
 - Template: [`crcresearch/llm-wiki-memory-template`](https://github.com/crcresearch/llm-wiki-memory-template) — the reusable llm-wiki-memory-template repository.
+- Semantic foundation: [`la3d/llm-wiki-colab`](https://la3d.github.io/llm-wiki-colab/) — typed-edge OWL ontology, JSON-LD context, SHACL shapes, SPARQL queries. Formal vocabulary the template's KG pipeline applies.
 - Companion paper (in submission): "A Wiki-Grounded Educational Gateway for Course-Aware Socratic LLM Tutoring: Built on the llm-wiki Pattern" — Gateways 2026.
 
 ## Contact
