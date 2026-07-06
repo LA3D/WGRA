@@ -74,7 +74,7 @@ The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from t
 
 ---
 
-**Learn more.** The substrate paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175). The reusable template: [crcresearch/llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template).
+**Learn more.** Paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175). Template: [crcresearch/llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template). Ontology: [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) (typed-edge OWL, JSON-LD, SHACL).
 
 ## Get started
 
