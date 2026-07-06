@@ -12,7 +12,7 @@
 
 Every ChatGPT and Claude session starts from zero. Retrieval-augmented generation over your group's documents helps on the current question but rediscovers the same chunks on every next one. Nothing compounds between conversations.
 
-The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent (Karpathy, 2026): a small set of cross-linked Markdown pages with typed relationships (`extends:`, `requires:`, `related:`), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended.
+The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent ([Karpathy, 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)): a small set of cross-linked Markdown pages with typed relationships (`extends:`, `requires:`, `related:`), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended.
 
 **RAG:** rediscovers your documents on every query. Nothing accumulates.
 **Wiki:** the memory itself. Grows across sessions, users, and machines.
@@ -23,7 +23,7 @@ The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw
 
 Journals publish the win. The abandoned method, the walked-back claim, the metric bug that inflated an earlier result: all deleted from the record. Every group has a student who repeated a failed method because no one told them.
 
-The Wiki-Grounded Research Agent is append-only by convention (Saboia Moreira et al., 2026). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a *Status* note pointing forward. A verification gate makes sure new claims are filed *alongside* the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.
+The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira et al., 2026](https://doi.org/10.5281/zenodo.21213176)). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a *Status* note pointing forward. A verification gate makes sure new claims are filed *alongside* the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.
 
 **Journal:** the win. The abandoned path is noise.
 **Wiki:** the win, plus every walked-back claim and its correction. The trajectory is the documentation.
