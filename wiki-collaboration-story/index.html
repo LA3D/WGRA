@@ -57,7 +57,7 @@ h2 {
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   font-size: 1.35em;
   color: var(--accent);
-  margin-top: 2.2em;
+  margin-top: 2.4em;
   padding-bottom: 0.25em;
   border-bottom: 2px solid var(--accent);
 }
@@ -110,7 +110,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.2em 0;
-  font-size: 0.95em;
+  font-size: 0.94em;
 }
 th, td {
   border-bottom: 1px solid var(--rule);
@@ -124,9 +124,10 @@ th {
   color: var(--accent);
   background: var(--callout-bg);
 }
-td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.recover { color: var(--accent); font-weight: 600; }
 ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
-li { margin: 0.35em 0; }
+li { margin: 0.4em 0; }
 strong { color: var(--ink); }
 em { color: var(--ink); }
 footer {
@@ -137,6 +138,18 @@ footer {
   color: var(--muted);
 }
 footer a { color: var(--muted); }
+.sidebar {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+}
+.sidebar h3 {
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 1em;
+}
 @media print {
   body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
   h2 { page-break-after: avoid; }
@@ -163,147 +176,258 @@ footer a { color: var(--muted); }
 
 <h2>The story</h2>
 
-<p><strong>Chris Frederick was prepping for a fleet-scale run.</strong> The project had passed 20 of 20 competency questions on single entities (ITAMCO, Schafer). Next: scale to 108 companies. His session on 2026-06-11 audited the extraction pipeline against the platform's vision documentation and filed four new wiki pages recording what he found.</p>
+<h3>The setup: a demo branch that "wasn't meant to be important"</h3>
 
-<p><strong>One of those pages was routine housekeeping.</strong> <code>Vision-Token-Economics</code> documented per-model tokenization limits, tile geometries, cost math. The kind of reference sheet you write for yourself.</p>
+<p>On 2026-05-20, Chris Frederick pushed commit <code>81e03e2</code> to the project. It was a demo branch for an informal Navy lunch with three guests. In his own framing, filed in the wiki page for the experiment:</p>
 
-<p><strong>A second page filed the same session was a bug report.</strong> <code>Screenshot-Resolution-Bug</code> recorded that <code>browser.py</code> was chunking screenshots only above 7680 px (the API's hard-reject ceiling), but Sonnet's native cap forces silent downscaling on anything over ~950 px tall at 1280 wide. The example: the ITAMCO homepage (1280 × 7396 px) was being read at <strong>21% scale, 560 tokens</strong>. At 21% scale, 16 px body text renders at 3.4 px. <strong>The model had been reading thumbnails.</strong></p>
+<blockquote>
+  <p><em>"I wanted to make sure I could give Jose a simpler demonstration in Obsidian of what we are working on. ... This was solely for that demonstration."</em></p>
+</blockquote>
 
-<p>Chris Frederick filed the bug page with typed cross-references: <code>criticizes: [[Experiment-11-Productionization]]</code> in the frontmatter, <code>related: [[Vision-Token-Economics]]</code>.</p>
-
-<p><strong>Chris Sweet reviewed the wiki entries on the other side.</strong> The cross-references made the implications visible in a way the individual finding did not. The <code>criticizes:</code> edge said explicitly that this bug undermined a prior experiment's conclusions. Following the link surfaced that Experiment 11 had attributed low coverage to "question/target mismatch and the plateau bug." But if pages were being read at 21% scale, <strong>Sonnet's honest "not visible on this page" answers were literally true — the pages were unreadable.</strong> Question/target mismatch remained real, but its measured magnitude had been inflated by unreadable pages.</p>
-
-<p>The same review surfaced two more downstream implications also captured in the page:</p>
-
-<ol>
-  <li><strong>Model head-to-heads were confounded.</strong> The Haiku/Sonnet comparisons in Experiment 11 conflated model reasoning with what each tier could see after downscale: a 2703 px page renders at 58% on Sonnet but 95% on Opus-tier. Any Opus-vs-Sonnet decision needed post-fix data.</li>
-  <li><strong>Cost baselines were wrong by a factor of ~20.</strong> Past runs paid thumbnail prices. Fixing legibility raises image tokens ~20× on previously crushed pages (the 7396 px homepage goes from 560 illegible tokens to ~12,000 legible ones across 8 tiles).</li>
-</ol>
-
-<p><strong>The fix landed the same day</strong> (main-repo commit <code>352fe477</code>): a pure helper <code>chunk_scroll_positions</code> chunks whenever the page exceeds one viewport, steps by <code>viewport − overlap</code>, clamps the final tile to the page bottom, caps at 20 chunks against infinite-scroll pages. <code>Settings.viewport_height</code>, the redundant representation of the viewport that was the source of a smaller 24 px gap defect, was deleted so the two values could not drift again.</p>
-
-<h3>The measurable outcomes</h3>
-
-<table>
-  <thead>
-    <tr><th>Metric</th><th>Before fix</th><th>After fix</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>ITAMCO homepage tokenization</td><td>560 tokens at 21% scale</td><td>~12,000 tokens at 100% scale</td></tr>
-    <tr><td>Body text rendered size (16 px source)</td><td>3.4 px (unreadable)</td><td>16 px (legible)</td></tr>
-    <tr><td>Tile geometry</td><td>Single 1280 × 7396 strip</td><td>8 uniform 1280 × 900 tiles</td></tr>
-    <tr><td>Answer coverage on smoke re-run</td><td>Confounded</td><td>17 / 20 in 3 pages, clean health</td></tr>
-    <tr><td>Model-tier re-baseline</td><td>Not possible</td><td>Sonnet 93.6% [89.8, 96.5] &gt; Opus 86.8% [82.2, 90.7] &gt; Haiku 78.7% [72.8, 84.1]. P(Sonnet &gt; Opus) = 99.3%</td></tr>
-    <tr><td>Fleet tier decision</td><td>Muddled</td><td><strong>Sonnet</strong></td></tr>
-  </tbody>
-</table>
-
-<p>The re-baseline gave the project a defensible tier decision it did not have before. Sonnet was the right call at 32 trials, $11.75 spent on the run, with credible intervals rather than single-run counts.</p>
-
-<h2>Why the wiki structure made this catch possible</h2>
-
-<p>Four llm-wiki primitives did the load-bearing work.</p>
-
-<h3>1. Typed pages with typed edges</h3>
-
-<p>Every page carries YAML frontmatter declaring what kind of page it is and what its relationships are:</p>
+<p>Chris Frederick explicitly offered to drop the commit if it diverged from project direction. Chris Sweet kept it as valid work. Both wrote a wiki page recording what the branch was and why: <code>Experiment-11-Productionization</code>. The page's frontmatter carried a load-bearing edge:</p>
 
 <pre><code>---
 type: synthesis
-up: "[[Extraction-Pipeline]]"
-tags: [bug, vision, screenshots, coverage]
-criticizes: "[[Experiment-11-Productionization]]"
-related: "[[Vision-Token-Economics]]"
+up: "[[Experiment-10-Vocabulary-Alignment]]"
+tags: [experiment, demo-branch, navy-lunch, claude-cli, haiku-regression, sonnet-validated]
+related: "[[Experiment-8-Second-Entity]]"
+extends: "[[Experiment-7-Question-Deepen]]"
+supports: "[[Working-Hypothesis]]"
 ---</code></pre>
 
-<p><code>criticizes:</code> is a semantic edge. It does not mean "these pages are related." It means "when you read this page, treat the target's claims as being called into question." A reviewer following that edge encounters not just the bug report but its implication for prior experiment conclusions. The edge is what turned a routine finding into a project-wide correction signal.</p>
+<p><code>extends: [[Experiment-7-Question-Deepen]]</code> told any reviewer: "this branch inherits assumptions from Experiment 7." <code>related: [[Experiment-8-Second-Entity]]</code> said "these two live in the same family." Neither of those edges was decoration. They were what let the wiki review that followed turn a demo branch into a project-wide correction.</p>
 
-<h3>2. Wikilinks that make cross-page implications inspectable</h3>
+<h3>The bug the wiki review revealed</h3>
 
-<p>The bug page names <code>[[Experiment-11-Productionization]]</code>, <code>[[Vision-Token-Economics]]</code>, <code>[[Blackbox-Eval-Adoption]]</code>, <code>[[Fleet-Run-Bottlenecks]]</code> in its body. Each is a durable link into a page that carries its own frontmatter and its own edges. Traversing them reveals the full picture: what the bug confounded, what the fix unblocks, what runs became possible after.</p>
+<p>Chris Frederick ran his demo branch against a three-entity ground-truth set on 2026-05-22 and filed the results in the same wiki page. The numbers looked good at first pass:</p>
 
-<h3>3. Auto-maintained index</h3>
+<table>
+  <thead>
+    <tr><th>Entity</th><th class="num">Reported answered (Sonnet)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ITAMCO</td><td class="num">17 / 17</td></tr>
+    <tr><td>Southwire</td><td class="num">14 / 17</td></tr>
+    <tr><td>CRC-ND</td><td class="num">17 / 17</td></tr>
+  </tbody>
+</table>
 
-<p><code>index_web_forager.md</code> catalogs every page with a one-line description. A collaborator does not need to remember what exists to find it. When Chris Frederick filed four new pages in one session, the index reflected them without either of us doing extra work — the ingest procedure requires updating the index as part of the operation.</p>
+<p>Chris Sweet reviewed the entity files that Chris Frederick's pipeline had produced and cross-referenced them against the "reported" counts on the wiki page. <strong>The reported count included any model response as an answer, including honest "not visible on this page" hedges.</strong> The real evidence-based counts were substantially lower:</p>
 
-<h3>4. Per-entry commit log with author attribution</h3>
+<table>
+  <thead>
+    <tr><th>Entity</th><th class="num">Reported</th><th class="num">Real (evidence-based)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ITAMCO</td><td class="num">17 / 17</td><td class="num"><strong>8 / 17</strong></td></tr>
+    <tr><td>Southwire</td><td class="num">14 / 17</td><td class="num"><strong>6 / 17</strong></td></tr>
+    <tr><td>CRC-ND</td><td class="num">17 / 17</td><td class="num"><strong>4 / 17</strong></td></tr>
+  </tbody>
+</table>
 
-<p><code>log_web_forager.md</code> records each wiki operation as a dated entry with the first bullet reading <code>by: &lt;human&gt; via &lt;agent&gt;</code>. The bug-finding entry reads <code>by: Omegaice via claude-code</code>. The re-baseline follow-up reads the same. The mantra-clarification entries elsewhere in the log read <code>by: Chris Sweet via claude-code</code>. <strong>Provenance is visible on the page, and it is verifiable in git.</strong> Every log entry is its own commit (schema rule), so <code>git blame</code> on the log file is a faithful record of who filed what and when.</p>
+<p><strong>The bug</strong>: when the LLM honestly said "the answer isn't on this page," the pipeline treated that as a successful answer and stopped searching. When the LLM instead confabulated a wrong answer (as Haiku did with "prior knowledge of Southwire"), the pipeline treated that as an answer too. Only "no answer at all" would have triggered deeper exploration — but the model, being helpful, always said <em>something</em>. The pipeline was conflating <strong>the model returned a response</strong> with <strong>the question was answered</strong>.</p>
 
-<h3>5. Session boundary crossed via durable state</h3>
+<p>This is the bug the reader should picture: the LLM refusing to hallucinate ("I can't find this on this page") looked identical to the LLM answering, so the search stopped in exactly the case where deeper searching was warranted.</p>
 
-<p>Neither Claude Code session shared conversational context with the other. They shared a wiki. Chris Frederick's Claude wrote the bug page as part of ingesting session findings. Chris Sweet's Claude, in a completely separate session, read the same pages on load per the wiki-first project convention. Neither session needed to be "held open" or "handed off." <strong>The wiki was the substrate, and it survived session boundaries.</strong></p>
+<p>The wiki page's coverage analysis captures the mechanism explicitly:</p>
+
+<blockquote>
+  <p><em>"Sonnet's honest 'not visible' responses look like plateau-evidence and trigger early stop, especially because Sonnet front-loads a lot of 'not visible' hedging on the first page (see ITAMCO). Haiku's confident-hallucination behavior accidentally drove deeper exploration in prior experiments — fixing that behavior also broke the implicit assumption that drove page-depth."</em></p>
+</blockquote>
+
+<h3>The cascade that made this a project-wide correction</h3>
+
+<p>The <code>extends: [[Experiment-7-Question-Deepen]]</code> edge in the demo branch's frontmatter was the load-bearing structural piece. It told the reviewer, formally, that this branch inherited assumptions from Experiment 7. If those assumptions were wrong here, they were wrong there. Chris Sweet followed the edge into the Experiment 7 page and the same pattern was visible.</p>
+
+<p>The wiki page for Experiment 11 records the audit result explicitly:</p>
+
+<ul>
+  <li><strong>Experiment 7 (ITAMCO 20/20 reported)</strong>: real evidence-based was 14/20. Six of those answers were "not visible on this page" hedges counted as successes.</li>
+  <li><strong>Experiment 8 (Schafer 20/20 reported)</strong>: real evidence-based was 12/20. Eight of those answers were the same category of hedge.</li>
+</ul>
+
+<p>The Working Hypothesis of the entire project — "questions replace ontologies for LLM extraction; ontology is the failure point, not the expert knowledge" — was resting on numbers that were partly artifacts of the counting bug. If the same fix that recovered ITAMCO also recovered Experiments 7 and 8 to their claimed numbers, the hypothesis stood. If not, the project's central architectural bet needed revision.</p>
+
+<h3>The fix and its measurable impact</h3>
+
+<p>Commit <code>1cf819e</code> on <code>main</code> shipped two changes:</p>
+
+<ol>
+  <li>Prompt update in <code>ask_vision.py</code>: explicit instruction that <code>null</code> tells the pipeline to keep looking, while a hedged string tells it the question is resolved. Encouraged the model to actually return null.</li>
+  <li>Defensive filter in <code>asker.py</code>: <code>_is_not_found()</code> matches 16 hedge phrases and applies the filter in four places — the main merge step, the plateau computation, the "still needed" list, and the deepen-time prior-answer sanitization.</li>
+</ol>
+
+<p>The re-run on the same three entities on 2026-05-22 (Sonnet v2):</p>
+
+<table>
+  <thead>
+    <tr><th>Entity</th><th class="num">v1 reported</th><th class="num">v1 real</th><th class="num">v2 (fixed)</th><th class="num">v1 pages</th><th class="num">v2 pages</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>ITAMCO</strong></td><td class="num">17 / 17</td><td class="num">8 / 17</td><td class="num recover">14 / 17 (+75%)</td><td class="num">1</td><td class="num">7</td></tr>
+    <tr><td>Southwire</td><td class="num">14 / 17</td><td class="num">6 / 17</td><td class="num">5 / 17</td><td class="num">6</td><td class="num">7</td></tr>
+    <tr><td>CRC-ND</td><td class="num">17 / 17</td><td class="num">4 / 17</td><td class="num">4 / 17</td><td class="num">3</td><td class="num">4</td></tr>
+  </tbody>
+</table>
+
+<p>ITAMCO's recovery — 8 → 14 real answers, from 1 page to 7 pages — is the smoking gun. The bug had been forcing the pipeline to stop at the homepage; the fix let it keep exploring the site the way it was designed to. Depth restored, real coverage restored.</p>
+
+<p>The concept extraction (semantically distinct content the model found) followed the same pattern:</p>
+
+<table>
+  <thead>
+    <tr><th>Entity</th><th class="num">v1 concepts</th><th class="num">v2 concepts</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ITAMCO</td><td class="num">16</td><td class="num recover">54 (3.4×)</td></tr>
+    <tr><td>Southwire</td><td class="num">12</td><td class="num">18</td></tr>
+    <tr><td>CRC-ND</td><td class="num">10</td><td class="num">11</td></tr>
+  </tbody>
+</table>
+
+<p><strong>And the cascade back into Experiments 7 and 8</strong>: both experiments were re-run under the fix. Both landed at exactly <strong>18/20 real evidence-based answers</strong>. ITAMCO recovered 4 of 6 lost answers. Schafer recovered 6 of 8 lost answers. The exact parity across two different entities on the same 20-question generic set confirmed the cross-entity transfer claim that was the whole point of Experiment 8, at corrected coverage. <strong>The Working Hypothesis survived the audit</strong> because the wiki structure surfaced the audit in the first place.</p>
+
+<p>Chris Frederick's demo branch was recorded on the page as still "valid work." The wiki page's log entries record both parties' contributions in sequence: Frederick filed the branch, Sweet reviewed and found the bug, the fix shipped, both experiments got re-run with attribution to whoever ran them. <strong>No single contributor gets displaced</strong>; the wiki records the whole arc.</p>
+
+<h2>Why the wiki structure made this catch possible</h2>
+
+<p>Six llm-wiki primitives did the load-bearing work.</p>
+
+<h3>1. Typed pages with typed edges</h3>
+
+<p>Every page carries YAML frontmatter declaring what kind of page it is and what its relationships are. The demo branch's frontmatter had <code>extends: [[Experiment-7-Question-Deepen]]</code>. That is not "these pages are related." It is an interface contract: <em>treat the target's claims as background assumptions for this page</em>. When a reviewer finds a bug on the child page, the <code>extends:</code> edge tells them to check whether the parent inherited the same bug. That single semantic edge is what turned a one-experiment bug report into an audit of the two prior experiments the demo branch inherited from.</p>
+
+<p>The wiki's schema page documents this explicitly under the heading <strong>Edges as Interface Operations</strong>:</p>
+
+<table>
+  <thead>
+    <tr><th>Edge</th><th>What it licenses the agent to do</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>extends:</code></td><td>Inherit semantic context from the parent. Treat the parent's claims as background assumptions for the current page.</td></tr>
+    <tr><td><code>supports:</code></td><td>Evidence aggregation. When traversing this edge, expect to combine claims.</td></tr>
+    <tr><td><code>criticizes:</code></td><td>Contradiction detection. Expect an unresolved tension that should trigger conflict-resolution logic before combining evidence.</td></tr>
+    <tr><td><code>up:</code></td><td>Parent / breadcrumb. Navigate upward in the hierarchy for category context.</td></tr>
+    <tr><td><code>related:</code></td><td>Fallback. Prefer a more specific edge type where one applies.</td></tr>
+  </tbody>
+</table>
+
+<p>A wiki reviewer following <code>extends:</code> from Experiment 11 to Experiment 7 is not just reading two pages that happen to link. They are performing the exact operation the edge encodes: <em>inherit the parent's assumptions, check whether the current bug violates them</em>.</p>
+
+<h3>2. Structured coverage table in the page itself</h3>
+
+<p>The demo branch's wiki page had a table comparing "reported" answered counts against "real" evidence-based counts. That table did the analytical work: without it, the reviewer would have seen only the reported column (17/17, 14/17, 17/17) and moved on. The wiki convention of documenting the audit inline with the finding meant the counter-evidence was visible on the same page as the claim.</p>
+
+<h3>3. Wikilinks that make cross-page implications inspectable</h3>
+
+<p>The demo page names <code>[[Experiment-5-Question-Driven]]</code>, <code>[[Experiment-7-Question-Deepen]]</code>, <code>[[Experiment-8-Second-Entity]]</code>, <code>[[Working-Hypothesis]]</code> in its Alignment table. Each is a durable link into a page that carries its own frontmatter and its own edges. Traversing them made it possible to reach the conclusion "if the bug affects the demo branch, it may affect three prior experiments and one central hypothesis," without holding all of those in working memory at once.</p>
+
+<h3>4. Auto-maintained index</h3>
+
+<p><code>index_web_forager.md</code> catalogs every page with a one-line description. A collaborator does not need to remember what exists to find it. When Chris Frederick filed the demo branch's page, the index reflected it. When Chris Sweet later cross-referenced back into Experiment 7 and 8, both were reachable by name from the index.</p>
+
+<h3>5. Per-entry commit log with author attribution</h3>
+
+<p><code>log_web_forager.md</code> records each wiki operation as a dated entry with the first bullet reading <code>by: &lt;human&gt; via &lt;agent&gt;</code>. The demo-branch filing reads <code>by: Chris Frederick via claude-code</code>. The bug-fix and re-run entries elsewhere in the log read <code>by: Chris Sweet via claude-code</code>. Every log entry is its own commit (schema rule), so <code>git blame</code> on the log file is a faithful per-entry record: <strong>provenance is visible on the page, and it is verifiable in git</strong>. Neither collaborator's contribution gets erased by the other's follow-up. Both stand.</p>
+
+<h3>6. Session boundary crossed via durable state</h3>
+
+<p>Neither Claude Code session shared conversational context with the other. They shared a wiki. Chris Frederick's Claude wrote the demo-branch experiment page as part of ingesting his session's findings. Chris Sweet's Claude, in a completely separate session, read the same pages on load per the wiki-first project convention. Neither session needed to be "held open" or "handed off." <strong>The wiki was the substrate</strong>, and it survived session boundaries.</p>
 
 <h2>The generalizable pattern</h2>
 
 <ul>
-  <li><strong>Individual sessions surface findings.</strong> A developer working on prep tasks encounters ambient facts that seem too small to flag ("current chunking threshold is 7680 px, ceiling for API is 8000 px").</li>
-  <li><strong>A wiki-first convention forces those findings into durable, cross-referenced structure.</strong> Not a notepad, not a Slack message, not chat context that expires. A page with frontmatter, edges, and an index entry.</li>
-  <li><strong>A collaborator (or the same author in a later session) reviews the wiki structure independently.</strong> Cross-references make consequences visible that a single session cannot see, because a single session does not have both sides of the relationship in context simultaneously.</li>
-  <li><strong>The typed edges tell the reviewer what kind of thinking each link warrants.</strong> <code>criticizes:</code> warrants doubt in the target; <code>supports:</code> warrants aggregation of evidence; <code>extends:</code> warrants inheritance of assumptions.</li>
-  <li><strong>The fix cascades.</strong> Correcting the bug corrects downstream conclusions the bug confounded, and unblocks work the bug was silently gating.</li>
+  <li><strong>Individual sessions surface findings.</strong> A contributor working on a scoped task (a demo branch, an environment audit, a metric-collection script) produces ambient facts that seem too small to flag as bugs.</li>
+  <li><strong>A wiki-first convention forces those findings into durable, cross-referenced structure.</strong> Not a notepad, not a Slack message, not chat context that expires. A page with frontmatter, typed edges, and an index entry.</li>
+  <li><strong>A collaborator (or the same author in a later session) reviews the wiki structure independently.</strong> Typed edges make consequences visible that a single session cannot see, because a single session does not have both sides of the relationship in context simultaneously.</li>
+  <li><strong><code>extends:</code> is where the review pays off.</strong> It says "this inherits from that." When the review finds a bug on the child, the edge tells them where else the bug might live.</li>
+  <li><strong>The fix cascades along the edges.</strong> Correcting the bug corrects downstream conclusions, and (crucially) surfaces prior experiments that need re-running. The wiki logs the re-runs on the same page as the original claim, so the record stays honest.</li>
+  <li><strong>Attribution is preserved through the cascade.</strong> Chris Frederick's demo branch stayed valid work. Chris Sweet's fix cascade credited both parties. Neither got erased.</li>
 </ul>
 
 <p>None of this depends on both collaborators being in the same room, same session, or same time zone. It depends on both writing into a shared, structured, LLM-maintained knowledge base.</p>
 
+<h2>A second, smaller example of the same pattern (2026-06-11)</h2>
+
+<p>The demo-branch story is not a one-off. Three weeks later, the same pattern caught a second bug.</p>
+
+<p>On 2026-06-11, Chris Frederick was prepping for a fleet-scale run and filed a routine reference page: <code>Vision-Token-Economics</code>, documenting per-model tokenization limits and cost math. Filed alongside it: <code>Screenshot-Resolution-Bug</code>, with frontmatter <code>criticizes: [[Experiment-11-Productionization]]</code>.</p>
+
+<p>The bug: <code>browser.py</code> chunked screenshots only above 7680 px (the API's hard-reject ceiling), but Sonnet's native cap forces silent downscaling on anything over ~950 px tall at 1280 wide. The ITAMCO homepage (1280 × 7396 px) was being read at <strong>21% scale, 560 tokens</strong>. Body text 16 px rendered at 3.4 px. The model was reading thumbnails.</p>
+
+<p>The <code>criticizes:</code> edge told Chris Sweet: <strong>the Experiment 11 conclusions may be confounded by this</strong>. Which they were — the "not visible on this page" answers from ITAMCO's homepage were sometimes literally true because the pages were illegible. The fix landed the same day (main-repo commit <code>352fe477</code>); the re-baseline that followed gave the project a defensible tier decision: <strong>Sonnet 93.6% [89.8, 96.5] &gt; Opus 86.8% [82.2, 90.7] &gt; Haiku 78.7% [72.8, 84.1]. P(Sonnet &gt; Opus) = 99.3%.</strong></p>
+
+<p>Same pattern, different edge type. <code>extends:</code> propagated an inheritance-checking review from the demo branch. <code>criticizes:</code> propagated a doubt-checking review from the resolution bug. In both cases, the wiki structure carried the semantic burden the reviewer would otherwise have had to reconstruct from memory.</p>
+
 <h2>The wiki pages that carry the story</h2>
 
-<p>Ordered by relevance.</p>
+<p>Ordered by relevance to the primary story.</p>
 
 <ol>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Screenshot-Resolution-Bug"><strong>Screenshot Resolution Bug</strong></a> — the bug report itself, with the artifact evidence table, the fix prescription, and the "fix landed" section. Frontmatter shows the <code>criticizes:</code> and <code>related:</code> edges in action.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Vision-Token-Economics"><strong>Vision Token Economics</strong></a> — the reference page filed the same session; the <em>routine</em> one Chris Frederick did not think would be revelatory. Reading it in isolation is a per-model tokenization spec. Reading it alongside the bug page is what surfaced the implications.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Experiment-11-Productionization"><strong>Experiment 11: Demo Branch for Navy Lunch (Productionization)</strong></a> — the page the bug page criticizes. Shows what the bug confounded and what the review restored to correctness.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Model-Tier-Re-Baseline"><strong>Eval: Model-Tier Re-Baseline (ITAMCO + Schafer)</strong></a> — the measurable payoff. The re-baseline run that the fix made possible: 32 trials, credible intervals, tier decision. The <code>supports:</code> edge in its frontmatter points back at <code>Blackbox-Eval-Adoption</code> to show it fulfilled the plan.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Validity-Audit"><strong>Eval: Validity Audit</strong></a> — Chris Frederick's follow-up zero-API audit of the re-baseline. Shows the collaboration continuing: bug → fix → re-baseline → audit-of-re-baseline. Every hop filed in the wiki.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Thinking-Default"><strong>Eval: Thinking Was the Default All Along</strong></a> — a second bug the same reviewer pass surfaced: adaptive thinking silently enabled by SDK default in production and every eval to date. Config made tri-state (<code>e2b9c91f</code>), then measured on Sonnet: adaptive 93.1% vs disabled 88.1% (P ≈ 96%). Same collaboration pattern, second finding.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Blackbox-Eval-Adoption"><strong>Blackbox-Eval Adoption</strong></a> — the plan the bug fix unblocked. Shows how the wiki structure sequences work: prereqs → fix → framework adoption → re-baseline.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/Fleet-Run-Bottlenecks"><strong>Fleet Run Bottlenecks</strong></a> — the prerequisite audit for the 108-company sweep. Records the seven-step prep sequence the fix was part of.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/SCHEMA_web_forager"><strong>Wiki Schema — Web Forager</strong></a> — the living document defining the frontmatter conventions, typed edges, per-entry commit log rule, and the four operations. The shape of the discipline that made the story possible.</li>
-  <li><a href="https://github.com/chrissweet/web_forager/wiki/index_web_forager"><strong>Index</strong></a> and <a href="https://github.com/chrissweet/web_forager/wiki/log_web_forager"><strong>Log</strong></a> — catalog and chronological record. Show how discoverability works: index for topic-first lookup, log for time-first lookup with author attribution.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Experiment-11-Productionization"><strong>Experiment 11: Demo Branch for Navy Lunch — Pipeline + First Validation Run</strong></a> — the page at the center of the primary story. Chris Frederick's demo branch, the reported-vs-real coverage table, the fix (<code>1cf819e</code>), the ITAMCO recovery from 8 to 14 answers, the cascade back into Experiments 7 and 8. Read the "Sonnet v2 — With Not-Found Filter Fix" section for the concrete before/after.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Experiment-7-Question-Deepen"><strong>Experiment 7: Question Deepen</strong></a> — the parent experiment the demo branch declared it extended. Now updated with the audit result: 20/20 reported → 14/20 real → 18/20 after fix.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Experiment-8-Second-Entity"><strong>Experiment 8: Second Entity (Schafer)</strong></a> — the sibling experiment the demo branch declared it was related to. Same audit story: 20/20 reported → 12/20 real → 18/20 after fix. The exact parity with the ITAMCO redux at 18/20 is what confirmed the cross-entity transfer claim.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Working-Hypothesis"><strong>Working Hypothesis</strong></a> — the project's central architectural claim (questions replace ontologies). The audit that Chris Frederick's demo branch triggered stress-tested it against real evidence-based coverage. The wiki page shows the hypothesis surviving the correction.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/SCHEMA_web_forager"><strong>Wiki Schema — Web Forager</strong></a> — the living document defining frontmatter conventions, typed edges (with the <em>Edges as Interface Operations</em> table quoted above), the per-entry commit log rule, and the four operations. This is the shape of the discipline that made the story possible.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Screenshot-Resolution-Bug"><strong>Screenshot Resolution Bug</strong></a> — the second-example page. Uses the <code>criticizes:</code> edge type instead of <code>extends:</code>, but the same pattern: file the finding structurally, let the edge trigger the review.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Vision-Token-Economics"><strong>Vision Token Economics</strong></a> — the routine reference page filed alongside the resolution bug. Ordinary documentation whose value emerged only in cross-reference against the extraction pipeline.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Model-Tier-Re-Baseline"><strong>Eval: Model-Tier Re-Baseline</strong></a> — the measurable payoff of the second-example story. Sonnet 93.6% &gt; Opus 86.8% &gt; Haiku 78.7% with 32 trials and credible intervals.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/index_web_forager"><strong>Index</strong></a> and <a href="https://github.com/chrissweet/web_forager/wiki/log_web_forager"><strong>Log</strong></a> — catalog and chronological record. Discoverability by topic and by time, with author attribution.</li>
 </ol>
 
 <h2>Direct quotes from the wiki</h2>
 
-<p>On the bug's magnitude, from <code>Screenshot-Resolution-Bug</code>:</p>
+<p><strong>Chris Frederick's own framing of the demo branch</strong>, showing he did not think it would be revelatory:</p>
 
 <blockquote>
-  <p>At 21% scale, 16 px body text renders at ~3.4 px. The model was reading thumbnails.</p>
+  <p><em>"I wanted to make sure I could give Jose a simpler demonstration in Obsidian of what we are working on. ... This was solely for that demonstration."</em></p>
 </blockquote>
 
-<p>On what the bug confounded:</p>
+<p><strong>The mechanism of the bug</strong>, in the wiki's own words:</p>
 
 <blockquote>
-  <p>Sonnet's honest "not visible on this page" answers may often have been literally true at 21% scale. Question/target mismatch remains real (some content genuinely is not published) but its measured magnitude is inflated by unreadable pages.</p>
+  <p><em>"Sonnet's honest 'not visible' responses look like plateau-evidence and trigger early stop, especially because Sonnet front-loads a lot of 'not visible' hedging on the first page (see ITAMCO). Haiku's confident-hallucination behavior accidentally drove deeper exploration in prior experiments — fixing that behavior also broke the implicit assumption that drove page-depth."</em></p>
 </blockquote>
 
-<p>On the fix landing:</p>
+<p><strong>The metric-honesty framing</strong>:</p>
 
 <blockquote>
-  <p>A pure helper <code>chunk_scroll_positions</code> chunks whenever the page exceeds one viewport, steps by <code>viewport - overlap</code>, clamps the final tile to the page bottom (no overscroll duplicates), and caps at 20 chunks against infinite-scroll pages.</p>
+  <p><em>"The pipeline's <code>questions_answered:</code> metric counts any model response — including 'not visible on this page' — as answered. That overstates coverage. The honest metric is <code>17 minus the unanswered_questions count</code>, which counts only answers backed by visible page evidence (or explicitly-flagged inference)."</em></p>
 </blockquote>
 
-<p>From the log entry (<code>log_web_forager.md</code>, 2026-06-11 ingest):</p>
+<p><strong>The fix landing and its scope</strong>:</p>
 
 <blockquote>
-  <p><code>browser.py</code> chunks only above 7680 px (the API's 8000 px hard-reject limit), but Sonnet's native cap downscales anything over ~950 px tall at 1280 wide. Saved artifacts confirm: ITAMCO homepage (1280 × 7396) was read at 21% scale / 560 tokens. Confounds Exp 11 coverage conclusions and all Haiku/Sonnet head-to-heads; caveat added to the Exp 11 page.</p>
+  <p><em>"Patched <code>forager/asker.py</code> + <code>forager/ask_vision.py</code> to treat honest 'not visible on this page' hedges as null. ... Committed as <code>1cf819e</code> on <code>main</code>."</em></p>
 </blockquote>
 
-<p>From the re-baseline page:</p>
+<p><strong>The smoking-gun recovery</strong>:</p>
 
 <blockquote>
-  <p>Re-baseline run <code>rebaseline-tiers-20260611</code> (32 trials, $11.75): sonnet theta 93.6% [89.8, 96.5] &gt; opus 86.8% [82.2, 90.7] &gt; haiku 78.7% [72.8, 84.1]; P(sonnet &gt; opus) = 99.3%; fleet tier decision is sonnet.</p>
+  <p><em>"ITAMCO: +6 real answers (+75%). The fix did exactly what was needed. v1 saw the homepage front-load 'not visible' hedges for 9 questions and plateau-stopped after 1 page. v2 saw those hedges as no-progress, kept exploring, and found the answers on <code>/manufacturing/capabilities/</code>, <code>/manufacturing/defense-and-government/</code>, ... This is the smoking-gun proof that the bug was killing exploration on entities where deeper pages have real content."</em></p>
+</blockquote>
+
+<p><strong>The audit outcome</strong>:</p>
+
+<blockquote>
+  <p><em>"Both at <strong>18/20 real</strong> under the fix. ITAMCO recovered 4 of 6 hedges; Schafer recovered 6 of 8 hedges. Exact parity between the two entities (18/20 / 18/20) with the same 20-question generic set — confirms the cross-entity transfer claim survives the audit at corrected coverage."</em></p>
 </blockquote>
 
 <h2>The takeaway</h2>
 
 <ul>
   <li><strong>A shared llm-wiki turns discrete sessions into cumulative project memory.</strong> Neither collaborator held state across the boundary. The wiki did.</li>
-  <li><strong>Structure matters more than content volume.</strong> Frontmatter, typed edges, and cross-references made ambient session notes reviewable in a way freeform prose or chat logs are not.</li>
-  <li><strong>The wiki catches bugs their filers did not consider bugs.</strong> Chris Frederick did not file <code>Vision-Token-Economics</code> as a bug report. Cross-referencing it against the extraction pipeline turned a routine reference page into the corner piece of a project-wide correction.</li>
-  <li><strong>Attribution scales trust.</strong> <code>by: &lt;human&gt; via &lt;agent&gt;</code> on every log entry, one commit per entry, git-blame-traceable. Collaborators can verify who found what without asking anyone.</li>
-  <li><strong>The pattern is generalizable beyond this project.</strong> Any multi-session, multi-contributor codebase where session-context evaporates can adopt the same primitives: typed pages, typed edges, index, log, per-entry commits. The llm-wiki template packages that.</li>
+  <li><strong>Structure matters more than content volume.</strong> Frontmatter, typed edges, and cross-references made ambient session notes reviewable in ways freeform prose or chat logs are not.</li>
+  <li><strong>The wiki catches bugs their filers did not consider bugs.</strong> Chris Frederick did not file the demo branch as a bug report — he filed it as a demo he had offered to drop. The review made possible by the wiki's structure turned it into the corner piece of a project-wide audit that stress-tested the central hypothesis and recovered ~75% more real coverage on the flagship entity.</li>
+  <li><strong>Typed edges are not decoration.</strong> <code>extends:</code> said "this inherits from that." When the child page was found to have a bug, the edge told the reviewer exactly which pages to check next. That is not a graph. That is an inheritance interface.</li>
+  <li><strong>Attribution scales trust.</strong> <code>by: &lt;human&gt; via &lt;agent&gt;</code> on every log entry, one commit per entry, git-blame-traceable. Chris Frederick's demo work stands. Chris Sweet's fix cascade stands. Both credited.</li>
+  <li><strong>The pattern is generalizable.</strong> Any multi-session, multi-contributor codebase where session-context evaporates can adopt the same primitives: typed pages, typed edges, index, log, per-entry commits. The llm-wiki template packages that.</li>
 </ul>
+
+<div class="sidebar">
+  <h3>About Web Forager</h3>
+  <p>Web Forager is an adaptive web scraper for structured extraction from company websites. Given a URL, it takes screenshots, sends them to Claude vision, extracts structured data, answers a set of competency questions, and records what it could not answer for later re-scraping. Two layers of storage: per-page extractions (JSONL) and a per-entity wiki page (markdown). Python 3.11+ with Playwright, the Claude Agent SDK, and Click for the CLI. Validated on a fleet of 108 drone-industrial-base companies; single-entity accuracy 18-20/20 on the 20-question generic set post-audit; fleet run tier decision Sonnet 4.6.</p>
+</div>
 
 <footer>
   <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
