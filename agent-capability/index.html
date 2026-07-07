@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent capability · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: var(--ink); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
+li { margin: 0.4em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+.tieback {
+  background: #fafcff;
+  border-left: 3px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.tieback strong { color: var(--accent); }
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <p class="kicker">Deep dive · Cluster 3 of 3</p>
+  <h1>Agent capability</h1>
+  <p class="lede">Hooks, skills, and gates: the pre-configured discipline that ships with the environment, and why the discipline is the load-bearing feature. The <a href="../wiki-collaboration-story/">case study</a> shows what these produce in real project work.</p>
+</header>
+
+<h2>The problem raw AI subscriptions do not solve</h2>
+
+<p>A group Claude or ChatGPT subscription gets you access, not a workflow. Every student prompts differently. No one enforces "read the project decisions page before writing," "file numerical claims with their corpus tag," or "commit the log entry as its own commit so <code>git blame</code> can trust the record." The AI's helpfulness ends up depending entirely on how well each user prompts it and how much project convention they hold in their head.</p>
+
+<p>The wiki-grounded research agent's differentiator is that <strong>the discipline is in the artifact, not in each user's memory</strong>. The environment ships with pre-configured skills, hooks, and gates that carry the workflow. A new user does not need to know how to use the pattern correctly; the pattern's hooks tell the agent what to do at every step. What follows is the three concrete artifacts that make that true.</p>
+
+<h2>Skills: pre-configured procedures the agent runs</h2>
+
+<p>A skill is a Markdown file at <code>.claude/skills/</code> that Claude Code auto-loads and consults when a task matches the skill's description. Each skill is a documented procedure: what the task is, what to capture, the step-by-step, what to skip, and how to report back. The base <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> ships three:</p>
+
+<table>
+  <thead>
+    <tr><th>Skill</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>wiki-source</code></td><td>Ingest a new source document (paper, article, design doc, README, external reference) into the wiki. Creates a source-summary page and links it into the existing wiki neighborhood.</td></tr>
+    <tr><td><code>wiki-experiment</code></td><td>File experiment results to the wiki following the SCHEMA Ingest procedure. Use after an experiment run produces metrics, ablations, or comparisons worth keeping as durable project memory.</td></tr>
+    <tr><td><code>wiki-lint</code></td><td>Periodic health-check for orphans, dead links, stale claims, missing frontmatter, and <code>untyped</code> placeholder pages.</td></tr>
+  </tbody>
+</table>
+
+<p>Here is the actual frontmatter block from the <code>wiki-source</code> skill file:</p>
+
+<pre><code>---
+name: wiki-source
+description: Ingest a new source document (paper, article, design doc,
+  README, external reference) into the wiki. Creates a source-summary
+  page and links it into the existing wiki neighborhood.
+---</code></pre>
+
+<p>The body underneath is an 11-step procedure the agent follows verbatim. It names the frontmatter fields to add, the typed edges to draw, the index category to update under, the log entry to append, and the verification step to run before commit. Excerpt from the actual procedure:</p>
+
+<blockquote>
+  <p><em>Step 3: Create a source-summary page named after the source. Frontmatter: <code>type: source-summary</code>, <code>up:</code> to the closest existing parent page, and <code>source:</code> set to a URL or filesystem path. Add <code>supports:</code> / <code>criticizes:</code> / <code>extends:</code> typed edges to other wiki pages where the relationship is clear.</em></p>
+  <p><em>Step 8: Append a <code>## [YYYY-MM-DD] ingest | Source title</code> entry to <code>log_&lt;repo&gt;.md</code>. The first bullet is the attribution line <code>- by: &lt;name&gt; via claude-code</code>, where <code>&lt;name&gt;</code> is the output of <code>git config user.name</code> in the wiki repo (read it, do not invent it).</em></p>
+</blockquote>
+
+<p>Two properties matter. First, the procedure is <strong>specific</strong>: it names frontmatter fields, categories, and file paths. No agent-judgment inserted where a rule is available. Second, it is <strong>uniform across users</strong>: every ingest done by every user in this environment goes through the same 11 steps. A new student running <code>/wiki-source</code> on their first paper produces a page indistinguishable from the tenth paper the senior postdoc filed, because both are following the same skill.</p>
+
+<div class="tieback">
+  <p><strong>Case study tie-back.</strong> In the <a href="../wiki-collaboration-story/">web_forager story</a>, Chris Frederick's demo branch was filed as a wiki page not because he decided to be thorough, but because the ingest skill's procedure required it. The typed edges (<code>extends: [[Experiment-7-Question-Deepen]]</code>, <code>related: [[Experiment-8-Second-Entity]]</code>) that later carried the audit cascade were in the frontmatter because the skill's step 3 said to add them.</p>
+</div>
+
+<h2>Hooks: reminders and enforcements at session boundaries</h2>
+
+<p>A hook is a shell script that Claude Code runs at a specific event: <code>SessionStart</code> when a session begins, <code>PostToolUse</code> after every tool call, and others. The base template ships a SessionStart hook that solves the "the wiki exists but the agent forgot to check it" problem by loading three blocks of context at every session boot, before the user has typed anything.</p>
+
+<h3>Block 1: orientation reminder</h3>
+
+<p>Emitted verbatim on every session start:</p>
+
+<pre><code>&lt;system-reminder&gt;
+This project uses the wiki at wiki/&lt;repo&gt;.wiki/ as durable memory.
+It is a separate git repository with its own remote, NOT a subdirectory of
+the main repo. Read SCHEMA_&lt;repo&gt;.md before non-trivial wiki edits.
+Update the wiki proactively when experiment results, decisions, or
+syntheses emerge.
+
+Every wiki edit ends with a commit in the wiki's own repo:
+  git -C wiki/&lt;repo&gt;.wiki add &lt;files&gt;
+  git -C wiki/&lt;repo&gt;.wiki commit -m "..."
+Run these without asking, local commits are reversible. Push only on
+explicit request.
+
+Slash commands available: /wiki-experiment, /wiki-source, /wiki-lint.
+&lt;/system-reminder&gt;</code></pre>
+
+<h3>Block 2: the wiki index</h3>
+
+<p>Emitted after the reminder: the full contents of <code>index_&lt;repo&gt;.md</code>, so the agent sees the catalog of every wiki page with one-line descriptions before the first user turn. The hook's comment names the intent: <em>with the index in context at turn 0, the agent answers wiki-pageable questions without an extra Read/Grep tool call. The wiki becomes memory, not search</em>.</p>
+
+<h3>Block 3: the last 5 log entries</h3>
+
+<p>Emitted last: the tail of the wiki's log, so the agent knows what has happened recently and can pick up mid-thread without waiting for the user to summarize.</p>
+
+<p>The cost is a few thousand tokens at session start, paid once. The payoff is that the agent enters every conversation already knowing the project's memory catalog and its recent history. No user needs to remember to say "check the wiki first."</p>
+
+<p>A companion <code>PostToolUse</code> hook fires after tool calls and is where per-project verifications can attach. The two hooks together mean the wiki-first discipline is enforced by the harness, not left to prompt engineering.</p>
+
+<div class="tieback">
+  <p><strong>Case study tie-back.</strong> When Chris Sweet opened a review session on the web_forager wiki, the SessionStart hook put the current index and the last 5 log entries in his session's context automatically. That included Chris Frederick's most recent ingest entry ("<code>by: Chris Frederick via claude-code</code>") flagging the demo branch as pageable content. Following the entry to <code>Experiment-11-Productionization</code> was one link away because the log had loaded it into context on session boot.</p>
+</div>
+
+<h2>The verification gate: pre-commit checklist</h2>
+
+<p>The verification gate lives at <code>wiki/agents/verification-gate.md</code>. It is a <em>procedural</em> honesty check that runs against every wiki write, right before <code>git commit</code>. Every ingest skill (<code>wiki-source</code>, <code>wiki-experiment</code>, and any future write skill) invokes it as its penultimate step, before staging or committing.</p>
+
+<p>The gate's criteria are organized in four categories. Concrete criteria shown; the full list lives in the template file.</p>
+
+<h3>Numerical claims</h3>
+
+<ul>
+  <li>Every numerical claim is <strong>backed by a real script output, cached judge result, or external citation</strong>. Estimated or projected values are explicitly marked as such and tagged with the basis of the estimate.</li>
+  <li>Every numerical claim is <strong>tagged with its corpus / dataset / configuration scope</strong>. A bare "73.3%" is ambiguous; "73.3% on the 281-chunk gold-only corpus" is honest.</li>
+  <li><strong>No cross-corpus gap arithmetic is presented as a direct gap.</strong> If page A reports X% on corpus 1 and page B reports Y% on corpus 2, the wiki must not state "(X − Y)pp gap" without a same-corpus measurement.</li>
+</ul>
+
+<h3>Cross-references and structure</h3>
+
+<ul>
+  <li>Every new typed-edge reference in frontmatter is paired with a <strong>body-level back-reference on the target page</strong>. Broken back-references are not acceptable.</li>
+  <li>Every new body link <code>[Display](Page-Name)</code> resolves to an existing wiki page.</li>
+  <li>Frontmatter is valid YAML and includes <code>type:</code> and <code>up:</code>, plus any typed edges that apply.</li>
+</ul>
+
+<h3>Index and log</h3>
+
+<ul>
+  <li><code>index_&lt;repo&gt;.md</code> lists every new page in the right category with a one-line description.</li>
+  <li><code>log_&lt;repo&gt;.md</code> has a dated entry covering this write, with 2 to 5 bullets of substance.</li>
+</ul>
+
+<h3>Honest reporting</h3>
+
+<ul>
+  <li>Bad results, contradicted claims, and worsened metrics are filed truthfully. No polishing, no "needs more investigation" hedges that hide a real negative result.</li>
+  <li><strong>No projection or speculation is filed as a measured fact.</strong></li>
+</ul>
+
+<p>The procedure is: re-read each page <em>from disk</em> (not from the in-context draft, which can hide edit-window artifacts), run the criteria top to bottom, fix and re-run on failure, only proceed to commit when every criterion passes. This is a <em>sequential gate</em>: no shortcuts.</p>
+
+<div class="tieback">
+  <p><strong>Case study tie-back.</strong> The <a href="../wiki-collaboration-story/">web_forager story</a> is a live example of the honest-reporting criterion doing load-bearing work. The demo branch's reported coverage was 17/17. When Chris Sweet cross-referenced against the actual entity files, real evidence-based coverage was 8/17. Because the wiki's convention is "file the reported-vs-real table inline with the finding," the counter-evidence was visible on the same page as the claim, not hidden in a follow-up. The <em>projection-as-fact</em> failure mode was caught at read-time, not months later.</p>
+</div>
+
+<h2>Discipline gates: rationalizations named in advance</h2>
+
+<p>The <code>discipline-gates.md</code> file names <em>universally-wrong rationalizations</em> the agent might use to justify a bad write, and pairs each with the counter that defeats it. Excerpt from the actual table:</p>
+
+<table>
+  <thead>
+    <tr><th>Rationalization</th><th>Why it's wrong</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>"I'll add the corpus tag / frontmatter / cross-references later"</td><td>Later never comes. Do it now while context is fresh. Unindexed and untagged content drifts faster than it can be cleaned.</td></tr>
+    <tr><td>"The estimate / projection is fine to file"</td><td>Honest reporting is non-negotiable: numbers in the wiki must be backed by a real script output, a cached judge result, or an external citation. Projections must be marked as such, not slipped in as fact.</td></tr>
+    <tr><td>"The cross-corpus comparison is close enough to cite directly"</td><td>A gap arithmetic between rows on different corpora is not a gap. Tag every number with its corpus and refuse the direct subtraction.</td></tr>
+    <tr><td>"I have enough context, the log / index need not be read first"</td><td>Session-start ritual exists for a reason. Reading the recent log entries and skimming the index is the cheapest way to avoid contradicting yesterday's findings.</td></tr>
+    <tr><td>"Quick note, I'll wire it into the wiki later"</td><td>A wiki page without inbound links is invisible to retrieval. Inline back-references from related pages while writing, not after.</td></tr>
+    <tr><td>"Good enough to commit"</td><td>Verification before commit is non-negotiable. The Verification Gate is a small criteria list, running it costs seconds and catches the failure modes above.</td></tr>
+  </tbody>
+</table>
+
+<p>The table exists because purely-declarative rules ("don't file projections as facts") fail: the agent rationalizes exceptions between lint passes. Naming the rationalization in advance turns the rule into something the agent recognizes as a red flag before writing.</p>
+
+<p>The same file defines three <em>gate types</em> the environment uses:</p>
+
+<ul>
+  <li><strong>Design Gate.</strong> Gather → Assess → Propose plan → Get approval → Execute. Used before any multi-step write where the layout decision is non-obvious.</li>
+  <li><strong>Verification Gate.</strong> Create → Read back → Check criteria → Fix failures → Commit. Used before every wiki write. This is the pre-commit checklist above.</li>
+  <li><strong>Sequential Gate.</strong> Step N must pass before step N+1 can begin. Used inside ingests where structural correctness must precede content review.</li>
+</ul>
+
+<p>And a <em>Skill Dependency Chain</em>: when one skill runs, other procedures MUST also run. Not "should" — must:</p>
+
+<table>
+  <thead>
+    <tr><th>When this runs...</th><th>...this MUST also run</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Wiki experiment ingest</td><td>Verification Gate over the created/edited pages</td></tr>
+    <tr><td>Wiki source ingest</td><td>Verification Gate over the created summary</td></tr>
+    <tr><td>Any wiki write that introduces a new typed edge</td><td>Update the reciprocal edge on the target page</td></tr>
+    <tr><td>Any wiki write to a numbered claim</td><td>Append a dated update entry to the log</td></tr>
+  </tbody>
+</table>
+
+<p>These are agent-agnostic. Every overlay (Claude Code, Cursor, future) references the same discipline-gates.md file rather than reimplementing its rules. When a new rationalization is added to the table, every overlay picks it up automatically. DRY from day one.</p>
+
+<h2>Domain-specific variants: extending the discipline</h2>
+
+<p>A variant template inherits everything above and adds its own domain-specific gates on top. The <a href="https://github.com/chrissweet/llm-wiki-proposal-template">llm-wiki-proposal-template</a> is a live example. Its <code>proposal-edit</code> skill inherits the base template's verification gate and adds proposal-writing refusals that make no sense outside a proposal-drafting context:</p>
+
+<ul>
+  <li><strong>Unsourced numerical claims.</strong> The skill refuses to insert a percentage, throughput, or accuracy number into the proposal draft unless it is backed by a real experimental result or an external citation. Estimates get marked, not slipped in.</li>
+  <li><strong>Numerical superiority claims over published baselines.</strong> Softens to "competitive with" until rigorous head-to-head benchmarks are captured in the wiki.</li>
+  <li><strong>Auto-promoting a draft to canonical.</strong> The skill writes to <code>_draft.docx</code>. Renaming to the canonical filename is a human step, done after review in Word's Compare Documents. The skill will not do this automatically.</li>
+  <li><strong>Auto-committing the main repo.</strong> The skill commits the wiki (for the audit trail) but never the main repo. Human review gates the main-repo commit.</li>
+</ul>
+
+<p>The pattern is: <em>the base template's discipline is universal; variants add domain-specific gates for the failure modes that variant sees</em>. A future onboarding-template variant would add different refusals. A grant-authoring variant that files against agency-specific formats adds different index categories. The base template does not know about proposals; the proposal template does not have to know about generic wiki-lint. Placement stays clean.</p>
+
+<h2>Multi-AI: the same discipline across overlays</h2>
+
+<p>The verification gate, the discipline gates, and the write protocol are <strong>agent-agnostic policy files</strong>. Every overlay references them rather than reimplementing them. This is what makes the multi-AI story real rather than aspirational.</p>
+
+<ul>
+  <li>The <strong>Claude Code overlay</strong> installs skills under <code>.claude/skills/</code> and hooks under <code>.claude/hooks/</code>. Its per-skill files reference <code>wiki/agents/verification-gate.md</code> at their commit step.</li>
+  <li>The <strong>Cursor overlay</strong> installs rules under <code>.cursor/rules/wiki-*.mdc</code>. Its per-rule files reference the same <code>wiki/agents/verification-gate.md</code> file.</li>
+  <li>The <strong>"none" overlay</strong> ships no per-agent files; the discipline is in <code>CLAUDE.md</code> and the SCHEMA for the agent to read directly.</li>
+  <li>A future <strong>OpenAI-family overlay</strong> installs whatever the platform supports, and references the same policy files.</li>
+</ul>
+
+<p>When a Claude Code session and a Cursor session both write to the same wiki (as they can and do), both are held to the same gates. The <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution line on every log entry captures which tool did each write, so an audit of who claimed what and through which agent is one <code>git log</code> away. Vendor lock-in becomes a swap of the overlay files, not a re-authoring of the project's memory.</p>
+
+<div class="pair">
+  <p><strong>Raw AI subscription:</strong> every user prompts differently. Discipline lives in memory.</p>
+  <p><strong>Configured environment:</strong> skills, hooks, and gates carry the discipline. Every session starts from a known baseline, every write goes through the same pre-commit check, and every overlay honors the same policy files.</p>
+</div>
+
+<h2>The claim in one paragraph</h2>
+
+<p>The wiki-grounded research agent's differentiator is not that Claude is smart. It is that the environment codifies the discipline that keeps a shared wiki honest and useful under real project stress. Skills document the ingest procedures every user follows. Hooks put the wiki's memory in the agent's context at every session boot. The verification gate catches projection-as-fact and missing cross-references at write time. The discipline gates name in advance the rationalizations the agent might use to justify a bad write. Together they mean the pattern holds up in a real multi-author project, which the <a href="../wiki-collaboration-story/">case study</a> demonstrates on 15 rewrite passes of a live web-scraping project. When a new PI adopts this environment, they inherit the discipline; they do not have to invent it.</p>
+
+<footer>
+  <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> shows these skills, hooks, and gates producing a project-wide bug catch that neither collaborator would have caught alone.</p>
+  <p><strong>Related sources:</strong> <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the base template that ships these skills, hooks, and gates) · <a href="https://github.com/chrissweet/llm-wiki-proposal-template">chrissweet/llm-wiki-proposal-template</a> (the proposal variant with domain-specific refusals) · <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026)</a> · <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (semantic foundation)</p>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+</footer>
+
+</body>
+</html>
