@@ -280,6 +280,39 @@ SELECT ?topic (COUNT(?paper) AS ?papers) WHERE {
 
 <p>Distribution is even. No topic dominates by paper count; the top three (Foundation-Models-for-Science, Autonomous-Labs, AI-for-Protein-Design) share nine papers each. Engineering disciplines (Civil, Mechanical, Electrical, Aerospace) sit slightly lower at 5–6 papers each, an artifact of the survey's early emphasis on natural-science domains before extending into engineering.</p>
 
+<h2>Cross-topic connectivity: which sub-domains actually talk to each other</h2>
+
+<p>Papers per topic tells you what the wiki covers; cross-topic <code>related:</code> edges tell you what the wiki considers <em>connected</em>. This query walks every <code>related:</code> edge between two SourceSummary papers whose <code>up:</code> paths lead to different Index nodes, groups by topic pair, and counts:</p>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+
+SELECT ?topicA ?topicB (COUNT(*) AS ?crossrefs) WHERE {
+    ?paperA llm-wiki-colab:related ?paperB ;
+            llm-wiki-colab:up ?topicA .
+    ?paperB llm-wiki-colab:up ?topicB .
+    FILTER(?topicA != ?topicB)
+    FILTER(STR(?topicA) &lt; STR(?topicB))
+} GROUP BY ?topicA ?topicB ORDER BY DESC(?crossrefs) LIMIT 10</code></pre>
+
+<table>
+<thead><tr><th>Topic A</th><th>Topic B</th><th class="n">Cross-refs</th></tr></thead>
+<tbody>
+<tr><td>AI-for-Chemistry-and-Materials</td><td>Foundation-Models-for-Science</td><td class="n">18</td></tr>
+<tr><td>Autonomous-Labs-and-Self-Driving-Science</td><td>Foundation-Models-for-Science</td><td class="n">14</td></tr>
+<tr><td>AI-for-Drug-Discovery</td><td>AI-for-Protein-Design-and-Biology</td><td class="n">14</td></tr>
+<tr><td>AI-for-Chemistry-and-Materials</td><td>Autonomous-Labs-and-Self-Driving-Science</td><td class="n">8</td></tr>
+<tr><td>AI-for-Chemistry-and-Materials</td><td>Meta-Analyses-and-Surveys</td><td class="n">8</td></tr>
+<tr><td>AI-for-Drug-Discovery</td><td>Autonomous-Labs-and-Self-Driving-Science</td><td class="n">8</td></tr>
+<tr><td>AI-for-Protein-Design-and-Biology</td><td>AI-for-Synthetic-Biology</td><td class="n">8</td></tr>
+<tr><td>Autonomous-Labs-and-Self-Driving-Science</td><td>AI-for-Protein-Design-and-Biology</td><td class="n">6</td></tr>
+<tr><td>Foundation-Models-for-Science</td><td>Meta-Analyses-and-Surveys</td><td class="n">6</td></tr>
+<tr><td>AI-for-Electrical-Engineering</td><td>AI-for-Physics</td><td class="n">4</td></tr>
+</tbody>
+</table>
+
+<p>The AI-for-Chemistry-and-Materials ↔ Foundation-Models-for-Science bond dominates at 18 cross-references, twice the volume of the next natural-science pairing. Foundation models also anchor the Autonomous-Labs axis (14 cross-refs), consistent with the self-driving-chemistry story where foundation-model-driven agents run wet-lab work. The AI-for-Drug-Discovery ↔ AI-for-Protein-Design-and-Biology pair at 14 forms the biology cluster's spine, and Protein-Design ↔ Synthetic-Biology (8) extends it. Notice engineering domains barely appear in the top 10; the one entry, AI-for-Electrical-Engineering ↔ AI-for-Physics at 4, is the sole engineering–natural-science bridge in the top ten.</p>
+
 <h2>Hub notes: which pages hold the graph together</h2>
 
 <p>The template's <code>hub-notes</code> query counts inbound typed edges per note, excluding structural predicates (title, tag, status, timeline, rdf:type). Top 10 on this wiki:</p>
@@ -302,24 +335,29 @@ SELECT ?topic (COUNT(?paper) AS ?papers) WHERE {
 
 <p>The topic-Index pages fill the top ten, as expected: <code>up:</code> edges from ~9 papers each plus cross-topic <code>related:</code> traffic add up to 20–40 inbound edges per topic. Foundation-Models-for-Science leads at 40, consistent with foundation-model work being cited from adjacent topic areas (Chemistry, Biology, Physics), not just from its own papers.</p>
 
-<p>Below the Index tier, three specific SourceSummary papers rank as hubs (19 inbound edges each), which the query is a good way to surface without having to browse:</p>
+<p>Below the Index tier, three specific SourceSummary papers rank as hubs at 19 inbound edges each. The plain inbound count makes them look identical, but a second query — how many <em>distinct topics</em> each paper bridges via cross-topic <code>related:</code> edges — separates them sharply:</p>
 
-<ul>
-  <li><strong>AI-Co-Scientist-Google-2026</strong></li>
-  <li><strong>Coscientist-2023</strong></li>
-  <li><strong>Robin-Multi-Agent-Discovery-2025</strong></li>
-</ul>
+<table>
+<thead><tr><th>Landmark paper</th><th>Home topic</th><th class="n">Topics bridged</th></tr></thead>
+<tbody>
+<tr><td>AI-Co-Scientist-Google-2026</td><td>Autonomous-Labs</td><td class="n">6</td></tr>
+<tr><td>Robin-Multi-Agent-Discovery-2025</td><td>AI-for-Protein-Design</td><td class="n">4</td></tr>
+<tr><td>Coscientist-2023</td><td>AI-for-Chemistry-and-Materials</td><td class="n">3</td></tr>
+</tbody>
+</table>
 
-<p>These are the landmark papers the rest of the survey cross-references. An agent asked "what should I read first to understand the AI-for-science landscape?" gets these three answers automatically from graph structure, without needing anyone to have hand-authored a "start here" page.</p>
+<p>AI-Co-Scientist-Google-2026 is the crossroads paper: it bridges Chemistry, Electrical Engineering, Protein Design, Foundation Models, Meta-Analyses, and Knowledge Extraction from its home topic in Autonomous Labs. That is doing more interdisciplinary work than the other two landmarks combined, even though flat inbound-degree ranking treats all three the same. An agent asked "what should I read first to understand the AI-for-science landscape?" should surface AI-Co-Scientist-Google-2026 first and treat Robin and Coscientist as its next reads on the biology and chemistry sides.</p>
 
 <h2>What the graph reveals</h2>
 
-<p>Three observations that fall out of the graph rather than the prose:</p>
+<p>Five observations that fall out of the graph rather than the prose:</p>
 
 <ol>
   <li><strong>Even coverage.</strong> Papers per topic sits in a narrow 5–9 band across 16 named topics. The survey is not lopsided toward one flagship area at the expense of others, which is the health signal a literature survey wants to see.</li>
-  <li><strong>Engineering underweighted.</strong> Natural-science topics (Foundation Models, Chemistry, Protein Design, Physics) average 8+ papers per topic; engineering disciplines (Civil, Mechanical, Electrical, Aerospace) average 5–6. If the survey's target audience includes engineering domains, the graph is telling the maintainer where to prioritize the next ingest pass.</li>
-  <li><strong>Three landmark papers dominate cross-referencing.</strong> AI-Co-Scientist-Google-2026, Coscientist-2023, and Robin-Multi-Agent-Discovery-2025 each carry 19 inbound edges. That degree gap between the top three papers and the fourth (below 15) is a natural boundary the wiki could mark explicitly, or an agent could use to prioritize reading.</li>
+  <li><strong>Foundation models sit at the chemistry–autonomous-labs junction.</strong> The two strongest cross-topic bonds are Chemistry ↔ Foundation Models (18) and Autonomous Labs ↔ Foundation Models (14), consistent with the self-driving-chemistry story where foundation-model-driven agents run wet-lab work. Foundation Models is doing structural work as the connective tissue between two adjacent domains, not just as its own topic.</li>
+  <li><strong>Engineering underweighted, and Mechanical Engineering is isolated.</strong> Natural-science topics average 8+ papers per topic; engineering disciplines average 5–6. But the sharper finding is that AI-for-Mechanical-Engineering has zero cross-topic <code>related:</code> edges to any other topic. Its six papers connect only among themselves. The other engineering topics (Civil, Electrical, Aerospace) each have at least some cross-refs. Mechanical is the one topic actually isolated from the wiki's interdisciplinary conversation. That is the concrete next-ingest-pass signal.</li>
+  <li><strong>AI-Co-Scientist-Google-2026 is the crossroads paper.</strong> Flat inbound-degree makes it look identical to Coscientist-2023 and Robin-Multi-Agent-Discovery-2025, but bridge-count separates them (6 vs 3 vs 4). It is doing more interdisciplinary work than the other two landmarks combined and should be the first read for an agent orienting to the field.</li>
+  <li><strong>Body-mention structure agrees with frontmatter-typed structure.</strong> The top ten most-mentioned pages in prose bodies (via <code>mentions</code> edges) overlap heavily with the top ten by typed-edge inbound count: Foundation Models, Chemistry, Meta-Analyses, and the biology topics appear in both. When the prose and the frontmatter tell the same story about what matters, that is evidence the wiki-authoring discipline is being maintained. The frontmatter is not aspirational metadata detached from what the pages actually say.</li>
 </ol>
 
 <p>The wiki has almost no <code>extends:</code> or <code>criticizes:</code> edges (one and zero respectively). That is characteristic of a survey wiki whose job is to catalog what exists rather than argue about it. It's not a fault; it's the intended shape at this project stage. A future phase — say, comparing methods across the papers — would introduce <code>criticizes:</code> edges as claims about which approaches fail on which benchmarks. The graph structure would immediately reflect that shift.</p>
