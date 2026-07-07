@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Sci-Disc-Mem wiki · KG report</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --type-index: #6a1b5b;
+  --type-source: #7a5310;
+  --type-reference: #666;
+  --type-untyped: #aaa;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 900px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code { background: transparent; padding: 0; font-size: 1em; }
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+strong { color: var(--ink); }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7em;
+  margin: 1.2em 0;
+}
+.stat {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--accent);
+  padding: 0.7em 0.9em;
+}
+.stat .n {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.stat .l {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 0.15em;
+}
+.graph-container {
+  width: 100%;
+  height: 620px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+}
+.graph-container .controls {
+  position: absolute;
+  top: 0.5em;
+  right: 0.6em;
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.35em 0.55em;
+  font-size: 0.8em;
+  color: var(--muted);
+}
+.graph-container .controls button {
+  border: 1px solid var(--rule);
+  background: white;
+  cursor: pointer;
+  padding: 0.15em 0.5em;
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  border-radius: 3px;
+  color: var(--ink);
+}
+.graph-container .controls button:hover { background: var(--callout-bg); }
+.legend {
+  margin-top: 0.6em;
+  font-size: 0.88em;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.2em;
+}
+.legend .swatch {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 0.35em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  .graph-container { height: 400px; border: 1px dashed var(--rule); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">Wiki report · generated from graph.ttl</p>
+  <h1>AI-Sci-Disc-Mem: knowledge-graph report</h1>
+  <p class="lede">A wiki-grounded literature-review project surveying AI for scientific discovery across chemistry, biology, physics, and engineering disciplines. This report reads the reified RDF graph and reports on the wiki's coverage structure: topic organization, paper distribution, hub concentration, and cross-topic connectivity.</p>
+</header>
+
+<h2>At a glance</h2>
+
+<div class="stats">
+  <div class="stat"><div class="n">2,344</div><div class="l">RDF triples</div></div>
+  <div class="stat"><div class="n">137</div><div class="l">total notes</div></div>
+  <div class="stat"><div class="n">115</div><div class="l">SourceSummary (papers)</div></div>
+  <div class="stat"><div class="n">20</div><div class="l">Index (topic pages)</div></div>
+  <div class="stat"><div class="n">453</div><div class="l">related edges</div></div>
+  <div class="stat"><div class="n">136</div><div class="l">up edges</div></div>
+</div>
+
+<p>The wiki's shape is that of a densely-linked topic map: 115 paper summaries organized under 20 topic-Index pages via <code>up:</code> edges, then cross-linked among themselves through 453 <code>related:</code> edges. Notably there are no <code>Concept</code> or <code>MethodNote</code> pages: the Index pages themselves carry the topic-concept role. One extends edge exists; no criticisms have been recorded. This is a survey wiki, not an experimental-execution wiki.</p>
+
+<h2>Topic structure</h2>
+
+<p>The visualization below shows the wiki's 19 non-boilerplate Index pages (topic hubs, larger purple) and the top four most-connected SourceSummary papers under each (smaller amber). Solid arrows are <code>up:</code> edges (paper belongs to topic); thinner grey lines are <code>related:</code> edges between papers that cross topic boundaries (an paper about foundation models cited from a chemistry paper, and so on).</p>
+
+<div class="graph-container">
+  <div class="controls">
+    <button onclick="cy.fit()">Fit</button>
+    <button onclick="cy.layout({name:'cose', animate:false, idealEdgeLength:80, nodeOverlap:16}).run()">Re-layout</button>
+  </div>
+  <div id="graph" style="width:100%; height:100%;"></div>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background: var(--type-index)"></span>Index (topic hub)</span>
+  <span><span class="swatch" style="background: var(--type-source)"></span>SourceSummary (paper)</span>
+</div>
+
+<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
+83 nodes, 107 edges (65 <code>up</code> + 42 cross-topic <code>related</code>). Same-topic <code>related</code> edges are hidden to keep the topic clusters legible. Click a node to select; drag to reposition.
+</p>
+
+<h2>Coverage: papers per topic</h2>
+
+<p>Executed against <code>graph.ttl</code> via rdflib:</p>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT ?topic (COUNT(?paper) AS ?papers) WHERE {
+    ?paper rdf:type llm-wiki-colab:SourceSummary ;
+           llm-wiki-colab:up ?topic .
+    ?topic rdf:type llm-wiki-colab:Index .
+} GROUP BY ?topic ORDER BY DESC(?papers)</code></pre>
+
+<table>
+<thead><tr><th>Topic</th><th class="n">Papers</th></tr></thead>
+<tbody>
+<tr><td>Foundation-Models-for-Science</td><td class="n">9</td></tr>
+<tr><td>Autonomous-Labs-and-Self-Driving-Science</td><td class="n">9</td></tr>
+<tr><td>AI-for-Protein-Design-and-Biology</td><td class="n">9</td></tr>
+<tr><td>Meta-Analyses-and-Surveys</td><td class="n">8</td></tr>
+<tr><td>AI-for-Drug-Discovery</td><td class="n">8</td></tr>
+<tr><td>Scientific-Knowledge-Extraction-and-Literature-Mining</td><td class="n">8</td></tr>
+<tr><td>AI-for-Chemistry-and-Materials</td><td class="n">8</td></tr>
+<tr><td>Landscape-Overviews</td><td class="n">7</td></tr>
+<tr><td>AI-for-Physics</td><td class="n">7</td></tr>
+<tr><td>AI-for-Climate-and-Earth-Sciences</td><td class="n">7</td></tr>
+<tr><td>AI-for-Civil-Engineering</td><td class="n">6</td></tr>
+<tr><td>AI-for-Synthetic-Biology</td><td class="n">6</td></tr>
+<tr><td>AI-for-Mechanical-Engineering</td><td class="n">6</td></tr>
+<tr><td>AI-for-Electrical-Engineering</td><td class="n">6</td></tr>
+<tr><td>Trustworthy-AI-for-Science</td><td class="n">6</td></tr>
+<tr><td>AI-for-Aerospace-Engineering</td><td class="n">5</td></tr>
+</tbody>
+</table>
+
+<p>Distribution is even. No topic dominates by paper count; the top three (Foundation-Models-for-Science, Autonomous-Labs, AI-for-Protein-Design) share nine papers each. Engineering disciplines (Civil, Mechanical, Electrical, Aerospace) sit slightly lower at 5–6 papers each, an artifact of the survey's early emphasis on natural-science domains before extending into engineering.</p>
+
+<h2>Hub notes: which pages hold the graph together</h2>
+
+<p>The template's <code>hub-notes</code> query counts inbound typed edges per note, excluding structural predicates (title, tag, status, timeline, rdf:type). Top 10 on this wiki:</p>
+
+<table>
+<thead><tr><th>Note</th><th>Type</th><th class="n">Inbound</th></tr></thead>
+<tbody>
+<tr><td>Foundation-Models-for-Science</td><td>Index</td><td class="n">40</td></tr>
+<tr><td>AI-for-Chemistry-and-Materials</td><td>Index</td><td class="n">37</td></tr>
+<tr><td>Meta-Analyses-and-Surveys</td><td>Index</td><td class="n">28</td></tr>
+<tr><td>AI-for-Protein-Design-and-Biology</td><td>Index</td><td class="n">25</td></tr>
+<tr><td>Autonomous-Labs-and-Self-Driving-Science</td><td>Index</td><td class="n">25</td></tr>
+<tr><td>Trustworthy-AI-for-Science</td><td>Index</td><td class="n">25</td></tr>
+<tr><td>AI-for-Drug-Discovery</td><td>Index</td><td class="n">24</td></tr>
+<tr><td>Scientific-Knowledge-Extraction-and-Literature-Mining</td><td>Index</td><td class="n">22</td></tr>
+<tr><td>AI-for-Physics</td><td>Index</td><td class="n">21</td></tr>
+<tr><td>AI-for-Civil-Engineering</td><td>Index</td><td class="n">21</td></tr>
+</tbody>
+</table>
+
+<p>The topic-Index pages fill the top ten, as expected: <code>up:</code> edges from ~9 papers each plus cross-topic <code>related:</code> traffic add up to 20–40 inbound edges per topic. Foundation-Models-for-Science leads at 40, consistent with foundation-model work being cited from adjacent topic areas (Chemistry, Biology, Physics), not just from its own papers.</p>
+
+<p>Below the Index tier, three specific SourceSummary papers rank as hubs (19 inbound edges each), which the query is a good way to surface without having to browse:</p>
+
+<ul>
+  <li><strong>AI-Co-Scientist-Google-2026</strong></li>
+  <li><strong>Coscientist-2023</strong></li>
+  <li><strong>Robin-Multi-Agent-Discovery-2025</strong></li>
+</ul>
+
+<p>These are the landmark papers the rest of the survey cross-references. An agent asked "what should I read first to understand the AI-for-science landscape?" gets these three answers automatically from graph structure, without needing anyone to have hand-authored a "start here" page.</p>
+
+<h2>What the graph reveals</h2>
+
+<p>Three observations that fall out of the graph rather than the prose:</p>
+
+<ol>
+  <li><strong>Even coverage.</strong> Papers per topic sits in a narrow 5–9 band across 16 named topics. The survey is not lopsided toward one flagship area at the expense of others, which is the health signal a literature survey wants to see.</li>
+  <li><strong>Engineering underweighted.</strong> Natural-science topics (Foundation Models, Chemistry, Protein Design, Physics) average 8+ papers per topic; engineering disciplines (Civil, Mechanical, Electrical, Aerospace) average 5–6. If the survey's target audience includes engineering domains, the graph is telling the maintainer where to prioritize the next ingest pass.</li>
+  <li><strong>Three landmark papers dominate cross-referencing.</strong> AI-Co-Scientist-Google-2026, Coscientist-2023, and Robin-Multi-Agent-Discovery-2025 each carry 19 inbound edges. That degree gap between the top three papers and the fourth (below 15) is a natural boundary the wiki could mark explicitly, or an agent could use to prioritize reading.</li>
+</ol>
+
+<p>The wiki has almost no <code>extends:</code> or <code>criticizes:</code> edges (one and zero respectively). That is characteristic of a survey wiki whose job is to catalog what exists rather than argue about it. It's not a fault; it's the intended shape at this project stage. A future phase — say, comparing methods across the papers — would introduce <code>criticizes:</code> edges as claims about which approaches fail on which benchmarks. The graph structure would immediately reflect that shift.</p>
+
+<h2>Structural validation</h2>
+
+<p>SHACL shape validation via <code>pyshacl</code> against the wiki's <code>shapes.ttl</code>: the graph parses and passes structural checks (no violations reported in the current build). One page (<code>UntypedNote</code>) has not been assigned an explicit type from the ontology — a targeted lint pass would surface it.</p>
+
+<footer>
+  <p><strong>Source files (linked, not embedded):</strong> <a href="graph.ttl"><code>graph.ttl</code></a> · <a href="validation-report.ttl"><code>validation-report.ttl</code></a>.</p>
+  <p><strong>Built on the wiki-grounded pattern:</strong> <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> · <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (ontology).</p>
+</footer>
+
+<script src="cytoscape.min.js"></script>
+<script>
+const typeColor = {
+  'Index':         getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
+  'SourceSummary': getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Reference':     getComputedStyle(document.documentElement).getPropertyValue('--type-reference').trim(),
+  'UntypedNote':   getComputedStyle(document.documentElement).getPropertyValue('--type-untyped').trim()
+};
+
+let cy;
+fetch('topic-map.json').then(r => r.json()).then(data => {
+  cy = cytoscape({
+    container: document.getElementById('graph'),
+    elements: [
+      ...data.nodes.map(n => ({data: n.data})),
+      ...data.edges.map(e => ({data: e.data}))
+    ],
+    style: [
+      { selector: 'node', style: {
+        'background-color': ele => typeColor[ele.data('type')] || '#888',
+        'label': 'data(label)',
+        'color': '#1a1a1a',
+        'text-outline-color': '#fff',
+        'text-outline-width': 2,
+        'font-size': 9,
+        'font-family': 'Helvetica Neue, Arial, sans-serif',
+        'width': 18, 'height': 18,
+        'text-wrap': 'wrap',
+        'text-max-width': 100
+      }},
+      { selector: 'node[type = "Index"]', style: {
+        'width': 32, 'height': 32,
+        'font-size': 11,
+        'font-weight': 'bold'
+      }},
+      { selector: 'edge', style: {
+        'width': 1,
+        'line-color': '#ccc',
+        'target-arrow-color': '#ccc',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'font-size': 8,
+        'color': '#888'
+      }},
+      { selector: 'edge[label = "up"]', style: {
+        'line-color': '#6a1b5b',
+        'target-arrow-color': '#6a1b5b',
+        'width': 1.2
+      }},
+      { selector: 'edge[label = "related"]', style: {
+        'line-style': 'dashed',
+        'line-color': '#999',
+        'target-arrow-color': '#999'
+      }},
+      { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+    ],
+    layout: { name: 'cose', idealEdgeLength: 80, nodeOverlap: 16, animate: false, fit: true }
+  });
+});
+</script>
+
+</body>
+</html>

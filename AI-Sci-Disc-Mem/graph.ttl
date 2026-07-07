@@ -1,0 +1,2484 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix llm-wiki-colab: <https://la3d.github.io/llm-wiki-colab/ontology#> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home> a llm-wiki-colab:UntypedNote ;
+    dcterms:title "Home" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/log_AI-Sci-Disc-Memory> a llm-wiki-colab:Index ;
+    dcterms:title "log_AI-Sci-Disc-Memory" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Edge-Types> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Edge-Types> a llm-wiki-colab:Index ;
+    dcterms:title "Edge-Types" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "conventions",
+        "kg",
+        "vocabulary" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Based-Computational-Analysis-Civil-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "civil-engineering",
+        "computational-analysis",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Reshaping-Discovery-Maths-Physics-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-for-science",
+        "mathematics",
+        "news-feature",
+        "not-primary-research",
+        "physics" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Aerodynamic-Shape-Optimization-Geometric-Filtering" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AIAA",
+        "aerodynamics",
+        "shape-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "CCA-Leaps-and-Boundaries-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "canada",
+        "ethics",
+        "landscape",
+        "policy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "CLASSIC-Bashor-Lab-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Bashor",
+        "sequencing",
+        "synthetic-biology" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Gene-Editing-Pathway-Design-TeselaGen-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "TeselaGen",
+        "gene-editing",
+        "industry-review",
+        "pathway-design" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Kolmogorov-Arnold-GNN-Molecular-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GNN",
+        "Kolmogorov-Arnold",
+        "molecular-properties" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ML-Aircraft-Design-Review" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ML",
+        "aircraft-design",
+        "review",
+        "structural" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ML-Structural-Engineering-Review-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ML",
+        "review",
+        "structural-engineering" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NRF-Singapore-AI-for-Science-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "asia",
+        "landscape",
+        "policy",
+        "singapore" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Physics-Informed-Symbolic-Regression-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "domain-knowledge",
+        "physics-informed",
+        "symbolic-regression" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory> a llm-wiki-colab:Index ;
+    dcterms:title "Home_AI-Sci-Disc-Memory" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX> .
+
+<https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "LLM-Semantic-Enrichment-Infrastructure-Data-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GPT",
+        "Llama",
+        "RDF",
+        "civil-engineering",
+        "infrastructure",
+        "knowledge-graph",
+        "semantic-enrichment" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Multimodal-LLMs-Construction-Industry-Review-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "construction",
+        "document-automation",
+        "engineering",
+        "multimodal-LLM",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NASEM-Automated-Research-Workflows-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "automation",
+        "landscape",
+        "workflows" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Scientific-Discovery-in-the-Age-of-AI-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-for-science",
+        "foundation-paper",
+        "landscape" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Civil-Engineering-Emerging-Applications-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "applications",
+        "civil-engineering",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Drug-Rescue-Ignota-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "drug-rescue",
+        "interview",
+        "multimodal",
+        "not-primary-research",
+        "toxicity-prediction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Extreme-Weather-Climate-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI",
+        "extreme-weather",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-ML-Dynamic-Pathway-Engineering-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ML-applications",
+        "metabolic",
+        "pathway-engineering" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-ML-Engineering-Design-MIT-Ahmed" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Ahmed",
+        "MIT",
+        "engineering-design" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Meets-Physics-Survey-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-physics",
+        "broad-review",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Next-Generation-Power-Electronics-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI",
+        "power-electronics",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Powered-Civil-Engineering-Lifecycle-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "civil-engineering",
+        "lifecycle",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Synthetic-Biology-Convergence-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI",
+        "perspective",
+        "synthetic-biology" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Affordable-Self-Driving-Lab-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Bayesian-optimization",
+        "open-source",
+        "reaction-optimization",
+        "self-driving-lab" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Agentic-AI-Power-Systems-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "agentic-AI",
+        "grid-automation",
+        "model-context-protocol",
+        "power-systems",
+        "safety" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Concept-Graphs-Research-Directions-Materials-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLM",
+        "concept-graph",
+        "knowledge-extraction",
+        "materials-science",
+        "research-trend-prediction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ConfSeq-Conformation-Language-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "3D-molecules",
+        "conformation",
+        "language-models",
+        "representation-learning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "CrossDNA-DNA-Language-Model-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "DNA",
+        "double-strand",
+        "genomic-language-model",
+        "inductive-bias" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Deep-Learning-Smart-Grid-Optimization" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "IEEE",
+        "deep-learning",
+        "smart-grid" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Diverse-Topology-Optimization-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "diversity",
+        "generative",
+        "topology-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Interpretable-ML-Scientific-Insights" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ML",
+        "interpretability",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Isomorphic-Labs-Series-B-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Isomorphic-Labs",
+        "drug-design",
+        "funding",
+        "industry-signal",
+        "not-primary-research" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "LUNAR-Neural-Physics-Microscopy-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "computational-imaging",
+        "microscopy",
+        "neural-physics",
+        "self-supervised" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Leopoldina-Transformation-Research-Society-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "europe",
+        "germany",
+        "landscape",
+        "policy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ML-Power-Electronics-Opportunities-Challenges" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "IEEE",
+        "ML",
+        "power-electronics",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MouseMapper-Whole-Body-Deep-Learning-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "biological-imaging",
+        "foundation-models",
+        "single-cell",
+        "whole-body-phenotyping" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Multimodal-LLMs-for-Scientific-Discovery-Survey-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "multimodal",
+        "survey",
+        "vision-language" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Peptide-Design-Condensate-Interface-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "MILP",
+        "biomolecular-condensates",
+        "molecular-dynamics",
+        "peptide-design" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Physics-Informed-Multi-LSTM-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LSTM",
+        "metamodeling",
+        "physics-informed" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ProteinBERT-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ProteinBERT",
+        "protein-language-model",
+        "self-supervised" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "RXNGraphormer-Reusability-Report-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "benchmarking",
+        "reaction-prediction",
+        "reproducibility",
+        "reusability-report" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Self-Driving-Lab-2-0-Review-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "chemistry",
+        "materials",
+        "reference-tier",
+        "review",
+        "self-driving-lab" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Spherical-Neural-Operators-Climate-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "climate",
+        "diffusion",
+        "spherical-neural-operators" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Topology-Optimization-ML-DL-Review-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "DL",
+        "ML",
+        "review",
+        "topology-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Trustworthy-AI-Scientific-Discovery-Principles" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "practice",
+        "principles",
+        "trustworthy-AI" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Turbo-Microrobotic-Swarm-Navigation-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "microrobotics",
+        "reinforcement-learning",
+        "sim-to-real",
+        "swarm-control",
+        "transformer" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "UniCM-Coupled-Climate-Modes-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ENSO",
+        "climate-modes",
+        "coupled-dynamics",
+        "seasonal-prediction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "neuroGravity-Mobility-Reconstruction-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "human-mobility",
+        "physics-informed-ML",
+        "transferability",
+        "urban-systems" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Catalysis-Labs-Future-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ICIQ",
+        "autonomous-labs",
+        "catalysis" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Agentic-AI-X-Ray-Scientist-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLM-agents",
+        "agentic-AI",
+        "autonomous-experimentation",
+        "closed-loop-control",
+        "synchrotron-beamline" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ChemCrow-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLM-agents",
+        "chemistry-tools",
+        "retrosynthesis" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "DeepEvidence-Biomedical-Knowledge-Graph-Research-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "biomedical-research-agent",
+        "drug-discovery",
+        "evidence-synthesis",
+        "knowledge-graph",
+        "retrieval-augmented-reasoning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "HelixFold-S1-Conformational-Exploration-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "HelixFold",
+        "biomolecular-complex-prediction",
+        "compute-efficiency",
+        "guided-conformational-sampling",
+        "protein-structure-prediction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MatCha-Materials-Characterization-Benchmark-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "benchmark",
+        "materials-characterization",
+        "visual-analysis" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MatterChat-Multimodal-Materials-LLM-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLM",
+        "materials",
+        "multimodal" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MinerU-Document-Content-Extraction-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "document-parsing",
+        "layout-analysis",
+        "multimodal-OCR",
+        "open-source",
+        "vision-language" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NASEM-Foundation-Models-DOE-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "doe",
+        "foundation-models",
+        "landscape",
+        "policy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NVIDIA-Earth-2-Climate-Foundation-Model-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Earth-2",
+        "NVIDIA",
+        "climate-FM",
+        "industry" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Neural-Operators-Function-Spaces-Operator-Learning-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "PDE-surrogates",
+        "discretization-invariance",
+        "function-spaces",
+        "neural-operators",
+        "operator-learning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "RL-Guided-Generative-Crystal-Discovery-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "crystal-structure-discovery",
+        "generative-models",
+        "inverse-design",
+        "materials-diversity",
+        "reinforcement-learning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Symbolic-Regression-Scientific-Discovery-Review-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "interpretability",
+        "review",
+        "symbolic-regression" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Antibiotic-Resistance-Feature-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "antibiotics",
+        "antimicrobial-peptides",
+        "drug-discovery",
+        "news-feature",
+        "not-primary-research" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Cross-Disciplinary-Climate-Research-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "climate",
+        "comment",
+        "cross-disciplinary",
+        "foundation-models",
+        "not-primary-research" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Electrical-Engineering-Evolution" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI",
+        "broad-review",
+        "electrical-engineering" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Structural-Engineering-Review-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-techniques",
+        "review",
+        "structural-engineering" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Agentic-AI-for-Scientific-Discovery-Survey-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "agentic-AI",
+        "challenges",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AlphaEvolve-Coding-Agent-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Google-DeepMind",
+        "agentic-science",
+        "algorithm-discovery",
+        "evolutionary-search" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ChatExtract-Conversational-LLM-Materials-Data-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "benchmarking",
+        "conversational-LLM",
+        "knowledge-extraction",
+        "materials-data",
+        "prompt-engineering" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Deep-Generative-Design-Topology-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GAN",
+        "generative-design",
+        "topology-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Gemini-Science-Skills-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Google-DeepMind",
+        "agent-skills",
+        "database-integration",
+        "infrastructure",
+        "not-primary-research" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MARIO-Aerodynamic-Resolution-Invariant-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "aerodynamics",
+        "neural-fields",
+        "neural-operator",
+        "surrogate" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NASEM-AI-for-Scientific-Discovery-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "landscape",
+        "policy",
+        "workshop-proceedings" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "OMat24-Open-Materials-Dataset-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "DFT",
+        "Meta-FAIR",
+        "dataset",
+        "interatomic-potentials",
+        "materials-discovery" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "RL-Topology-Optimization-Lightweight-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "lightweight",
+        "reinforcement-learning",
+        "topology-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Reproducibility-Scientific-ML-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "open-science",
+        "reproducibility",
+        "scientific-ML" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Transforming-Science-with-LLMs-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLMs",
+        "science",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Tools-Expand-Impact-Contract-Focus-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-adoption",
+        "bibliometrics",
+        "research-impact",
+        "science-of-science" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Foundation-Models-in-Chemistry-Perspective-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "chemistry",
+        "foundation-models",
+        "perspective" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "LLM-Generative-Information-Extraction-Survey-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> ;
+    llm-wiki-colab:status "unverified" ;
+    llm-wiki-colab:tag "LLM",
+        "information-extraction",
+        "knowledge-extraction",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MIST-Foundation-Models-Chemical-Space-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "chemistry",
+        "foundation-models",
+        "preprint",
+        "scaling-laws" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ML-Aerodynamic-Shape-Optimization-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "ML",
+        "aerodynamics",
+        "review",
+        "shape-optimization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "PALMO-NASA-AIAA-Benchmark-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AIAA",
+        "NASA",
+        "aerodynamics",
+        "benchmark" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Prithvi-Weather-Climate-NASA-IBM-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "IBM",
+        "NASA",
+        "Prithvi",
+        "climate-FM" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Transforming-Mathematics-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-for-science",
+        "mathematics",
+        "news-feature",
+        "not-primary-research" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ERA-Expert-Level-Empirical-Software-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Google-DeepMind",
+        "agentic-science",
+        "code-generation",
+        "tree-search" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Latent-Operator-Learning-Complex-Dynamics-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "dynamics",
+        "latent-space",
+        "operator-learning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "MaCBench-VLM-Chemistry-Materials-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "VLM",
+        "benchmark",
+        "chemistry",
+        "materials" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Multimodal-LLMs-Chemistry-Limitations-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "VLMs",
+        "evaluation",
+        "limitations",
+        "multimodal" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Baker-Lab",
+        "diffusion-models",
+        "enzyme-design",
+        "protein-design" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Driven-Synthetic-Biology-Proteins-Circuits-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "genetic-circuits",
+        "protein-design",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Autonomous-Labs-Drug-Discovery" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "autonomous-labs",
+        "biotech",
+        "drug-discovery" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Chai-2-Antibody-Design-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Chai-2",
+        "antibody-design",
+        "de-novo",
+        "zero-shot" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Foundation-Models-Atomistic-Simulation-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "atomistic-simulation",
+        "foundation-models",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "GNoME-Scaling-Materials-Discovery-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "DeepMind",
+        "GNN",
+        "crystal-prediction",
+        "materials-discovery" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "OpenProtein-PoET-Bringing-AI-Protein-Design-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "OpenProtein",
+        "PoET",
+        "accessibility",
+        "protein-design",
+        "tools" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Structured-Information-Extraction-LLM-Scientific-Text-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "LLM",
+        "NER",
+        "information-extraction",
+        "knowledge-extraction",
+        "materials-chemistry",
+        "relation-extraction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Aerospace-Engineering" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering>,
+        <https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aircraft-Design-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "From-AI-for-Science-to-Agentic-Science-Survey-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "agentic-science",
+        "autonomous-discovery",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Survey-of-AI-Scientists-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AI-scientists",
+        "research-agents",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AlphaFold-3-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AlphaFold-3",
+        "biomolecular-interactions",
+        "protein-complexes" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Berkeley-Lab-Foundational-AI-Biology-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "DOE",
+        "biology",
+        "foundation-models",
+        "national-lab" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Closed-Loop-Autonomous-Labs-Materials" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "autonomous-labs",
+        "closed-loop",
+        "materials-discovery" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Foundation-Models-Materials-Discovery-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "foundation-models",
+        "materials-discovery",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "NeuralGCM-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GCM",
+        "Google",
+        "climate-model",
+        "hybrid-physics-ML" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> .
+
+<https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "PINNs-Raissi-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "PDEs",
+        "PINN",
+        "foundation-paper",
+        "physics-informed" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Royal-Society-Science-in-the-Age-of-AI-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "epistemology",
+        "landscape",
+        "policy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Drug-Discovery-Pharmaceutical-Innovation-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "drug-discovery",
+        "pharma",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Scientific-Foundation-Models-Survey" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "definitions",
+        "foundation-models",
+        "survey" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Scientist-End-to-End-Automation-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Sakana-AI",
+        "agentic-science",
+        "automated-research",
+        "peer-review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Climate-and-Earth-Sciences" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spherical-Neural-Operators-Climate-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/UniCM-Coupled-Climate-Modes-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Electrical-Engineering" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Power-Electronics-Opportunities-Challenges>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Mechanical-Engineering" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Optimization-ML-DL-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Turbo-Microrobotic-Swarm-Navigation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Synthetic-Biology" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/CLASSIC-Bashor-Lab-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gene-Editing-Pathway-Design-TeselaGen-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "GNN-Drug-Discovery-Review-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GNN",
+        "drug-discovery",
+        "review" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Self-Driving-Labs-Japan-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Japan",
+        "RSC",
+        "automation",
+        "self-driving-lab" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AlphaFold-Protein-Structure-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "AlphaFold",
+        "deep-learning",
+        "foundation-paper",
+        "protein-structure" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews> a llm-wiki-colab:Index ;
+    dcterms:title "Landscape-Overviews" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/CCA-Leaps-and-Boundaries-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NRF-Singapore-AI-for-Science-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "AI-Co-Scientist-Google-2026" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "Gemini",
+        "Google-DeepMind",
+        "biomedical",
+        "hypothesis-generation",
+        "multi-agent" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Coscientist-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "GPT-4",
+        "LLM-agents",
+        "autonomous-chemistry",
+        "lab-automation" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Robin-Multi-Agent-Discovery-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025> ;
+    llm-wiki-colab:status "verified" ;
+    llm-wiki-colab:tag "FutureHouse",
+        "end-to-end-discovery",
+        "multi-agent" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory> a llm-wiki-colab:Reference ;
+    dcterms:title "SCHEMA_AI-Sci-Disc-Memory" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page-Name>,
+        <https://la3d.github.io/llm-wiki-colab/page/Parent-Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Civil-Engineering" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Based-Computational-Analysis-Civil-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Structural-Engineering-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Physics" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Multi-LSTM-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Physics-Informed-Symbolic-Regression-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining> a llm-wiki-colab:Index ;
+    dcterms:title "Scientific-Knowledge-Extraction-and-Literature-Mining" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Semantic-Enrichment-Infrastructure-Data-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Construction-Industry-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index",
+        "knowledge-extraction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Drug-Discovery" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Antibiotic-Resistance-Feature-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Rescue-Ignota-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeepEvidence-Biomedical-Knowledge-Graph-Research-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Isomorphic-Labs-Series-B-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kolmogorov-Arnold-GNN-Molecular-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Protein-Design-and-Biology" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/HelixFold-S1-Conformational-Exploration-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MouseMapper-Whole-Body-Deep-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/OpenProtein-PoET-Bringing-AI-Protein-Design-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Peptide-Design-Condensate-Interface-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ProteinBERT-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science> a llm-wiki-colab:Index ;
+    dcterms:title "Autonomous-Labs-and-Self-Driving-Science" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Affordable-Self-Driving-Lab-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-X-Ray-Scientist-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Automated-Research-Workflows-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Lab-2-0-Review-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science> a llm-wiki-colab:Index ;
+    dcterms:title "Trustworthy-AI-for-Science" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Symbolic-Regression-Scientific-Discovery-Review-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-Scientific-Discovery-Principles>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys> a llm-wiki-colab:Index ;
+    dcterms:title "Meta-Analyses-and-Surveys" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Reshaping-Discovery-Maths-Physics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-for-Scientific-Discovery-Survey-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transforming-Science-with-LLMs-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> a llm-wiki-colab:Index ;
+    dcterms:title "index_AI-Sci-Disc-Memory" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials> a llm-wiki-colab:Index ;
+    dcterms:title "AI-for-Chemistry-and-Materials" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Catalysis-Labs-Future-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery>,
+        <https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/ChemCrow-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/ConfSeq-Conformation-Language-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatCha-Materials-Characterization-Benchmark-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science> a llm-wiki-colab:Index ;
+    dcterms:title "Foundation-Models-for-Science" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences>,
+        <https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaEvolve-Coding-Agent-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-in-Chemistry-Perspective-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Gemini-Science-Skills-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MIST-Foundation-Models-Chemical-Space-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/MatterChat-Multimodal-Materials-LLM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/MinerU-Document-Content-Extraction-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/NVIDIA-Earth-2-Climate-Foundation-Model-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Neural-Operators-Function-Spaces-Operator-Learning-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/RL-Guided-Generative-Crystal-Discovery-2026>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_AI-Sci-Disc-Memory>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Discovery-in-the-Age-of-AI-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> ;
+    llm-wiki-colab:tag "ai-for-science",
+        "domain-index" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_AI-Sci-Disc-Memory> .
+

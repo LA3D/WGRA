@@ -1,0 +1,1336 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019",
+        "label": "PINNs-Raissi-2019",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024",
+        "label": "Latent-Operator-Learning-Complex-Dynamics-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology",
+        "label": "AI-for-Synthetic-Biology",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022",
+        "label": "ML-Aerodynamic-Shape-Optimization-2022",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025",
+        "label": "From-AI-for-Science-to-Agentic-Science-Survey-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Edge-Types",
+        "label": "Edge-Types",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights",
+        "label": "Interpretable-ML-Scientific-Insights",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "label": "Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026",
+        "label": "LUNAR-Neural-Physics-Microscopy-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024",
+        "label": "AI-Driven-Synthetic-Biology-Proteins-Circuits-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025",
+        "label": "Foundation-Models-Atomistic-Simulation-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025",
+        "label": "MaCBench-VLM-Chemistry-Materials-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "Trustworthy-AI-for-Science",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024",
+        "label": "ChatExtract-Conversational-LLM-Materials-Data-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024",
+        "label": "AI-Extreme-Weather-Climate-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026",
+        "label": "CrossDNA-DNA-Language-Model-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "label": "AI-Scientist-End-to-End-Automation-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey",
+        "label": "Scientific-Foundation-Models-Survey",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026",
+        "label": "Agentic-AI-Power-Systems-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024",
+        "label": "Self-Driving-Labs-Japan-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization",
+        "label": "Deep-Learning-Smart-Grid-Optimization",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "Coscientist-2023",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering",
+        "label": "AI-for-Aerospace-Engineering",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering",
+        "label": "AI-for-Electrical-Engineering",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025",
+        "label": "AI-Structural-Engineering-Review-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery",
+        "label": "AI-for-Drug-Discovery",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026",
+        "label": "RXNGraphormer-Reusability-Report-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025",
+        "label": "AI-Civil-Engineering-Emerging-Applications-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024",
+        "label": "Structured-Information-Extraction-LLM-Scientific-Text-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "label": "Robin-Multi-Agent-Discovery-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026",
+        "label": "AI-Drug-Discovery-Pharmaceutical-Innovation-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "label": "Berkeley-Lab-Foundational-AI-Biology-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026",
+        "label": "Concept-Graphs-Research-Directions-Materials-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025",
+        "label": "GNN-Drug-Discovery-Review-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024",
+        "label": "NeuralGCM-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024",
+        "label": "NASEM-Foundation-Models-DOE-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences",
+        "label": "AI-for-Climate-and-Earth-Sciences",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics",
+        "label": "AI-for-Physics",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026",
+        "label": "ERA-Expert-Level-Empirical-Software-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025",
+        "label": "Foundation-Models-Materials-Discovery-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory",
+        "label": "Home_AI-Sci-Disc-Memory",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025",
+        "label": "AI-Powered-Civil-Engineering-Lifecycle-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed",
+        "label": "AI-ML-Engineering-Design-MIT-Ahmed",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/log_AI-Sci-Disc-Memory",
+        "label": "log_AI-Sci-Disc-Memory",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering",
+        "label": "AI-for-Mechanical-Engineering",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "Foundation-Models-for-Science",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025",
+        "label": "PALMO-NASA-AIAA-Benchmark-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024",
+        "label": "AI-ML-Dynamic-Pathway-Engineering-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026",
+        "label": "AI-Tools-Expand-Impact-Contract-Focus-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025",
+        "label": "Diverse-Topology-Optimization-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025",
+        "label": "RL-Topology-Optimization-Lightweight-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "Meta-Analyses-and-Surveys",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025",
+        "label": "AI-Synthetic-Biology-Convergence-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025",
+        "label": "Leopoldina-Transformation-Research-Society-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026",
+        "label": "AI-Transforming-Mathematics-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024",
+        "label": "AI-Meets-Physics-Survey-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "label": "AI-Co-Scientist-Google-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025",
+        "label": "Multimodal-LLMs-Chemistry-Limitations-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025",
+        "label": "Chai-2-Antibody-Design-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024",
+        "label": "LLM-Generative-Information-Extraction-Survey-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024",
+        "label": "NASEM-AI-for-Scientific-Discovery-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science",
+        "label": "Autonomous-Labs-and-Self-Driving-Science",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology",
+        "label": "AI-for-Protein-Design-and-Biology",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019",
+        "label": "Deep-Generative-Design-Topology-2019",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering",
+        "label": "Aerodynamic-Shape-Optimization-Geometric-Filtering",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "AI-for-Chemistry-and-Materials",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution",
+        "label": "AI-Electrical-Engineering-Evolution",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025",
+        "label": "AI-Next-Generation-Power-Electronics-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024",
+        "label": "Royal-Society-Science-in-the-Age-of-AI-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026",
+        "label": "AI-Cross-Disciplinary-Climate-Research-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025",
+        "label": "RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025",
+        "label": "Survey-of-AI-Scientists-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024",
+        "label": "Reproducibility-Scientific-ML-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials",
+        "label": "Closed-Loop-Autonomous-Labs-Materials",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews",
+        "label": "Landscape-Overviews",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering",
+        "label": "AI-for-Civil-Engineering",
+        "type": "Index"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023",
+        "label": "GNoME-Scaling-Materials-Discovery-2023",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024",
+        "label": "AlphaFold-3-2024",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025",
+        "label": "Prithvi-Weather-Climate-NASA-IBM-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021",
+        "label": "AlphaFold-Protein-Structure-2021",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026",
+        "label": "neuroGravity-Mobility-Reconstruction-2026",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025",
+        "label": "MARIO-Aerodynamic-Resolution-Invariant-2025",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026",
+        "label": "OMat24-Open-Materials-Dataset-2026",
+        "type": "SourceSummary"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/log_AI-Sci-Disc-Memory",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Home_AI-Sci-Disc-Memory",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Civil-Engineering-Emerging-Applications-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Powered-Civil-Engineering-Lifecycle-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Structural-Engineering-Review-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Civil-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Aerodynamic-Shape-Optimization-Geometric-Filtering",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ML-Aerodynamic-Shape-Optimization-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Aerospace-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Leopoldina-Transformation-Research-Society-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/NASEM-AI-for-Scientific-Discovery-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Landscape-Overviews",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-ML-Dynamic-Pathway-Engineering-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Synthetic-Biology-Convergence-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Driven-Synthetic-Biology-Proteins-Circuits-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Synthetic-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Drug-Discovery-Pharmaceutical-Innovation-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Drug-Discovery",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Meets-Physics-Survey-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/LUNAR-Neural-Physics-Microscopy-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Physics",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Knowledge-Extraction-and-Literature-Mining",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Extreme-Weather-Climate-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Cross-Disciplinary-Climate-Research-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/NeuralGCM-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Climate-and-Earth-Sciences",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-ML-Engineering-Design-MIT-Ahmed",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Diverse-Topology-Optimization-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Deep-Generative-Design-Topology-2019",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/RL-Topology-Optimization-Lightweight-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Mechanical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Next-Generation-Power-Electronics-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Deep-Learning-Smart-Grid-Optimization",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Electrical-Engineering-Evolution",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Electrical-Engineering",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Autonomous-Labs-and-Self-Driving-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Interpretable-ML-Scientific-Insights",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Protein-Design-and-Biology",
+        "label": "up"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Royal-Society-Science-in-the-Age-of-AI-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Transforming-Mathematics-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Latent-Operator-Learning-Complex-Dynamics-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MARIO-Aerodynamic-Resolution-Invariant-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/RXNGraphormer-Reusability-Report-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/GNN-Drug-Discovery-Review-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Reproducibility-Scientific-ML-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/PALMO-NASA-AIAA-Benchmark-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/neuroGravity-Mobility-Reconstruction-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/PINNs-Raissi-2019",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Closed-Loop-Autonomous-Labs-Materials",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Self-Driving-Labs-Japan-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Coscientist-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/From-AI-for-Science-to-Agentic-Science-Survey-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Scientific-Foundation-Models-Survey",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Agentic-AI-Power-Systems-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Co-Scientist-Google-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Structured-Information-Extraction-LLM-Scientific-Text-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-for-Chemistry-and-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Concept-Graphs-Research-Directions-Materials-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/LLM-Generative-Information-Extraction-Survey-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Meta-Analyses-and-Surveys",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/CrossDNA-DNA-Language-Model-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/NASEM-Foundation-Models-DOE-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Prithvi-Weather-Climate-NASA-IBM-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-3-2024",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Berkeley-Lab-Foundational-AI-Biology-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-for-Science",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/RFdiffusion2-Enzyme-Active-Site-Scaffolding-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Multimodal-LLMs-Chemistry-Limitations-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MaCBench-VLM-Chemistry-Materials-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AlphaFold-Protein-Structure-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Chai-2-Antibody-Design-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ERA-Expert-Level-Empirical-Software-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Survey-of-AI-Scientists-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Robin-Multi-Agent-Discovery-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Materials-Discovery-2025",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/GNoME-Scaling-Materials-Discovery-2023",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Foundation-Models-Atomistic-Simulation-2025",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/OMat24-Open-Materials-Dataset-2026",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/ChatExtract-Conversational-LLM-Materials-Data-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Tools-Expand-Impact-Contract-Focus-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/AI-Scientist-End-to-End-Automation-2026",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Trustworthy-AI-for-Science",
+        "label": "related"
+      }
+    }
+  ]
+}
