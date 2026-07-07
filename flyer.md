@@ -30,6 +30,8 @@ The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira e
 **Journal:** the win. The abandoned path is noise.
 **Wiki:** the win, plus every walked-back claim and its correction. The trajectory is the documentation.
 
+*Deep dive: [Memory that compounds →](memory-that-compounds/)*
+
 ---
 
 ## Team scale
@@ -51,6 +53,8 @@ Wiki-Grounded Research Agents federate across projects. Each group runs its own 
 
 **Institutional knowledge:** locked in individual labs, walks out with the PI.
 **Federated wikis:** your peers' actual work, queryable through your agent.
+
+*Deep dive: [Team scale →](team-scale/)*
 
 ---
 
@@ -76,9 +80,11 @@ The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from t
 **Vendor-locked AI:** the memory lives with the vendor.
 **Wiki-grounded:** the memory is yours. Swap the AI.
 
+*Deep dive: [Agent capability →](agent-capability/)*
+
 ---
 
-**Learn more.** Paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175). Template: [crcresearch/llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template). Semantic foundation: [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/).
+**Learn more.** Paper: [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175). Template: [crcresearch/llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template). Semantic foundation: [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/). Deep dives: [Memory that compounds](memory-that-compounds/) · [Team scale](team-scale/) · [Agent capability](agent-capability/).
 
 ## Get started
 
