@@ -244,7 +244,20 @@ footer a { color: var(--muted); }
 
 <p class="deep-dive-link">Deep dive: <a href="agent-capability/">Agent capability &rarr;</a></p>
 
-<p class="learn-more"><strong>Learn more.</strong> Paper: <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026)</a>. Template: <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a>. Semantic foundation: <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a>. Deep dives: <a href="memory-that-compounds/">Memory that compounds</a> &middot; <a href="team-scale/">Team scale</a> &middot; <a href="agent-capability/">Agent capability</a>.</p>
+<h2>Knowledge graph</h2>
+
+<p>Every typed edge in a wiki page's frontmatter reifies to an RDF triple. The wiki isn't just linked Markdown; it's a queryable knowledge graph with a formal 28-class ontology (<a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a>), SHACL-validated structure, and a shipped library of SPARQL queries an agent can run against <code>graph.ttl</code> directly.</p>
+
+<p>That layer buys queries prose can't answer. Find the pages holding the wiki together (one query returns Track-to-Track-Fusion at 45 inbound edges on a live research wiki). Walk a criticism edge transitively to surface every downstream claim implicated. Lint for <code>supports:</code> claims with no ingested source, at commit time. Graph queries, not grep queries, not RAG.</p>
+
+<div class="pair">
+  <p><strong>Prose + hyperlinks:</strong> browsable memory. What an agent can ask is limited to what it can grep.</p>
+  <p><strong>Reified graph:</strong> SPARQL over meaning. Ships with the template.</p>
+</div>
+
+<p class="deep-dive-link">Deep dive: <a href="knowledge-graph/">The knowledge graph &rarr;</a></p>
+
+<p class="learn-more"><strong>Learn more.</strong> Paper: <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026)</a>. Template: <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a>. Semantic foundation: <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a>. Deep dives: <a href="memory-that-compounds/">Memory that compounds</a> &middot; <a href="team-scale/">Team scale</a> &middot; <a href="agent-capability/">Agent capability</a> &middot; <a href="knowledge-graph/">The knowledge graph</a>.</p>
 
 <div class="cta">
   <h2>Get started.</h2>
