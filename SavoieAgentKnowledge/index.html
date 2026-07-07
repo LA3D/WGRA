@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SavoieAgentKnowledge wiki · KG report</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --type-concept: #0d4a8b;
+  --type-source: #7a5310;
+  --type-index: #6a1b5b;
+  --type-entity: #1b6e2a;
+  --type-reference: #666;
+  --type-untyped: #aaa;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 900px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header .kicker a { color: var(--muted); text-decoration: underline; }
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code { background: transparent; padding: 0; font-size: 1em; }
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+strong { color: var(--ink); }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7em;
+  margin: 1.2em 0;
+}
+.stat {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--accent);
+  padding: 0.7em 0.9em;
+}
+.stat .n {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.stat .l {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 0.15em;
+}
+.graph-container {
+  width: 100%;
+  height: 620px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+}
+.graph-container .controls {
+  position: absolute;
+  top: 0.5em;
+  right: 0.6em;
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.35em 0.55em;
+  font-size: 0.8em;
+  color: var(--muted);
+}
+.graph-container .controls button {
+  border: 1px solid var(--rule);
+  background: white;
+  cursor: pointer;
+  padding: 0.15em 0.5em;
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  border-radius: 3px;
+  color: var(--ink);
+}
+.graph-container .controls button:hover { background: var(--callout-bg); }
+.legend {
+  margin-top: 0.6em;
+  font-size: 0.88em;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.2em;
+}
+.legend .swatch {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 0.35em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  .graph-container { height: 400px; border: 1px dashed var(--rule); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="kicker">Case study · the <a href="../">Wiki-Grounded Research Agent</a> pattern applied to a research-group publications catalog</p>
+  <h1>SavoieAgentKnowledge: knowledge-graph report</h1>
+  <p class="lede">A wiki-grounded knowledge base for a single research group's publication record and research-problem taxonomy. This report reads the reified RDF graph and reports on the wiki's shape: how the group's 91 catalogued publications organize around 7 research problems, which papers hold the graph together, and which parts of the catalog have not yet been cross-linked.</p>
+</header>
+
+<blockquote>
+  <p><strong>Current wiki stage.</strong> This wiki is at Step 0b: a website seed. Publications have been catalogued from the group's website with bibliographic metadata (title, authors, venue, year, DOI) and short descriptive stubs. The papers themselves have not yet been ingested (no full-text re-reading against Crossref or arXiv). A future <code>/wiki-source</code> pass will verify metadata and, for open-access work, attach full text. The graph here reflects a catalog stage; the structural sparsity below is expected for that stage.</p>
+</blockquote>
+
+<h2>At a glance</h2>
+
+<div class="stats">
+  <div class="stat"><div class="n">1,238</div><div class="l">RDF triples</div></div>
+  <div class="stat"><div class="n">110</div><div class="l">total notes</div></div>
+  <div class="stat"><div class="n">91</div><div class="l">SourceSummary (publications)</div></div>
+  <div class="stat"><div class="n">7</div><div class="l">Concept (research problems)</div></div>
+  <div class="stat"><div class="n">8</div><div class="l">Index (topic pages)</div></div>
+  <div class="stat"><div class="n">2</div><div class="l">Entity (group, PI)</div></div>
+  <div class="stat"><div class="n">109</div><div class="l">up edges</div></div>
+  <div class="stat"><div class="n">63</div><div class="l">related edges</div></div>
+</div>
+
+<p>The wiki's shape is that of a publication catalog anchored on a research-problem taxonomy. Every one of the 91 papers has an <code>up:</code> edge to <code>Publications-Savoie-Group</code>; the majority also carry a <code>related:</code> edge to one of the 7 research-problem Concept pages, tying a specific publication to the underlying research question it addresses. Compared to a literature-survey wiki (which typically has dense paper-to-paper <code>related:</code> edges), this catalog is structurally sparse: 63 <code>related:</code> edges total, virtually all of them paper-to-problem rather than paper-to-paper.</p>
+
+<h2>Research problem structure</h2>
+
+<p>The visualization below shows the 7 research problems (blue Concept nodes) and the top-5 most-connected publications catalogued under each. Solid arrows are <code>related:</code> edges from a paper to the research problem it addresses.</p>
+
+<div class="graph-container">
+  <div class="controls">
+    <button onclick="cy.fit()">Fit</button>
+    <button onclick="cy.layout({name:'cose', animate:false, idealEdgeLength:90, nodeOverlap:14}).run()">Re-layout</button>
+  </div>
+  <div id="graph" style="width:100%; height:100%;"></div>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background: var(--type-concept)"></span>Concept (research problem)</span>
+  <span><span class="swatch" style="background: var(--type-source)"></span>SourceSummary (publication)</span>
+</div>
+
+<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
+37 nodes, 30 edges (top-5 papers per research problem). The 7 research problems act as concept anchors; papers cluster tightly around the problem they were catalogued under.
+</p>
+
+<h2>Coverage: publications per research problem</h2>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+
+SELECT ?problem (COUNT(?paper) AS ?papers) WHERE {
+    ?paper rdf:type llm-wiki-colab:SourceSummary ;
+           llm-wiki-colab:related ?problem .
+    ?problem rdf:type llm-wiki-colab:Concept .
+} GROUP BY ?problem ORDER BY DESC(?papers)</code></pre>
+
+<table>
+<thead><tr><th>Research problem</th><th class="n">Publications</th></tr></thead>
+<tbody>
+<tr><td>Mixed-Conduction-in-Soft-Materials</td><td class="n">17</td></tr>
+<tr><td>The-Reaction-Prediction-Problem</td><td class="n">13</td></tr>
+<tr><td>Molecular-Passivation-of-Perovskites</td><td class="n">11</td></tr>
+<tr><td>Machine-Learning-for-Chemical-Deduction-Problems</td><td class="n">10</td></tr>
+<tr><td>Post-Li-Ion-Battery-Electrolytes</td><td class="n">7</td></tr>
+<tr><td>Predicting-How-Materials-Degrade</td><td class="n">3</td></tr>
+<tr><td>Plastics-with-Tailored-Degradation-Profiles</td><td class="n">2</td></tr>
+</tbody>
+</table>
+
+<p>63 of the group's 91 catalogued publications map cleanly to one of the seven declared research problems. The distribution is uneven: Mixed-Conduction-in-Soft-Materials and The-Reaction-Prediction-Problem account for 30 of the 63 problem-assigned papers (48%), while Plastics-with-Tailored-Degradation-Profiles and Predicting-How-Materials-Degrade sit at 2–3 papers each. That distribution can be read as either the group's actual research-focus profile, or as an artifact of the catalog stage (recent problem areas simply not yet backfilled with their supporting work). The wiki does not yet distinguish these interpretations; a future pass could tag research problems with their timeline of activity.</p>
+
+<h2>Hub notes: which pages hold the graph together</h2>
+
+<p>Running the template's <code>hub-notes</code> query (inbound edge count excluding structural predicates like <code>title</code>, <code>tag</code>, <code>status</code>) surfaces a distinctive shape that differs from the topic-review case study:</p>
+
+<table>
+<thead><tr><th>Note</th><th>Type</th><th class="n">Inbound</th></tr></thead>
+<tbody>
+<tr><td>Publications-Savoie-Group</td><td>Index</td><td class="n">189</td></tr>
+<tr><td>Savoie-Research-Group</td><td>Entity</td><td class="n">110</td></tr>
+<tr><td>Mixed-Conduction-in-Soft-Materials</td><td>Concept</td><td class="n">39</td></tr>
+<tr><td>The-Reaction-Prediction-Problem</td><td>Concept</td><td class="n">32</td></tr>
+<tr><td>Molecular-Passivation-of-Perovskites</td><td>Concept</td><td class="n">27</td></tr>
+<tr><td>Machine-Learning-for-Chemical-Deduction-Problems</td><td>Concept</td><td class="n">24</td></tr>
+<tr><td>Savoie-Research-Problems</td><td>Index</td><td class="n">20</td></tr>
+<tr><td>Post-Li-Ion-Battery-Electrolytes</td><td>Concept</td><td class="n">18</td></tr>
+<tr><td>Savoie-Data-and-Code</td><td>Index</td><td class="n">14</td></tr>
+<tr><td>YARP</td><td>SourceSummary</td><td class="n">10</td></tr>
+</tbody>
+</table>
+
+<p>Two structural features stand out. First, the group Entity (<code>Savoie-Research-Group</code>) is a top-3 hub with 110 inbound edges. That is characteristic of a group-publications wiki: every paper references the group as its origin, so the Entity node accumulates one edge per publication. In a literature-survey wiki (where papers come from many groups) this pattern would not appear. Second, one publication surfaces above the Concept tier as a hub in its own right:</p>
+
+<ul>
+  <li><strong>YARP</strong> (10 inbound edges): a method paper the rest of the group's work references. In a catalog where most publications are leaves, a paper with 10 inbound references is a landmark internal output.</li>
+</ul>
+
+<p>The pattern the graph is describing here is real: agentic and reactive network prediction (YARP) is the group's internal shared method, and the rest of the catalog cites it from work spanning multiple research problems. An agent orienting to the group's work would be right to read YARP first.</p>
+
+<h2>Coverage gap: unassigned publications</h2>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+
+SELECT ?paper WHERE {
+    ?paper rdf:type llm-wiki-colab:SourceSummary .
+    FILTER NOT EXISTS {
+        ?paper llm-wiki-colab:related ?anyConcept .
+        ?anyConcept rdf:type llm-wiki-colab:Concept .
+    }
+}</code></pre>
+
+<p><strong>28 of the 91 catalogued publications (31%) are not yet linked to any research problem.</strong> They exist in the wiki as SourceSummary pages with bibliographic metadata, but no <code>related:</code> edge attaches them to one of the 7 Concept research-problem pages. That is not a hidden bug; it is a visible next-step for the catalog. Every one of those 28 papers is either (a) work that pre-dates the current research-problem taxonomy and needs a home added, (b) work spanning multiple research problems that has not yet been assigned to any, or (c) an early-catalog stub whose <code>related:</code> field is still empty. A query in this shape run at commit time is the mechanism by which the catalog announces which papers still need triage; without the reified graph the maintainer would have to grep for empty <code>related:</code> fields across 91 files.</p>
+
+<h2>What the graph reveals</h2>
+
+<p>Five observations that fall out of the graph rather than the prose:</p>
+
+<ol>
+  <li><strong>Two research problems account for half the catalogued work.</strong> Mixed-Conduction-in-Soft-Materials (17 papers) and The-Reaction-Prediction-Problem (13 papers) together capture 30 of the 63 problem-assigned publications. These are the load-bearing threads of the group's research portfolio, at least as reflected in the catalog.</li>
+  <li><strong>YARP is the group's internal method landmark.</strong> Ranked above every Concept tier below the top-5 hubs, YARP is the tool the rest of the catalog references from multiple research problems. It is the paper an agent orienting to the group's work should read first, and the query surfaces that without anyone having authored a "start here" page.</li>
+  <li><strong>Zero bridge papers.</strong> Not a single publication is <code>related:</code>d to two or more research problems. Every paper has been catalogued as addressing exactly one problem. In a fully-ingested wiki this is unlikely to be the true structure: methods work often bridges multiple application areas. The absence of bridge papers is a catalog-stage artifact; a re-read pass would introduce them.</li>
+  <li><strong>31% of publications are unassigned to a research problem.</strong> 28 of 91 papers exist as SourceSummary stubs with no <code>related:</code> to any Concept. That is the concrete backlog the catalog knows about itself, queryable at any time.</li>
+  <li><strong>Structural sparsity is expected at Step 0b.</strong> The wiki has 63 <code>related:</code> edges across 91 papers; a survey wiki of comparable scale would carry hundreds. This is what a catalog looks like before the papers are actually read. As the group runs the <code>/wiki-source</code> ingest pass on individual papers, paper-to-paper <code>related:</code> edges will grow, hub scores will rise for the true method landmarks, and bridge papers will appear where the catalog currently reports zero.</li>
+</ol>
+
+<p>The wiki also has almost no <code>extends:</code> or <code>criticizes:</code> edges (one and zero respectively). Unlike the AI-Sci-Disc-Mem case study — where those absences reflect a survey wiki's cataloging role — here they reflect a group's own-publications catalog where the group is not likely to file criticisms of its own work in the same structure. The absence is structural, not developmental.</p>
+
+<h2>Structural validation</h2>
+
+<p>SHACL shape validation via <code>pyshacl</code>: the graph parses and passes structural checks (no violations reported in the current build). One <code>UntypedNote</code> exists (<code>Home</code>) that has not been assigned an explicit type from the ontology; a targeted lint pass would surface it.</p>
+
+<h2>What the pattern buys the group here</h2>
+
+<p>Even at Step 0b, the graph layer makes three things possible that a folder of Markdown files could not:</p>
+
+<ol>
+  <li>The unassigned-papers query (above) is a self-report on the catalog's own backlog. The maintainer doesn't have to remember which papers still need triage; the graph knows.</li>
+  <li>The hub query surfaces YARP as the group's internal method landmark from graph structure, without anyone having authored a "start here" page. This will remain true as the catalog grows.</li>
+  <li>The research-problem taxonomy is queryable and enforceable. Adding a new Concept node and requiring every SourceSummary to have <code>related:</code> to at least one Concept is a SHACL shape edit and a re-validate. No refactor of the 91 existing files, no code change.</li>
+</ol>
+
+<p>As the wiki moves from Step 0b (metadata catalogued) to a fully-ingested state (papers re-read, cross-references filed, methods threaded across problems), the same queries will report on a much denser graph without themselves needing to change. That is the compounding property the <a href="../">wiki-grounded pattern</a> is designed for.</p>
+
+<footer>
+  <p><strong>Source files (linked, not embedded):</strong> <a href="graph.ttl"><code>graph.ttl</code></a> · <a href="validation-report.ttl"><code>validation-report.ttl</code></a>.</p>
+  <p><strong>About the pattern:</strong> This report is a case study of the <a href="../">Wiki-Grounded Research Agent</a>, a durable, LLM-authored, queryable memory layer for scientific projects. The pattern's deep-dive on the <a href="../knowledge-graph/">knowledge graph layer</a> explains how typed frontmatter edges reify to RDF and what SPARQL queries the graph enables. Built on <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> using the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> ontology.</p>
+</footer>
+
+<script src="cytoscape.min.js"></script>
+<script>
+const typeColor = {
+  'Concept':       getComputedStyle(document.documentElement).getPropertyValue('--type-concept').trim(),
+  'SourceSummary': getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Index':         getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
+  'Entity':        getComputedStyle(document.documentElement).getPropertyValue('--type-entity').trim(),
+  'Reference':     getComputedStyle(document.documentElement).getPropertyValue('--type-reference').trim(),
+  'UntypedNote':   getComputedStyle(document.documentElement).getPropertyValue('--type-untyped').trim()
+};
+
+let cy;
+fetch('problem-map.json').then(r => r.json()).then(data => {
+  cy = cytoscape({
+    container: document.getElementById('graph'),
+    elements: [
+      ...data.nodes.map(n => ({data: n.data})),
+      ...data.edges.map(e => ({data: e.data}))
+    ],
+    style: [
+      { selector: 'node', style: {
+        'background-color': ele => typeColor[ele.data('type')] || '#888',
+        'label': 'data(label)',
+        'color': '#1a1a1a',
+        'text-outline-color': '#fff',
+        'text-outline-width': 2,
+        'font-size': 9,
+        'font-family': 'Helvetica Neue, Arial, sans-serif',
+        'width': 18, 'height': 18,
+        'text-wrap': 'wrap',
+        'text-max-width': 100
+      }},
+      { selector: 'node[type = "Concept"]', style: {
+        'width': 36, 'height': 36,
+        'font-size': 11,
+        'font-weight': 'bold'
+      }},
+      { selector: 'edge', style: {
+        'width': 1.2,
+        'line-color': '#7a5310',
+        'target-arrow-color': '#7a5310',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'font-size': 8,
+        'color': '#888'
+      }},
+      { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+    ],
+    layout: { name: 'cose', idealEdgeLength: 90, nodeOverlap: 14, animate: false, fit: true }
+  });
+});
+</script>
+
+</body>
+</html>

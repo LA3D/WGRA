@@ -1,0 +1,1351 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix llm-wiki-colab: <https://la3d.github.io/llm-wiki-colab/ontology#> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home> a llm-wiki-colab:UntypedNote ;
+    dcterms:title "Home" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/log_SavoieAgentKnowledge> a llm-wiki-colab:Index ;
+    dcterms:title "log_SavoieAgentKnowledge" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie>,
+        <https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model>,
+        <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_SavoieAgentKnowledge> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Conformational-Order-Aggregates-Conjugated-Polymers-2015> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Conformational-Order-Aggregates-Conjugated-Polymers-2015" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Controlling-Conformations-Conjugated-Polymers-Small-Molecules-Role-Nonbonding-2013> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Controlling-Conformations-Conjugated-Polymers-Small-Molecules-Role-Nonbonding-2013" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Delta-Learning-Applied-Coarse-Grained-Homogeneous-Liquids-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Delta-Learning-Applied-Coarse-Grained-Homogeneous-Liquids-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Diffusion-Volatile-Organics-Water-Epicuticular-Waxes-Petunia-Petal-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Diffusion-Volatile-Organics-Water-Epicuticular-Waxes-Petunia-Petal-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Edge-Types> a llm-wiki-colab:Index ;
+    dcterms:title "Edge-Types" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge> ;
+    llm-wiki-colab:tag "conventions",
+        "kg",
+        "vocabulary" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Elimination-Butylcycloheptylprodigiosin-Known-Natural-Product-Inspired-Evolutionary-Hypothesis-2013> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Elimination-Butylcycloheptylprodigiosin-Known-Natural-Product-Inspired-Evolutionary-Hypothesis-2013" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Emergent-Properties-Locally-Ordered-Materials-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Emergent-Properties-Locally-Ordered-Materials-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Evidence-Information-Limitations-Coarse-Grained-Models-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Evidence-Information-Limitations-Coarse-Grained-Models-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Evidence-That-Transferable-Force-Fields-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Evidence-That-Transferable-Force-Fields-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Improved-Scaling-Molecular-Network-Calculations-Emergence-Molecular-Domains-2017> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Improved-Scaling-Molecular-Network-Calculations-Emergence-Molecular-Domains-2017" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Introduction-Machine-Learning-Molecular-Simulation-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Introduction-Machine-Learning-Molecular-Simulation-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Mechanical-Bond-Induced-Radical-Stabilization-2012> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Mechanical-Bond-Induced-Radical-Stabilization-2012" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Features-Charge-Generation-Organic-Semiconductors-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Mesoscopic-Features-Charge-Generation-Organic-Semiconductors-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Molecular-Network-Formation-Amorphous-Organic-Materials-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Mesoscopic-Molecular-Network-Formation-Amorphous-Organic-Materials-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Model-Shape-Relaxation-Spectrum-Glass-Formers-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Model-Shape-Relaxation-Spectrum-Glass-Formers-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Modeling-Geminate-Pair-Dissociation-Organic-Solar-Cells-High-2012> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Modeling-Geminate-Pair-Dissociation-Organic-Solar-Cells-High-2012" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Organic-Photovoltaics-Bridging-Ultra-Fast-Diffusion-Limited-Exciton-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Organic-Photovoltaics-Bridging-Ultra-Fast-Diffusion-Limited-Exciton-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Reactive-Vapor-Phase-Inhibitors-Area-Selective-Depositions-Tunable-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Reactive-Vapor-Phase-Inhibitors-Area-Selective-Depositions-Tunable-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Reassessing-Use-One-Electron-Energetics-Design-Characterization-Organic-2013> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Reassessing-Use-One-Electron-Energetics-Design-Characterization-Organic-2013" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Scope-Limitations-Ternary-Blend-Organic-Photovoltaics-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Scope-Limitations-Ternary-Blend-Organic-Photovoltaics-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Semiconducting-Polymer-Blends-That-Exhibit-Stable-Charge-Transport-2018> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Semiconducting-Polymer-Blends-That-Exhibit-Stable-Charge-Transport-2018" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Simple-Analytic-Description-Collection-Efficiency-Organic-Photovoltaics-2013> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Simple-Analytic-Description-Collection-Efficiency-Organic-Photovoltaics-2013" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Simple-Index-Characterizing-Charge-Transport-Molecular-Materials-2015> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Simple-Index-Characterizing-Charge-Transport-Molecular-Materials-2015" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Stokes-Shift-Emission-Efficiency-Trade-Off-Donor-Acceptor-2015> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Stokes-Shift-Emission-Efficiency-Trade-Off-Donor-Acceptor-2015" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Structural-Conformational-Dispersion-Rational-Design-Conjugated-Polymers-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Structural-Conformational-Dispersion-Rational-Design-Conjugated-Polymers-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Topology-Automated-Force-Field-Interactions-Taffi-Framework-Developing-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Topology-Automated-Force-Field-Interactions-Taffi-Framework-Developing-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Unequal-Partnership-Asymmetric-Roles-Polymeric-Donor-Fullerene-Acceptor-2014> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Unequal-Partnership-Asymmetric-Roles-Polymeric-Donor-Fullerene-Acceptor-2014" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Unified-Description-Temperature-Dependence-Mobility-Liquids-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Unified-Description-Temperature-Dependence-Mobility-Liquids-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Unraveling-Two-Distinct-Polymorph-Transition-Mechanisms-One-N-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Unraveling-Two-Distinct-Polymorph-Transition-Mechanisms-One-N-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Glucose-Pyrolysis-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Deep-Reaction-Network-Exploration-Glucose-Pyrolysis-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Heterogeneous-Catalytic-Interface-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Deep-Reaction-Network-Exploration-Heterogeneous-Catalytic-Interface-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Degradation-Pathways-Conjugated-Radical-Cations-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Enhanced-Electron-Transport-Nonconjugated-Radical-Oligomers-Occurs-Tunneling-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Enhanced-Electron-Transport-Nonconjugated-Radical-Oligomers-Occurs-Tunneling-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Globally-Suppressed-Dynamics-Ion-Doped-Polymers-2018> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Globally-Suppressed-Dynamics-Ion-Doped-Polymers-2018" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Large-Property-Models-New-Generative-Machine-Learning-Formulation-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Large-Property-Models-New-Generative-Machine-Learning-Formulation-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Large-Room-Temperature-Magnetoresistance-High-Spin-Donor-Acceptor-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Large-Room-Temperature-Magnetoresistance-High-Spin-Donor-Acceptor-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-Models-Capable-Chemical-Deduction-Identifying-Reaction-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Machine-Learning-Models-Capable-Chemical-Deduction-Identifying-Reaction-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Molecular-Design-Features-Charge-Transport-Non-Conjugated-Radical-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Molecular-Design-Features-Charge-Transport-Non-Conjugated-Radical-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Molecular-Templating-Layered-Halide-Perovskite-Nanowires-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Molecular-Templating-Layered-Halide-Perovskite-Nanowires-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Nonconjugated-Radical-Polymer-Glass-High-Electrical-Conductivity-2018> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Nonconjugated-Radical-Polymer-Glass-High-Electrical-Conductivity-2018" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Organic-Reactivity-Made-Easy-Accurate-Automated-Multireference-Calculations-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Organic-Reactivity-Made-Easy-Accurate-Automated-Multireference-Calculations-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Quantifying-Anionic-Diffusion-Two-Dimensional-Halide-Perovskites-Lateral-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Quantifying-Anionic-Diffusion-Two-Dimensional-Halide-Perovskites-Lateral-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Recent-Advances-Opportunities-Mixed-Ion-Charge-Conducting-Polymers-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Recent-Advances-Opportunities-Mixed-Ion-Charge-Conducting-Polymers-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Room-Temperature-Cycling-Metal-Fluoride-Electrodes-Liquid-Electrolytes-2018> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Room-Temperature-Cycling-Metal-Fluoride-Electrodes-Liquid-Electrolytes-2018" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Self-Consistent-Component-Increment-Theory-Predicting-Enthalpy-Formation-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Self-Consistent-Component-Increment-Theory-Predicting-Enthalpy-Formation-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Hydrophilicity-Modulates-Morphology-Charge-Transport-Mixed-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Side-Chain-Hydrophilicity-Modulates-Morphology-Charge-Transport-Mixed-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Significant-Charge-Transport-Effects-Due-Subtle-Molecular-Changes-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Significant-Charge-Transport-Effects-Due-Subtle-Molecular-Changes-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Simpler-Better-Linear-Prediction-Tasks-Improve-Transfer-Learning-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Simpler-Better-Linear-Prediction-Tasks-Improve-Transfer-Learning-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Spintronic-Pathways-Nonconjugated-Radical-Polymer-Glass-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Spintronic-Pathways-Nonconjugated-Radical-Polymer-Glass-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Suppressing-Phase-Disproportionation-Quasi-2d-Perovskite-Light-Emitting-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Suppressing-Phase-Disproportionation-Quasi-2d-Perovskite-Light-Emitting-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Systematic-Computational-Experimental-Investigation-Lithium-Ion-Transport-Mechanisms-2015> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Systematic-Computational-Experimental-Investigation-Lithium-Ion-Transport-Mechanisms-2015" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tailoring-Molecular-Scale-Contact-Perovskite-Polymeric-Hole-Transporting-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Tailoring-Molecular-Scale-Contact-Perovskite-Polymeric-Hole-Transporting-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Thermally-Accessible-Prebiotic-Pathways-Forming-Ribonucleic-Acid-Protein-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Thermally-Accessible-Prebiotic-Pathways-Forming-Ribonucleic-Acid-Protein-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Top-Down-Coarse-Grained-Framework-Characterizing-Mixed-Conducting-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Top-Down-Coarse-Grained-Framework-Characterizing-Mixed-Conducting-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Transferable-Ring-Corrections-Predicting-Enthalpy-Formation-Cyclic-Compounds-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Transferable-Ring-Corrections-Predicting-Enthalpy-Formation-Cyclic-Compounds-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tuning-Interfacial-Energetic-Interactions-Between-Photoexcited-Conjugated-Polymer-2019> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Tuning-Interfacial-Energetic-Interactions-Between-Photoexcited-Conjugated-Polymer-2019" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Halide-Perovskite-Lateral-Epitaxial-Heterostructures-2020> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Two-Dimensional-Halide-Perovskite-Lateral-Epitaxial-Heterostructures-2020" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Lattice-Confined-Single-Molecule-Like-Aggregates-2024> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Two-Dimensional-Lattice-Confined-Single-Molecule-Like-Aggregates-2024" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Verdazyl-Radical-Polymers-Advanced-Organic-Spintronics-2025> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Verdazyl-Radical-Polymers-Advanced-Organic-Spintronics-2025" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/index_SavoieAgentKnowledge> a llm-wiki-colab:Index ;
+    dcterms:title "index_SavoieAgentKnowledge" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Order-Aggregates-Conjugated-Polymers-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Controlling-Conformations-Conjugated-Polymers-Small-Molecules-Role-Nonbonding-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Glucose-Pyrolysis-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Heterogeneous-Catalytic-Interface-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta-Learning-Applied-Coarse-Grained-Homogeneous-Liquids-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diffusion-Volatile-Organics-Water-Epicuticular-Waxes-Petunia-Petal-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Elimination-Butylcycloheptylprodigiosin-Known-Natural-Product-Inspired-Evolutionary-Hypothesis-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Emergent-Properties-Locally-Ordered-Materials-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhanced-Electron-Transport-Nonconjugated-Radical-Oligomers-Occurs-Tunneling-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evidence-Information-Limitations-Coarse-Grained-Models-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evidence-That-Transferable-Force-Fields-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Globally-Suppressed-Dynamics-Ion-Doped-Polymers-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improved-Scaling-Molecular-Network-Calculations-Emergence-Molecular-Domains-2017>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Introduction-Machine-Learning-Molecular-Simulation-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Property-Models-New-Generative-Machine-Learning-Formulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Room-Temperature-Magnetoresistance-High-Spin-Donor-Acceptor-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-Models-Capable-Chemical-Deduction-Identifying-Reaction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mechanical-Bond-Induced-Radical-Stabilization-2012>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Features-Charge-Generation-Organic-Semiconductors-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Molecular-Network-Formation-Amorphous-Organic-Materials-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Model-Shape-Relaxation-Spectrum-Glass-Formers-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Modeling-Geminate-Pair-Dissociation-Organic-Solar-Cells-High-2012>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Design-Features-Charge-Transport-Non-Conjugated-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Templating-Layered-Halide-Perovskite-Nanowires-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Nonconjugated-Radical-Polymer-Glass-High-Electrical-Conductivity-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Organic-Photovoltaics-Bridging-Ultra-Fast-Diffusion-Limited-Exciton-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Organic-Reactivity-Made-Easy-Accurate-Automated-Multireference-Calculations-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Quantifying-Anionic-Diffusion-Two-Dimensional-Halide-Perovskites-Lateral-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reactive-Vapor-Phase-Inhibitors-Area-Selective-Depositions-Tunable-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reassessing-Use-One-Electron-Energetics-Design-Characterization-Organic-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Recent-Advances-Opportunities-Mixed-Ion-Charge-Conducting-Polymers-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Room-Temperature-Cycling-Metal-Fluoride-Electrodes-Liquid-Electrolytes-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scope-Limitations-Ternary-Blend-Organic-Photovoltaics-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Consistent-Component-Increment-Theory-Predicting-Enthalpy-Formation-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Semiconducting-Polymer-Blends-That-Exhibit-Stable-Charge-Transport-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Hydrophilicity-Modulates-Morphology-Charge-Transport-Mixed-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Significant-Charge-Transport-Effects-Due-Subtle-Molecular-Changes-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simple-Analytic-Description-Collection-Efficiency-Organic-Photovoltaics-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simple-Index-Characterizing-Charge-Transport-Molecular-Materials-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simpler-Better-Linear-Prediction-Tasks-Improve-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spintronic-Pathways-Nonconjugated-Radical-Polymer-Glass-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Stokes-Shift-Emission-Efficiency-Trade-Off-Donor-Acceptor-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structural-Conformational-Dispersion-Rational-Design-Conjugated-Polymers-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Suppressing-Phase-Disproportionation-Quasi-2d-Perovskite-Light-Emitting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Systematic-Computational-Experimental-Investigation-Lithium-Ion-Transport-Mechanisms-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tailoring-Molecular-Scale-Contact-Perovskite-Polymeric-Hole-Transporting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/Thermally-Accessible-Prebiotic-Pathways-Forming-Ribonucleic-Acid-Protein-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Top-Down-Coarse-Grained-Framework-Characterizing-Mixed-Conducting-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Automated-Force-Field-Interactions-Taffi-Framework-Developing-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transferable-Ring-Corrections-Predicting-Enthalpy-Formation-Cyclic-Compounds-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tuning-Interfacial-Energetic-Interactions-Between-Photoexcited-Conjugated-Polymer-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Halide-Perovskite-Lateral-Epitaxial-Heterostructures-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Lattice-Confined-Single-Molecule-Like-Aggregates-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unequal-Partnership-Asymmetric-Roles-Polymeric-Donor-Fullerene-Acceptor-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unified-Description-Temperature-Dependence-Mobility-Liquids-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unraveling-Two-Distinct-Polymorph-Transition-Mechanisms-One-N-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Verdazyl-Radical-Polymers-Advanced-Organic-Spintronics-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie> a llm-wiki-colab:Entity ;
+    dcterms:title "Brett-Savoie" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:tag "notre-dame",
+        "person",
+        "pi",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Delta2-Machine-Learning-Reaction-Property-Prediction-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Delta2-Reaction-Property-Model" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "reaction-prediction",
+        "savoie-group",
+        "software" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "RGD-Dataset" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "dataset",
+        "reaction-prediction",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code> .
+
+<https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge> a llm-wiki-colab:Reference ;
+    dcterms:title "SCHEMA_SavoieAgentKnowledge" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page-Name>,
+        <https://la3d.github.io/llm-wiki-colab/page/Parent-Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "publication",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/EGAT> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "EGAT" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> ;
+    llm-wiki-colab:tag "machine-learning",
+        "savoie-group",
+        "software" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People> a llm-wiki-colab:Index ;
+    dcterms:title "Savoie-Group-People" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> ;
+    llm-wiki-colab:tag "people",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> a llm-wiki-colab:Index ;
+    dcterms:title "Home_SavoieAgentKnowledge" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_SavoieAgentKnowledge> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles> a llm-wiki-colab:Concept ;
+    dcterms:title "Plastics-with-Tailored-Degradation-Profiles" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade> a llm-wiki-colab:Concept ;
+    dcterms:title "Predicting-How-Materials-Degrade" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/YARP> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "YARP" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "reaction-prediction",
+        "savoie-group",
+        "software",
+        "yarp" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code> a llm-wiki-colab:Index ;
+    dcterms:title "Savoie-Data-and-Code" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model>,
+        <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:tag "data",
+        "savoie-group",
+        "software" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes> a llm-wiki-colab:Concept ;
+    dcterms:title "Post-Li-Ion-Battery-Electrolytes" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Room-Temperature-Cycling-Metal-Fluoride-Electrodes-Liquid-Electrolytes-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Systematic-Computational-Experimental-Investigation-Lithium-Ion-Transport-Mechanisms-2015> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> a llm-wiki-colab:Index ;
+    dcterms:title "Savoie-Research-Problems" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> ;
+    llm-wiki-colab:tag "research",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems> a llm-wiki-colab:Concept ;
+    dcterms:title "Machine-Learning-for-Chemical-Deduction-Problems" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Property-Models-New-Generative-Machine-Learning-Formulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-Models-Capable-Chemical-Deduction-Identifying-Reaction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Consistent-Component-Increment-Theory-Predicting-Enthalpy-Formation-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simpler-Better-Linear-Prediction-Tasks-Improve-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transferable-Ring-Corrections-Predicting-Enthalpy-Formation-Cyclic-Compounds-2021> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites> a llm-wiki-colab:Concept ;
+    dcterms:title "Molecular-Passivation-of-Perovskites" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Templating-Layered-Halide-Perovskite-Nanowires-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Quantifying-Anionic-Diffusion-Two-Dimensional-Halide-Perovskites-Lateral-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Suppressing-Phase-Disproportionation-Quasi-2d-Perovskite-Light-Emitting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tailoring-Molecular-Scale-Contact-Perovskite-Polymeric-Hole-Transporting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Halide-Perovskite-Lateral-Epitaxial-Heterostructures-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Lattice-Confined-Single-Molecule-Like-Aggregates-2024> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem> a llm-wiki-colab:Concept ;
+    dcterms:title "The-Reaction-Prediction-Problem" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Glucose-Pyrolysis-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Heterogeneous-Catalytic-Interface-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Reaction-Property-Model>,
+        <https://la3d.github.io/llm-wiki-colab/page/EGAT>,
+        <https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Organic-Reactivity-Made-Easy-Accurate-Automated-Multireference-Calculations-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/RGD-Dataset>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Thermally-Accessible-Prebiotic-Pathways-Forming-Ribonucleic-Acid-Protein-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials> a llm-wiki-colab:Concept ;
+    dcterms:title "Mixed-Conduction-in-Soft-Materials" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhanced-Electron-Transport-Nonconjugated-Radical-Oligomers-Occurs-Tunneling-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Globally-Suppressed-Dynamics-Ion-Doped-Polymers-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Room-Temperature-Magnetoresistance-High-Spin-Donor-Acceptor-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Design-Features-Charge-Transport-Non-Conjugated-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Nonconjugated-Radical-Polymer-Glass-High-Electrical-Conductivity-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Recent-Advances-Opportunities-Mixed-Ion-Charge-Conducting-Polymers-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Hydrophilicity-Modulates-Morphology-Charge-Transport-Mixed-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Significant-Charge-Transport-Effects-Due-Subtle-Molecular-Changes-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spintronic-Pathways-Nonconjugated-Radical-Polymer-Glass-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Top-Down-Coarse-Grained-Framework-Characterizing-Mixed-Conducting-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tuning-Interfacial-Energetic-Interactions-Between-Photoexcited-Conjugated-Polymer-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Verdazyl-Radical-Polymers-Advanced-Organic-Spintronics-2025> ;
+    llm-wiki-colab:tag "research-problem",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> a llm-wiki-colab:Entity ;
+    dcterms:title "Savoie-Research-Group" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Brett-Savoie>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Group-People>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/YARP> ;
+    llm-wiki-colab:tag "notre-dame",
+        "research-group",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_SavoieAgentKnowledge> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Publications-Savoie-Group> a llm-wiki-colab:Index ;
+    dcterms:title "Publications-Savoie-Group" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Order-Aggregates-Conjugated-Polymers-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Controlling-Conformations-Conjugated-Polymers-Small-Molecules-Role-Nonbonding-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Glucose-Pyrolysis-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Deep-Reaction-Network-Exploration-Heterogeneous-Catalytic-Interface-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta-Learning-Applied-Coarse-Grained-Homogeneous-Liquids-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Diffusion-Volatile-Organics-Water-Epicuticular-Waxes-Petunia-Petal-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Elimination-Butylcycloheptylprodigiosin-Known-Natural-Product-Inspired-Evolutionary-Hypothesis-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Emergent-Properties-Locally-Ordered-Materials-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhanced-Electron-Transport-Nonconjugated-Radical-Oligomers-Occurs-Tunneling-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evidence-Information-Limitations-Coarse-Grained-Models-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evidence-That-Transferable-Force-Fields-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Globally-Suppressed-Dynamics-Ion-Doped-Polymers-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Graph-Activation-Energy-Models-Easily-Reach-Irreducible-Errors-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improved-Scaling-Molecular-Network-Calculations-Emergence-Molecular-Domains-2017>,
+        <https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Introduction-Machine-Learning-Molecular-Simulation-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Property-Models-New-Generative-Machine-Learning-Formulation-2025>,
+        <https://la3d.github.io/llm-wiki-colab/page/Large-Room-Temperature-Magnetoresistance-High-Spin-Donor-Acceptor-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-Models-Capable-Chemical-Deduction-Identifying-Reaction-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mechanical-Bond-Induced-Radical-Stabilization-2012>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Features-Charge-Generation-Organic-Semiconductors-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mesoscopic-Molecular-Network-Formation-Amorphous-Organic-Materials-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials>,
+        <https://la3d.github.io/llm-wiki-colab/page/Model-Shape-Relaxation-Spectrum-Glass-Formers-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Modeling-Geminate-Pair-Dissociation-Organic-Solar-Cells-High-2012>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Design-Features-Charge-Transport-Non-Conjugated-Radical-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites>,
+        <https://la3d.github.io/llm-wiki-colab/page/Molecular-Templating-Layered-Halide-Perovskite-Nanowires-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Nonconjugated-Radical-Polymer-Glass-High-Electrical-Conductivity-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Organic-Photovoltaics-Bridging-Ultra-Fast-Diffusion-Limited-Exciton-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Organic-Reactivity-Made-Easy-Accurate-Automated-Multireference-Calculations-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles>,
+        <https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade>,
+        <https://la3d.github.io/llm-wiki-colab/page/Quantifying-Anionic-Diffusion-Two-Dimensional-Halide-Perovskites-Lateral-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reactive-Vapor-Phase-Inhibitors-Area-Selective-Depositions-Tunable-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reassessing-Use-One-Electron-Energetics-Design-Characterization-Organic-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Recent-Advances-Opportunities-Mixed-Ion-Charge-Conducting-Polymers-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Room-Temperature-Cycling-Metal-Fluoride-Electrodes-Liquid-Electrolytes-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_SavoieAgentKnowledge>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Data-and-Code>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group>,
+        <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Problems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Scope-Limitations-Ternary-Blend-Organic-Photovoltaics-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Self-Consistent-Component-Increment-Theory-Predicting-Enthalpy-Formation-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Semiconducting-Polymer-Blends-That-Exhibit-Stable-Charge-Transport-2018>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022>,
+        <https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Hydrophilicity-Modulates-Morphology-Charge-Transport-Mixed-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Significant-Charge-Transport-Effects-Due-Subtle-Molecular-Changes-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simple-Analytic-Description-Collection-Efficiency-Organic-Photovoltaics-2013>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simple-Index-Characterizing-Charge-Transport-Molecular-Materials-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simpler-Better-Linear-Prediction-Tasks-Improve-Transfer-Learning-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Simultaneously-Improving-Reaction-Coverage-Computational-Cost-Automated-Reaction-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Spintronic-Pathways-Nonconjugated-Radical-Polymer-Glass-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Stokes-Shift-Emission-Efficiency-Trade-Off-Donor-Acceptor-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Structural-Conformational-Dispersion-Rational-Design-Conjugated-Polymers-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Suppressing-Phase-Disproportionation-Quasi-2d-Perovskite-Light-Emitting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Systematic-Computational-Experimental-Investigation-Lithium-Ion-Transport-Mechanisms-2015>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tailoring-Molecular-Scale-Contact-Perovskite-Polymeric-Hole-Transporting-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem>,
+        <https://la3d.github.io/llm-wiki-colab/page/Thermally-Accessible-Prebiotic-Pathways-Forming-Ribonucleic-Acid-Protein-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Top-Down-Coarse-Grained-Framework-Characterizing-Mixed-Conducting-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Topology-Automated-Force-Field-Interactions-Taffi-Framework-Developing-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Transferable-Ring-Corrections-Predicting-Enthalpy-Formation-Cyclic-Compounds-2021>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tuning-Interfacial-Energetic-Interactions-Between-Photoexcited-Conjugated-Polymer-2019>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Halide-Perovskite-Lateral-Epitaxial-Heterostructures-2020>,
+        <https://la3d.github.io/llm-wiki-colab/page/Two-Dimensional-Lattice-Confined-Single-Molecule-Like-Aggregates-2024>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unequal-Partnership-Asymmetric-Roles-Polymeric-Donor-Fullerene-Acceptor-2014>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unified-Description-Temperature-Dependence-Mobility-Liquids-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Unraveling-Two-Distinct-Polymorph-Transition-Mechanisms-One-N-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Verdazyl-Radical-Polymers-Advanced-Organic-Spintronics-2025> ;
+    llm-wiki-colab:tag "publications",
+        "savoie-group" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Savoie-Research-Group> .
+

@@ -1,0 +1,475 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "Mixed-Conduction-in-Soft-Materials",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023",
+        "label": "Deductive-Machine-Learning-Challenges...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/YARP",
+        "label": "YARP",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019",
+        "label": "Molecular-Engineering-Organic-Inorgan...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020",
+        "label": "Improving-Generative-Performance-Chem...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022",
+        "label": "Conformational-Sampling-Transition-St...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022",
+        "label": "Actively-Searching-Inverse-Design-Nov...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015",
+        "label": "Chemically-Specific-Dynamic-Bond-Perc...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022",
+        "label": "Ion-Solvent-Interplay-Concentrated-El...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021",
+        "label": "Design-N-Type-Low-Glass-Transition-Te...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "The-Reaction-Prediction-Problem",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017",
+        "label": "Enhancing-Cation-Diffusion-Suppressin...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023",
+        "label": "Learning-Stability-Scores-Computation...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024",
+        "label": "Reductive-Doping-Inhibits-Formation-I...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022",
+        "label": "Anion-Diffusion-Two-Dimensional-Halid...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade",
+        "label": "Predicting-How-Materials-Degrade",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "Machine-Learning-for-Chemical-Deduction-Problems",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023",
+        "label": "Charge-Transport-Antiferromagnetic-Or...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022",
+        "label": "Side-Chain-Control-Topochemical-Polym...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022",
+        "label": "Electronic-Spintronic-Open-Shell-Macr...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023",
+        "label": "Anomalous-Magnetoresistance-Nonconjug...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019",
+        "label": "Improved-Chemical-Prediction-Scarce-D...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022",
+        "label": "Circularly-Recyclable-Polymers-Featur...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "Molecular-Passivation-of-Perovskites",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021",
+        "label": "Layer-Layer-Anionic-Diffusion-Two-Dim...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022",
+        "label": "Algorithmic-Explorations-Unimolecular...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022",
+        "label": "Mitigating-Polysulfide-Shuttles-Upcyc...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles",
+        "label": "Plastics-with-Tailored-Degradation-Profiles",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023",
+        "label": "Comprehensive-Exploration-Graphically...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023",
+        "label": "Design-Rules-Two-Dimensional-Organic-...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/EGAT",
+        "label": "EGAT",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023",
+        "label": "Emerging-Two-Dimensional-Organic-Semi...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023",
+        "label": "Degradation-Pathways-Conjugated-Radic...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "Post-Li-Ion-Battery-Electrolytes",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023",
+        "label": "Delta2-Machine-Learning-Reaction-Prop...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022",
+        "label": "Role-Solvation-Shell-Structure-Dynami...",
+        "type": "SourceSummary"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023",
+        "label": "Bridging-Monomer-Polymer-Gap-Radical-...",
+        "type": "SourceSummary"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Actively-Searching-Inverse-Design-Novel-Molecules-Simultaneously-Optimized-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Deductive-Machine-Learning-Challenges-Opportunities-Chemical-Applications-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Improved-Chemical-Prediction-Scarce-Data-Sets-Latent-Space-2019",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Improving-Generative-Performance-Chemical-Autoencoders-Through-Transfer-Learning-2020",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/EGAT",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Machine-Learning-for-Chemical-Deduction-Problems",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Anion-Diffusion-Two-Dimensional-Halide-Perovskites-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Design-Rules-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Emerging-Two-Dimensional-Organic-Semiconductor-Incorporated-Perovskites-Fascinating-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Layer-Layer-Anionic-Diffusion-Two-Dimensional-Halide-Perovskite-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Engineering-Organic-Inorganic-Hybrid-Perovskites-Quantum-Wells-2019",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Molecular-Passivation-of-Perovskites",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Anomalous-Magnetoresistance-Nonconjugated-Radical-Polymer-Glass-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Bridging-Monomer-Polymer-Gap-Radical-Polymer-Design-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Charge-Transport-Antiferromagnetic-Ordering-Nitroxide-Radical-Crystals-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Design-N-Type-Low-Glass-Transition-Temperature-Radical-2021",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Electronic-Spintronic-Open-Shell-Macromolecules-Quo-Vadis-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Mixed-Conduction-in-Soft-Materials",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Chemically-Specific-Dynamic-Bond-Percolation-Model-Ion-Transport-2015",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Enhancing-Cation-Diffusion-Suppressing-Anion-Diffusion-Lewis-Acidic-2017",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Ion-Solvent-Interplay-Concentrated-Electrolytes-Enables-Subzero-Temperature-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Mitigating-Polysulfide-Shuttles-Upcycled-Alkali-Metal-Terephthalate-Decorated-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Role-Solvation-Shell-Structure-Dynamics-K-Ion-Li-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Post-Li-Ion-Battery-Electrolytes",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Circularly-Recyclable-Polymers-Featuring-Topochemically-Weakened-Carbon-Carbon-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Side-Chain-Control-Topochemical-Polymer-Single-Crystals-Tunable-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Plastics-with-Tailored-Degradation-Profiles",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Algorithmic-Explorations-Unimolecular-Bimolecular-Reaction-Spaces-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Comprehensive-Exploration-Graphically-Defined-Reaction-Spaces-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Conformational-Sampling-Transition-State-Searches-Computational-Budget-2022",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Delta2-Machine-Learning-Reaction-Property-Prediction-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/YARP",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/The-Reaction-Prediction-Problem",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Degradation-Pathways-Conjugated-Radical-Cations-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Learning-Stability-Scores-Computationally-Generated-Kinetic-Data-2023",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade",
+        "label": "related"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Reductive-Doping-Inhibits-Formation-Isomerization-Derived-Structural-Defects-2024",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Predicting-How-Materials-Degrade",
+        "label": "related"
+      }
+    }
+  ]
+}
