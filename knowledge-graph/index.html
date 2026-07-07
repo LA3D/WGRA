@@ -242,7 +242,7 @@ footer a { color: var(--muted); }
 </div>
 
 <p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
-Nodes are classes. Edges are properties with a declared domain and range in the ontology (e.g., <code>affiliation: Person → Organization</code>). Wiki-page semantic properties (<code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>related</code>) apply to any wiki page and are shown as self-loops on the Concept class.
+Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic connections the pattern is designed for: <code>affiliation</code> from Person to Organization, <code>authorOf</code> from Person to note types, <code>supports</code> and <code>criticizes</code> from evidence pages to Concept, <code>up</code> for hierarchy, <code>implementation</code> from Concept to code notes, <code>defines</code> from ConceptNote to Concept. Page-to-page semantic properties (<code>extends</code>, <code>supports</code>, <code>criticizes</code>) are drawn as dashed self-loops on Concept because they can connect any concept-typed page to any other.
 </p>
 
 <h2>A real graph: the naval-sensor-fusion wiki</h2>

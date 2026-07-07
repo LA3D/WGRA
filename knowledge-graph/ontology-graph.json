@@ -2,65 +2,9 @@
   "nodes": [
     {
       "data": {
-        "id": "Area",
-        "label": "Area",
-        "group": "Structure",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "AuthorNote",
-        "label": "AuthorNote",
-        "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "BookNote",
-        "label": "BookNote",
-        "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "Comparison",
-        "label": "Comparison",
-        "group": "Structure",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
         "id": "Concept",
         "label": "Concept",
         "group": "Core concept",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "ConceptNote",
-        "label": "ConceptNote",
-        "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "CourseNotes",
-        "label": "CourseNotes",
-        "group": "Other",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "Decision",
-        "label": "Decision",
-        "group": "Structure",
         "kind": "class"
       }
     },
@@ -82,9 +26,33 @@
     },
     {
       "data": {
-        "id": "Finding",
-        "label": "Finding",
-        "group": "Structure",
+        "id": "Tool",
+        "label": "Tool",
+        "group": "Core concept",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "AuthorNote",
+        "label": "AuthorNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "BookNote",
+        "label": "BookNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "ConceptNote",
+        "label": "ConceptNote",
+        "group": "Note types",
         "kind": "class"
       }
     },
@@ -106,25 +74,9 @@
     },
     {
       "data": {
-        "id": "Index",
-        "label": "Index",
-        "group": "Structure",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
         "id": "LiteratureNote",
         "label": "LiteratureNote",
         "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "MOC",
-        "label": "MOC",
-        "group": "Structure",
         "kind": "class"
       }
     },
@@ -138,17 +90,65 @@
     },
     {
       "data": {
-        "id": "Organization",
-        "label": "Organization",
-        "group": "Person / Org",
+        "id": "TheoryNote",
+        "label": "TheoryNote",
+        "group": "Note types",
         "kind": "class"
       }
     },
     {
       "data": {
-        "id": "Person",
-        "label": "Person",
-        "group": "Person / Org",
+        "id": "SourceSummary",
+        "label": "SourceSummary",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Area",
+        "label": "Area",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Comparison",
+        "label": "Comparison",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Decision",
+        "label": "Decision",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Finding",
+        "label": "Finding",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Index",
+        "label": "Index",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "MOC",
+        "label": "MOC",
+        "group": "Structure",
         "kind": "class"
       }
     },
@@ -186,14 +186,6 @@
     },
     {
       "data": {
-        "id": "SourceSummary",
-        "label": "SourceSummary",
-        "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
         "id": "Synthesis",
         "label": "Synthesis",
         "group": "Structure",
@@ -202,25 +194,33 @@
     },
     {
       "data": {
-        "id": "TheoryNote",
-        "label": "TheoryNote",
-        "group": "Note types",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
-        "id": "Tool",
-        "label": "Tool",
-        "group": "Core concept",
-        "kind": "class"
-      }
-    },
-    {
-      "data": {
         "id": "Workflow",
         "label": "Workflow",
         "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "CourseNotes",
+        "label": "CourseNotes",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Person",
+        "label": "Person",
+        "group": "Person / Org",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Organization",
+        "label": "Organization",
+        "group": "Person / Org",
         "kind": "class"
       }
     }
@@ -236,9 +236,265 @@
     },
     {
       "data": {
+        "source": "Person",
+        "target": "SourceSummary",
+        "label": "authorOf",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Person",
+        "target": "LiteratureNote",
+        "label": "authorOf",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
         "source": "Project",
         "target": "Person",
         "label": "collaborator",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Project",
+        "target": "Area",
+        "label": "area",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "MOC",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "MOC",
+        "target": "Area",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Area",
+        "target": "Index",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "LiteratureNote",
+        "target": "MOC",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "TheoryNote",
+        "target": "MOC",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "MethodNote",
+        "target": "MOC",
+        "label": "up",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "LiteratureNote",
+        "target": "Concept",
+        "label": "supports",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "LiteratureNote",
+        "target": "Concept",
+        "label": "criticizes",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "BookNote",
+        "target": "Concept",
+        "label": "supports",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "MethodNote",
+        "target": "Concept",
+        "label": "supports",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "TheoryNote",
+        "target": "Concept",
+        "label": "extends",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "FleetingNote",
+        "target": "Concept",
+        "label": "related",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "AuthorNote",
+        "target": "Person",
+        "label": "related",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "ConceptNote",
+        "target": "Concept",
+        "label": "defines",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "ImplementationNote",
+        "label": "implementation",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "SourceSummary",
+        "label": "source",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Reference",
+        "label": "source",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Entity",
+        "label": "related",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Decision",
+        "target": "Finding",
+        "label": "resolves",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Decision",
+        "target": "LiteratureNote",
+        "label": "informedBy",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Finding",
+        "target": "Concept",
+        "label": "supports",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Synthesis",
+        "target": "Concept",
+        "label": "incorporates",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Comparison",
+        "target": "Concept",
+        "label": "related",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Plan",
+        "target": "Workflow",
+        "label": "precedes",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Workflow",
+        "target": "Finding",
+        "label": "feedsInto",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "ExternalResource",
+        "target": "Reference",
+        "label": "source",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Tool",
+        "target": "Tool",
+        "label": "dependsOn",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "CourseNotes",
+        "target": "TheoryNote",
+        "label": "extends",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "RecipeCollection",
+        "target": "CourseNotes",
+        "label": "partOf",
         "kind": "ontology-property"
       }
     },
@@ -263,54 +519,6 @@
         "source": "Concept",
         "target": "Concept",
         "label": "criticizes",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "related",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "up",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "partOf",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "dependsOn",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "precedes",
-        "kind": "page-edge"
-      }
-    },
-    {
-      "data": {
-        "source": "Concept",
-        "target": "Concept",
-        "label": "incorporates",
         "kind": "page-edge"
       }
     }
