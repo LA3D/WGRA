@@ -65,6 +65,8 @@ The Wiki-Grounded Research Agent ships with the workflow already configured. A v
 **Raw AI subscription:** every student prompts differently. Discipline lives in memory.
 **Configured environment:** the discipline is in the artifact. Every session starts from a known baseline.
 
+> **Real world example.** A pipeline was counting the model's honest "not visible on this page" hedges as successful answers, stopping the search in exactly the case where deeper searching was warranted. The wiki review that caught it was possible because a demo branch's `extends:` typed edge told a reviewer in a separate Claude Code session where else the bug might live. The fix cascaded through two prior experiments and recovered 75% more real coverage on the flagship entity. [Read the full story →](wiki-collaboration-story/)
+
 ### Multi-AI model
 
 The AI vendor landscape churns every six months. Betting a group's workflow on a single subscription today locks you into one company's model choices, pricing changes, and terms of use tomorrow.

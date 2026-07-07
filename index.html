@@ -214,6 +214,10 @@ footer a { color: var(--muted); }
   <p><strong>Configured environment:</strong> the discipline is in the artifact. Every session starts from a known baseline.</p>
 </div>
 
+<blockquote>
+  <p><strong>Real world example.</strong> A pipeline was counting the model's honest &ldquo;not visible on this page&rdquo; hedges as successful answers, stopping the search in exactly the case where deeper searching was warranted. The wiki review that caught it was possible because a demo branch's <code>extends:</code> typed edge told a reviewer in a separate Claude Code session where else the bug might live. The fix cascaded through two prior experiments and recovered 75% more real coverage on the flagship entity. <a href="wiki-collaboration-story/">Read the full story &rarr;</a></p>
+</blockquote>
+
 <h3>Multi-AI model</h3>
 <p>The AI vendor landscape churns every six months. Betting a group's workflow on a single subscription today locks you into one company's model choices, pricing changes, and terms of use tomorrow.</p>
 <p>The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from the model doing the work today (Claude, Cursor, or whoever comes next). Different coding assistants each read the wiki through their own set of commands and skills, while sharing the same policy files, discipline gates, and wiki schema. One student can use Claude Code and another can use Cursor on the same project; the <code>by: &lt;human&gt; via &lt;agent&gt;</code> line on every log entry captures which tool did which write. When a better model appears next year, adopting it is a new overlay, not a migration.</p>
