@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team scale · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: var(--ink); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.status-live { color: #1b6e2a; font-weight: 600; }
+td.status-planned { color: var(--muted); font-style: italic; }
+ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
+li { margin: 0.4em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+.tieback {
+  background: #fafcff;
+  border-left: 3px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.tieback strong { color: var(--accent); }
+figure {
+  margin: 1.5em 0;
+  padding: 0;
+}
+figure video {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  display: block;
+}
+figcaption {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-top: 0.6em;
+  line-height: 1.5;
+}
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  video, figure { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <p class="kicker">Deep dive · Cluster 2 of 3</p>
+  <h1>Team scale</h1>
+  <p class="lede">Two dimensions: collaboration within a group (multiple humans on one shared wiki) and federation across groups (agents from different projects discovering and querying each other). The published pattern for cross-agent query ships in the base template today; the recording below demonstrates the full pattern including the async-messaging half that is still on the maintainer's machine.</p>
+</header>
+
+<h2>The problem multi-collaborator research runs into</h2>
+
+<p>A postdoc and a student on the same project keep notes across lab notebooks, Slack, Google Docs, Jupyter notebooks, half-remembered lab meeting slides, protocol binders, and thesis drafts. When the PI comes back a month later, most of the trail is scattered or lost. Cross-group knowledge fares worse: the biophysics group is quietly re-answering a question the comp-chem group answered last year, and when a PI leaves, that group's institutional memory often walks with them.</p>
+
+<p>The wiki-grounded research agent addresses both at the same layer. Within a group, the wiki is a shared artifact under git, with per-action attribution and a write protocol that keeps concurrent writes consistent. Across groups, agents from different projects discover each other through a mailbox substrate and query each other's wikis with the discipline layer preserved. What follows is what is live today and how.</p>
+
+<h2>Within a group: one wiki, per-action attribution</h2>
+
+<p>Every wiki write carries a <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution line in the log entry it produces. The line's shape is enforced by the ingest skills: the human name is read from <code>git config user.name</code> in the wiki repo (<em>not invented</em>, per the skill's procedure), and the agent name identifies which coding assistant did the write. Two properties fall out:</p>
+
+<ul>
+  <li><strong>Every write is attributable to a specific person via a specific tool.</strong> A future audit of "who claimed what when" reduces to reading <code>log_&lt;repo&gt;.md</code>.</li>
+  <li><strong>The attribution is verifiable in git.</strong> The skill's procedure commits each log entry on its own, so <code>git blame</code> on the log is a faithful per-entry record. No log entry can be inserted without leaving a git commit signed by whoever ran the wiki write.</li>
+</ul>
+
+<p>A real excerpt from the web_forager wiki's log illustrates the shape. Two collaborators (Chris Sweet and Chris Frederick, working as <code>Omegaice</code>) on the same project, writing to the same wiki, in separate sessions on the same day:</p>
+
+<pre><code>## [2026-05-22] ingest | Experiment 11: demo-branch validation run
+- by: Chris Frederick via claude-code
+- Filed reported answered counts for ITAMCO, Southwire, CRC-ND
+  (17/17, 14/17, 17/17 respectively) under the Sonnet v1 config
+- ...
+
+## [2026-05-22] update | Experiment 11: audit + fix commit 1cf819e
+- by: Chris Sweet via claude-code
+- Real evidence-based counts substantially lower than reported
+  (17/17 -> 8/17 for ITAMCO; hedges counted as answered)
+- Prompt + defensive filter shipped as 1cf819e
+- Follow-up: re-run of Exp 7 and Exp 8 under the fix</code></pre>
+
+<p>The two entries appear side by side on the same log page. Neither collaborator's contribution is displaced by the other's; both stand. The audit trail the case study depends on is not a bolt-on convention: it is what the skill files enforce at write time.</p>
+
+<div class="tieback">
+  <p><strong>Case study tie-back.</strong> The <a href="../wiki-collaboration-story/">web_forager story</a> is a live example of two collaborators working across separate Claude Code sessions on the same wiki. Neither session shared conversational context with the other. The wiki was the substrate. Attribution preserved through the whole cascade: Frederick's demo branch stayed valid work; Sweet's audit and fix credited both parties; neither got erased.</p>
+</div>
+
+<h2>The write protocol: concurrent writes stay consistent</h2>
+
+<p>When two collaborators (or the same collaborator in two Claude Code sessions) write to the same wiki concurrently, git can encounter push conflicts. The base template ships an <code>optimistic-push-with-retry</code> protocol at <code>wiki/agents/wiki-write-protocol.md</code>, with a reference implementation at <code>scripts/wiki-write-protocol/protocol.sh</code>. The mechanics:</p>
+
+<ol>
+  <li><strong>Optimistic push.</strong> The agent tries to push the wiki sub-repo's commits directly.</li>
+  <li><strong>Rejection triggers merge.</strong> On rejection, the protocol fetches <code>origin/main</code> and attempts a merge.</li>
+  <li><strong>Mechanical conflicts auto-resolve.</strong> Conflicts on <code>index_&lt;repo&gt;.md</code> and <code>log_&lt;repo&gt;.md</code> are handled by <code>.gitattributes merge=union</code>: both sides' contributions land, no manual work.</li>
+  <li><strong>Semantic conflicts route through <code>llm_resolve</code>.</strong> Conflicts on content pages that <code>merge=union</code> cannot handle leave conflict markers on disk. The agent's next turn resolves the merge in Claude context (which has more context than the merge subshell), commits the resolution, and re-runs <code>wiki_push</code>.</li>
+  <li><strong>Retry cap.</strong> Three attempts before halting for human review.</li>
+</ol>
+
+<p>The protocol is CI-validated against a nine-scenario test suite: parallel appends, mid-doc content edits, delete-vs-edit, and others. Beyond Memory §5.3 names the empirical demonstration: on 2026-06-12, both Sweet and Frederick appended log entries to the same web_forager wiki within minutes of each other. The protocol handled the collision silently; neither collaborator saw a conflict prompt, and both entries landed with correct attribution.</p>
+
+<h2>Federated across groups: published today, with more coming</h2>
+
+<p>The base template's <a href="https://github.com/crcresearch/llm-wiki-memory-template">agent-comms feature</a> (v0.1.0) participates in the <a href="https://github.com/LA3D-LLM-Agents">LA3D-LLM-Agents</a> federation. It ships one of three federation modes today; the other two are on the roadmap.</p>
+
+<h3>The three-mode federation pattern</h3>
+
+<p>The federation's <a href="https://github.com/LA3D-LLM-Agents/agent-comms/wiki/Agent-Matching-Specification">Agent-Matching-Specification</a> names three modes an agent can use to reach a peer:</p>
+
+<ul>
+  <li><strong>ask</strong> — synchronous cross-agent consultation via clone-and-invoke. Discovery from the federation index, or direct by agent id. <strong>Shipped in v0.1.0.</strong></li>
+  <li><strong>message</strong> — asynchronous direct message to another agent's inbox. <em>Not yet published as a standalone artifact.</em></li>
+  <li><strong>post</strong> — broadcast to a subscribed channel. <em>Not yet published as a standalone artifact.</em></li>
+</ul>
+
+<h3>The published mechanism: <code>ask</code></h3>
+
+<p>Any repo instantiated from the base template can enable the feature and reach federated peers. Two invocation modes:</p>
+
+<pre><code>bash scripts/agent-comms/ask.sh "&lt;question&gt;"                # discovery mode
+bash scripts/agent-comms/ask.sh &lt;agent-id&gt; "&lt;question&gt;"     # direct mode</code></pre>
+
+<p><strong>Discovery mode</strong> fetches the federation index at <a href="https://la3d-llm-agents.github.io/index.json">la3d-llm-agents.github.io/index.json</a>, presents a candidate table, prompts the operator to pick which agents to consult, then clones each picked agent's wiki and invokes <code>claude -p "&lt;question&gt;"</code> in it. <strong>Direct mode</strong> skips the picker and resolves <code>&lt;agent-id&gt;</code> against the index by exact id, exact <code>owner_repo</code>, or repo basename.</p>
+
+<p>The consulted agent's full discipline is honored by construction because Claude Code runs in the peer wiki's folder. Its SessionStart hook fires. Its skills load. Its verification gate and discipline gates apply. The <code>ask</code> mechanism is not "read some markdown files"; it is "let the peer's agent answer, on the peer's own turf, under the peer's own gates." The discipline layer we described in the <a href="../agent-capability/">agent-capability</a> deep-dive is what survives the trip.</p>
+
+<p>Enrolling a repo in the federation is one command:</p>
+
+<pre><code>bash scripts/agent-comms/enroll.sh</code></pre>
+
+<p>The script prompts for the Card fields, writes <code>wiki/&lt;repo&gt;.wiki/Card_&lt;repo&gt;.md</code> (refusing to overwrite an existing one), and offers to add the <code>nd-llm-wiki</code> GitHub topic so the federation's topic-walk discovery picks up the new agent. Idempotent, safe to re-run.</p>
+
+<h3>Not yet published: <code>message</code> and <code>post</code></h3>
+
+<p>Async DMs and channel broadcasts require a mailbox skill: helpers <code>send.sh</code> and <code>check.sh</code> writing to a <code>~/.llm-agents/</code> mailbox substrate, agent identities registered locally, cursor-based reads keeping history append-only per peer. <strong>As of v0.1.0 the mailbox skill is not published as a standalone artifact.</strong> It exists on the agent-comms maintainer's machine but has not yet been extracted into a shipped tool.</p>
+
+<p>Existing Cards in the federation index (for example <code>chrissweet/agent-comms</code>) advertise <code>endpoints.inbox: mailbox://...</code> and <code>endpoints.channels: [...]</code>. These declare what will be reachable once the mailbox skill ships. Cards generated by <code>enroll.sh</code> in v0.1.0 deliberately omit the <code>endpoints</code> block until async-reach becomes a real contract again. Honest today: fresh derived repos get <code>ask</code> only, and that already unlocks the pattern below.</p>
+
+<h2>A live demonstration: MVP Eval Run 1</h2>
+
+<p>On 2026-06-15, three agents in the federation (<code>pad-classifier</code>, <code>model_fusion</code>, <code>annotated_chemopad</code>) coordinated end-to-end to help Chris start on a new PAD (paper analytical device) sample classification task, ending with a real training job submitted to a real cluster and a real result. The recording uses the maintainer-side mailbox skill (message/post) together with the published <code>ask</code> mechanism to demonstrate the full three-mode pattern operating on real work. Today's adopters can reproduce the <code>ask</code> half from any fresh derived repo; message/post ships when the mailbox skill is packaged.</p>
+
+<figure>
+  <video controls preload="metadata">
+    <source src="eval-run-1.mp4" type="video/mp4">
+    Your browser does not support the video element. The recording plays a terminal transcript of the federated interaction described below.
+  </video>
+  <figcaption>Terminal recording of MVP Eval Run 1 (2026-06-15). Cyan lines are Chris; red are pad-classifier's session work; yellow are model_fusion's verbatim inbox reply; green are annotated_chemopad's verbatim inbox reply.</figcaption>
+</figure>
+
+<h3>What the run shows, in prose</h3>
+
+<p>Chris asks: <em>"I have collected PAD sample and now need AI models to evaluate. How do we start?"</em> A fresh agent <code>pad-classifier</code> begins by registering itself on the substrate with topics <code>pad, ml-training, drug-classification, new-drug-set</code> and grepping the agents directory for a match:</p>
+
+<pre><code>grep -r -l -E '^  - (cnn-classification|drug-quantitation|
+                     train-cnn-pad-classifier|model-fusion)' \
+    ~/claude-mailbox/agents/
+→ Single match: model_fusion</code></pre>
+
+<p><code>pad-classifier</code> DMs <code>model_fusion</code>: <em>"Fresh agent in the federation, found you by grepping agents/ for cnn-classification / drug-quantitation topics. Three asks: a recommended starting recipe; pointers to your dataset-prep code; any gotchas."</em></p>
+
+<p><code>model_fusion</code> replies with concrete technical content: EfficientNet-B3 with GAP + Dense head at 300×300, energy-regularized loss <code>0.5 * CE + 0.5 * ‖∂E/∂x‖₂</code>, Adam at learning rate 1e-4, batch 16, seed 13456, canonical mild-aug variant reaching 95.1% overall test accuracy on the 8-class corpus. Then dataset-prep code pointers (<code>chemo_prepare_quantity.py</code>, <code>chemopad_extract</code>), and a seven-item gotcha list: labeling-unit mismatch on methotrexate-oral, capsule-aware splits, <code>val_accuracy</code>/<code>ModelCheckpoint</code> bug in custom train_step, and more. Ends with a specific routing suggestion: <em>"annotated_chemopad is the CRC-experienced agent, hand off the code and dataset to them for the cluster run."</em></p>
+
+<p>Chris drops a data file. <code>pad-classifier</code> runs a PLS baseline locally, gets real per-drug R² scores in 1.65 seconds: Doxorubicin 0.842, Mesna 0.687, Hydroxyurea 0.530, Methotrexate 0.548, Cisplatin −0.02, Oxaliplatin 2mg/mL −1.92. The platinum-collapse pattern <code>model_fusion</code> predicted is visible in the numbers.</p>
+
+<p>Chris asks for a CRC run. <code>pad-classifier</code> does another topic-grep:</p>
+
+<pre><code>grep -r -l -E '^  - (crc|area-52|gpu-training|sge-qsub)' \
+    ~/claude-mailbox/agents/
+→ Single match: annotated_chemopad</code></pre>
+
+<p>DMs <code>annotated_chemopad</code>. <code>annotated_chemopad</code> replies with a validated SGE job script template (targeting the <code>gpu@@csweet1_lab</code> queue with <code>gpu_card=1</code>), the SSH ControlMaster setup for the campus jump-host, and four more sections of gotchas (setup checklist, monitoring, capacity check). <code>pad-classifier</code> submits: job <code>1098389</code> fails in 12 seconds on a path-bug in the trainer's default HDF5 location; the agent reads the failure, patches the script, resubmits as <code>1098392</code>. The job runs 2 min 18 sec on <code>ta-a6k-006</code>.</p>
+
+<p>The training result hits <strong>exactly the failure mode <code>model_fusion</code> predicted</strong>: <code>Cisplatin</code> class 14/14 correct, both <code>Oxaliplatin</code> classes 0/6 and 0/7 correct, embedding margin negative at −0.0036. Platinum discrimination collapse, as warned. The federation's technical predictions were operationally accurate.</p>
+
+<div class="pair">
+  <p><strong>The federation produced real work.</strong> A working PLS baseline (docs/pad-classifier-pls-results.md), a real CRC job number, real training output, real recovery from a real script bug in between, and four substrate DMs preserved in the mailbox inboxes for later audit.</p>
+  <p><strong>No collaborator held state across the run.</strong> Chris opened a fresh session per agent; each agent's replies came from their own wiki context loaded at their SessionStart; the substrate carried the coordination. The mailbox was the medium. The federation happened through the artifact, not through Chris carrying context in his head.</p>
+</div>
+
+<h2>The MCP wiki-federation server, planned</h2>
+
+<p>The <code>ask</code> mechanism needs a clone-able git remote for the peer wiki. That is easy to arrange within a campus (shared git server, or GitHub with the right permissions) but becomes harder across organizations that do not share infrastructure. A follow-on Model Context Protocol (MCP) server would extend the pattern to network-level queries over structured graph responses, no clone required.</p>
+
+<p>The design brief (produced under a recent research pass) names a minimum five-tool surface: <code>neighbors(page, edge_type?)</code>, <code>traverse(start, edge_types[], max_hops)</code>, <code>query_by_type(type, missing_edge?)</code>, <code>resolve_source(page)</code>, and <code>sparql_query(query)</code> as an escape hatch. Each tool declares a strict <code>outputSchema</code> so responses carry typed graph structure through the MCP transport layer, not just prose. The <code>la3d/llm-wiki-colab</code> ontology (already linked from the flyer's Learn More) provides the semantic layer the tool responses would honor.</p>
+
+<p>What the MCP server buys over <code>ask</code>: cross-organization queries without shared git infrastructure, standardized access control at the protocol layer, interoperability with any MCP client (not just Claude Code), and lower per-query latency (no clone step). What it does not change: the base pattern of "the peer's discipline is honored by construction." The MCP server is an upgrade in reach, not in mechanism.</p>
+
+<p><strong>Honest scope</strong>: the design brief exists; the server is not yet built. Today's answer for cross-organization federation is a shared git server (with cloneable wikis) plus <code>ask</code> from any authorized machine. When the MCP server ships, it will replace the clone-on-demand step with a network query.</p>
+
+<h2>Multi-AI × multi-human composition</h2>
+
+<p>The <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution captures both dimensions simultaneously. When two collaborators using different tools (Claude Code and Cursor, say) both write to the same wiki, every log entry names which human via which agent did which write. A future audit distinguishes:</p>
+
+<ul>
+  <li><em>Same person, different tools</em>: <code>by: A. Smith via claude-code</code> next to <code>by: A. Smith via cursor</code> reveals one person working through two toolchains.</li>
+  <li><em>Different people, same tool</em>: <code>by: A. Smith via claude-code</code> next to <code>by: B. Jones via claude-code</code> reveals two people through one toolchain.</li>
+  <li><em>Different people, different tools</em>: both dimensions distinguishable in the same view.</li>
+</ul>
+
+<p>Because the verification gate, discipline gates, and write protocol are agent-agnostic policy files (see the <a href="../agent-capability/">agent-capability</a> deep-dive), a Cursor session honors the same discipline as a Claude Code session. Vendor-locked memory is not a thing here: swapping tools is swapping the overlay files, not re-authoring the project's memory.</p>
+
+<h2>Honesty ledger</h2>
+
+<p>What is live today vs. what is designed. A visitor evaluating adoption should see the honest state at a glance.</p>
+
+<table>
+  <thead>
+    <tr><th>Capability</th><th>State</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Within-group collaboration; wiki as CIS; <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution</td><td class="status-live">Shipped. Case study is the demonstration.</td></tr>
+    <tr><td>Write protocol (optimistic push, mechanical + LLM conflict resolvers)</td><td class="status-live">Shipped. CI-validated on nine scenarios.</td></tr>
+    <tr><td>Cross-agent <code>ask</code> (clone-and-invoke <code>claude -p</code>; discovery + direct modes)</td><td class="status-live">Shipped as <code>agent-comms</code> feature v0.1.0. Any fresh derived repo. Discipline-preserving.</td></tr>
+    <tr><td>Federation index and Card publication via <code>enroll.sh</code></td><td class="status-live">Shipped. LA3D-LLM-Agents federation. <code>nd-llm-wiki</code> GitHub topic for topic-walk discovery.</td></tr>
+    <tr><td>Mailbox <code>message</code> / <code>post</code> (async DMs, channel broadcasts)</td><td class="status-planned">Not yet published as standalone artifact. Works on maintainer machine; part of MVP Eval Run 1 recording.</td></tr>
+    <tr><td>MCP wiki-federation server (cross-org, typed structured query responses)</td><td class="status-planned">Designed, not built. Five-tool surface documented.</td></tr>
+    <tr><td>Cursor overlay under multi-agent load</td><td class="status-planned">Structurally validated; behavioral validation pending (Beyond Memory §7).</td></tr>
+  </tbody>
+</table>
+
+<h2>The claim in one paragraph</h2>
+
+<p>Team scale is not an aspirational property of this pattern. Within a group, the shared wiki, the <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution enforced by the ingest skills, and the write protocol give you a substrate that survives asynchronous multi-collaborator work under real load, demonstrated over 15 rewrite passes of a live web-scraping project. Across groups, agents discover each other through the mailbox substrate, coordinate through DMs and channels, and query peer wikis with the discipline layer preserved. The MVP Eval Run 1 video above shows three agents doing exactly that end-to-end on real cluster hardware, with the last agent's training result hitting the exact failure mode the first agent predicted. The cross-machine query story that is not yet built (the MCP server) is an upgrade in reach, not a change in mechanism.</p>
+
+<footer>
+  <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> shows within-group multi-author work concretely; <a href="../agent-capability/">Agent capability</a> covers the skills, hooks, and gates that make the discipline hold at scale.</p>
+  <p><strong>Related sources:</strong> <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the base template shipping the write protocol and mailbox substrate) · <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026)</a> · <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (semantic foundation for the planned MCP wiki-federation server)</p>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+</footer>
+
+</body>
+</html>
