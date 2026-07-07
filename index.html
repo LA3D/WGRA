@@ -76,6 +76,17 @@ a:hover { text-decoration: none; }
   color: var(--muted);
 }
 .learn-more a { color: var(--accent); }
+.framing {
+  margin: 1.5em 0 2.2em;
+  padding: 1em 1.3em;
+  background: #fafcff;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  font-size: 1.05em;
+  line-height: 1.55;
+}
+.framing p { margin: 0; }
+.framing strong { color: var(--accent); }
 code {
   font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
   font-size: 0.88em;
@@ -146,15 +157,19 @@ footer a { color: var(--muted); }
 <body>
 <header>
   <h1>Wiki-Grounded Research Agent</h1>
-  <p class="tagline">A shared wiki-memory for scientists and their AI agents.</p>
+  <p class="tagline">A shared living memory for scientists and their AI agents.</p>
   <p class="kicker">Configured to keep the AI honest, the collaboration durable, and the knowledge from walking out with the next graduating student.</p>
 </header>
+
+<div class="framing">
+  <p><strong>Think of it as</strong> the long-serving lab technician who has been at the bench for twenty years, knows every protocol, remembers every failed method, tracks what every group member is working on, and never leaves.</p>
+</div>
 
 <h2>Memory that compounds</h2>
 
 <h3>Persistent, structured memory</h3>
 <p>Every ChatGPT and Claude session starts from zero. Retrieval-augmented generation over your group's documents helps on the current question but rediscovers the same chunks on every next one. Nothing compounds between conversations.</p>
-<p>The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent (<a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy, 2026</a>): a small set of cross-linked Markdown pages with typed relationships (<code>extends:</code>, <code>requires:</code>, <code>related:</code>), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended.</p>
+<p>The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent (<a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy, 2026</a>): a small set of cross-linked Markdown pages with typed relationships (<code>extends:</code>, <code>requires:</code>, <code>related:</code>), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended. It carries both your formal outputs (publications, code, benchmarks) and your informal institutional memory (lab notebooks, meeting transcripts, protocols, half-drafted thesis chapters).</p>
 <div class="pair">
   <p><strong>RAG:</strong> rediscovers your documents on every query. Nothing accumulates.</p>
   <p><strong>Wiki:</strong> the memory itself. Grows across sessions, users, and machines.</p>
@@ -164,7 +179,7 @@ footer a { color: var(--muted); }
 </blockquote>
 
 <h3>Failure-path preservation</h3>
-<p>Journals publish the win. The abandoned method, the walked-back claim, the metric bug that inflated an earlier result: all deleted from the record. Every group has a student who repeated a failed method because no one told them.</p>
+<p>Journals publish the win. This is the file-drawer effect (Rosenthal, 1979): the abandoned method, the walked-back claim, the metric bug that inflated an earlier result. All deleted from the record. Every group has a student who repeated a failed method because no one told them.</p>
 <p>The Wiki-Grounded Research Agent is append-only by convention (<a href="https://doi.org/10.5281/zenodo.21213175">Saboia Moreira et al., 2026</a>). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a <em>Status</em> note pointing forward. A verification gate makes sure new claims are filed <em>alongside</em> the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.</p>
 <div class="pair">
   <p><strong>Journal:</strong> the win. The abandoned path is noise.</p>
@@ -174,7 +189,7 @@ footer a { color: var(--muted); }
 <h2>Team scale</h2>
 
 <h3>Collaborative within a group</h3>
-<p>A postdoc and a student on the same project keep notes in three places: Slack, Google Docs, their own Jupyter notebooks. When the PI comes back a month later, half the trail is lost.</p>
+<p>A postdoc and a student on the same project keep notes across lab notebooks, Slack, Google Docs, Jupyter notebooks, half-remembered lab meeting slides, protocol binders, and thesis drafts. When the PI comes back a month later, most of the trail is scattered or lost.</p>
 <p>The Wiki-Grounded Research Agent maintains a shared wiki with per-action attribution. Every entry carries a <code>by: &lt;human&gt;</code> line naming who claimed what; git preserves the full amendment history. When two collaborators write at the same time, the environment resolves mechanical conflicts automatically and routes semantic conflicts through an LLM-assisted merge. Both contributions land, neither overwrites the other, and the trail of who did what stays legible.</p>
 <div class="pair">
   <p><strong>Slack + Google Docs:</strong> parallel notes that never combine. Trail decays with time.</p>

@@ -1,10 +1,12 @@
 # Wiki-Grounded Research Agent
 
-**A shared wiki-memory for scientists and their AI agents.**
+**A shared living memory for scientists and their AI agents.**
 
 *Configured to keep the AI honest, the collaboration durable, and the knowledge from walking out with the next graduating student.*
 
 ---
+
+> **Think of it as** the long-serving lab technician who has been at the bench for twenty years, knows every protocol, remembers every failed method, tracks what every group member is working on, and never leaves.
 
 ## Memory that compounds
 
@@ -12,7 +14,7 @@
 
 Every ChatGPT and Claude session starts from zero. Retrieval-augmented generation over your group's documents helps on the current question but rediscovers the same chunks on every next one. Nothing compounds between conversations.
 
-The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent ([Karpathy, 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)): a small set of cross-linked Markdown pages with typed relationships (`extends:`, `requires:`, `related:`), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended.
+The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw sources and the agent ([Karpathy, 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)): a small set of cross-linked Markdown pages with typed relationships (`extends:`, `requires:`, `related:`), written by the agent as it works, browsable directly by any collaborator through GitHub, the file system, or Obsidian. The wiki grows with the project; the agent's next conversation starts where the last one ended. It carries both your formal outputs (publications, code, benchmarks) and your informal institutional memory (lab notebooks, meeting transcripts, protocols, half-drafted thesis chapters).
 
 **RAG:** rediscovers your documents on every query. Nothing accumulates.
 **Wiki:** the memory itself. Grows across sessions, users, and machines.
@@ -21,7 +23,7 @@ The Wiki-Grounded Research Agent maintains an LLM-authored wiki between your raw
 
 ### Failure-path preservation
 
-Journals publish the win. The abandoned method, the walked-back claim, the metric bug that inflated an earlier result: all deleted from the record. Every group has a student who repeated a failed method because no one told them.
+Journals publish the win. This is the file-drawer effect (Rosenthal, 1979): the abandoned method, the walked-back claim, the metric bug that inflated an earlier result. All deleted from the record. Every group has a student who repeated a failed method because no one told them.
 
 The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira et al., 2026](https://doi.org/10.5281/zenodo.21213175)). When an approach turns out to be wrong, the corrected successor page is filed alongside the original with a cross-reference back; the failure stays in place with a *Status* note pointing forward. A verification gate makes sure new claims are filed *alongside* the ones they qualify, not on top of them. A reader arriving a year later encounters the trajectory, not just the answer.
 
@@ -34,7 +36,7 @@ The Wiki-Grounded Research Agent is append-only by convention ([Saboia Moreira e
 
 ### Collaborative within a group
 
-A postdoc and a student on the same project keep notes in three places: Slack, Google Docs, their own Jupyter notebooks. When the PI comes back a month later, half the trail is lost.
+A postdoc and a student on the same project keep notes across lab notebooks, Slack, Google Docs, Jupyter notebooks, half-remembered lab meeting slides, protocol binders, and thesis drafts. When the PI comes back a month later, most of the trail is scattered or lost.
 
 The Wiki-Grounded Research Agent maintains a shared wiki with per-action attribution. Every entry carries a `by: <human>` line naming who claimed what; git preserves the full amendment history. When two collaborators write at the same time, the environment resolves mechanical conflicts automatically and routes semantic conflicts through an LLM-assisted merge. Both contributions land, neither overwrites the other, and the trail of who did what stays legible.
 
