@@ -204,7 +204,7 @@ footer a { color: var(--muted); }
 <body>
 
 <header>
-  <p class="kicker">Wiki report · generated from graph.ttl</p>
+  <p class="kicker">Case study · the <a href="../">Wiki-Grounded Research Agent</a> pattern applied to a literature-review project</p>
   <h1>AI-Sci-Disc-Mem: knowledge-graph report</h1>
   <p class="lede">A wiki-grounded literature-review project surveying AI for scientific discovery across chemistry, biology, physics, and engineering disciplines. This report reads the reified RDF graph and reports on the wiki's coverage structure: topic organization, paper distribution, hub concentration, and cross-topic connectivity.</p>
 </header>
@@ -368,7 +368,7 @@ SELECT ?topicA ?topicB (COUNT(*) AS ?crossrefs) WHERE {
 
 <footer>
   <p><strong>Source files (linked, not embedded):</strong> <a href="graph.ttl"><code>graph.ttl</code></a> · <a href="validation-report.ttl"><code>validation-report.ttl</code></a>.</p>
-  <p><strong>Built on the wiki-grounded pattern:</strong> <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> · <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (ontology).</p>
+  <p><strong>About the pattern:</strong> This report is a case study of the <a href="../">Wiki-Grounded Research Agent</a>, a durable, LLM-authored, queryable memory layer for scientific projects. The pattern's deep-dive on the <a href="../knowledge-graph/">knowledge graph layer</a> explains how typed frontmatter edges reify to RDF and what SPARQL queries the graph enables. Built on <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> using the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> ontology.</p>
 </footer>
 
 <script src="cytoscape.min.js"></script>
