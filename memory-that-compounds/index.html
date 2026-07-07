@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory that compounds · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: var(--ink); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
+li { margin: 0.4em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+.pillar {
+  border-left: 3px solid var(--accent);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 1.5em 0;
+}
+.pillar h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <p class="kicker">Deep dive · Cluster 1 of 3</p>
+  <h1>Memory that compounds</h1>
+  <p class="lede">Why the wiki is a memory substrate that grows with the project, not a document store you retrieve chunks from. And why <em>what did not work</em> stays in the wiki alongside what did.</p>
+</header>
+
+<h2>The problem session-amnesic AI creates for research</h2>
+
+<p>Every ChatGPT and Claude session starts from zero. Nothing about a previous conversation is available to the current one; the tools have no memory across sessions. Retrieval-augmented generation over your group's documents partly addresses this: at query time, a retriever fetches chunks from the corpus, and the LLM composes an answer over the retrieved context. RAG works. It does not <em>compound</em>. Every query pays the same rediscovery cost. Nothing accumulates as a durable, growing artifact.</p>
+
+<p>A related failure sits at the publication layer. Journals reward the corrected result and treat the abandoned path as noise. Pre-prints get superseded by camera-ready versions that delete the qualifications. Metascience has a name for this: the <em>file-drawer effect</em> (Rosenthal, 1979). The parts of project history most useful to a future collaborator, the dead ends and the audited-down numbers, are structurally excluded from the record. Every group has a student who repeated a failed method because no one told them.</p>
+
+<p>The wiki-grounded research agent addresses both at once. It gives the agent a durable, structured memory that grows across sessions (the memory-that-compounds side), and it preserves the trajectory of claims including the ones that turned out to be wrong (the failure-path-preservation side). Both properties fall out of the same substrate: an append-only wiki with typed edges, maintained by the agent as it works.</p>
+
+<h2>What a wiki page actually looks like</h2>
+
+<p>Every wiki page is a Markdown file with YAML frontmatter that declares what the page is and what it relates to. Here is the frontmatter of a real page: the <code>Experiment-11-Productionization</code> page from the <a href="https://github.com/chrissweet/web_forager/wiki/Experiment-11-Productionization">web_forager wiki</a>, the page at the center of <a href="../wiki-collaboration-story/">our case study</a>:</p>
+
+<pre><code>---
+type: synthesis
+up: "[[Experiment-10-Vocabulary-Alignment]]"
+tags: [experiment, demo-branch, navy-lunch, claude-cli, haiku-regression, sonnet-validated]
+related: "[[Experiment-8-Second-Entity]]"
+extends: "[[Experiment-7-Question-Deepen]]"
+supports: "[[Working-Hypothesis]]"
+---</code></pre>
+
+<p>The page body underneath is prose, tables, and cross-references. The frontmatter is what makes the wiki queryable as structure and not just as text. <code>up:</code> gives every page a parent, so the wiki has a hierarchy. <code>extends:</code>, <code>supports:</code>, <code>related:</code> declare semantic relationships to other pages. A reviewer who follows those edges is not reading arbitrary linked pages; they are traversing a graph the wiki maintains explicitly.</p>
+
+<h2>Typed edges are interface operations, not decoration</h2>
+
+<p>Different edge types license different reasoning by the agent that reads them. The web_forager wiki's schema page documents this table explicitly, under the heading <em>Edges as Interface Operations</em>:</p>
+
+<table>
+  <thead>
+    <tr><th>Edge</th><th>What it licenses the agent to do</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>extends:</code></td><td>Inherit semantic context from the parent. Treat the parent's claims as background assumptions for the current page.</td></tr>
+    <tr><td><code>supports:</code></td><td>Evidence aggregation. When traversing this edge, expect to combine claims.</td></tr>
+    <tr><td><code>criticizes:</code></td><td>Contradiction detection. Expect an unresolved tension that should trigger conflict-resolution logic before combining evidence.</td></tr>
+    <tr><td><code>up:</code></td><td>Parent / breadcrumb. Navigate upward in the hierarchy for category context.</td></tr>
+    <tr><td><code>related:</code></td><td>Fallback. Prefer a more specific edge type where one applies.</td></tr>
+  </tbody>
+</table>
+
+<p>This is what "typed edges are not decoration" means in practice. When a reviewer finds a bug on a page carrying <code>extends: [[Experiment-7]]</code>, the edge tells them <em>go check whether Experiment 7 inherited the same bug</em>. When a bug page carries <code>criticizes: [[Experiment-11]]</code>, the edge tells them <em>go audit Experiment 11's conclusions</em>. The wiki structure carries the semantic burden the reviewer would otherwise have to reconstruct from memory.</p>
+
+<p>Neither example is hypothetical. Both are in the <a href="../wiki-collaboration-story/">case study</a>: an <code>extends:</code> edge propagated an audit from a demo branch back through two prior experiments, and a <code>criticizes:</code> edge on a screenshot-resolution bug page surfaced its downstream implications three weeks later. Same pattern, different edge type.</p>
+
+<h2>How new content gets into the wiki</h2>
+
+<p>The template ships four operations the agent can run against the wiki. Each is a documented procedure with a skill file the agent loads at session start:</p>
+
+<div class="pillar">
+<h3>Ingest</h3>
+<p>Read an external source (paper, PDF, meeting transcript, dataset README, notebook), extract what is durable, and integrate it into the wiki as source-summary pages with typed edges into the existing neighborhood. Every ingest touches five to fifteen pages, updates the index, and appends an attributed log entry. The source stays where it was; the wiki holds the summarized, cross-linked version.</p>
+</div>
+
+<div class="pillar">
+<h3>Query</h3>
+<p>Read the index, then the relevant pages, and synthesize an answer. Reusable answers get filed as new pages so the same question is not re-answered from scratch next time.</p>
+</div>
+
+<div class="pillar">
+<h3>Lint</h3>
+<p>Periodic health check: orphan pages, dead links, stale claims, missing frontmatter, <code>untyped</code> placeholder pages. Keeps the graph honest as it grows.</p>
+</div>
+
+<div class="pillar">
+<h3>Verify</h3>
+<p>Pre-commit checklist for numerical claims (backed by real script output, tagged with corpus and scope), cross-references (reciprocal typed edges), index and log (correct category, substantive entries), and honest reporting. The <em>verification gate</em>.</p>
+</div>
+
+<p>Off the shelf, ingest handles papers, PDFs, notes, and tables. For sources with more complex structure (databases, APIs, structured figures), lightweight schema-driven connectors bring them into the wiki through the same ingest path. The point is that content comes <em>in</em> and lands as first-class wiki pages, not as chunks in a hidden retrieval index. The wiki is the memory, not an interface to it.</p>
+
+<h2>What accumulation looks like at scale</h2>
+
+<p>The clearest empirical demonstration of the wiki growing across time comes from the first-published case in <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory</a> (Saboia Moreira et al., 2026), section 5.1: a solo research project called Project R (retrieval research). Over a 22-day window of intensive single-author use, the wiki grew to <strong>48 cross-linked pages</strong>, with <strong>907 body cross-references</strong> and <strong>237 typed-edge frontmatter declarations</strong> among them. That is a wiki that operationally is a graph, not a folder.</p>
+
+<p>The paper's contribution beyond the raw numbers is what the accumulation captured. Project R's research trajectory in the wiki is a sequence of five architectural iterations, each with a page or page-cluster: problem statement, attempt, result, and cross-references to the next iteration. The eventual best-performing iteration is the fifth. The third was a strongly-claimed alternative architecture that later work walked back by name.</p>
+
+<p>That walked-back claim is still in the wiki. The original page carrying the strong position was not deleted; a new page was filed alongside it with a cross-reference back, and a <em>Status</em> note was added to the original pointing forward. A collaborator arriving at Project R a year later encounters the trajectory, not just the final answer. That is what compounding memory means in practice: <strong>the wiki captures the shape of the research, not only the punchline</strong>.</p>
+
+<h2>Failure-path preservation</h2>
+
+<p>Case A demonstrates the property; the mechanism that supports it is worth naming explicitly. The wiki is <em>append-only by convention</em>. Pages are added and amended, never deleted. When a claim turns out to be wrong, the discipline is:</p>
+
+<ol>
+  <li>File a successor page with the corrected claim.</li>
+  <li>Add a cross-reference from the successor back to the original.</li>
+  <li>Add a <em>Status</em> note to the original pointing forward to the successor.</li>
+</ol>
+
+<p>The verification gate (one of the four operations above) makes this a hard rule at commit time: new claims must be filed <em>alongside</em> the ones they qualify, not on top of them. A collaborator or agent that would overwrite a walked-back claim is stopped by the gate.</p>
+
+<p>The result is that the wiki accumulates trajectory, not just current state. This differs from most other AI-with-memory tools that have looked at the same problem. A concurrent extension of the llm-wiki pattern, <em>LLM Wiki v2</em>, added explicit <em>supersession</em> of stale claims by higher-confidence successors. Beyond Memory §6.1 argues the opposite move deliberately:</p>
+
+<blockquote>
+  <p>Supersession optimizes for the <em>current</em> reader's clarity. Preservation optimizes for the <em>next</em> reader's ability to learn from the trajectory.</p>
+</blockquote>
+
+<p>Journals treat abandoned paths as noise. Pre-prints get superseded by camera-ready versions that delete the qualifications. The wiki does the opposite by design.</p>
+
+<div class="pair">
+  <p><strong>Journal:</strong> the win. The abandoned path is noise.</p>
+  <p><strong>Wiki:</strong> the win, plus every walked-back claim, its correction, and the cross-references threading the trajectory.</p>
+</div>
+
+<h2>Why this compounds when RAG does not</h2>
+
+<p>Retrieval-augmented generation retrieves chunks from the same raw corpus on every query. The corpus does not change unless the underlying documents change. The retrieval index and the LLM's context together are the only structure the system has, and that structure gets rebuilt every query.</p>
+
+<p>The wiki-grounded pattern (Karpathy, 2026; Saboia Moreira et al., 2026) inserts a durable layer between the raw sources and the agent. That layer is authored by the agent itself under a documented schema, and it grows with the project. Three properties fall out that RAG structurally cannot deliver:</p>
+
+<ul>
+  <li><strong>Content compounds.</strong> Ingesting the tenth paper does not just add a tenth chunk to the retrieval index. It creates typed-edge cross-references to the nine already in the wiki, updates the index, and if it contradicts prior claims, files a criticizing page rather than shadowing them. The graph gets denser as the project matures.</li>
+  <li><strong>Reasoning about the graph is possible.</strong> Because the edges carry semantics (<code>extends:</code>, <code>criticizes:</code>, <code>supports:</code>), an agent asked "what does this bug undermine?" can traverse the graph in a way a similarity-based retriever cannot. The case study is the empirical example.</li>
+  <li><strong>Trajectory survives.</strong> The append-only convention and the verification gate mean walked-back claims stay in place. A RAG index carries whatever is in the source documents right now; a wiki carries what the project once thought was true, alongside what it thinks now.</li>
+</ul>
+
+<h2>The claim in one paragraph</h2>
+
+<p>The wiki-grounded research agent gives your project a memory that grows, not a memory that gets rediscovered per query. Every ingest extends a graph with typed edges an agent can reason about. Every walked-back claim stays in place with a forward-pointer to its correction. Every session begins where the last one ended. The RAG comparison is not "wiki works better." It is "the wiki is doing a categorically different thing, and it is the thing research groups actually need."</p>
+
+<footer>
+  <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> — a concrete two-author example of typed edges surfacing a bug that neither collaborator would have caught alone.</p>
+  <p><strong>Related sources:</strong> <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy's original llm-wiki gist</a> · <a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026)</a> · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> · <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (semantic foundation)</p>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+</footer>
+
+</body>
+</html>
