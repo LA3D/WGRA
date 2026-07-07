@@ -307,7 +307,15 @@ SELECT ?source ?sourceTitle ?relation ?target ?targetTitle WHERE {
 
 <h3>Ancestors of a concept (transitive hierarchy)</h3>
 
-<p>Using SPARQL's transitive property path (<code>llm-wiki-colab:up+</code>), the ancestors-of query walks from any page to the wiki root. Executed against <code>Kalman-Filter-Explainer</code>:</p>
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT ?ancestor ?ancestorTitle WHERE {
+    &lt;.../page/NOTE_SLUG&gt; llm-wiki-colab:up+ ?ancestor .
+    ?ancestor dcterms:title ?ancestorTitle .
+}</code></pre>
+
+<p>The <code>+</code> in <code>up+</code> is SPARQL's transitive-closure operator: one or more <code>up</code> hops. A single query returns the entire breadcrumb chain, not just the immediate parent. Executed against <code>Kalman-Filter-Explainer</code>:</p>
 
 <pre><code>Kalman-Filter-Explainer
   → RPLIDAR-Tracking-Testbed
@@ -315,18 +323,40 @@ SELECT ?source ?sourceTitle ?relation ?target ?targetTitle WHERE {
   → Naval-Sensor-Fusion-Proposal
   → Home</code></pre>
 
-<p>An agent asked "what's the project context around Kalman filtering here?" gets a four-hop chain from the explainer up to the root, which it can walk to reconstruct scope. This is the traversal the <a href="../wiki-collaboration-story/">web_forager case study</a> did along <code>extends</code>: the shape is identical, the property is what differs.</p>
+<p>An agent asked "what's the project context around Kalman filtering here?" gets a four-hop chain up to the root, which it can walk to reconstruct scope. The chain being unbroken is the graph-level confirmation of what a structural lint would separately check: the explainer is correctly rooted. This is the traversal the <a href="../wiki-collaboration-story/">web_forager case study</a> did along <code>extends</code> instead of <code>up</code>; the shape is identical, the property is what differs.</p>
 
 <h3>Hub notes (structural centrality)</h3>
 
-<p>Counting each note's typed-edge degree surfaces the pages that hold the graph together. On the naval-sensor-fusion wiki:</p>
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 
-<ul>
-  <li><strong>Track-to-Track-Fusion</strong>: 45 connections</li>
-  <li><strong>Fusion-Architectures</strong>: 34 connections</li>
-</ul>
+SELECT ?title (COUNT(?src) AS ?inbound) WHERE {
+    ?src ?pred ?note .
+    ?note dcterms:title ?title .
+    FILTER(?pred NOT IN (rdf:type, dcterms:title, dcterms:created,
+        llm-wiki-colab:tag, llm-wiki-colab:status, llm-wiki-colab:timeline))
+    FILTER(isIRI(?note))
+} GROUP BY ?title ORDER BY DESC(?inbound) LIMIT 25</code></pre>
 
-<p>These are exactly the pages an agent should read first when asked a broad question, and exactly the pages a linter should watch most carefully for stale claims. RAG's "top-k similar chunks" cannot recover this, because centrality is a graph property, not a similarity property.</p>
+<p>The query counts inbound edges per note, excluding structural predicates that don't carry semantic connection (a title or a tag is not a fact about how a page connects). Top of 25 on the naval-sensor-fusion wiki:</p>
+
+<table>
+<thead><tr><th>Note</th><th>Inbound edges</th></tr></thead>
+<tbody>
+<tr><td>Track-to-Track-Fusion</td><td>45</td></tr>
+<tr><td>Fusion-Architectures</td><td>34</td></tr>
+<tr><td>Evaluation-Scenarios</td><td>30</td></tr>
+<tr><td>Data-Association</td><td>28</td></tr>
+<tr><td>Naval-Sensor-Fusion-Proposal</td><td>25</td></tr>
+<tr><td>Research-Plan</td><td>24</td></tr>
+<tr><td>RPLIDAR-Tracking-Testbed</td><td>23</td></tr>
+<tr><td>Sensor-Fusion-in-the-Kill-Chain</td><td>22</td></tr>
+<tr><td>Dynamic-Targeting-F2T2EA</td><td>20</td></tr>
+</tbody>
+</table>
+
+<p>Track-to-Track-Fusion is the clear hub, matching the intended shape of the wiki: the algorithm-taxonomy page holds the graph together. Notice that recently-merged doctrine material (Sensor-Fusion-in-the-Kill-Chain at 22, Dynamic-Targeting-F2T2EA at 20) already ranks near the top, evidence that the merge densely cross-linked into the core rather than sitting as a disconnected annex. These are exactly the pages an agent should read first when asked a broad question, and exactly the pages a linter should watch most carefully for stale claims. RAG's "top-k similar chunks" cannot recover this, because centrality is a graph property, not a similarity property.</p>
 
 <h2>How the graph is built and validated</h2>
 
