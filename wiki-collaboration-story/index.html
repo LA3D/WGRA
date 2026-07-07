@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Web Forager llm-wiki collaboration story · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.8em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.2em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: var(--ink); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.95em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
+li { margin: 0.35em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <h1>The Web Forager llm-wiki collaboration story</h1>
+  <p class="lede">A concrete example of how a persistent, LLM-maintained wiki turned two collaborators' routine session-work into a project-wide bug fix that neither would have caught alone.</p>
+</header>
+
+<h2>The project in one paragraph</h2>
+
+<p><strong>Web Forager</strong> is an adaptive web scraper that builds knowledge incrementally by reading webpages with Claude vision, answering user queries against what it knows, and going back to the source when it cannot. It is validated against a set of competency questions on manufacturer websites (ITAMCO, Schafer Industries, later a 108-company drone-industrial-base fleet). Two Claude Code instances contribute: one owned by Chris Sweet, one owned by Chris Frederick (<code>Omegaice</code> in the wiki commit attributions). Both write into a shared llm-wiki at <code>wiki/web_forager.wiki/</code>.</p>
+
+<p>Repository: <a href="https://github.com/chrissweet/web_forager">github.com/chrissweet/web_forager</a> · Wiki: <a href="https://github.com/chrissweet/web_forager/wiki">github.com/chrissweet/web_forager/wiki</a></p>
+
+<h2>The story</h2>
+
+<p><strong>Chris Frederick was prepping for a fleet-scale run.</strong> The project had passed 20 of 20 competency questions on single entities (ITAMCO, Schafer). Next: scale to 108 companies. His session on 2026-06-11 audited the extraction pipeline against the platform's vision documentation and filed four new wiki pages recording what he found.</p>
+
+<p><strong>One of those pages was routine housekeeping.</strong> <code>Vision-Token-Economics</code> documented per-model tokenization limits, tile geometries, cost math. The kind of reference sheet you write for yourself.</p>
+
+<p><strong>A second page filed the same session was a bug report.</strong> <code>Screenshot-Resolution-Bug</code> recorded that <code>browser.py</code> was chunking screenshots only above 7680 px (the API's hard-reject ceiling), but Sonnet's native cap forces silent downscaling on anything over ~950 px tall at 1280 wide. The example: the ITAMCO homepage (1280 × 7396 px) was being read at <strong>21% scale, 560 tokens</strong>. At 21% scale, 16 px body text renders at 3.4 px. <strong>The model had been reading thumbnails.</strong></p>
+
+<p>Chris Frederick filed the bug page with typed cross-references: <code>criticizes: [[Experiment-11-Productionization]]</code> in the frontmatter, <code>related: [[Vision-Token-Economics]]</code>.</p>
+
+<p><strong>Chris Sweet reviewed the wiki entries on the other side.</strong> The cross-references made the implications visible in a way the individual finding did not. The <code>criticizes:</code> edge said explicitly that this bug undermined a prior experiment's conclusions. Following the link surfaced that Experiment 11 had attributed low coverage to "question/target mismatch and the plateau bug." But if pages were being read at 21% scale, <strong>Sonnet's honest "not visible on this page" answers were literally true — the pages were unreadable.</strong> Question/target mismatch remained real, but its measured magnitude had been inflated by unreadable pages.</p>
+
+<p>The same review surfaced two more downstream implications also captured in the page:</p>
+
+<ol>
+  <li><strong>Model head-to-heads were confounded.</strong> The Haiku/Sonnet comparisons in Experiment 11 conflated model reasoning with what each tier could see after downscale: a 2703 px page renders at 58% on Sonnet but 95% on Opus-tier. Any Opus-vs-Sonnet decision needed post-fix data.</li>
+  <li><strong>Cost baselines were wrong by a factor of ~20.</strong> Past runs paid thumbnail prices. Fixing legibility raises image tokens ~20× on previously crushed pages (the 7396 px homepage goes from 560 illegible tokens to ~12,000 legible ones across 8 tiles).</li>
+</ol>
+
+<p><strong>The fix landed the same day</strong> (main-repo commit <code>352fe477</code>): a pure helper <code>chunk_scroll_positions</code> chunks whenever the page exceeds one viewport, steps by <code>viewport − overlap</code>, clamps the final tile to the page bottom, caps at 20 chunks against infinite-scroll pages. <code>Settings.viewport_height</code>, the redundant representation of the viewport that was the source of a smaller 24 px gap defect, was deleted so the two values could not drift again.</p>
+
+<h3>The measurable outcomes</h3>
+
+<table>
+  <thead>
+    <tr><th>Metric</th><th>Before fix</th><th>After fix</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ITAMCO homepage tokenization</td><td>560 tokens at 21% scale</td><td>~12,000 tokens at 100% scale</td></tr>
+    <tr><td>Body text rendered size (16 px source)</td><td>3.4 px (unreadable)</td><td>16 px (legible)</td></tr>
+    <tr><td>Tile geometry</td><td>Single 1280 × 7396 strip</td><td>8 uniform 1280 × 900 tiles</td></tr>
+    <tr><td>Answer coverage on smoke re-run</td><td>Confounded</td><td>17 / 20 in 3 pages, clean health</td></tr>
+    <tr><td>Model-tier re-baseline</td><td>Not possible</td><td>Sonnet 93.6% [89.8, 96.5] &gt; Opus 86.8% [82.2, 90.7] &gt; Haiku 78.7% [72.8, 84.1]. P(Sonnet &gt; Opus) = 99.3%</td></tr>
+    <tr><td>Fleet tier decision</td><td>Muddled</td><td><strong>Sonnet</strong></td></tr>
+  </tbody>
+</table>
+
+<p>The re-baseline gave the project a defensible tier decision it did not have before. Sonnet was the right call at 32 trials, $11.75 spent on the run, with credible intervals rather than single-run counts.</p>
+
+<h2>Why the wiki structure made this catch possible</h2>
+
+<p>Four llm-wiki primitives did the load-bearing work.</p>
+
+<h3>1. Typed pages with typed edges</h3>
+
+<p>Every page carries YAML frontmatter declaring what kind of page it is and what its relationships are:</p>
+
+<pre><code>---
+type: synthesis
+up: "[[Extraction-Pipeline]]"
+tags: [bug, vision, screenshots, coverage]
+criticizes: "[[Experiment-11-Productionization]]"
+related: "[[Vision-Token-Economics]]"
+---</code></pre>
+
+<p><code>criticizes:</code> is a semantic edge. It does not mean "these pages are related." It means "when you read this page, treat the target's claims as being called into question." A reviewer following that edge encounters not just the bug report but its implication for prior experiment conclusions. The edge is what turned a routine finding into a project-wide correction signal.</p>
+
+<h3>2. Wikilinks that make cross-page implications inspectable</h3>
+
+<p>The bug page names <code>[[Experiment-11-Productionization]]</code>, <code>[[Vision-Token-Economics]]</code>, <code>[[Blackbox-Eval-Adoption]]</code>, <code>[[Fleet-Run-Bottlenecks]]</code> in its body. Each is a durable link into a page that carries its own frontmatter and its own edges. Traversing them reveals the full picture: what the bug confounded, what the fix unblocks, what runs became possible after.</p>
+
+<h3>3. Auto-maintained index</h3>
+
+<p><code>index_web_forager.md</code> catalogs every page with a one-line description. A collaborator does not need to remember what exists to find it. When Chris Frederick filed four new pages in one session, the index reflected them without either of us doing extra work — the ingest procedure requires updating the index as part of the operation.</p>
+
+<h3>4. Per-entry commit log with author attribution</h3>
+
+<p><code>log_web_forager.md</code> records each wiki operation as a dated entry with the first bullet reading <code>by: &lt;human&gt; via &lt;agent&gt;</code>. The bug-finding entry reads <code>by: Omegaice via claude-code</code>. The re-baseline follow-up reads the same. The mantra-clarification entries elsewhere in the log read <code>by: Chris Sweet via claude-code</code>. <strong>Provenance is visible on the page, and it is verifiable in git.</strong> Every log entry is its own commit (schema rule), so <code>git blame</code> on the log file is a faithful record of who filed what and when.</p>
+
+<h3>5. Session boundary crossed via durable state</h3>
+
+<p>Neither Claude Code session shared conversational context with the other. They shared a wiki. Chris Frederick's Claude wrote the bug page as part of ingesting session findings. Chris Sweet's Claude, in a completely separate session, read the same pages on load per the wiki-first project convention. Neither session needed to be "held open" or "handed off." <strong>The wiki was the substrate, and it survived session boundaries.</strong></p>
+
+<h2>The generalizable pattern</h2>
+
+<ul>
+  <li><strong>Individual sessions surface findings.</strong> A developer working on prep tasks encounters ambient facts that seem too small to flag ("current chunking threshold is 7680 px, ceiling for API is 8000 px").</li>
+  <li><strong>A wiki-first convention forces those findings into durable, cross-referenced structure.</strong> Not a notepad, not a Slack message, not chat context that expires. A page with frontmatter, edges, and an index entry.</li>
+  <li><strong>A collaborator (or the same author in a later session) reviews the wiki structure independently.</strong> Cross-references make consequences visible that a single session cannot see, because a single session does not have both sides of the relationship in context simultaneously.</li>
+  <li><strong>The typed edges tell the reviewer what kind of thinking each link warrants.</strong> <code>criticizes:</code> warrants doubt in the target; <code>supports:</code> warrants aggregation of evidence; <code>extends:</code> warrants inheritance of assumptions.</li>
+  <li><strong>The fix cascades.</strong> Correcting the bug corrects downstream conclusions the bug confounded, and unblocks work the bug was silently gating.</li>
+</ul>
+
+<p>None of this depends on both collaborators being in the same room, same session, or same time zone. It depends on both writing into a shared, structured, LLM-maintained knowledge base.</p>
+
+<h2>The wiki pages that carry the story</h2>
+
+<p>Ordered by relevance.</p>
+
+<ol>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Screenshot-Resolution-Bug"><strong>Screenshot Resolution Bug</strong></a> — the bug report itself, with the artifact evidence table, the fix prescription, and the "fix landed" section. Frontmatter shows the <code>criticizes:</code> and <code>related:</code> edges in action.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Vision-Token-Economics"><strong>Vision Token Economics</strong></a> — the reference page filed the same session; the <em>routine</em> one Chris Frederick did not think would be revelatory. Reading it in isolation is a per-model tokenization spec. Reading it alongside the bug page is what surfaced the implications.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Experiment-11-Productionization"><strong>Experiment 11: Demo Branch for Navy Lunch (Productionization)</strong></a> — the page the bug page criticizes. Shows what the bug confounded and what the review restored to correctness.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Model-Tier-Re-Baseline"><strong>Eval: Model-Tier Re-Baseline (ITAMCO + Schafer)</strong></a> — the measurable payoff. The re-baseline run that the fix made possible: 32 trials, credible intervals, tier decision. The <code>supports:</code> edge in its frontmatter points back at <code>Blackbox-Eval-Adoption</code> to show it fulfilled the plan.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Validity-Audit"><strong>Eval: Validity Audit</strong></a> — Chris Frederick's follow-up zero-API audit of the re-baseline. Shows the collaboration continuing: bug → fix → re-baseline → audit-of-re-baseline. Every hop filed in the wiki.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Eval-Thinking-Default"><strong>Eval: Thinking Was the Default All Along</strong></a> — a second bug the same reviewer pass surfaced: adaptive thinking silently enabled by SDK default in production and every eval to date. Config made tri-state (<code>e2b9c91f</code>), then measured on Sonnet: adaptive 93.1% vs disabled 88.1% (P ≈ 96%). Same collaboration pattern, second finding.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Blackbox-Eval-Adoption"><strong>Blackbox-Eval Adoption</strong></a> — the plan the bug fix unblocked. Shows how the wiki structure sequences work: prereqs → fix → framework adoption → re-baseline.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/Fleet-Run-Bottlenecks"><strong>Fleet Run Bottlenecks</strong></a> — the prerequisite audit for the 108-company sweep. Records the seven-step prep sequence the fix was part of.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/SCHEMA_web_forager"><strong>Wiki Schema — Web Forager</strong></a> — the living document defining the frontmatter conventions, typed edges, per-entry commit log rule, and the four operations. The shape of the discipline that made the story possible.</li>
+  <li><a href="https://github.com/chrissweet/web_forager/wiki/index_web_forager"><strong>Index</strong></a> and <a href="https://github.com/chrissweet/web_forager/wiki/log_web_forager"><strong>Log</strong></a> — catalog and chronological record. Show how discoverability works: index for topic-first lookup, log for time-first lookup with author attribution.</li>
+</ol>
+
+<h2>Direct quotes from the wiki</h2>
+
+<p>On the bug's magnitude, from <code>Screenshot-Resolution-Bug</code>:</p>
+
+<blockquote>
+  <p>At 21% scale, 16 px body text renders at ~3.4 px. The model was reading thumbnails.</p>
+</blockquote>
+
+<p>On what the bug confounded:</p>
+
+<blockquote>
+  <p>Sonnet's honest "not visible on this page" answers may often have been literally true at 21% scale. Question/target mismatch remains real (some content genuinely is not published) but its measured magnitude is inflated by unreadable pages.</p>
+</blockquote>
+
+<p>On the fix landing:</p>
+
+<blockquote>
+  <p>A pure helper <code>chunk_scroll_positions</code> chunks whenever the page exceeds one viewport, steps by <code>viewport - overlap</code>, clamps the final tile to the page bottom (no overscroll duplicates), and caps at 20 chunks against infinite-scroll pages.</p>
+</blockquote>
+
+<p>From the log entry (<code>log_web_forager.md</code>, 2026-06-11 ingest):</p>
+
+<blockquote>
+  <p><code>browser.py</code> chunks only above 7680 px (the API's 8000 px hard-reject limit), but Sonnet's native cap downscales anything over ~950 px tall at 1280 wide. Saved artifacts confirm: ITAMCO homepage (1280 × 7396) was read at 21% scale / 560 tokens. Confounds Exp 11 coverage conclusions and all Haiku/Sonnet head-to-heads; caveat added to the Exp 11 page.</p>
+</blockquote>
+
+<p>From the re-baseline page:</p>
+
+<blockquote>
+  <p>Re-baseline run <code>rebaseline-tiers-20260611</code> (32 trials, $11.75): sonnet theta 93.6% [89.8, 96.5] &gt; opus 86.8% [82.2, 90.7] &gt; haiku 78.7% [72.8, 84.1]; P(sonnet &gt; opus) = 99.3%; fleet tier decision is sonnet.</p>
+</blockquote>
+
+<h2>The takeaway</h2>
+
+<ul>
+  <li><strong>A shared llm-wiki turns discrete sessions into cumulative project memory.</strong> Neither collaborator held state across the boundary. The wiki did.</li>
+  <li><strong>Structure matters more than content volume.</strong> Frontmatter, typed edges, and cross-references made ambient session notes reviewable in a way freeform prose or chat logs are not.</li>
+  <li><strong>The wiki catches bugs their filers did not consider bugs.</strong> Chris Frederick did not file <code>Vision-Token-Economics</code> as a bug report. Cross-referencing it against the extraction pipeline turned a routine reference page into the corner piece of a project-wide correction.</li>
+  <li><strong>Attribution scales trust.</strong> <code>by: &lt;human&gt; via &lt;agent&gt;</code> on every log entry, one commit per entry, git-blame-traceable. Collaborators can verify who found what without asking anyone.</li>
+  <li><strong>The pattern is generalizable beyond this project.</strong> Any multi-session, multi-contributor codebase where session-context evaporates can adopt the same primitives: typed pages, typed edges, index, log, per-entry commits. The llm-wiki template packages that.</li>
+</ul>
+
+<footer>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+  <p>Case-study source: <a href="https://github.com/chrissweet/web_forager/blob/main/docs/llm-wiki-collaboration-story.md">llm-wiki-collaboration-story.md</a> in the web_forager repo. Wiki-Grounded Research Agent · Center for Research Computing, University of Notre Dame.</p>
+</footer>
+
+</body>
+</html>
