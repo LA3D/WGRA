@@ -272,35 +272,61 @@ Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic con
 
 <h2>What the graph enables: SPARQL queries</h2>
 
-<p>Because the graph is real RDF, an agent can issue SPARQL queries against it directly. Three examples that a document graph could not answer:</p>
+<p>Because the graph is real RDF, an agent can issue SPARQL queries against it directly. The base template ships eleven canned queries in <code>scripts/kg/sparql/*.rq</code> covering hierarchy traversal, hub detection, evidence walks, and orphan detection. All eleven were run in-process against the live <code>naval-sensor-fusion</code> wiki's <code>graph-full.ttl</code> in a July 2026 verification pass; every query executed without error. Three of the more illustrative results are shown below.</p>
 
-<h3>Every page that a criticism reaches transitively</h3>
+<h3>All typed evidence edges (supports / criticizes)</h3>
 
-<pre><code>PREFIX lwc: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
 
-SELECT ?criticized ?downstream WHERE {
-  ?bug lwc:criticizes ?criticized .
-  ?criticized (lwc:supports|lwc:extends)+ ?downstream .
-}</code></pre>
+SELECT ?source ?sourceTitle ?relation ?target ?targetTitle WHERE {
+    VALUES ?relation { llm-wiki-colab:supports llm-wiki-colab:criticizes }
+    ?source ?relation ?target .
+    ?source dcterms:title ?sourceTitle .
+    ?target dcterms:title ?targetTitle .
+} ORDER BY ?targetTitle ?relation</code></pre>
 
-<p>This is the query the <a href="../wiki-collaboration-story/">web_forager case study</a> would have generated to find every page whose conclusions the demo-branch bug might have affected. Traversing the <code>supports</code> and <code>extends</code> chains transitively surfaces the cascade the reviewer walked manually.</p>
+<p>Executed via rdflib (<code>g.parse("scripts/kg/build/graph-full.ttl")</code> then <code>g.query(...)</code>) against the naval-sensor-fusion wiki. Nine rows returned; all are <code>supports</code> edges (no <code>criticizes</code> edges have been declared in this wiki yet).</p>
 
-<h3>Pages that support a claim but have no source ingest</h3>
+<table>
+<thead><tr><th>Source</th><th>Relation</th><th>Target</th></tr></thead>
+<tbody>
+<tr><td>DeTrAck-UAV-Detection-Tracking</td><td>supports</td><td>Data-Association</td></tr>
+<tr><td>Drone-Detection-CNN-Fisheye</td><td>supports</td><td>Dynamic-Targeting-F2T2EA</td></tr>
+<tr><td>Cross-Domain-Correlation</td><td>supports</td><td>Evaluation-Scenarios</td></tr>
+<tr><td>Open-Architecture-Drone-Control</td><td>supports</td><td>Fusion-Architectures</td></tr>
+<tr><td>Air-Threat-Defense-Multi-Sensor-AI</td><td>supports</td><td>Fusion-Architectures</td></tr>
+<tr><td>ML-Algorithms-for-Drone-Detection-Survey</td><td>supports</td><td>Fusion-Architectures</td></tr>
+<tr><td>JDL-Fusion-Levels-Review</td><td>supports</td><td>Fusion-Architectures</td></tr>
+<tr><td>Kalman-Filter-Sensor-Fusion-Equivalence</td><td>supports</td><td>Information-Theoretic-Fusion</td></tr>
+<tr><td>Destroyer-Sensors-and-Fusion-Concepts</td><td>supports</td><td>Naval-Sensor-Fusion-Proposal</td></tr>
+</tbody>
+</table>
 
-<pre><code>SELECT ?page WHERE {
-  ?page lwc:supports ?claim .
-  FILTER NOT EXISTS { ?page lwc:source ?anySource }
-}</code></pre>
+<p>Four separate sources argue for Fusion-Architectures, making it the most-supported concept in the wiki. The Kalman-Filter-Sensor-Fusion-Equivalence paper supports Information-Theoretic-Fusion, which is the theoretical backing for the additive information-form update the wiki's Kalman explainer page describes. The absence of any <code>criticizes</code> rows is itself a signal: the wiki currently has no recorded counter-arguments, only supporting evidence. That itself is a lint the agent could act on ("this project has been growing an evidence base without recording any disputes; is that faithful?").</p>
 
-<p>The verification gate uses queries in this shape to catch "wiki page asserts a claim, but the wiki has no ingested source anywhere backing it." Projection-as-fact detection, at commit time.</p>
+<h3>Ancestors of a concept (transitive hierarchy)</h3>
 
-<h3>All pages extending a given hub concept</h3>
+<p>Using SPARQL's transitive property path (<code>llm-wiki-colab:up+</code>), the ancestors-of query walks from any page to the wiki root. Executed against <code>Kalman-Filter-Explainer</code>:</p>
 
-<pre><code>SELECT ?descendant WHERE {
-  ?descendant lwc:extends+ &lt;.../page/Kalman-Filter-Explainer&gt; .
-}</code></pre>
+<pre><code>Kalman-Filter-Explainer
+  → RPLIDAR-Tracking-Testbed
+  → Research-Plan
+  → Naval-Sensor-Fusion-Proposal
+  → Home</code></pre>
 
-<p>For an agent asked "what does the project know about Kalman filtering?", a transitive traversal of <code>extends</code> returns every page inheriting from the Kalman-filter root, in the order the agent should walk them. RAG returns "top-k similar chunks;" SPARQL returns a graph slice with structure.</p>
+<p>An agent asked "what's the project context around Kalman filtering here?" gets a four-hop chain from the explainer up to the root, which it can walk to reconstruct scope. This is the traversal the <a href="../wiki-collaboration-story/">web_forager case study</a> did along <code>extends</code>: the shape is identical, the property is what differs.</p>
+
+<h3>Hub notes (structural centrality)</h3>
+
+<p>Counting each note's typed-edge degree surfaces the pages that hold the graph together. On the naval-sensor-fusion wiki:</p>
+
+<ul>
+  <li><strong>Track-to-Track-Fusion</strong>: 45 connections</li>
+  <li><strong>Fusion-Architectures</strong>: 34 connections</li>
+</ul>
+
+<p>These are exactly the pages an agent should read first when asked a broad question, and exactly the pages a linter should watch most carefully for stale claims. RAG's "top-k similar chunks" cannot recover this, because centrality is a graph property, not a similarity property.</p>
 
 <h2>How the graph is built and validated</h2>
 
