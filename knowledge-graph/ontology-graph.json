@@ -1,0 +1,318 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "Area",
+        "label": "Area",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "AuthorNote",
+        "label": "AuthorNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "BookNote",
+        "label": "BookNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Comparison",
+        "label": "Comparison",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Concept",
+        "label": "Concept",
+        "group": "Core concept",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "ConceptNote",
+        "label": "ConceptNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "CourseNotes",
+        "label": "CourseNotes",
+        "group": "Other",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Decision",
+        "label": "Decision",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Entity",
+        "label": "Entity",
+        "group": "Core concept",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "ExternalResource",
+        "label": "ExternalResource",
+        "group": "Core concept",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Finding",
+        "label": "Finding",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "FleetingNote",
+        "label": "FleetingNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "ImplementationNote",
+        "label": "ImplementationNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Index",
+        "label": "Index",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "LiteratureNote",
+        "label": "LiteratureNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "MOC",
+        "label": "MOC",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "MethodNote",
+        "label": "MethodNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Organization",
+        "label": "Organization",
+        "group": "Person / Org",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Person",
+        "label": "Person",
+        "group": "Person / Org",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Plan",
+        "label": "Plan",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Project",
+        "label": "Project",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "RecipeCollection",
+        "label": "RecipeCollection",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Reference",
+        "label": "Reference",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "SourceSummary",
+        "label": "SourceSummary",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Synthesis",
+        "label": "Synthesis",
+        "group": "Structure",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "TheoryNote",
+        "label": "TheoryNote",
+        "group": "Note types",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Tool",
+        "label": "Tool",
+        "group": "Core concept",
+        "kind": "class"
+      }
+    },
+    {
+      "data": {
+        "id": "Workflow",
+        "label": "Workflow",
+        "group": "Structure",
+        "kind": "class"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "Person",
+        "target": "Organization",
+        "label": "affiliation",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Project",
+        "target": "Person",
+        "label": "collaborator",
+        "kind": "ontology-property"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "extends",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "supports",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "criticizes",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "related",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "up",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "partOf",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "dependsOn",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "precedes",
+        "kind": "page-edge"
+      }
+    },
+    {
+      "data": {
+        "source": "Concept",
+        "target": "Concept",
+        "label": "incorporates",
+        "kind": "page-edge"
+      }
+    }
+  ]
+}

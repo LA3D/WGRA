@@ -1,0 +1,1033 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix llm-wiki-colab: <https://la3d.github.io/llm-wiki-colab/ontology#> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home> a llm-wiki-colab:UntypedNote ;
+    dcterms:title "Home" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/US-Destroyer-Sensors-and-Algorithms> a llm-wiki-colab:UntypedNote ;
+    dcterms:title "US-Destroyer-Sensors-and-Algorithms" .
+
+<https://la3d.github.io/llm-wiki-colab/page/index_naval-sensor-fusion> a llm-wiki-colab:Index ;
+    dcterms:title "index_naval-sensor-fusion" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI>,
+        <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Open-Architecture-Drone-Control>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-Product-Catalog-Q3-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/log_naval-sensor-fusion> a llm-wiki-colab:Index ;
+    dcterms:title "log_naval-sensor-fusion" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI>,
+        <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Open-Architecture-Drone-Control>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-Product-Catalog-Q3-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers>,
+        <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Edge-Types> a llm-wiki-colab:Reference ;
+    dcterms:title "Edge-Types" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_naval-sensor-fusion> ;
+    llm-wiki-colab:tag "conventions",
+        "kg",
+        "vocabulary" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/SCHEMA_naval-sensor-fusion> a llm-wiki-colab:Reference ;
+    dcterms:title "SCHEMA_naval-sensor-fusion" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Edge-Types>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page-Name>,
+        <https://la3d.github.io/llm-wiki-colab/page/Parent-Page>,
+        <https://la3d.github.io/llm-wiki-colab/page/Theory-X> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Open-Architecture-Drone-Control> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Open-Architecture-Drone-Control" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> ;
+    llm-wiki-colab:tag "cyber-resilience",
+        "microservices",
+        "open-architecture",
+        "security",
+        "source",
+        "uav" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Ouster-Product-Catalog-Q3-2023> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Ouster-Product-Catalog-Q3-2023" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family> ;
+    llm-wiki-colab:tag "datasheet",
+        "hardware",
+        "lidar",
+        "ouster",
+        "source" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Air-Threat-Defense-Multi-Sensor-AI" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> ;
+    llm-wiki-colab:tag "cnn",
+        "counter-uav",
+        "multi-sensor-fusion",
+        "simulation",
+        "source",
+        "transformer" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy> a llm-wiki-colab:Entity ;
+    dcterms:title "Cormac-Kennedy" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_naval-sensor-fusion> ;
+    llm-wiki-colab:tag "contributor",
+        "notre-dame",
+        "person",
+        "testbed" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System> a llm-wiki-colab:Reference ;
+    dcterms:title "Data-Synthesis-System" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios> ;
+    llm-wiki-colab:tag "boids",
+        "data-synthesis",
+        "ground-truth",
+        "scenarios",
+        "simulation",
+        "testbed",
+        "tooling" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Drone-Detection-CNN-Fisheye" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA> ;
+    llm-wiki-colab:tag "bird-vs-drone",
+        "cnn",
+        "knn",
+        "source",
+        "svm",
+        "uav-detection",
+        "vision" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "ML-Algorithms-for-Drone-Detection-Survey" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> ;
+    llm-wiki-colab:tag "lidar",
+        "machine-learning",
+        "multi-modal",
+        "source",
+        "survey",
+        "uav-detection" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner> a llm-wiki-colab:Entity ;
+    dcterms:title "Paul-Brenner" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC> ;
+    llm-wiki-colab:tag "notre-dame",
+        "person",
+        "pi" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC> .
+
+<https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "US-Navy-Destroyers" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:tag "aegis",
+        "destroyer",
+        "platform",
+        "reference",
+        "source",
+        "spy-radar",
+        "us-navy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/US-Navy> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class> a llm-wiki-colab:Entity ;
+    dcterms:title "Zumwalt-class" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems> ;
+    llm-wiki-colab:tag "ddg-1000",
+        "destroyer",
+        "platform",
+        "real-world-systems",
+        "stealth",
+        "zumwalt" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/US-Navy> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class> a llm-wiki-colab:Entity ;
+    dcterms:title "Arleigh-Burke-class" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems> ;
+    llm-wiki-colab:tag "arleigh-burke",
+        "ddg-51",
+        "destroyer",
+        "platform",
+        "real-world-systems" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/US-Navy> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet> a llm-wiki-colab:Entity ;
+    dcterms:title "Christopher-Sweet" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner> ;
+    llm-wiki-colab:tag "co-pi",
+        "notre-dame",
+        "person" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Destroyer-Sensors-and-Fusion-Concepts" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> ;
+    llm-wiki-colab:tag "aegis",
+        "destroyer",
+        "key-innovations",
+        "sensor-fusion",
+        "sensors",
+        "source",
+        "us-navy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers> .
+
+<https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "JDL-Fusion-Levels-Review" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> ;
+    llm-wiki-colab:tag "autonomous-systems",
+        "fusion-levels",
+        "jdl",
+        "source",
+        "survey",
+        "taxonomy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Kalman-Filter-Sensor-Fusion-Equivalence" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion> ;
+    llm-wiki-colab:tag "information-form",
+        "kalman-filter",
+        "regression",
+        "sensor-fusion",
+        "source",
+        "theory" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Kill-Chain-Military" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "doctrine",
+        "f2t2ea",
+        "kill-chain",
+        "operational-context",
+        "targeting" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family> a llm-wiki-colab:Entity ;
+    dcterms:title "Ouster-OS-Lidar-Family" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-Product-Catalog-Q3-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed> ;
+    llm-wiki-colab:tag "hardware",
+        "lidar",
+        "ouster",
+        "sensors" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer> a llm-wiki-colab:Reference ;
+    dcterms:title "Kalman-Filter-Explainer" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/assets/one_target_kalman_explainer.mp4>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "explainer",
+        "kalman-filter",
+        "teaching",
+        "tracking",
+        "visualization" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation> a llm-wiki-colab:Concept ;
+    dcterms:title "Cross-Domain-Correlation" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios> ;
+    llm-wiki-colab:tag "correlation",
+        "cross-domain",
+        "fusion",
+        "key-innovation",
+        "multi-domain" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> a llm-wiki-colab:Index ;
+    dcterms:title "Home_naval-sensor-fusion" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_naval-sensor-fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX> .
+
+<https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "DeTrAck-UAV-Detection-Tracking" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Data-Association> ;
+    llm-wiki-colab:tag "cnn",
+        "deepsort",
+        "embedded",
+        "source",
+        "tracking",
+        "uav-detection",
+        "yolo" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle> a llm-wiki-colab:Concept ;
+    dcterms:title "Joint-Targeting-Cycle" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets> ;
+    llm-wiki-colab:tag "doctrine",
+        "joint-targeting",
+        "jp-3-60",
+        "process",
+        "targeting-cycle" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options> a llm-wiki-colab:Concept ;
+    dcterms:title "Lidar-Sensor-Options" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-OS-Lidar-Family>,
+        <https://la3d.github.io/llm-wiki-colab/page/Ouster-Product-Catalog-Q3-2023>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> ;
+    llm-wiki-colab:tag "hardware",
+        "lidar",
+        "sensors",
+        "testbed" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection> a llm-wiki-colab:Concept ;
+    dcterms:title "Meta-Learning-Algorithm-Selection" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization> ;
+    llm-wiki-colab:tag "adaptive",
+        "fusion",
+        "key-innovation",
+        "meta-learning",
+        "ml",
+        "scenario-recognition" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Data-Association> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate> a llm-wiki-colab:Decision ;
+    dcterms:title "Association-Cost-vs-Gate" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Data-Association> ;
+    llm-wiki-colab:tag "data-association",
+        "decision",
+        "gating",
+        "gnn",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion> a llm-wiki-colab:Concept ;
+    dcterms:title "Byzantine-Fault-Tolerant-Fusion" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection> ;
+    llm-wiki-colab:tag "byzantine",
+        "contested",
+        "fault-tolerance",
+        "fusion",
+        "key-innovation",
+        "resilience" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability> a llm-wiki-colab:Concept ;
+    dcterms:title "Cooperative-Engagement-Capability" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "cec",
+        "distributed-fusion",
+        "engage-on-remote",
+        "real-world-systems",
+        "sensor-network" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> .
+
+<https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "JP-3-60-Joint-Targeting" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:tag "doctrine",
+        "dod",
+        "f2t2ea",
+        "joint-targeting",
+        "jp-3-60",
+        "kill-chain",
+        "source" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization> a llm-wiki-colab:Concept ;
+    dcterms:title "Multi-Criterion-Optimization" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "algorithm",
+        "cvar",
+        "game-theory",
+        "optimization",
+        "pareto",
+        "sensor-management" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC> a llm-wiki-colab:Entity ;
+    dcterms:title "Notre-Dame-CRC" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:tag "hpc",
+        "notre-dame",
+        "organization",
+        "performer" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets> a llm-wiki-colab:Concept ;
+    dcterms:title "Time-Sensitive-Targets" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios> ;
+    llm-wiki-colab:tag "doctrine",
+        "dynamic-targeting",
+        "jp-3-60",
+        "swarm",
+        "time-sensitive",
+        "tst" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle> .
+
+<https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> a llm-wiki-colab:Reference ;
+    dcterms:title "nrl-tracker" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "library",
+        "nrl",
+        "python",
+        "tooling",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Navy-Destroyer-Sensor-Systems" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability> ;
+    llm-wiki-colab:tag "cec",
+        "destroyers",
+        "ew",
+        "naval",
+        "radar",
+        "real-world-systems",
+        "sensors",
+        "sonar",
+        "source" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/US-Navy> .
+
+<https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> a llm-wiki-colab:Concept ;
+    dcterms:title "UAV-Detection-and-Classification" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA> ;
+    llm-wiki-colab:tag "classification",
+        "cnn",
+        "counter-uav",
+        "find-fix",
+        "tracking",
+        "uav-detection" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion> a llm-wiki-colab:Concept ;
+    dcterms:title "Information-Theoretic-Fusion" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "algorithm",
+        "consensus",
+        "fusion",
+        "information-filter" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric> a llm-wiki-colab:Concept ;
+    dcterms:title "OSPA-Metric" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain> ;
+    llm-wiki-colab:tag "evaluation",
+        "metric",
+        "ospa",
+        "track-quality" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection> a llm-wiki-colab:Concept ;
+    dcterms:title "Covariance-Intersection" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "algorithm",
+        "covariance-intersection",
+        "fusion" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/US-Navy> a llm-wiki-colab:Entity ;
+    dcterms:title "US-Navy" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Arleigh-Burke-class>,
+        <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers>,
+        <https://la3d.github.io/llm-wiki-colab/page/Zumwalt-class> ;
+    llm-wiki-colab:tag "customer",
+        "navy",
+        "organization",
+        "sponsor" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA> a llm-wiki-colab:Concept ;
+    dcterms:title "Dynamic-Targeting-F2T2EA" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> ;
+    llm-wiki-colab:partOf <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "doctrine",
+        "dynamic-targeting",
+        "f2t2ea",
+        "jp-3-60",
+        "kill-chain",
+        "sensor-fusion",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain> a llm-wiki-colab:analysis ;
+    dcterms:title "Sensor-Fusion-in-the-Kill-Chain" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drone-Detection-CNN-Fisheye>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Joint-Targeting-Cycle>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Open-Architecture-Drone-Control>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification> ;
+    llm-wiki-colab:tag "analysis",
+        "bridge",
+        "doctrine",
+        "kill-chain",
+        "sensor-fusion",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed> a llm-wiki-colab:Reference ;
+    dcterms:title "RPLIDAR-Tracking-Testbed" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cormac-Kennedy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/assets/one_target_tracking.mp4>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Data-Association> ;
+    llm-wiki-colab:tag "dbscan",
+        "implementation",
+        "kalman",
+        "lidar",
+        "nrl-tracker",
+        "rplidar",
+        "testbed",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Research-Plan> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Research-Plan" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Lidar-Sensor-Options>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/UAV-Detection-and-Classification>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:tag "methodology",
+        "plan",
+        "roadmap",
+        "tasks" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Naval-Sensor-Fusion-Proposal" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Christopher-Sweet>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Destroyer-Sensors-and-Fusion-Concepts>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Notre-Dame-CRC>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Paul-Brenner>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy> ;
+    llm-wiki-colab:tag "founding-document",
+        "naval",
+        "proposal",
+        "sensor-fusion",
+        "track-fusion" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_naval-sensor-fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Data-Association> a llm-wiki-colab:Concept ;
+    dcterms:title "Data-Association" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Meta-Learning-Algorithm-Selection>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:tag "algorithm",
+        "data-association",
+        "jpda",
+        "mht",
+        "rfs" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios> a llm-wiki-colab:Concept ;
+    dcterms:title "Evaluation-Scenarios" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Synthesis-System>,
+        <https://la3d.github.io/llm-wiki-colab/page/DeTrAck-UAV-Detection-Tracking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/JP-3-60-Joint-Targeting>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy>,
+        <https://la3d.github.io/llm-wiki-colab/page/US-Navy-Destroyers> ;
+    llm-wiki-colab:tag "evaluation",
+        "multi-domain",
+        "network-degradation",
+        "scenarios",
+        "swarm" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Research-Plan> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures> a llm-wiki-colab:Concept ;
+    dcterms:title "Fusion-Architectures" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Air-Threat-Defense-Multi-Sensor-AI>,
+        <https://la3d.github.io/llm-wiki-colab/page/Byzantine-Fault-Tolerant-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Evaluation-Scenarios>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/JDL-Fusion-Levels-Review>,
+        <https://la3d.github.io/llm-wiki-colab/page/ML-Algorithms-for-Drone-Detection-Survey>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/Open-Architecture-Drone-Control>,
+        <https://la3d.github.io/llm-wiki-colab/page/Research-Plan>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Time-Sensitive-Targets>,
+        <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> ;
+    llm-wiki-colab:tag "architecture",
+        "consensus",
+        "distributed",
+        "hierarchical",
+        "hybrid" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Track-to-Track-Fusion> a llm-wiki-colab:Concept ;
+    dcterms:title "Track-to-Track-Fusion" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Association-Cost-vs-Gate>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cooperative-Engagement-Capability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Covariance-Intersection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Cross-Domain-Correlation>,
+        <https://la3d.github.io/llm-wiki-colab/page/Data-Association>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dynamic-Targeting-F2T2EA>,
+        <https://la3d.github.io/llm-wiki-colab/page/Fusion-Architectures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Information-Theoretic-Fusion>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Explainer>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kalman-Filter-Sensor-Fusion-Equivalence>,
+        <https://la3d.github.io/llm-wiki-colab/page/Kill-Chain-Military>,
+        <https://la3d.github.io/llm-wiki-colab/page/Multi-Criterion-Optimization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal>,
+        <https://la3d.github.io/llm-wiki-colab/page/Navy-Destroyer-Sensor-Systems>,
+        <https://la3d.github.io/llm-wiki-colab/page/OSPA-Metric>,
+        <https://la3d.github.io/llm-wiki-colab/page/RPLIDAR-Tracking-Testbed>,
+        <https://la3d.github.io/llm-wiki-colab/page/Sensor-Fusion-in-the-Kill-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/nrl-tracker> ;
+    llm-wiki-colab:tag "algorithm",
+        "fusion",
+        "taxonomy",
+        "tracking" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Naval-Sensor-Fusion-Proposal> .
+

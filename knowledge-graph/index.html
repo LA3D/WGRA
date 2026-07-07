@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The knowledge graph · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+  --type-concept: #0d4a8b;
+  --type-entity: #1b6e2a;
+  --type-source: #7a5310;
+  --type-reference: #666;
+  --type-index: #6a1b5b;
+  --type-synthesis: #a04a00;
+  --type-decision: #8b0d3f;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 900px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code { background: transparent; padding: 0; font-size: 1em; }
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+figure { margin: 1.5em 0; padding: 0; }
+figcaption {
+  font-size: 0.9em; color: var(--muted); margin-top: 0.6em; line-height: 1.5;
+}
+.graph-container {
+  width: 100%;
+  height: 560px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+}
+.graph-container .controls {
+  position: absolute;
+  top: 0.5em;
+  right: 0.6em;
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.35em 0.55em;
+  font-size: 0.8em;
+  color: var(--muted);
+}
+.graph-container .controls button {
+  border: 1px solid var(--rule);
+  background: white;
+  cursor: pointer;
+  padding: 0.15em 0.5em;
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  border-radius: 3px;
+  color: var(--ink);
+}
+.graph-container .controls button:hover { background: var(--callout-bg); }
+.legend {
+  margin-top: 0.6em;
+  font-size: 0.88em;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.2em;
+}
+.legend .swatch {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 0.35em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+  .graph-container { height: 300px; border: 1px dashed var(--rule); }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <p class="kicker">Deep dive · Knowledge graph layer</p>
+  <h1>The knowledge graph</h1>
+  <p class="lede">Every typed edge in a wiki page's frontmatter reifies to an RDF triple. The wiki is not just linked Markdown; it is a queryable knowledge graph with a formal ontology, SHACL validation, and SPARQL-shaped queries an agent can traverse. Two interactive graphs below let you see the structure directly.</p>
+</header>
+
+<h2>Why typed edges reified to RDF matters</h2>
+
+<p>A wiki with body links (<code>[[Page]]</code>) is a document graph: pages connected by untyped edges. That is what most wikis are, and it is what you can do with GitHub or Obsidian out of the box.</p>
+
+<p>The llm-wiki pattern's typed-edge frontmatter (<code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>related:</code>, <code>up:</code>) upgrades that from a document graph to a <strong>semantic graph</strong>. Each edge carries a meaning the agent can reason about. The KG pipeline (<code>scripts/kg/build-graph.sh</code> in the base template) turns those frontmatter declarations into RDF triples against a formal ontology, validates the result with SHACL shapes, and produces graph files an agent (or a human, or any SPARQL client) can query directly.</p>
+
+<p>Two properties fall out that a document graph cannot deliver:</p>
+
+<ul>
+  <li><strong>Semantic traversal.</strong> An agent finding a bug page with <code>criticizes: [[Prior-Experiment]]</code> can traverse specifically <em>along the criticism edge</em> to find pages the target supported, aggregating implicated pages instead of just linked ones. This is what the <a href="../wiki-collaboration-story/">case study</a> demonstrates end-to-end.</li>
+  <li><strong>Graph-shaped queries.</strong> "Find every page that <code>extends:</code> a page which itself <code>criticizes:</code> a claim in the Working Hypothesis" is a single SPARQL query. "Find pages with a <code>supports:</code> claim but no corresponding source ingest" is another. RAG cannot express either.</li>
+</ul>
+
+<h2>The <code>llm-wiki-colab</code> ontology</h2>
+
+<p>The semantic layer for the pattern is defined at <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a>. It declares the classes a wiki page can inhabit (28 in the current version) and the properties by which pages connect (36). The graph below is an interactive view of the ontology's structure. Drag nodes, zoom, click to inspect.</p>
+
+<div class="graph-container">
+  <div class="controls">
+    <button onclick="ontologyCy.fit()">Fit</button>
+    <button onclick="ontologyCy.layout({name:'cose', animate:false, idealEdgeLength:120, nodeOverlap:20}).run()">Re-layout</button>
+  </div>
+  <div id="ontology-graph" style="width:100%; height:100%;"></div>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background: var(--type-concept)"></span>Core concept</span>
+  <span><span class="swatch" style="background: var(--type-source)"></span>Note type</span>
+  <span><span class="swatch" style="background: var(--type-index)"></span>Structure page</span>
+  <span><span class="swatch" style="background: var(--type-entity)"></span>Person / Org</span>
+</div>
+
+<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
+Nodes are classes. Edges are properties with a declared domain and range in the ontology (e.g., <code>affiliation: Person → Organization</code>). Wiki-page semantic properties (<code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>related</code>) apply to any wiki page and are shown as self-loops on the Concept class.
+</p>
+
+<h2>A real graph: the naval-sensor-fusion wiki</h2>
+
+<p>Below is a slice of an actual research wiki reified to RDF: the <code>naval-sensor-fusion</code> project's llm-wiki, focused on the semantically-typed edges (<code>up</code>, <code>extends</code>, <code>supports</code>, <code>related</code>, <code>partOf</code>). The wiki's <code>mentions:</code> and <code>tag:</code> edges are omitted here because they dominate the graph and would obscure the semantic structure; the full graph is in <a href="graph.ttl"><code>graph.ttl</code></a> if you want everything.</p>
+
+<div class="graph-container">
+  <div class="controls">
+    <button onclick="navalCy.fit()">Fit</button>
+    <button onclick="navalCy.layout({name:'cose', animate:false, idealEdgeLength:100, nodeOverlap:12}).run()">Re-layout</button>
+  </div>
+  <div id="naval-graph" style="width:100%; height:100%;"></div>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background: var(--type-concept)"></span>Concept</span>
+  <span><span class="swatch" style="background: var(--type-entity)"></span>Entity</span>
+  <span><span class="swatch" style="background: var(--type-source)"></span>SourceSummary</span>
+  <span><span class="swatch" style="background: var(--type-reference)"></span>Reference</span>
+  <span><span class="swatch" style="background: var(--type-index)"></span>Index</span>
+  <span><span class="swatch" style="background: var(--type-synthesis)"></span>Synthesis</span>
+  <span><span class="swatch" style="background: var(--type-decision)"></span>Decision</span>
+</div>
+
+<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
+47 nodes, 74 edges. Click a node to see its outgoing typed edges. The wiki covers naval sensor fusion research: Kalman filters, drone detection, targeting cycles, cooperative engagement capability, and the platforms these sit on.
+</p>
+
+<h2>What the graph enables: SPARQL queries</h2>
+
+<p>Because the graph is real RDF, an agent can issue SPARQL queries against it directly. Three examples that a document graph could not answer:</p>
+
+<h3>Every page that a criticism reaches transitively</h3>
+
+<pre><code>PREFIX lwc: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+
+SELECT ?criticized ?downstream WHERE {
+  ?bug lwc:criticizes ?criticized .
+  ?criticized (lwc:supports|lwc:extends)+ ?downstream .
+}</code></pre>
+
+<p>This is the query the <a href="../wiki-collaboration-story/">web_forager case study</a> would have generated to find every page whose conclusions the demo-branch bug might have affected. Traversing the <code>supports</code> and <code>extends</code> chains transitively surfaces the cascade the reviewer walked manually.</p>
+
+<h3>Pages that support a claim but have no source ingest</h3>
+
+<pre><code>SELECT ?page WHERE {
+  ?page lwc:supports ?claim .
+  FILTER NOT EXISTS { ?page lwc:source ?anySource }
+}</code></pre>
+
+<p>The verification gate uses queries in this shape to catch "wiki page asserts a claim, but the wiki has no ingested source anywhere backing it." Projection-as-fact detection, at commit time.</p>
+
+<h3>All pages extending a given hub concept</h3>
+
+<pre><code>SELECT ?descendant WHERE {
+  ?descendant lwc:extends+ &lt;.../page/Kalman-Filter-Explainer&gt; .
+}</code></pre>
+
+<p>For an agent asked "what does the project know about Kalman filtering?", a transitive traversal of <code>extends</code> returns every page inheriting from the Kalman-filter root, in the order the agent should walk them. RAG returns "top-k similar chunks;" SPARQL returns a graph slice with structure.</p>
+
+<h2>How the graph is built and validated</h2>
+
+<p>The base <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> ships the KG build pipeline as <code>scripts/kg/build-graph.sh</code>. Three phases:</p>
+
+<ol>
+  <li><strong>Extract.</strong> Walk the wiki's Markdown files. For each page, read the YAML frontmatter and the body. Emit RDF triples: <code>type</code> from the frontmatter's <code>type:</code> field; <code>up</code> from <code>up:</code>; typed edges from <code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>related:</code>, <code>source:</code>; <code>mentions</code> from body wikilinks.</li>
+  <li><strong>Validate.</strong> Run the SHACL shapes at <code>wiki/agents/shapes.ttl</code> (via <code>pyshacl</code>) against the generated graph. Shape violations mean the wiki has structural issues (a page declaring itself <code>type: Concept</code> without a required field, an edge to a non-existent page, a broken typed reference). Violations are reported at build time.</li>
+  <li><strong>Serialize.</strong> Emit the graph in multiple formats: Turtle (<code>graph.ttl</code>) for humans, JSON-LD (<code>graph.jsonld</code>) for JavaScript, an optional weighted variant (<code>graph-weights.ttl</code>).</li>
+</ol>
+
+<p>The graphs on this page are the actual <code>graph.ttl</code> output from a recent build of the naval-sensor-fusion wiki, converted to Cytoscape's JSON format by a small script (rdflib in, JSON out). Nothing was hand-authored.</p>
+
+<h2>Wrap-up</h2>
+
+<p>The knowledge graph layer is what turns a wiki-grounded research agent from "an agent with better document memory" into "an agent that can reason about the shape of the project's knowledge." Typed edges mean the reasoning is not just similarity search over prose; it is graph traversal along semantic relationships the pattern's ontology defines and SHACL shapes enforce. Every wiki instantiated from the template gets this layer for free, without the researcher having to author any ontology themselves — <code>llm-wiki-colab</code> is the shared semantic foundation.</p>
+
+<footer>
+  <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> shows semantic-edge traversal doing load-bearing work in a real project; <a href="../agent-capability/">Agent capability</a> covers the skills and gates that maintain the graph's discipline.</p>
+  <p><strong>Related sources:</strong> <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (the semantic foundation) · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the KG pipeline lives at <code>scripts/kg/</code>) · <a href="ontology.ttl"><code>ontology.ttl</code></a> and <a href="graph.ttl"><code>graph.ttl</code></a> (the actual TTL files this page visualizes)</p>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+</footer>
+
+<script src="cytoscape.min.js"></script>
+<script>
+// Ontology graph
+const groupColor = {
+  'Core concept': getComputedStyle(document.documentElement).getPropertyValue('--type-concept').trim(),
+  'Note types':   getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Structure':    getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
+  'Person / Org': getComputedStyle(document.documentElement).getPropertyValue('--type-entity').trim(),
+  'Other':        '#888'
+};
+
+let ontologyCy;
+fetch('ontology-graph.json').then(r => r.json()).then(data => {
+  ontologyCy = cytoscape({
+    container: document.getElementById('ontology-graph'),
+    elements: [
+      ...data.nodes.map(n => ({data: n.data})),
+      ...data.edges.map(e => ({data: e.data}))
+    ],
+    style: [
+      { selector: 'node', style: {
+        'background-color': ele => groupColor[ele.data('group')] || '#888',
+        'label': 'data(label)',
+        'color': '#1a1a1a',
+        'text-outline-color': '#fff',
+        'text-outline-width': 2,
+        'font-size': 11,
+        'font-family': 'Helvetica Neue, Arial, sans-serif',
+        'width': 30, 'height': 30
+      }},
+      { selector: 'edge', style: {
+        'width': 1.4,
+        'line-color': '#bbb',
+        'target-arrow-color': '#bbb',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'label': 'data(label)',
+        'font-size': 9,
+        'color': '#666',
+        'text-background-color': '#fff',
+        'text-background-opacity': 0.85,
+        'text-background-padding': 2,
+        'text-rotation': 'autorotate'
+      }},
+      { selector: 'edge[kind = "page-edge"]', style: {
+        'line-style': 'dashed',
+        'line-color': '#0d4a8b',
+        'target-arrow-color': '#0d4a8b',
+        'color': '#0d4a8b'
+      }},
+      { selector: 'node:selected', style: {
+        'border-width': 3,
+        'border-color': '#0d4a8b'
+      }}
+    ],
+    layout: { name: 'cose', idealEdgeLength: 120, nodeOverlap: 20, animate: false, fit: true }
+  });
+});
+
+// Naval instance graph
+const typeColor = {
+  'Concept':        getComputedStyle(document.documentElement).getPropertyValue('--type-concept').trim(),
+  'Entity':         getComputedStyle(document.documentElement).getPropertyValue('--type-entity').trim(),
+  'SourceSummary':  getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Reference':      getComputedStyle(document.documentElement).getPropertyValue('--type-reference').trim(),
+  'Index':          getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
+  'Synthesis':      getComputedStyle(document.documentElement).getPropertyValue('--type-synthesis').trim(),
+  'Decision':       getComputedStyle(document.documentElement).getPropertyValue('--type-decision').trim(),
+  'analysis':       '#888',
+  'UntypedNote':    '#aaa'
+};
+
+let navalCy;
+fetch('naval-graph-slice.json').then(r => r.json()).then(data => {
+  navalCy = cytoscape({
+    container: document.getElementById('naval-graph'),
+    elements: [
+      ...data.nodes.map(n => ({data: n.data})),
+      ...data.edges.map(e => ({data: e.data}))
+    ],
+    style: [
+      { selector: 'node', style: {
+        'background-color': ele => typeColor[ele.data('type')] || '#888',
+        'label': 'data(label)',
+        'color': '#1a1a1a',
+        'text-outline-color': '#fff',
+        'text-outline-width': 2,
+        'font-size': 9,
+        'font-family': 'Helvetica Neue, Arial, sans-serif',
+        'width': 20, 'height': 20,
+        'text-wrap': 'wrap',
+        'text-max-width': 90
+      }},
+      { selector: 'edge', style: {
+        'width': 1,
+        'line-color': '#ccc',
+        'target-arrow-color': '#ccc',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'label': 'data(label)',
+        'font-size': 8,
+        'color': '#888',
+        'text-background-color': '#fff',
+        'text-background-opacity': 0.85,
+        'text-background-padding': 1
+      }},
+      { selector: 'edge[label = "extends"]',    style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.6, 'color': '#0d4a8b' }},
+      { selector: 'edge[label = "supports"]',   style: { 'line-color': '#1b6e2a', 'target-arrow-color': '#1b6e2a', 'width': 1.4, 'color': '#1b6e2a' }},
+      { selector: 'edge[label = "criticizes"]', style: { 'line-color': '#8b0d3f', 'target-arrow-color': '#8b0d3f', 'width': 1.6, 'color': '#8b0d3f' }},
+      { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+    ],
+    layout: { name: 'cose', idealEdgeLength: 100, nodeOverlap: 12, animate: false, fit: true }
+  });
+});
+</script>
+
+</body>
+</html>
