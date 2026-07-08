@@ -220,7 +220,7 @@ Underscore prefix on `_talks/` means GitHub Pages skips this directory. Local ar
 - Header: What this looks like on a real research wiki
 - Bullets:
   - `markov_embeddings_and_rag`. A live research-execution wiki on retrieval-as-Markov-walk. 51 titled notes. 1,162 triples.
-  - This is the wiki the Real world example (slide 8) came from.
+  - The same edge pattern that caught the web_forager cascade (slide 8) shows up here on a second wiki.
   - 11 canned SPARQL queries in the base template. All 11 executed against the live `graph.ttl`.
 - Bottom: [switching to browser]
 
@@ -241,7 +241,7 @@ Underscore prefix on `_talks/` means GitHub Pages skips this directory. Local ar
 **Speaker notes (5 min live demo, do these three things in order):**
 
 1. **Show the ontology graph.** "Here are the 28 classes a wiki page can inhabit. Concept, Note types, Structure pages, People. This is the shared semantic foundation. Every wiki instantiated from the template gets this for free."
-2. **Scroll to the markov_embeddings_and_rag instance graph.** "This is a real research wiki, reified to RDF. The gold-highlighted edges are the ones that made the Real world example possible — the four-hop extends chain from Dense-RAG-Scale-Collapse back to Iterative-Chained-RAG, and the criticism edge from that same finding to RAG-Sanity-Check. Random-Walk-With-Restart is the central hub with 48 inbound edges. That surfaced automatically from graph structure. You didn't have to hand-author a 'start here' page."
+2. **Scroll to the markov_embeddings_and_rag instance graph.** "This is a different research wiki, same pattern. The gold-highlighted edges have the exact shape as the web_forager cascade I just described — a four-hop `extends` chain from a leaf finding (Dense-RAG-Scale-Collapse) back through experimental lineage to a foundational concept (Iterative-Chained-RAG), and a `criticizes` edge from that same leaf finding to a page five hops up its own ancestry (RAG-Sanity-Check). The wiki review pattern that caught the 8-of-17 bug in web_forager is the same graph-shape you're seeing here. Random-Walk-With-Restart is the central hub with 48 inbound edges — surfaced automatically from graph structure. You didn't have to hand-author a 'start here' page."
 3. **Scroll to SPARQL: the `supports/criticizes` query.** "Full query text. Executed via rdflib against `graph-full.ttl`. Four rows returned — an unusually rich result. Both supports AND criticizes edges exist. The `Dense-RAG-Scale-Collapse criticizes RAG-Sanity-Check` row is the pattern's own thesis in action: a current experimental finding contradicting an early framework claim, filed as a typed edge so the disagreement survives in the graph."
 
 Alt-Tab back to PowerPoint when done.
@@ -260,7 +260,7 @@ Alt-Tab back to PowerPoint when done.
 
 **Prep:** scroll to the markov_embeddings_and_rag instance graph on the same page, wait for render, screenshot. Paste.
 
-**On slide caption:** 30 nodes, 39 typed edges from a real research wiki. Gold-highlighted edges are the ones that made the Real world example (slide 8) possible: the four-hop `extends` chain from Dense-RAG-Scale-Collapse back to Iterative-Chained-RAG, plus the `criticizes` edge to RAG-Sanity-Check.
+**On slide caption:** 30 nodes, 39 typed edges from a real research wiki. Gold-highlighted edges have the same shape as the web_forager cascade (slide 8): a four-hop `extends` chain from a leaf finding (Dense-RAG-Scale-Collapse) back through experimental lineage to a foundational concept (Iterative-Chained-RAG), and a `criticizes` edge to a page in the same finding's ancestry (RAG-Sanity-Check).
 
 ## Slide 15c — DEMO FALLBACK 3 (screenshot: SPARQL result table)
 
