@@ -191,14 +191,14 @@ blockquote.highlight {
   background: $cream;
   border: 2px solid $gold;
   border-radius: 6px;
-  padding: 0.9em 1.3em;
+  padding: 0.8em 1.2em;
   font-family: "Charter", "Palatino", "Cambria", "Georgia", serif;
   font-style: italic;
   font-weight: 700;
   color: $navy;
-  margin: 1.2em 0;
-  font-size: 1.05em;
-  line-height: 1.4;
+  margin: 1em 0 0.6em;   // leave breathing room above the reveal footer bar
+  font-size: 1em;
+  line-height: 1.35;
 
   p { margin: 0; }
 }
@@ -255,9 +255,21 @@ blockquote.highlight {
   a { color: $gold; font-weight: 700; }
 }
 
-// Two-column layout tweaks
-.reveal .columns { align-items: flex-start; gap: 1.2em; }
-.reveal .column { padding: 0 0.4em; }
+// Two-column layout tweaks - force flex row so wide content (like <pre>) does
+// not push the second column below the first.
+.reveal .columns {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start;
+  gap: 1.2em;
+}
+.reveal .column {
+  min-width: 0;         // allow shrink below intrinsic min-content width
+  box-sizing: border-box;
+  padding: 0 0.4em;
+  overflow: hidden;
+}
 
 // Bulleted list styling
 .reveal ul { line-height: 1.5; }
@@ -265,3 +277,129 @@ blockquote.highlight {
 
 // Sane defaults for embedded HTML
 .reveal .graph-container { border-radius: 4px; }
+
+// Right-column caption alongside the live KG graph: tighter typography so
+// the column fits in the slide height without overrunning the bottom.
+.reveal .kg-caption {
+  font-size: 0.78em;
+  line-height: 1.4;
+
+  p { margin: 0.35em 0; }
+  ul { margin: 0.35em 0 0.5em; }
+  ul li { margin: 0.15em 0; }
+  .mono {
+    font-family: "Menlo", "Consolas", monospace;
+    background: rgba(20, 33, 61, 0.06);
+    padding: 0.05em 0.35em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  em { color: $muted; font-style: italic; }
+}
+
+// Extends chain visual for the Web Forager case-study finding slide.
+// Three navy boxes stacked, each linked by a labeled downward arrow.
+.reveal .extends-chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.5em 0;
+
+  .chain-box {
+    background: $navy;
+    color: white;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 600;
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    min-width: 8em;
+    text-align: center;
+  }
+
+  .chain-edge {
+    font-family: "Helvetica Neue", sans-serif;
+    color: $gold;
+    font-size: 0.7em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    code {
+      background: rgba(184, 134, 11, 0.12);
+      color: $gold;
+      padding: 0.05em 0.35em;
+      font-size: 0.95em;
+    }
+  }
+}
+
+// Big-number stats for the Dense RAG slide RHS: prominent number + caption
+// hierarchy so the failure lands visually.
+.reveal .rag-stats {
+  .stat-big {
+    font-family: "Charter", "Palatino", "Cambria", "Georgia", serif;
+    font-weight: 700;
+    color: $navy;
+    font-size: 2.1em;
+    line-height: 1.05;
+    margin-top: 0.6em;
+    letter-spacing: -0.02em;
+  }
+  .stat-big:first-of-type { margin-top: 0.3em; }
+
+  .stat-caption {
+    font-family: "Helvetica Neue", sans-serif;
+    color: $muted;
+    font-size: 0.7em;
+    margin: 0.15em 0 0.4em;
+    line-height: 1.35;
+  }
+}
+
+// Log / YAML snippet block for the team-scale slides. Same base look-and-feel
+// as .json-snippet but scoped to a slightly larger font since these blocks are
+// shown wider and less dense than the doc-graph JSON.
+.reveal .log-snippet {
+  font-family: "Menlo", "Consolas", "Courier New", monospace;
+  font-size: 0.48em;
+  background: #14213d;
+  color: #d0d7de;
+  padding: 0.7em 0.9em;
+  border-radius: 4px;
+  line-height: 1.5;
+  margin: 0.3em 0;
+  white-space: pre;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  .k  { color: #6ab0f3; }
+  .s  { color: #f5e6c8; }
+  .s2 { color: $gold-light; font-weight: 700; }
+  em  { color: #b8c5d3; font-style: italic; }
+}
+
+// JSON snippet block for the doc-graph slide RHS: syntax-colored, compact,
+// key/value pair highlighting to make the two-slot @type visually pop.
+.reveal .json-snippet {
+  font-family: "Menlo", "Consolas", "Courier New", monospace;
+  font-size: 0.5em;
+  background: #14213d;
+  color: #d0d7de;
+  padding: 0.7em 0.9em;
+  border-radius: 4px;
+  line-height: 1.45;
+  margin: 0;
+  white-space: pre;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  .k  { color: #6ab0f3; }   // keys (blue)
+  .s  { color: #f5e6c8; }   // strings (cream)
+  .s2 { color: $gold-light; font-weight: 700; }  // the ex: refinement (gold, bold)
+}

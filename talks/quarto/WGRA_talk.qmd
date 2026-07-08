@@ -1,0 +1,1035 @@
+---
+title: "Wiki-Grounded Research Agents"
+subtitle: "A shared living memory for scientists and their AI agents"
+author:
+  - name: "Priscila Moreira"
+  - name: "Charles Vardeman"
+  - name: "James Sweet"
+  - name: "Chris Sweet"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c
+    incremental: false
+    center: false
+    width: 1280
+    height: 720
+    embed-resources: false
+    footer: "la3d.github.io/WGRA"
+    title-slide-attributes:
+      data-background-color: "#14213d"
+    include-in-header:
+      - text: |
+          <script src="cytoscape.min.js"></script>
+    resources:
+      - cytoscape.min.js
+      - instance-graph-slice.json
+---
+
+## From PDF to structured elements {.smaller}
+
+[Stage 1 · Extraction · paper structure, live]{.kicker}
+
+```{=html}
+<iframe src="paper-explorer.html" style="width: 100%; height: 570px; border: 1px solid #ccc; border-radius: 4px; background: #fff;"></iframe>
+```
+
+::: {.notes}
+This is Priscila's paper-atomizer explorer running on the Mercadier 2011 uranium-deposits paper. The tree on the left is the DoCO / FaBiO / PROV containment hierarchy — front matter, body matter, back matter, then sections, subsections, paragraphs, figures grouped with their captions in FigureBoxes. Every leaf element carries a page number and a bounding-box region (`xywh` fragment selector against the page image), so any assertion downstream can be traced back to the exact pixel region on the page.
+
+Point out: the sections and figures aren't just text. They're typed nodes with provenance edges to the software agents that produced them — DeepSeek-OCR for layout and bounding boxes, Claude for heading classification, Gemini for figure classification and chart extraction. Every step is recorded as a `prov:Activity`. This is what "layout-aware extraction" produces before the concept graph on the next slide gets built from it.
+:::
+
+## The document graph, live {.smaller}
+
+[Stage 2 · Ingestion · real output from the extraction pipeline]{.kicker}
+
+The extraction pipeline turns a source document into a typed RDF graph: the document at the center, section chunks around it, and the concepts each chunk mentions fanning out. **Every concept carries two `@type` slots** — one canonical (SPARQL-queryable across the whole corpus) and one domain-specific (grown from the source, no pre-declaration). The graph on the left is a real slice from a real briefing; the JSON on the right is the actual output.
+
+:::: {.columns}
+
+::: {.column width="62%"}
+```{=html}
+<div id="doc-graph" style="width:100%; height:400px; border: 1px solid #ccc; background: #fff; border-radius: 4px;"></div>
+```
+:::
+
+::: {.column width="38%" .kg-caption}
+```{=html}
+<pre class="json-snippet">{
+ <span class="k">"@id"</span>: <span class="s">"did:doc:a5bf..."</span>,
+ <span class="k">"@type"</span>: <span class="s">"prov:Entity"</span>,
+ <span class="k">"schema:name"</span>: <span class="s">"CLAIMS-BRIEF"</span>,
+ <span class="k">"schema:hasPart"</span>: [{
+  <span class="k">"@id"</span>: <span class="s">"did:heading:9da2..."</span>,
+  <span class="k">"@type"</span>: [
+   <span class="s">"schema:CreativeWork"</span>,
+   <span class="s2">"ex:heading_chunk"</span>],
+  <span class="k">"ex:heading"</span>: <span class="s">"Design principles"</span>,
+  <span class="k">"skos:member"</span>: [{
+   <span class="k">"@id"</span>: <span class="s">"concept:late_binding"</span>,
+   <span class="k">"@type"</span>: [
+    <span class="s">"skos:Concept"</span>,
+    <span class="s2">"ex:design_principle"</span>],
+   <span class="k">"skos:prefLabel"</span>:
+    <span class="s">"Late binding everywhere"</span>
+  }]
+ }]
+}</pre>
+```
+
+*Two `@type` slots: canonical → SPARQL, `ex:` → corpus-grown.*
+:::
+
+::::
+
+```{=html}
+<script>
+(function() {
+  const DOC_GRAPH_DATA = {"nodes":[{"data":{"id":"did:doc:a5bf3c6b1eb70329","label":"Briefing:\nClaims-based\nExtraction","type":"Document","size":"big"}},{"data":{"id":"did:heading:681cf528926b7448","label":"The one-sentence goal","type":"Chunk","size":"mid"}},{"data":{"id":"concept:document_ingestion_retrieval_pipeline","label":"document-ingestion + ...","type":"Concept","refinement":"ex:document_pipeline"}},{"data":{"id":"concept:concepts_and_relationship","label":"concepts and relation...","type":"Concept","refinement":"ex:knowledge_representation_model"}},{"data":{"id":"concept:claim","label":"claims","type":"Concept","refinement":"ex:epistemic_unit"}},{"data":{"id":"concept:attributed","label":"attributed","type":"Concept","refinement":"ex:epistemic_property"}},{"data":{"id":"did:heading:089e456d056eba45","label":"The core reframe: claims, not...","type":"Chunk","size":"mid"}},{"data":{"id":"concept:bare_triple","label":"bare triple","type":"Concept","refinement":"ex:anti_pattern"}},{"data":{"id":"concept:claim_payload","label":"claim payload","type":"Concept","refinement":"ex:claim_component"}},{"data":{"id":"concept:claim_envelope","label":"claim envelope","type":"Concept","refinement":"ex:claim_component"}},{"data":{"id":"did:heading:ea4c2b4a19e28b8a","label":"The three-tier trust hierarchy","type":"Chunk","size":"mid"}},{"data":{"id":"concept:block","label":"Blocks = evidence, no...","type":"Concept","refinement":"ex:trust_tier"}},{"data":{"id":"concept:extraction_claim","label":"Extraction claims","type":"Concept","refinement":"ex:trust_tier"}},{"data":{"id":"concept:synthesis_claim","label":"Synthesis claims","type":"Concept","refinement":"ex:trust_tier"}},{"data":{"id":"concept:confidence","label":"Confidence","type":"Concept","refinement":"ex:trust_currency"}},{"data":{"id":"did:heading:7494edf142d6c9b7","label":"Graph + retrieval (router, no...","type":"Chunk","size":"mid"}},{"data":{"id":"concept:thin_structural_index","label":"thin structural INDEX","type":"Concept","refinement":"ex:architectural_principle"}},{"data":{"id":"concept:graph_node","label":"Nodes are thin\nhandles","type":"Concept","refinement":"ex:graph_node_constraint"}},{"data":{"id":"concept:resolvable_backlink","label":"resolvable backlink t...","type":"Concept","refinement":"ex:architectural_invariant"}},{"data":{"id":"concept:shredding","label":"shredding","type":"Concept","refinement":"ex:anti_pattern"}},{"data":{"id":"did:heading:9da258aacdb5c998","label":"Non-negotiable design princip...","type":"Chunk","size":"mid"}},{"data":{"id":"concept:late_binding","label":"Late binding everywhere","type":"Concept","refinement":"ex:design_principle"}},{"data":{"id":"concept:soft_over_hard","label":"Soft over hard","type":"Concept","refinement":"ex:design_principle"}},{"data":{"id":"concept:router_not_responder","label":"Router not responder","type":"Concept","refinement":"ex:design_principle"}},{"data":{"id":"concept:provenance_is_first_clas","label":"Provenance is first-c...","type":"Concept","refinement":"ex:design_principle"}}],"edges":[{"data":{"source":"did:doc:a5bf3c6b1eb70329","target":"did:heading:681cf528926b7448","label":"hasPart"}},{"data":{"source":"did:heading:681cf528926b7448","target":"concept:document_ingestion_retrieval_pipeline","label":"mentions"}},{"data":{"source":"did:heading:681cf528926b7448","target":"concept:concepts_and_relationship","label":"mentions"}},{"data":{"source":"did:heading:681cf528926b7448","target":"concept:claim","label":"mentions"}},{"data":{"source":"did:heading:681cf528926b7448","target":"concept:attributed","label":"mentions"}},{"data":{"source":"did:doc:a5bf3c6b1eb70329","target":"did:heading:089e456d056eba45","label":"hasPart"}},{"data":{"source":"did:heading:089e456d056eba45","target":"concept:claim","label":"mentions"}},{"data":{"source":"did:heading:089e456d056eba45","target":"concept:bare_triple","label":"mentions"}},{"data":{"source":"did:heading:089e456d056eba45","target":"concept:claim_payload","label":"mentions"}},{"data":{"source":"did:heading:089e456d056eba45","target":"concept:claim_envelope","label":"mentions"}},{"data":{"source":"did:doc:a5bf3c6b1eb70329","target":"did:heading:ea4c2b4a19e28b8a","label":"hasPart"}},{"data":{"source":"did:heading:ea4c2b4a19e28b8a","target":"concept:block","label":"mentions"}},{"data":{"source":"did:heading:ea4c2b4a19e28b8a","target":"concept:extraction_claim","label":"mentions"}},{"data":{"source":"did:heading:ea4c2b4a19e28b8a","target":"concept:synthesis_claim","label":"mentions"}},{"data":{"source":"did:heading:ea4c2b4a19e28b8a","target":"concept:confidence","label":"mentions"}},{"data":{"source":"did:doc:a5bf3c6b1eb70329","target":"did:heading:7494edf142d6c9b7","label":"hasPart"}},{"data":{"source":"did:heading:7494edf142d6c9b7","target":"concept:thin_structural_index","label":"mentions"}},{"data":{"source":"did:heading:7494edf142d6c9b7","target":"concept:graph_node","label":"mentions"}},{"data":{"source":"did:heading:7494edf142d6c9b7","target":"concept:resolvable_backlink","label":"mentions"}},{"data":{"source":"did:heading:7494edf142d6c9b7","target":"concept:shredding","label":"mentions"}},{"data":{"source":"did:doc:a5bf3c6b1eb70329","target":"did:heading:9da258aacdb5c998","label":"hasPart"}},{"data":{"source":"did:heading:9da258aacdb5c998","target":"concept:late_binding","label":"mentions"}},{"data":{"source":"did:heading:9da258aacdb5c998","target":"concept:soft_over_hard","label":"mentions"}},{"data":{"source":"did:heading:9da258aacdb5c998","target":"concept:router_not_responder","label":"mentions"}},{"data":{"source":"did:heading:9da258aacdb5c998","target":"concept:provenance_is_first_clas","label":"mentions"}}]};
+  const typeColor = {
+    'Document': '#14213d',
+    'Chunk':    '#0d4a8b',
+    'Concept':  '#7a5310'
+  };
+  const cyStyle = [
+    { selector: 'node', style: {
+      'background-color': ele => typeColor[ele.data('type')] || '#888',
+      'label': 'data(label)',
+      'color': '#1a1a1a',
+      'text-outline-color': '#fff',
+      'text-outline-width': 2,
+      'font-size': 8,
+      'font-family': 'Helvetica Neue, Arial, sans-serif',
+      'width': 20, 'height': 20,
+      'text-wrap': 'wrap',
+      'text-max-width': 100,
+      'text-valign': 'bottom',
+      'text-margin-y': 3
+    }},
+    { selector: 'node[size = "big"]',  style: { 'width': 46, 'height': 46, 'font-size': 11, 'font-weight': 'bold' }},
+    { selector: 'node[size = "mid"]',  style: { 'width': 30, 'height': 30, 'font-size': 9 }},
+    { selector: 'edge', style: {
+      'width': 1,
+      'line-color': '#bbb',
+      'target-arrow-color': '#bbb',
+      'target-arrow-shape': 'triangle',
+      'curve-style': 'bezier',
+      'font-size': 6,
+      'color': '#888',
+      'label': 'data(label)',
+      'text-background-color': '#fff',
+      'text-background-opacity': 0.85,
+      'text-background-padding': 1
+    }},
+    { selector: 'edge[label = "hasPart"]',  style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.5 }},
+    { selector: 'edge[label = "mentions"]', style: { 'line-color': '#c9a94d', 'target-arrow-color': '#c9a94d', 'width': 1.2 }},
+    { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#b8860b' }}
+  ];
+
+  let docCy = null;
+
+  function tryInitDoc() {
+    const container = document.getElementById('doc-graph');
+    if (!container) return;
+    if (container.offsetWidth === 0 || container.offsetHeight === 0) return;
+    if (!window.cytoscape) return;
+    if (docCy) { docCy.resize(); docCy.fit(); return; }
+
+    docCy = cytoscape({
+      container: container,
+      elements: [
+        ...DOC_GRAPH_DATA.nodes.map(n => ({data: n.data})),
+        ...DOC_GRAPH_DATA.edges.map(e => ({data: e.data}))
+      ],
+      style: cyStyle,
+      layout: { name: 'cose', idealEdgeLength: 70, nodeOverlap: 18, animate: false, fit: true }
+    });
+  }
+
+  function hookRevealDoc() {
+    if (!window.Reveal) { setTimeout(hookRevealDoc, 100); return; }
+    Reveal.on('ready', tryInitDoc);
+    Reveal.on('slidechanged', tryInitDoc);
+    Reveal.on('resize', () => { if (docCy) { docCy.resize(); docCy.fit(); } });
+  }
+  tryInitDoc();
+  hookRevealDoc();
+})();
+</script>
+```
+
+::: {.notes}
+This is a real graph from the extraction pipeline: a briefing document about claims-based extraction and retrieval, run through the pipeline, output as JSON-LD. Fifteen chunks; five shown here. Each chunk carries its extracted concepts as `skos:member` edges.
+
+The point to make: every concept has a two-slot @type. The first slot is canonical (`skos:Concept`) so it's SPARQL-queryable across the corpus. The second slot is domain-specific (`ex:design_principle`, `ex:trust_tier`, etc.) — the ontology accretes from the source without pre-declaration. Fixed ontologies force the corpus into a schema chosen in advance; this keeps the closed-envelope queryability and the open-payload growth in the same node.
+
+Drag a Concept node to inspect it. The interactive graph is doing the same work as three static slides would have.
+:::
+
+## Dense RAG breaks on the bridges. {.smaller}
+
+[The retrieval problem]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Dense RAG: embed the question, cosine against chunk embeddings, take top-K, hand to the LLM. **One-shot similarity.**
+
+- **Works** for hop 1 — the passage that lexically matches the question.
+- **Breaks on multi-hop** — bridge and answer chunks share no vocabulary with the question.
+- **Breaks at scale** — with a real corpus of distractors, similar-but-wrong passages drown the true evidence.
+
+Multi-hop retrieval is a graph traversal problem in disguise.
+:::
+
+::: {.column width="45%" .rag-stats}
+[Measured · 21,100-chunk corpus · MuSiQue TEST]{.kicker}
+
+<div class="stat-big">Rank 1</div>
+<div class="stat-caption">The direct-match gold chunk. Stays at rank 1 at any corpus size.</div>
+
+<div class="stat-big">~1,800</div>
+<div class="stat-caption">The 4-hop bridge chunk. Median rank of 21,100.</div>
+
+<div class="stat-big">22%</div>
+<div class="stat-caption">all-gold@30 · vs 88% on a small distractor-free set.</div>
+:::
+
+::::
+
+::: {.callout-highlight}
+Dense retrieval is a hop-1 tool. Multi-hop needs structure, not more similarity.
+:::
+
+::: {.notes}
+The failure is measured, not asserted. On the full 21k-chunk corpus, the first (directly-matched) gold chunk stays at rank 1 at any corpus size — cosine finds what it can find. The deepest 4-hop bridge chunk sinks to median rank ~1,800. all-gold@30 collapses from 88% (small clean set) to 22% (full corpus). Dense RAG solves hop 1 and collapses on the bridges. The rest of this section shows what structure buys you.
+:::
+
+## Markov chain: retrieval as a random walk {.smaller}
+
+[Live simulation · markov_embeddings_and_rag]{.kicker}
+
+```{=html}
+<iframe src="rwr_animation.html" style="width: 100%; height: 590px; border: 1px solid #ccc; border-radius: 4px; background: #fff;"></iframe>
+```
+
+::: {.notes}
+The simulation running on this slide is from the markov_embeddings_and_rag project, dropped in as an iframe. Same trick as the Cytoscape graph on the later slide, different underlying library (vis-network). The point of showing it here is not the mathematics; it's that a live simulation the group actually developed as part of their research is on the slide, driveable by keyboard, no Alt-Tab.
+
+Talk track: press Play, let the walk propagate for a few seconds, mention that the top-5 nodes list on the left is the RWR steady state converging, and that this is exactly the mechanism the "Random-Walk-With-Restart" concept in the KG graph (later slide) refers to.
+:::
+
+## The missing layer: durable synthesis {.smaller}
+
+[Transition · from retrieval to memory]{.kicker}
+
+**Extraction** gives you records. **Analysis** gives you answers. Neither gives you *memory* — knowledge that compounds across sessions and researchers.
+
+Today that understanding lives in someone's head, in stale notebooks, in README fragments. It walks out when the person leaves.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+**Where knowledge accumulates today**
+
+- Presentation · papers, reports
+- **Synthesis · [ MISSING ]**
+- Analysis · notebooks, dashboards
+- Storage · PostgreSQL, PubMed, WoS
+:::
+
+::: {.column width="55%"}
+**What a synthesis layer needs**
+
+- Persistent · Markdown in git, grows monotonically
+- Human + agent readable · one substrate, no lock-in
+- Cited & traceable · every claim links to source
+- Queryable as a graph · typed edges → SPARQL KG
+:::
+
+::::
+
+::: {.callout-highlight}
+`llm-wiki-memory-template` fills this layer. The rest of the talk is what that looks like in practice.
+:::
+
+::: {.notes}
+This is the transition slide from the retrieval work to the wiki work. The framing is straight from the synthesis-layer story: extraction is stage 1, analysis is stage 2, and there's a gap between analysis and presentation where "the group's understanding" is supposed to live. Today it lives in whoever's head is closest to the work. The rest of the talk is about the pattern that fills that gap.
+:::
+
+## Every LLM session starts from zero. {.smaller}
+
+[The problem]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 1</strong><span>context re-pasted</span></div>
+:::
+
+::: {.column width="8%"}
+<div class="session-break"><span class="symbol">∅</span>nothing<br>carries over</div>
+:::
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 2</strong><span>context re-pasted</span></div>
+:::
+
+::: {.column width="8%"}
+<div class="session-break"><span class="symbol">∅</span>nothing<br>carries over</div>
+:::
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 3</strong><span>context re-pasted</span></div>
+:::
+
+::::
+
+<br>
+
+- ChatGPT and Claude conversations do not remember the last one.
+- Retrieval over your group's PDFs rediscovers the same chunks on every query.
+- Nothing accumulates between conversations. Nothing compounds between collaborators.
+
+::: {.callout-highlight}
+When the student who ran the analysis graduates, so does the knowledge.
+:::
+
+## Failure paths, preserved not deleted. {.smaller}
+
+[Memory that compounds · the file-drawer effect, Rosenthal 1979]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Journals publish the win.**
+
+The abandoned method, the walked-back claim, the metric bug that inflated an earlier result — all deleted from the record.
+
+Every group has a student who repeated a failed method because no one told them.
+:::
+
+::: {.column width="50%"}
+**The wiki keeps the trajectory.**
+
+When an approach turns out wrong, the corrected successor is filed alongside the original with a cross-reference back; the failure stays in place with a `Status` note pointing forward.
+
+A verification gate ensures new claims land *alongside* the ones they qualify, not on top of them.
+:::
+
+::::
+
+::: {.callout-highlight}
+A reader arriving a year later encounters the trajectory, not just the answer.
+:::
+
+::: {.notes}
+The file-drawer effect (Rosenthal 1979) is the canonical failure mode of scientific record-keeping: only positive results get written up, the abandoned methods and walked-back claims never enter the literature. The wiki-grounded pattern is append-only by convention (Saboia Moreira et al., 2026). Corrected pages are filed alongside originals, not on top of them. A verification gate enforces this at commit time. The reader gets the trajectory, not just the answer — which is what makes the pattern durable across student generations.
+:::
+
+## Case study: the two-author demo branch {.smaller}
+
+[Real world example · Web Forager]{.kicker}
+
+Two researchers. A web-scraping pipeline extracting entities from customer sites. The colleague on the demo branch runs the pipeline and reports back to the reviewer:
+
+::: {.callout-highlight}
+Flagship customer · **17 of 17** entities extracted. Ship it.
+:::
+
+The reviewer opens a *separate* Claude Code session on the main branch to sanity-check the numbers. Two collaborators, two agents, one wiki as the shared memory between them.
+
+*What happens next depends entirely on whether the wiki carried enough structure for a reviewer to trace the claim without asking the colleague.*
+
+::: {.notes}
+Setup for the case study. Two-author project: Chris Sweet plus a colleague (Chris Frederick / Omegaice on GitHub) on a Web Forager web-scraping tool. The reported 17/17 entity coverage for the flagship customer is the claim under review. The reviewer is not the person who ran the pipeline — they're picking it up cold from the wiki. That framing matters: this is the "the wiki has to carry the load" scenario, not "the person who did the work is standing next to you."
+
+Next slide (Slide 8): the finding — the reviewer walked the wiki's typed edges backward, saw a hedge-counting bug, real coverage was 8/17.
+:::
+
+## The reviewer walked the wiki, not the code. {.smaller}
+
+[Case study · the finding]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="42%"}
+```{=html}
+<div class="extends-chain">
+  <div class="chain-box">Experiment 11</div>
+  <div class="chain-edge">↓ <code>extends:</code></div>
+  <div class="chain-box">Experiment 7</div>
+  <div class="chain-edge">↓ <code>extends:</code></div>
+  <div class="chain-box">Experiment 8</div>
+</div>
+```
+:::
+
+::: {.column width="58%"}
+The reviewer opened Experiment 11's wiki page and followed its `extends:` frontmatter edge back to Experiment 7. From there, back again to Experiment 8.
+
+Somewhere in that chain of inherited setup, a page said the pipeline treats the model's honest **"not visible on this page"** answer as a successful extraction and stops the search.
+
+That is exactly the case where deeper searching was warranted. The bug had cascaded from Experiment 7 through 8 through 11 — and the graph, not a debugger, told the reviewer where else to look.
+:::
+
+::::
+
+::: {.callout-highlight}
+Real coverage on the flagship customer: **8 of 17**. Not 17 of 17.
+:::
+
+::: {.notes}
+The specific mechanism to name: the frontmatter `extends:` edge on Experiment 11 pointed to Experiment 7. Experiment 7 pointed to Experiment 8. Following those typed edges backward surfaced the fact that the same inherited analytic frame was in all three experiments — so the bug was too.
+
+The bug itself: the pipeline had a check that treated the model's hedge ("not visible on this page") as a positive extraction. Every time the LLM was being honest about not seeing an entity, the pipeline was recording that as a successful answer AND stopping the search — meaning it never went to the next page where the entity might actually be visible.
+
+Real coverage on the flagship customer was 8 of 17, not 17 of 17. And the fix had to cascade: not just Experiment 11 (where the finding surfaced), but back through 7 and 8 too. The typed-edge chain told the reviewer where the cascade needed to reach.
+:::
+
+
+## What made this possible {.smaller}
+
+[Case study · what worked]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="42%"}
+**Two authors, two sessions, no coordination.**
+
+Both in Claude Code, no handoff meeting — the wiki carried the state.
+
+**The typed `extends:` edge is what made the cascade legible.**
+
+Body links would have said "these are related somehow." The typed edge said "this experiment inherits its analytic frame from that one; if that is wrong, this one probably is too."
+
+**75% coverage recovery** after the fix cascaded back through two prior experiments.
+:::
+
+::: {.column width="58%"}
+```{=html}
+<div id="mini-graph" style="width:100%; height:340px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
+```
+
+*Extends chain plus the two criticism edges. Same shape as the demo-branch cascade the reviewer walked.*
+
+Full case study: [`la3d.github.io/WGRA/wiki-collaboration-story/`]{.mono}
+:::
+
+::::
+
+::: {.callout-highlight}
+This does not happen with RAG. Similarity search cannot walk semantic edges backward across experiments.
+:::
+
+```{=html}
+<script>
+(function() {
+  const MINI_DATA = {"nodes":[{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","label":"Dense-RAG-Scale-Collapse","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG","label":"Iterative-Chained-RAG","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","label":"Iterative-NL-SPARQL","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"Markov-Chain-v5c2","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"RAG-Sanity-Check","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology","label":"Typed-Predicate-Ontology","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","label":"V5c2-Gold-Rank-Positions","type":"Synthesis"}}],"edges":[{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","target":"https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","target":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"criticizes","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","target":"https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology","label":"criticizes","casestudy":"yes"}}]};
+  const typeColor = {
+    'Concept': '#0d4a8b', 'Synthesis': '#7a5310', 'Entity': '#1b6e2a',
+    'SourceSummary': '#7a5310', 'Reference': '#666', 'Index': '#6a1b5b'
+  };
+  let miniCy = null;
+  function tryInitMini() {
+    const c = document.getElementById('mini-graph');
+    if (!c) return;
+    if (c.offsetWidth === 0 || c.offsetHeight === 0) return;
+    if (!window.cytoscape) return;
+    if (miniCy) { miniCy.resize(); miniCy.fit(); return; }
+    miniCy = cytoscape({
+      container: c,
+      elements: [
+        ...MINI_DATA.nodes.map(n => ({data: n.data})),
+        ...MINI_DATA.edges.map(e => ({data: e.data}))
+      ],
+      style: [
+        { selector: 'node', style: {
+          'background-color': ele => typeColor[ele.data('type')] || '#888',
+          'label': 'data(label)', 'color': '#1a1a1a',
+          'text-outline-color': '#fff', 'text-outline-width': 2,
+          'font-size': 10, 'font-family': 'Helvetica Neue, Arial, sans-serif',
+          'width': 24, 'height': 24, 'text-wrap': 'wrap', 'text-max-width': 110,
+          'text-valign': 'bottom', 'text-margin-y': 3
+        }},
+        { selector: 'edge', style: {
+          'width': 3, 'line-color': '#b8860b', 'target-arrow-color': '#b8860b',
+          'target-arrow-shape': 'triangle', 'curve-style': 'bezier',
+          'label': 'data(label)', 'font-size': 8, 'color': '#b8860b',
+          'text-background-color': '#fff', 'text-background-opacity': 0.9,
+          'text-background-padding': 2
+        }}
+      ],
+      layout: { name: 'cose', idealEdgeLength: 100, nodeOverlap: 20, animate: false, fit: true }
+    });
+  }
+  function hookMini() {
+    if (!window.Reveal) { setTimeout(hookMini, 100); return; }
+    Reveal.on('ready', tryInitMini);
+    Reveal.on('slidechanged', tryInitMini);
+    Reveal.on('resize', () => { if (miniCy) { miniCy.resize(); miniCy.fit(); } });
+  }
+  tryInitMini(); hookMini();
+})();
+</script>
+```
+
+::: {.notes}
+Three claims worth landing before moving on:
+
+1. Two-author collaboration mechanism worked. No coordination overhead — each author was in their own Claude Code session on their own branch, and the wiki was the connective tissue. That is what "team scale" looks like in practice.
+
+2. The typed edge was load-bearing. A body hyperlink would have said "there's a connection somewhere." The typed `extends:` edge said "this page inherits its analytic frame from that one; if the parent is wrong, this one probably is too." That semantic content is what let the reviewer's agent walk the cascade.
+
+3. 75% coverage recovery is a real number on the flagship entity. The fix cascaded backward through 2 prior experiments; each got a commit and a page update. The wiki preserved the trajectory — original error still findable, correction filed alongside — exactly as failure-path preservation is designed to work.
+
+Contrast with RAG: similarity search can retrieve similar chunks. It cannot walk semantic edges backward. That's the argument for typed structure over embedding-only retrieval.
+:::
+
+## Team scale · collaborative within a group {.smaller}
+
+[The wiki carries the trail across collaborators]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Lab notebooks. Slack. Google Docs. Jupyter notebooks. Half-remembered meeting slides. Protocol binders. Thesis drafts.**
+
+A postdoc and a grad student on the same project keep notes across all of these in parallel silos. When the PI checks in a month later, most of the trail is scattered or lost.
+
+**One attributed wiki instead.**
+
+Every log entry carries a `by: <human> via <agent>` line. Git preserves the amendment history. Concurrent writes: mechanical conflicts resolve automatically; semantic ones route through an LLM-assisted merge.
+:::
+
+::: {.column width="50%" .kg-caption}
+```{=html}
+<pre class="log-snippet">## [2026-06-30] ingest | Claims-Plus-Walk proposal
+- <span class="k">by:</span> <span class="s">Chris Sweet</span> <span class="k">via</span> <span class="s2">claude-code</span>
+- Created synthesis page [Claims-Plus-Walk]:
+  make the atomic claim the retrieval unit for
+  MuSiQue; the random walk over a claim graph is
+  the mechanism, and entity resolution becomes an
+  <em>output</em> of trajectory completion.
+- Cross-linked bidirectionally from
+  [Bridge-Entity], [Markov-Chain-v5c2],
+  [Operations-Basis].
+- Testable predictions filed: claim granularity
+  gives cleaner trajectory edges than v5c2 (H1);
+  claims-plus-walk degrades less on the 281→21k
+  jump (H2); ...</pre>
+```
+
+*Real log entry from the markov_embeddings_and_rag wiki. `by:` + `via:` become the audit trail — no separate metadata file, no vendor system.*
+:::
+
+::::
+
+::: {.notes}
+The Web Forager case study demonstrated this in practice: two authors, two Claude Code sessions, no synchronous coordination. The wiki was the connective tissue between the two branches. Every log entry had `by: <human> via <agent>` attribution, so the reviewer could trace who claimed what without asking the person.
+
+Mechanically: the wiki-write-protocol handles concurrent writes through git's optimistic-push with retry, plus `.gitattributes merge=union` for append-only files. When there's a semantic conflict (two people editing the same page's frontmatter), an `llm_resolve` skill routes the merge through the LLM. Both edits land with correct attribution.
+:::
+
+## Team scale · federated across groups {.smaller}
+
+[Each group publishes an agent card. Peers discover you by grepping topics.]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="42%"}
+**Comp-chem overlaps with materials science, biophysics, catalysis.**
+
+Every group is quietly re-answering questions another campus group already answered last year. When a PI leaves, that group's institutional memory walks with them.
+
+**Each group runs its own wiki, its own permissions.** The agent card is how peers find you: grep the topics, discover the capabilities, DM the mailbox.
+
+`ask` mechanism ships in template v0.1.0.
+:::
+
+::: {.column width="58%" .kg-caption}
+```{=html}
+<pre class="log-snippet">---
+<span class="k">type:</span> <span class="s">agent</span>
+<span class="k">id:</span> <span class="s">chrissweet/model_fusion</span>
+<span class="k">description:</span> <span class="s">Fusion models for pharmaceutical</span>
+  <span class="s">discrimination using NIR + PAD imagery.</span>
+<span class="k">capabilities:</span>
+  - <span class="s2">train-cnn-pad-classifier</span>
+  - <span class="s2">train-pls-r-nir-regressor</span>
+  - <span class="s2">design-fusion-strategy</span>
+<span class="k">topics:</span> [<span class="s">pad-cards, drug-quantitation,</span>
+         <span class="s">cnn-classification, nir-spectroscopy</span>]
+<span class="k">endpoints:</span>
+  <span class="k">inbox:</span> <span class="s">mailbox://chrissweet/model_fusion</span>
+---</pre>
+```
+
+*Agent card from the model_fusion group. The `capabilities:` and `topics:` fields are what peers grep against when they need help.*
+:::
+
+::::
+
+::: {.callout-highlight}
+See a federated interaction on the [team-scale page](https://la3d.github.io/WGRA/team-scale/) of the flyer — a five-minute clone-and-invoke session.
+:::
+
+## Agent capability · built-in workflow {.smaller}
+
+[Discipline in the artifact, not in the head of whoever prompts best]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+**Raw group subscription:**
+every student prompts differently. The discipline lives in memory. It walks out with them.
+
+**Configured environment:**
+the discipline is in the repo. Every session starts from a known baseline. Any agent that reads `.claude/skills/` gets it.
+
+Four operations ship as single commands: `wiki-source`, `wiki-experiment`, `wiki-lint`, plus the verification gate that fires at commit time.
+:::
+
+::: {.column width="55%" .kg-caption}
+```{=html}
+<pre class="log-snippet">---
+<span class="k">name:</span> <span class="s">wiki-experiment</span>
+<span class="k">description:</span> <span class="s">File experiment results to the wiki</span>
+  <span class="s">following the SCHEMA Ingest procedure. Use after</span>
+  <span class="s">a run produces metrics, ablations, or comparisons</span>
+  <span class="s">worth keeping as durable project memory.</span>
+---
+
+# Procedure
+1. Read existing pages before writing.
+2. Create or update the experiment-results page:
+   <span class="k">type:</span> <span class="s2">synthesis</span> or <span class="s2">entity</span>,
+   <span class="k">up:</span> pointing to the benchmark page,
+   typed edges (<span class="s2">supports:</span>, <span class="s2">criticizes:</span>) when
+   the result confirms or refutes prior claims.
+3. Body: config, headline metrics, what changed,
+   what was surprising, link to results/ dir.
+4. <span class="k">Verification gate:</span> every numerical claim traces
+   to real script output. No projections.</pre>
+```
+
+*The `wiki-experiment` skill file from the template. Every project instantiated from `crcresearch/llm-wiki-memory-template` gets the same procedure, model-agnostic.*
+:::
+
+::::
+
+::: {.notes}
+Say: "The workflow isn't a Slack channel where senior people remind juniors of best practices. It ships as skill files in the repo. Every session, the SessionStart hook injects the wiki index and the last five log entries, so the agent starts oriented instead of starting blank. The verification gate then fires at commit time — you can't file a claim like '73.3% on MuSiQue' unless the wiki page traces to real script output. Projection-as-fact detection at the artifact level, not at the reviewer's discretion."
+
+The four operations that ship as single commands: `wiki-source` (ingest a source PDF or docset), `wiki-experiment` (file experiment results), `wiki-lint` (health-check the wiki), and the verification gate (fires as a PostToolUse advisory hook). All are in the base template.
+:::
+
+## Agent capability · multi-AI model {.smaller}
+
+[Model-agnostic by design]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**Vendor-locked AI:** the memory lives with the vendor. Their subscription changes, your workflow breaks.
+
+**Wiki-grounded:** the memory is yours in git. Swap the AI.
+
+Different agents read the wiki through their own overlay directory:
+
+- `wiki/agents/claude-code/` — slash commands, hooks
+- `wiki/agents/cursor/` — `.mdc` rules
+- `wiki/agents/opencode/` — coming
+- (Add your own — the pattern is documented)
+
+Same wiki, same schema, same discipline gates. The `by: <human> via <agent>` line captures which tool did which write.
+:::
+
+::: {.column width="45%" .kg-caption}
+```{=html}
+<pre class="log-snippet">## [2026-06-14] ingest | Schema extension
+- <span class="k">by:</span> <span class="s">Chris Sweet</span> <span class="k">via</span> <span class="s2">claude-code</span>
+
+## [2026-06-25] sync | Test harness rename
+- <span class="k">by:</span> <span class="s">Chris Sweet</span> <span class="k">via</span> <span class="s2">claude-code</span>
+
+## [2026-06-30] ingest | Claims-Plus-Walk
+- <span class="k">by:</span> <span class="s">Chris Sweet</span> <span class="k">via</span> <span class="s2">claude-code</span>
+
+## [2026-07-04] update | Cursor overlay wired
+- <span class="k">by:</span> <span class="s">Chris Sweet</span> <span class="k">via</span> <span class="s2">cursor</span>
+
+## [2026-07-05] ingest | New paper section
+- <span class="k">by:</span> <span class="s">Priscila Moreira</span> <span class="k">via</span> <span class="s2">claude-code</span></pre>
+```
+
+*The audit trail records which tool wrote what. When a new model appears, adopting it is a new overlay, not a migration.*
+:::
+
+::::
+
+::: {.notes}
+The multi-AI story is really about durability. The AI vendor landscape churns every six months — a group Claude subscription might be a Cursor + Copilot subscription next semester and something else after that. If your workflow is locked to a specific vendor, you migrate every six months. If your workflow is a wiki plus a set of skill files, adopting a new agent is writing an overlay, not a migration. Same wiki, same policy files, same discipline gates. The `via: <agent>` field on every log entry is what makes it auditable which tool did which write.
+:::
+
+::: {.notes}
+Federation is the multi-wiki story. Each group is autonomous — its own wiki, its own permissions, its own git remote. The interoperation layer is an "agent card" (published by each wiki) that describes what the group knows about and how to reach it.
+
+Your agent can then issue a query to a peer group's wiki. Practical example: your colleague in comp-chem answered a DFT-functional-benchmarks question last year and filed it in their wiki. You don't have to email them — your agent asks their agent, gets a cited response back with links to specific pages in their wiki, and files the answer in yours with the attribution preserved.
+
+The `ask` mechanism (clone-and-invoke `claude -p` in the peer wiki) is in template v0.1.0. The `message`/`post` mailbox skill is not yet published; it's a maintainer-machine-only artifact today.
+:::
+## One ontology, every wiki: the semantic foundation {.smaller}
+
+[Shared substrate · `llm-wiki-colab`]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+```{=html}
+<div id="ontology-graph" style="width:100%; height:420px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
+```
+:::
+
+::: {.column width="45%" .kg-caption}
+**28 classes, four groups.**
+
+- **Core concept** · Concept, Entity, Tool
+- **Note types** · Literature, Method, Theory, Implementation, ...
+- **Structure pages** · Index, MOC, Decision, Finding, ...
+- **Person / Org**
+
+**Semantic edges** connect them: `extends`, `supports`, `criticizes`, `related`, `up`, `authorOf`, `defines`, `source`, ...
+
+The ontology ships at [`la3d.github.io/llm-wiki-colab`](https://la3d.github.io/llm-wiki-colab/). Every wiki instantiated from the template inherits it — no per-project schema work.
+
+**SHACL shapes** validate structure at commit time. **Eleven canned SPARQL queries** (`hub-notes`, `ancestors-of`, `supports-criticizes`, ...) ship in `scripts/kg/sparql/`.
+:::
+
+::::
+
+::: {.callout-highlight}
+Next slide: this ontology applied to a real research wiki — 51 pages, 1,162 triples, live.
+:::
+
+```{=html}
+<script>
+(function() {
+  const ONT_DATA = {"nodes":[{"data":{"id":"Concept","label":"Concept","group":"Core concept","kind":"class"}},{"data":{"id":"Entity","label":"Entity","group":"Core concept","kind":"class"}},{"data":{"id":"ExternalResource","label":"ExternalResource","group":"Core concept","kind":"class"}},{"data":{"id":"Tool","label":"Tool","group":"Core concept","kind":"class"}},{"data":{"id":"AuthorNote","label":"AuthorNote","group":"Note types","kind":"class"}},{"data":{"id":"BookNote","label":"BookNote","group":"Note types","kind":"class"}},{"data":{"id":"ConceptNote","label":"ConceptNote","group":"Note types","kind":"class"}},{"data":{"id":"FleetingNote","label":"FleetingNote","group":"Note types","kind":"class"}},{"data":{"id":"ImplementationNote","label":"ImplementationNote","group":"Note types","kind":"class"}},{"data":{"id":"LiteratureNote","label":"LiteratureNote","group":"Note types","kind":"class"}},{"data":{"id":"MethodNote","label":"MethodNote","group":"Note types","kind":"class"}},{"data":{"id":"TheoryNote","label":"TheoryNote","group":"Note types","kind":"class"}},{"data":{"id":"SourceSummary","label":"SourceSummary","group":"Note types","kind":"class"}},{"data":{"id":"Area","label":"Area","group":"Structure","kind":"class"}},{"data":{"id":"Comparison","label":"Comparison","group":"Structure","kind":"class"}},{"data":{"id":"Decision","label":"Decision","group":"Structure","kind":"class"}},{"data":{"id":"Finding","label":"Finding","group":"Structure","kind":"class"}},{"data":{"id":"Index","label":"Index","group":"Structure","kind":"class"}},{"data":{"id":"MOC","label":"MOC","group":"Structure","kind":"class"}},{"data":{"id":"Plan","label":"Plan","group":"Structure","kind":"class"}},{"data":{"id":"Project","label":"Project","group":"Structure","kind":"class"}},{"data":{"id":"RecipeCollection","label":"RecipeCollection","group":"Structure","kind":"class"}},{"data":{"id":"Reference","label":"Reference","group":"Structure","kind":"class"}},{"data":{"id":"Synthesis","label":"Synthesis","group":"Structure","kind":"class"}},{"data":{"id":"Workflow","label":"Workflow","group":"Structure","kind":"class"}},{"data":{"id":"CourseNotes","label":"CourseNotes","group":"Structure","kind":"class"}},{"data":{"id":"Person","label":"Person","group":"Person / Org","kind":"class"}},{"data":{"id":"Organization","label":"Organization","group":"Person / Org","kind":"class"}}],"edges":[{"data":{"source":"Person","target":"Organization","label":"affiliation","kind":"ontology-property"}},{"data":{"source":"Person","target":"SourceSummary","label":"authorOf","kind":"ontology-property"}},{"data":{"source":"Person","target":"LiteratureNote","label":"authorOf","kind":"ontology-property"}},{"data":{"source":"Project","target":"Person","label":"collaborator","kind":"ontology-property"}},{"data":{"source":"Project","target":"Area","label":"area","kind":"ontology-property"}},{"data":{"source":"Concept","target":"MOC","label":"up","kind":"ontology-property"}},{"data":{"source":"MOC","target":"Area","label":"up","kind":"ontology-property"}},{"data":{"source":"Area","target":"Index","label":"up","kind":"ontology-property"}},{"data":{"source":"LiteratureNote","target":"MOC","label":"up","kind":"ontology-property"}},{"data":{"source":"TheoryNote","target":"MOC","label":"up","kind":"ontology-property"}},{"data":{"source":"MethodNote","target":"MOC","label":"up","kind":"ontology-property"}},{"data":{"source":"LiteratureNote","target":"Concept","label":"supports","kind":"ontology-property"}},{"data":{"source":"LiteratureNote","target":"Concept","label":"criticizes","kind":"ontology-property"}},{"data":{"source":"BookNote","target":"Concept","label":"supports","kind":"ontology-property"}},{"data":{"source":"MethodNote","target":"Concept","label":"supports","kind":"ontology-property"}},{"data":{"source":"TheoryNote","target":"Concept","label":"extends","kind":"ontology-property"}},{"data":{"source":"FleetingNote","target":"Concept","label":"related","kind":"ontology-property"}},{"data":{"source":"AuthorNote","target":"Person","label":"related","kind":"ontology-property"}},{"data":{"source":"ConceptNote","target":"Concept","label":"defines","kind":"ontology-property"}},{"data":{"source":"Concept","target":"ImplementationNote","label":"implementation","kind":"ontology-property"}},{"data":{"source":"Concept","target":"SourceSummary","label":"source","kind":"ontology-property"}},{"data":{"source":"Concept","target":"Reference","label":"source","kind":"ontology-property"}},{"data":{"source":"Concept","target":"Entity","label":"related","kind":"ontology-property"}},{"data":{"source":"Decision","target":"Finding","label":"resolves","kind":"ontology-property"}},{"data":{"source":"Decision","target":"LiteratureNote","label":"informedBy","kind":"ontology-property"}},{"data":{"source":"Finding","target":"Concept","label":"supports","kind":"ontology-property"}},{"data":{"source":"Synthesis","target":"Concept","label":"incorporates","kind":"ontology-property"}},{"data":{"source":"Comparison","target":"Concept","label":"related","kind":"ontology-property"}},{"data":{"source":"Plan","target":"Workflow","label":"precedes","kind":"ontology-property"}},{"data":{"source":"Workflow","target":"Finding","label":"feedsInto","kind":"ontology-property"}},{"data":{"source":"ExternalResource","target":"Reference","label":"source","kind":"ontology-property"}},{"data":{"source":"Tool","target":"Tool","label":"dependsOn","kind":"ontology-property"}},{"data":{"source":"CourseNotes","target":"TheoryNote","label":"extends","kind":"ontology-property"}},{"data":{"source":"RecipeCollection","target":"CourseNotes","label":"partOf","kind":"ontology-property"}},{"data":{"source":"Concept","target":"Concept","label":"extends","kind":"page-edge"}},{"data":{"source":"Concept","target":"Concept","label":"supports","kind":"page-edge"}},{"data":{"source":"Concept","target":"Concept","label":"criticizes","kind":"page-edge"}}]};
+  const groupColor = {
+    'Core concept': '#0d4a8b',
+    'Note types':   '#7a5310',
+    'Structure':    '#6a1b5b',
+    'Person / Org': '#1b6e2a',
+    'Other':        '#888'
+  };
+  let ontCy = null;
+  function tryInitOnt() {
+    const c = document.getElementById('ontology-graph');
+    if (!c) return;
+    if (c.offsetWidth === 0 || c.offsetHeight === 0) return;
+    if (!window.cytoscape) return;
+    if (ontCy) { ontCy.resize(); ontCy.fit(); return; }
+    ontCy = cytoscape({
+      container: c,
+      elements: [
+        ...ONT_DATA.nodes.map(n => ({data: n.data})),
+        ...ONT_DATA.edges.map(e => ({data: e.data}))
+      ],
+      style: [
+        { selector: 'node', style: {
+          'background-color': ele => groupColor[ele.data('group')] || '#888',
+          'label': 'data(label)', 'color': '#1a1a1a',
+          'text-outline-color': '#fff', 'text-outline-width': 2,
+          'font-size': 9, 'font-family': 'Helvetica Neue, Arial, sans-serif',
+          'width': 24, 'height': 24
+        }},
+        { selector: 'edge', style: {
+          'width': 1.1, 'line-color': '#bbb', 'target-arrow-color': '#bbb',
+          'target-arrow-shape': 'triangle', 'curve-style': 'bezier',
+          'label': 'data(label)', 'font-size': 7, 'color': '#666',
+          'text-background-color': '#fff', 'text-background-opacity': 0.85,
+          'text-background-padding': 1, 'text-rotation': 'autorotate'
+        }},
+        { selector: 'edge[kind = "page-edge"]', style: {
+          'line-style': 'dashed', 'line-color': '#0d4a8b',
+          'target-arrow-color': '#0d4a8b', 'color': '#0d4a8b'
+        }}
+      ],
+      layout: { name: 'cose', idealEdgeLength: 105, nodeOverlap: 18, animate: false, fit: true }
+    });
+  }
+  function hookOnt() {
+    if (!window.Reveal) { setTimeout(hookOnt, 100); return; }
+    Reveal.on('ready', tryInitOnt);
+    Reveal.on('slidechanged', tryInitOnt);
+    Reveal.on('resize', () => { if (ontCy) { ontCy.resize(); ontCy.fit(); } });
+  }
+  tryInitOnt(); hookOnt();
+})();
+</script>
+```
+
+::: {.notes}
+Wiki-page frontmatter uses typed edges — `extends:`, `supports:`, `criticizes:`, `related:`, `up:`. The KG-build pipeline (`scripts/kg/build-graph.sh`) walks the wiki, reads each page's frontmatter, and emits an RDF triple per typed edge. The result is a real semantic graph — 28-class ontology from the shared `llm-wiki-colab` project, SHACL-validated, queryable with SPARQL.
+
+The template ships eleven canned SPARQL queries: hub-notes (this slide), ancestors-of (transitive up traversal), supports-criticizes (evidence edges), orphan-notes (unlinked pages), and others. Each is executed in-process via rdflib against the built `graph-full.ttl`. Deep dive: `la3d.github.io/WGRA/knowledge-graph/`.
+:::
+
+## The same ontology, a real research wiki {.smaller}
+
+[Live instance graph · markov_embeddings_and_rag]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="62%"}
+```{=html}
+<div id="graph" style="width:100%; height:440px; border: 1px solid #ccc; background: #fff; border-radius: 4px;"></div>
+```
+:::
+
+::: {.column width="38%" .kg-caption}
+[markov_embeddings_and_rag]{.mono}
+
+30 nodes, 39 edges. Real research wiki, reified to RDF.
+
+**Gold-highlighted** edges are the same shape as the web_forager cascade:
+
+- 4-hop `extends` chain
+- 2 `criticizes` edges
+
+**Random-Walk-With-Restart** — central hub, 48 inbound edges. Surfaced by `hub-notes` SPARQL, not authored.
+
+*No Alt-Tab. Drag nodes to interact.*
+:::
+
+::::
+
+```{=html}
+<script>
+(function() {
+  const typeColor = {
+    'Concept':        '#0d4a8b',
+    'Synthesis':      '#7a5310',
+    'Entity':         '#1b6e2a',
+    'SourceSummary':  '#7a5310',
+    'Reference':      '#666',
+    'Index':          '#6a1b5b',
+    'UntypedNote':    '#aaa'
+  };
+
+  const cyStyle = [
+    { selector: 'node', style: {
+      'background-color': ele => typeColor[ele.data('type')] || '#888',
+      'label': 'data(label)',
+      'color': '#1a1a1a',
+      'text-outline-color': '#fff',
+      'text-outline-width': 2,
+      'font-size': 8,
+      'font-family': 'Helvetica Neue, Arial, sans-serif',
+      'width': 18, 'height': 18,
+      'text-wrap': 'wrap',
+      'text-max-width': 90
+    }},
+    { selector: 'node[type = "Concept"]', style: { 'width': 24, 'height': 24 }},
+    { selector: 'edge', style: {
+      'width': 1, 'line-color': '#ccc', 'target-arrow-color': '#ccc',
+      'target-arrow-shape': 'triangle', 'curve-style': 'bezier',
+      'font-size': 7, 'color': '#888'
+    }},
+    { selector: 'edge[label = "extends"]',    style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.4 }},
+    { selector: 'edge[label = "supports"]',   style: { 'line-color': '#1b6e2a', 'target-arrow-color': '#1b6e2a', 'width': 1.4 }},
+    { selector: 'edge[label = "criticizes"]', style: { 'line-color': '#8b0d3f', 'target-arrow-color': '#8b0d3f', 'width': 1.6 }},
+    { selector: 'edge[casestudy = "yes"]', style: {
+      'line-color': '#b8860b', 'target-arrow-color': '#b8860b', 'width': 3, 'z-index': 10
+    }},
+    { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#b8860b' }}
+  ];
+
+  let cy = null;
+  let graphData = null;
+
+  function tryInit() {
+    const container = document.getElementById('graph');
+    if (!container) return;
+    if (container.offsetWidth === 0 || container.offsetHeight === 0) return;
+    if (!window.cytoscape || !graphData) return;
+    if (cy) { cy.resize(); cy.fit(); return; }
+
+    cy = cytoscape({
+      container: container,
+      elements: [
+        ...graphData.nodes.map(n => ({data: n.data})),
+        ...graphData.edges.map(e => ({data: e.data}))
+      ],
+      style: cyStyle,
+      layout: { name: 'cose', idealEdgeLength: 85, nodeOverlap: 14, animate: false, fit: true }
+    });
+  }
+
+  graphData = {"nodes":[{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks","label":"Answer-Chunks","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","label":"BM25-Energy-Drift","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity","label":"Bridge-Entity","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk","label":"Claims-Plus-Walk","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","label":"Dense-RAG-Scale-Collapse","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","label":"Energy-Based-Drift","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking","label":"Entity-Overlap-Ranking","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design","label":"Extraction-Retrieval-Co-Design","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph","label":"Heterogeneous-Graph","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG","label":"Iterative-Chained-RAG","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","label":"Iterative-NL-SPARQL","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"Markov-Chain-v5c2","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial","label":"Markov-Retrieval-Tutorial","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings","label":"MiniLM-Embeddings","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","label":"MuSiQue-Benchmark","type":"Entity"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"MuSiQue-PoC-Results","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Operations-Basis","label":"Operations-Basis","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set","label":"Operator-Spanning-Set","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition","label":"Path-Length-Decomposition","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy","label":"Per-Question-Energy","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Question-Projection","label":"Question-Projection","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"RAG-Sanity-Check","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart","label":"Random-Walk-With-Restart","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Restart-Probability","label":"Restart-Probability","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization","label":"Softmax-Normalization","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes","label":"Three-Retrieval-Modes","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument","label":"Trajectory-Length-Argument","type":"Concept"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology","label":"Typed-Predicate-Ontology","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","label":"V5c2-Gold-Rank-Positions","type":"Synthesis"}},{"data":{"id":"https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode","label":"Vanilla-RAG-Failure-Mode","type":"Concept"}}],"edges":[{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk","target":"https://la3d.github.io/llm-wiki-colab/page/Operations-Basis","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","target":"https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","target":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","label":"extends","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks","target":"https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument","target":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","target":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","target":"https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart","label":"extends","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial","label":"supports","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument","target":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","label":"supports","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"criticizes","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL","target":"https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology","label":"criticizes","casestudy":"yes"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","target":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG","target":"https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse","target":"https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings","target":"https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design","target":"https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity","target":"https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","target":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument","target":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift","target":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","target":"https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Operations-Basis","target":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2","target":"https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization","label":"related","casestudy":"no"}},{"data":{"source":"https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results","target":"https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization","label":"related","casestudy":"no"}}]};
+  tryInit();
+
+  // Reveal.js may not be ready when this script runs; retry.
+  function hookReveal() {
+    if (!window.Reveal) { setTimeout(hookReveal, 100); return; }
+    Reveal.on('ready', tryInit);
+    Reveal.on('slidechanged', tryInit);
+    Reveal.on('resize', () => { if (cy) { cy.resize(); cy.fit(); } });
+  }
+  hookReveal();
+})();
+</script>
+```
+
+::: {.notes}
+Say: "This is a different research wiki, same pattern. The gold-highlighted edges have the exact shape as the web_forager cascade I just described — a four-hop extends chain from a leaf finding back through experimental lineage to a foundational concept, and a criticizes edge from that same leaf finding to a page five hops up its own ancestry."
+
+Then drag a node to demonstrate interactivity. Zoom in on the gold cluster.
+
+Advantage over the PowerPoint version: no Alt-Tab to Safari, no browser-tab risk, no fallback screenshots. If Wi-Fi drops during the talk, this slide still works because everything is local.
+:::
+
+## The pattern across three project types {.smaller}
+
+[Same template, three genres of wiki]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="33%"}
+**Web Forager**
+Research execution
+
+Two-author project, typed-edge cascade caught a hedge-counting bug before shipping.
+
+**8 of 17 → 17 of 17.** 75% coverage recovery.
+
+*(the case study you just walked through)*
+:::
+
+::: {.column width="33%"}
+**AI-Sci-Disc-Mem**
+External literature survey
+
+115 papers under 20 topic Indexes, 453 typed cross-references.
+
+**Chemistry ↔ Foundation Models: 18** (the dominant interdisciplinary bond, surfaced by graph query).
+
+The graph shows what actually connects to what.
+:::
+
+::: {.column width="33%"}
+**SavoieAgentKnowledge**
+Group publications catalog
+
+91 papers × 7 research problems. Two dominant problems capture half the work; **YARP** surfaces as the internal method landmark.
+
+**31%** of papers still unassigned — the graph knows its own backlog.
+:::
+
+::::
+
+::: {.callout-highlight}
+Same template, same ontology, same discipline gates. The wiki content is domain-specific.
+:::
+
+::: {.notes}
+Three concrete instances of the same pattern. Web Forager (which we just went through) is a research-execution wiki with typed evidence edges — the extends cascade caught a specific quantitative bug. AI-Sci-Disc-Mem is a literature survey, 20 topics with cross-references — the graph tells the maintainer which sub-domains actually talk to each other. SavoieAgentKnowledge is a group's own publications catalog — 91 papers under 7 research problems, with 28 papers still awaiting triage. Three genres, one template, one discipline pattern.
+:::
+
+## Getting started: fifteen minutes to a working wiki {.smaller}
+
+[Adoption]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+**What ships in v0.1.0**
+
+- `crcresearch/llm-wiki-memory-template` on GitHub
+- `.claude/skills/` — `wiki-source`, `wiki-experiment`, `wiki-lint`
+- `scripts/kg/` — `build-graph.sh`, SHACL shapes, 11 SPARQL queries
+- Verification gate + discipline gates preconfigured
+- `ask` federation mechanism
+- Cursor overlay + minimal-agent mode
+
+Same template as microelectronics-tutor-demo, model_fusion, agent-comms, and the case studies you saw.
+:::
+
+::: {.column width="45%"}
+**Five steps to a working wiki:**
+
+1. `Use this template` on GitHub, clone locally.
+2. `./scripts/instantiate.sh "My Project"`
+3. Ingest your first source — paper, dataset, code repo.
+4. Ask a question. The agent files the answer as a wiki page.
+5. Commit. Every future session starts from that memory.
+
+**CRC helps with initial ingest.** Bring your first three papers and we'll walk through the pattern with you.
+:::
+
+::::
+
+::: {.callout-highlight}
+The wiki is the project. The AI is a tool that reads and writes it.
+:::
+
+::: {.notes}
+Fifteen-minute quickstart. Clone the template, rename, ingest, ask, commit. After the first session, the wiki has your project in it. If someone wants help with initial ingest — especially for domain sources that need a schema-driven connector (databases, complex figures) — that's what CRC is here for. Bring your first three papers.
+
+Template repo URL: github.com/crcresearch/llm-wiki-memory-template. The `README.md` there was updated last week to link the Beyond Memory paper and the WGRA flyer up top.
+:::
+
+## Learn more · Thanks · Questions {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Learn more**
+
+- **Paper**
+  [Beyond Memory (Saboia Moreira et al., 2026)](https://doi.org/10.5281/zenodo.21213175)
+
+- **Template**
+  [`github.com/crcresearch/llm-wiki-memory-template`](https://github.com/crcresearch/llm-wiki-memory-template)
+
+- **Semantic foundation**
+  [`la3d.github.io/llm-wiki-colab`](https://la3d.github.io/llm-wiki-colab/)
+
+- **Flyer + deep dives**
+  [`la3d.github.io/WGRA`](https://la3d.github.io/WGRA)
+
+- **Case study (Web Forager)**
+  [`.../wiki-collaboration-story`](https://la3d.github.io/WGRA/wiki-collaboration-story/)
+:::
+
+::: {.column width="50%"}
+**Contact**
+
+Chris Sweet · [csweet1@nd.edu](mailto:csweet1@nd.edu)
+Center for Research Computing · Notre Dame
+
+**Co-authors**
+
+Priscila Moreira · Charles Vardeman · James Sweet
+
+**Acknowledgements**
+
+Chris Frederick (Web Forager collaborator) · CRC leadership · early adopters (markov_embeddings_and_rag, AI-Sci-Disc-Mem, SavoieAgentKnowledge, Web Forager teams)
+
+::: {.callout-highlight}
+Questions?
+:::
+:::
+
+::::
+
+::: {.notes}
+All the URLs are on this slide. Zenodo concept DOI on the paper — it resolves to the latest version. Template repo is on GitHub. Semantic foundation is `llm-wiki-colab`. The flyer at `la3d.github.io/WGRA` has the three deep-dives (memory-that-compounds, team-scale, agent-capability), the KG deep-dive with live SPARQL, and the case-study writeup.
+
+Slack me for the setup session. Bring your first three papers.
+
+Thank you.
+:::
+
