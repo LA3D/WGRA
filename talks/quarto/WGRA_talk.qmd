@@ -265,23 +265,23 @@ This is the transition slide from the retrieval work to the wiki work. The frami
 :::: {.columns}
 
 ::: {.column width="50%"}
-**Direct-ingest**
+**Direct-ingest** · schema-extraction into wiki pages
 
 For a group's own papers, a thesis literature review, a course reading list — small corpora where every source deserves its own page.
 
-Each paper becomes a typed page (`SourceSummary`, `LiteratureNote`, `MethodNote`) with frontmatter edges (`extends`, `supports`, `criticizes`, `up`).
+Each source becomes a typed page (`SourceSummary`, `LiteratureNote`, `MethodNote`) with frontmatter edges (`extends`, `supports`, `criticizes`, `up`).
 
-Build a **semantic KG over pages** — different from the per-document extraction graph. Query with SPARQL: hub papers, criticism cascades, unassigned backlog.
+The KG is **over pages** — categorically different from the per-document parse graph on slides 2-3. Query with SPARQL: hub papers, criticism cascades, unassigned backlog.
 
 *AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.*
 :::
 
 ::: {.column width="50%"}
-**Synthesis over a pipeline**
+**Synthesis over a pipeline** · above the document-parse graph
 
-For large corpora where you first run extraction + retrieval — like slides 3-5 (paper structure, document graph, 21,000-chunk MuSiQue).
+For large corpora where you first run extraction + retrieval — slides 2-5's paper-explorer, document graph, 21,000-chunk MuSiQue.
 
-The wiki sits between the raw pipeline and the reader, capturing:
+The pipeline document-parses; the wiki sits above it, capturing:
 
 - which questions have been answered
 - which claims survived cross-checking
@@ -294,11 +294,13 @@ The wiki sits between the raw pipeline and the reader, capturing:
 ::::
 
 ::: {.callout-highlight}
-Same substrate, same discipline gates, same SPARQL queries — a different starting point. The rest of the talk shows the direct-ingest mode.
+Same substrate, same discipline gates, same SPARQL queries — categorically different graph. The rest of the talk shows the direct-ingest mode.
 :::
 
 ::: {.notes}
 Important framing point: `llm-wiki-memory-template` is not just a synthesis layer that sits above a large extraction pipeline. It's the memory substrate, and it has two natural entry points.
+
+The two modes produce **categorically different graphs**, not scaled versions of the same thing. Priscila is developing this distinction as an explicit taxonomy on the `crcresearch/data-extraction-wiki-memory` wiki (see the `Schema-Extraction-vs-Document-Parsing` page): schema-driven extraction fills predefined structure (like the SourceSummary/MethodNote/LiteratureNote page types in a wiki), while document parsing reconstructs the whole page (layout, reading order, tables, figures — what the paper-explorer on slide 2 shows). Different tasks, different training, different outputs. Confusing the two is the most common source of wasted implementation effort in extraction work.
 
 Direct-ingest is what most academic work actually needs. You have your group's own papers (or your thesis's cited literature, or your course's reading list) — dozens to hundreds of sources, not millions of chunks. Each paper deserves its own wiki page with frontmatter that says what it argues, what it extends, what it criticizes. The KG that builds is a semantic graph OVER pages, not per-document extractions. That's what AI-Sci-Disc-Mem does (115 papers × 20 topics). That's what SavoieAgentKnowledge does (91 papers × 7 research problems). That's what the web_forager case study you'll see next uses.
 
