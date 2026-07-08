@@ -414,21 +414,15 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Direct-ingest</strong> · schema-extraction into wiki pages</p>
-<p>For a group’s own papers, a thesis literature review, a course reading list — small corpora where every source deserves its own page.</p>
+<p>For a group’s own papers, a thesis lit review, a research-execution wiki.</p>
 <p>Each source becomes a typed page (<code>SourceSummary</code>, <code>LiteratureNote</code>, <code>MethodNote</code>) with frontmatter edges (<code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>up</code>).</p>
-<p>The KG is <strong>over pages</strong> — categorically different from the per-document parse graph on slides 2-3. Query with SPARQL: hub papers, criticism cascades, unassigned backlog.</p>
-<p><em>AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.</em></p>
+<p>The KG is <strong>over pages</strong> — categorically different from the per-document parse graph on slides 2-3.</p>
+<p><em>markov_embeddings_and_rag, AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.</em></p>
 </div><div class="column" style="width:50%;">
 <p><strong>Synthesis over a pipeline</strong> · above the document-parse graph</p>
 <p>For large corpora where you first run extraction + retrieval — slides 2-5’s paper-explorer, document graph, 21,000-chunk MuSiQue.</p>
-<p>The pipeline document-parses; the wiki sits above it, capturing:</p>
-<ul>
-<li>which questions have been answered</li>
-<li>which claims survived cross-checking</li>
-<li>which methods were tried and walked back</li>
-<li>what still needs verification</li>
-</ul>
-<p><em>markov_embeddings_and_rag, earth616 — synthesis on top of the extraction pipeline.</em></p>
+<p>The pipeline document-parses; the wiki sits above it, capturing what survived cross-checking and what was walked back.</p>
+<p><em>earth616 — synthesis on top of the extraction pipeline.</em></p>
 </div></div>
 <div class="callout-highlight">
 <p>Same substrate, same discipline gates, same SPARQL queries — categorically different graph. The rest of the talk shows the direct-ingest mode.</p>

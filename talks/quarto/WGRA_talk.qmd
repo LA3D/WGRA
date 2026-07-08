@@ -267,13 +267,13 @@ This is the transition slide from the retrieval work to the wiki work. The frami
 ::: {.column width="50%"}
 **Direct-ingest** · schema-extraction into wiki pages
 
-For a group's own papers, a thesis literature review, a course reading list — small corpora where every source deserves its own page.
+For a group's own papers, a thesis lit review, a research-execution wiki.
 
 Each source becomes a typed page (`SourceSummary`, `LiteratureNote`, `MethodNote`) with frontmatter edges (`extends`, `supports`, `criticizes`, `up`).
 
-The KG is **over pages** — categorically different from the per-document parse graph on slides 2-3. Query with SPARQL: hub papers, criticism cascades, unassigned backlog.
+The KG is **over pages** — categorically different from the per-document parse graph on slides 2-3.
 
-*AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.*
+*markov_embeddings_and_rag, AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.*
 :::
 
 ::: {.column width="50%"}
@@ -281,14 +281,9 @@ The KG is **over pages** — categorically different from the per-document parse
 
 For large corpora where you first run extraction + retrieval — slides 2-5's paper-explorer, document graph, 21,000-chunk MuSiQue.
 
-The pipeline document-parses; the wiki sits above it, capturing:
+The pipeline document-parses; the wiki sits above it, capturing what survived cross-checking and what was walked back.
 
-- which questions have been answered
-- which claims survived cross-checking
-- which methods were tried and walked back
-- what still needs verification
-
-*markov_embeddings_and_rag, earth616 — synthesis on top of the extraction pipeline.*
+*earth616 — synthesis on top of the extraction pipeline.*
 :::
 
 ::::
