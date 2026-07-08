@@ -408,6 +408,48 @@ all-gold@30 · vs 88% on a small distractor-free set.
           display:block!important;
       }</style></aside>
 </section>
+<section id="two-ways-in" class="slide level2 smaller">
+<h2>Two ways in</h2>
+<p><span class="kicker">The template’s two ingestion modes</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Direct-ingest</strong></p>
+<p>For a group’s own papers, a thesis literature review, a course reading list — small corpora where every source deserves its own page.</p>
+<p>Each paper becomes a typed page (<code>SourceSummary</code>, <code>LiteratureNote</code>, <code>MethodNote</code>) with frontmatter edges (<code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>up</code>).</p>
+<p>Build a <strong>semantic KG over pages</strong> — different from the per-document extraction graph. Query with SPARQL: hub papers, criticism cascades, unassigned backlog.</p>
+<p><em>AI-Sci-Disc-Mem, SavoieAgentKnowledge, web_forager — all direct-ingest.</em></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Synthesis over a pipeline</strong></p>
+<p>For large corpora where you first run extraction + retrieval — like slides 3-5 (paper structure, document graph, 21,000-chunk MuSiQue).</p>
+<p>The wiki sits between the raw pipeline and the reader, capturing:</p>
+<ul>
+<li>which questions have been answered</li>
+<li>which claims survived cross-checking</li>
+<li>which methods were tried and walked back</li>
+<li>what still needs verification</li>
+</ul>
+<p><em>markov_embeddings_and_rag, earth616 — synthesis on top of the extraction pipeline.</em></p>
+</div></div>
+<div class="callout-highlight">
+<p>Same substrate, same discipline gates, same SPARQL queries — a different starting point. The rest of the talk shows the direct-ingest mode.</p>
+</div>
+<aside class="notes">
+<p>Important framing point: <code>llm-wiki-memory-template</code> is not just a synthesis layer that sits above a large extraction pipeline. It’s the memory substrate, and it has two natural entry points.</p>
+<p>Direct-ingest is what most academic work actually needs. You have your group’s own papers (or your thesis’s cited literature, or your course’s reading list) — dozens to hundreds of sources, not millions of chunks. Each paper deserves its own wiki page with frontmatter that says what it argues, what it extends, what it criticizes. The KG that builds is a semantic graph OVER pages, not per-document extractions. That’s what AI-Sci-Disc-Mem does (115 papers × 20 topics). That’s what SavoieAgentKnowledge does (91 papers × 7 research problems). That’s what the web_forager case study you’ll see next uses.</p>
+<p>Synthesis-over-a-pipeline is what you do at extraction scale. When you’re running MuSiQue at 21,000 chunks, the wiki isn’t ingesting the raw chunks — it’s synthesizing what the pipeline learned. Which experiments survived, which drifted, which were walked back. That’s what markov_embeddings_and_rag does.</p>
+<p>Same template. Same discipline gates. Same SPARQL substrate. Different starting point. The rest of the talk mostly shows direct-ingest, because that’s what will resonate with most of the audience — but the same wiki works for both.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="every-llm-session-starts-from-zero." class="slide level2 smaller">
 <h2>Every LLM session starts from zero.</h2>
 <p><span class="kicker">The problem</span></p>
