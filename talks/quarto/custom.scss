@@ -75,7 +75,7 @@ $presentation-font-size-root: 32px;
 
   // Kicker: injected via CSS pseudo-element on the title
   h1.title::before {
-    content: "SUMMER AI EXTRACTION GROUP";
+    content: "DATA EXTRACTION SUMMER GROUP";
     display: block;
     color: $gold;
     text-transform: uppercase;
@@ -146,7 +146,7 @@ $presentation-font-size-root: 32px;
 
   // Bottom footer: date left, URL right
   &::after {
-    content: "9 JULY 2026        la3d.github.io/WGRA";
+    content: "JULY 9, 2026        la3d.github.io/WGRA";
     position: absolute;
     left: 3em;
     right: 3em;
