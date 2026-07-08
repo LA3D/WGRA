@@ -1,6 +1,6 @@
 ---
-title: "Wiki-Grounded Research Agents"
-subtitle: "A shared living memory for scientists and their AI agents"
+title: "Extract, Retrieve, Synthesize"
+subtitle: "From layout-aware extraction to durable, wiki-grounded research memory"
 author:
   - name: "Priscila Moreira"
   - name: "Charles Vardeman"
