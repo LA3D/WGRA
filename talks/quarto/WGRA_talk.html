@@ -13,6 +13,7 @@
   <meta name="author" content="Charles Vardeman">
   <meta name="author" content="James Sweet">
   <meta name="author" content="Chris Sweet">
+  <meta name="dcterms.date" content="2026-07-09">
   <title>Extract, Retrieve, Synthesize</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -35,7 +36,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="WGRA_talk_files/libs/revealjs/dist/theme/quarto-1e479292cc30d068e8e3e661cb32743d.css">
+  <link rel="stylesheet" href="WGRA_talk_files/libs/revealjs/dist/theme/quarto-9d022a493ef3951d75f0061b1805757c.css">
   <link href="WGRA_talk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="WGRA_talk_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="WGRA_talk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -128,6 +129,20 @@
     }
   </style>
   <script src="cytoscape.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function injectKicker() {
+      var ts = document.getElementById('title-slide');
+      if (!ts) { setTimeout(injectKicker, 100); return; }
+      if (ts.querySelector('.title-kicker')) return;
+      var k = document.createElement('div');
+      k.className = 'title-kicker';
+      k.textContent = 'Data Extraction Summer Group';
+      ts.insertBefore(k, ts.firstChild);
+    }
+    injectKicker();
+  });
+  </script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -160,6 +175,7 @@ Chris Sweet
 </div>
 </div>
 
+  <p class="date">July 9, 2026</p>
 </section>
 <section id="from-pdf-to-structured-elements" class="slide level2 smaller">
 <h2>From PDF to structured elements</h2>

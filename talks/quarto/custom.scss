@@ -57,7 +57,7 @@ $presentation-font-size-root: 32px;
 // Quarto renders: h1.title, .subtitle, .quarto-title-authors, .date.
 // We style each and inject a kicker via ::before on the title.
 
-.reveal .slides section.title-slide {
+.reveal .slides section#title-slide {
   text-align: left;
   padding: 3em 4em 2em !important;
   color: white;
@@ -73,18 +73,18 @@ $presentation-font-size-root: 32px;
     text-align: left;
   }
 
-  // Kicker: injected via CSS pseudo-element on the title
-  h1.title::before {
-    content: "DATA EXTRACTION SUMMER GROUP";
-    display: block;
+  // Kicker: injected via JS in include-in-header (see WGRA_talk.qmd YAML).
+  // Rendered as gold-uppercase small-tracked text above the title.
+  .title-kicker {
     color: $gold;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    font-size: 0.32em;
+    font-size: 0.85em;
     font-weight: 600;
     font-family: "Helvetica Neue", sans-serif;
-    margin-bottom: 1.6em;
+    margin: 0 0 1.4em;
     line-height: 1;
+    text-align: left;
   }
 
   .subtitle {
@@ -144,25 +144,21 @@ $presentation-font-size-root: 32px;
     margin: 0 0 1.5em;
   }
 
-  // Bottom footer: date left, URL right
-  &::after {
-    content: "JULY 9, 2026        la3d.github.io/WGRA";
+  // Bottom-left date (from YAML `date:` field). URL rendered by Quarto's
+  // footer plugin at bottom-right.
+  .date {
     position: absolute;
     left: 3em;
-    right: 3em;
     bottom: 1.6em;
     color: $gold;
     font-family: "Helvetica Neue", sans-serif;
     font-size: 0.7em;
     font-weight: 700;
     letter-spacing: 0.05em;
-    display: flex;
-    justify-content: space-between;
+    text-transform: uppercase;
+    margin: 0;
   }
 }
-
-// Hide Quarto's default date rendering on the title slide (we render via ::after)
-.reveal .slides section.title-slide .date { display: none; }
 
 // ---- Content slides ----
 .reveal .slides section h2 {

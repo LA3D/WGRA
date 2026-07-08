@@ -6,6 +6,8 @@ author:
   - name: "Charles Vardeman"
   - name: "James Sweet"
   - name: "Chris Sweet"
+date: "2026-07-09"
+date-format: "MMMM D, YYYY"
 format:
   revealjs:
     theme: [default, custom.scss]
@@ -21,6 +23,20 @@ format:
     include-in-header:
       - text: |
           <script src="cytoscape.min.js"></script>
+          <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            function injectKicker() {
+              var ts = document.getElementById('title-slide');
+              if (!ts) { setTimeout(injectKicker, 100); return; }
+              if (ts.querySelector('.title-kicker')) return;
+              var k = document.createElement('div');
+              k.className = 'title-kicker';
+              k.textContent = 'Data Extraction Summer Group';
+              ts.insertBefore(k, ts.firstChild);
+            }
+            injectKicker();
+          });
+          </script>
     resources:
       - cytoscape.min.js
       - instance-graph-slice.json
