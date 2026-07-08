@@ -711,7 +711,12 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <p><strong>Comp-chem overlaps with materials science, biophysics, catalysis.</strong></p>
 <p>Every group is quietly re-answering questions another campus group already answered last year. When a PI leaves, that group’s institutional memory walks with them.</p>
 <p><strong>Each group runs its own wiki, its own permissions.</strong> The agent card is how peers find you: grep the topics, discover the capabilities, DM the mailbox.</p>
-<p><code>ask</code> mechanism ships in template v0.1.0.</p>
+<p><strong>Three federation modes:</strong></p>
+<ul>
+<li><code>ask</code> — clone-and-invoke, synchronous. <strong>Shipped in v0.1.0.</strong></li>
+<li><code>message</code> — async DMs to a peer’s inbox. <em>Designed, not yet published.</em></li>
+<li><code>post</code> — channel broadcasts to subscribers. <em>Designed, not yet published.</em></li>
+</ul>
 </div><div class="column kg-caption" style="width:58%;">
 <pre class="log-snippet">---
 <span class="k">type:</span> <span class="s">agent</span>

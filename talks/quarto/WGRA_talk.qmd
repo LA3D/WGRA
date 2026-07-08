@@ -594,7 +594,11 @@ Every group is quietly re-answering questions another campus group already answe
 
 **Each group runs its own wiki, its own permissions.** The agent card is how peers find you: grep the topics, discover the capabilities, DM the mailbox.
 
-`ask` mechanism ships in template v0.1.0.
+**Three federation modes:**
+
+- `ask` — clone-and-invoke, synchronous. **Shipped in v0.1.0.**
+- `message` — async DMs to a peer's inbox. *Designed, not yet published.*
+- `post` — channel broadcasts to subscribers. *Designed, not yet published.*
 :::
 
 ::: {.column width="58%" .kg-caption}
