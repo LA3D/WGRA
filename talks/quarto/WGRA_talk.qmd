@@ -381,15 +381,39 @@ The file-drawer effect (Rosenthal 1979) is the canonical failure mode of scienti
 
 [Real world example · Web Forager]{.kicker}
 
-Two researchers. A web-scraping pipeline extracting entities from customer sites. The colleague on the demo branch runs the pipeline and reports back to the reviewer:
+Chris Frederick pushed a demo branch (commit `81e03e2`) for a customer preview and filed the results in a wiki page — `Experiment-11-Productionization`. The frontmatter carried an `extends:` edge that would matter later.
 
-::: {.callout-highlight}
-Flagship customer · **17 of 17** entities extracted. Ship it.
+:::: {.columns}
+
+::: {.column width="52%" .kg-caption}
+```{=html}
+<pre class="log-snippet">---
+<span class="k">type:</span> <span class="s">synthesis</span>
+<span class="k">up:</span> <span class="s">"[[Experiment-10-Vocabulary-Alignment]]"</span>
+<span class="k">related:</span> <span class="s">"[[Experiment-8-Second-Entity]]"</span>
+<span class="k">extends:</span> <span class="s2">"[[Experiment-7-Question-Deepen]]"</span>
+<span class="k">supports:</span> <span class="s">"[[Working-Hypothesis]]"</span>
+---</pre>
+```
+
+*Frontmatter on `Experiment-11-Productionization`. The `extends:` edge inherits the analytic frame from Experiment 7.*
 :::
 
-The reviewer opens a *separate* Claude Code session on the main branch to sanity-check the numbers. Two collaborators, two agents, one wiki as the shared memory between them.
+::: {.column width="48%"}
+**Reported numbers · Sonnet · 3-entity gold set**
 
-*What happens next depends entirely on whether the wiki carried enough structure for a reviewer to trace the claim without asking the colleague.*
+| Entity | Reported |
+|:---|:---:|
+| ITAMCO | **17 / 17** |
+| Southwire | 14 / 17 |
+| CRC-ND | **17 / 17** |
+
+*Ship it?*
+
+Chris Sweet opens a separate Claude Code session on main to sanity-check. Two agents, one wiki carrying the state between them.
+:::
+
+::::
 
 ::: {.notes}
 Setup for the case study. Two-author project: Chris Sweet plus a colleague (Chris Frederick / Omegaice on GitHub) on a Web Forager web-scraping tool. The reported 17/17 entity coverage for the flagship customer is the claim under review. The reviewer is not the person who ran the pipeline — they're picking it up cold from the wiki. That framing matters: this is the "the wiki has to carry the load" scenario, not "the person who did the work is standing next to you."
@@ -403,7 +427,7 @@ Next slide (Slide 8): the finding — the reviewer walked the wiki's typed edges
 
 :::: {.columns}
 
-::: {.column width="42%"}
+::: {.column width="34%"}
 ```{=html}
 <div class="extends-chain">
   <div class="chain-box">Experiment 11</div>
@@ -413,20 +437,28 @@ Next slide (Slide 8): the finding — the reviewer walked the wiki's typed edges
   <div class="chain-box">Experiment 8</div>
 </div>
 ```
+
+*Same inherited setup across all three.*
 :::
 
-::: {.column width="58%"}
-The reviewer opened Experiment 11's wiki page and followed its `extends:` frontmatter edge back to Experiment 7. From there, back again to Experiment 8.
+::: {.column width="66%"}
+Following the `extends:` chain, the reviewer surfaced the mechanism: the pipeline treated the model's honest **"not visible on this page"** answer as a successful extraction and stopped the search — exactly the case where deeper searching was warranted.
 
-Somewhere in that chain of inherited setup, a page said the pipeline treats the model's honest **"not visible on this page"** answer as a successful extraction and stops the search.
+**Reported vs. evidence-based counts**
 
-That is exactly the case where deeper searching was warranted. The bug had cascaded from Experiment 7 through 8 through 11 — and the graph, not a debugger, told the reviewer where else to look.
+| Entity | Reported | **Real** |
+|:---|:---:|:---:|
+| ITAMCO | 17 / 17 | **8 / 17** |
+| Southwire | 14 / 17 | **6 / 17** |
+| CRC-ND | 17 / 17 | **4 / 17** |
+
+The bug cascaded across Experiments 7, 8, and 11. The graph, not a debugger, told the reviewer where the fix had to reach.
 :::
 
 ::::
 
 ::: {.callout-highlight}
-Real coverage on the flagship customer: **8 of 17**. Not 17 of 17.
+The LLM refusing to hallucinate looked identical to the LLM answering. The search stopped in exactly the case where deeper searching was warranted.
 :::
 
 ::: {.notes}

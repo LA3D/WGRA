@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="WGRA_talk_files/libs/revealjs/dist/theme/quarto-6a9f630a8c33d87b75414358cb59024c.css">
+  <link rel="stylesheet" href="WGRA_talk_files/libs/revealjs/dist/theme/quarto-2291c2d45fcbc056e27f916a683803af.css">
   <link href="WGRA_talk_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="WGRA_talk_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="WGRA_talk_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -518,12 +518,44 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <section id="case-study-the-two-author-demo-branch" class="slide level2 smaller">
 <h2>Case study: the two-author demo branch</h2>
 <p><span class="kicker">Real world example · Web Forager</span></p>
-<p>Two researchers. A web-scraping pipeline extracting entities from customer sites. The colleague on the demo branch runs the pipeline and reports back to the reviewer:</p>
-<div class="callout-highlight">
-<p>Flagship customer · <strong>17 of 17</strong> entities extracted. Ship it.</p>
-</div>
-<p>The reviewer opens a <em>separate</em> Claude Code session on the main branch to sanity-check the numbers. Two collaborators, two agents, one wiki as the shared memory between them.</p>
-<p><em>What happens next depends entirely on whether the wiki carried enough structure for a reviewer to trace the claim without asking the colleague.</em></p>
+<p>Chris Frederick pushed a demo branch (commit <code>81e03e2</code>) for a customer preview and filed the results in a wiki page — <code>Experiment-11-Productionization</code>. The frontmatter carried an <code>extends:</code> edge that would matter later.</p>
+<div class="columns">
+<div class="column kg-caption" style="width:52%;">
+<pre class="log-snippet">---
+<span class="k">type:</span> <span class="s">synthesis</span>
+<span class="k">up:</span> <span class="s">"[[Experiment-10-Vocabulary-Alignment]]"</span>
+<span class="k">related:</span> <span class="s">"[[Experiment-8-Second-Entity]]"</span>
+<span class="k">extends:</span> <span class="s2">"[[Experiment-7-Question-Deepen]]"</span>
+<span class="k">supports:</span> <span class="s">"[[Working-Hypothesis]]"</span>
+---</pre>
+<p><em>Frontmatter on <code>Experiment-11-Productionization</code>. The <code>extends:</code> edge inherits the analytic frame from Experiment 7.</em></p>
+</div><div class="column" style="width:48%;">
+<p><strong>Reported numbers · Sonnet · 3-entity gold set</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Entity</th>
+<th style="text-align: center;">Reported</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ITAMCO</td>
+<td style="text-align: center;"><strong>17 / 17</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Southwire</td>
+<td style="text-align: center;">14 / 17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CRC-ND</td>
+<td style="text-align: center;"><strong>17 / 17</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Ship it?</em></p>
+<p>Chris Sweet opens a separate Claude Code session on main to sanity-check. Two agents, one wiki carrying the state between them.</p>
+</div></div>
 <aside class="notes">
 <p>Setup for the case study. Two-author project: Chris Sweet plus a colleague (Chris Frederick / Omegaice on GitHub) on a Web Forager web-scraping tool. The reported 17/17 entity coverage for the flagship customer is the claim under review. The reviewer is not the person who ran the pipeline — they’re picking it up cold from the wiki. That framing matters: this is the “the wiki has to carry the load” scenario, not “the person who did the work is standing next to you.”</p>
 <p>Next slide (Slide 8): the finding — the reviewer walked the wiki’s typed edges backward, saw a hedge-counting bug, real coverage was 8/17.</p>
@@ -543,7 +575,7 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <h2>The reviewer walked the wiki, not the code.</h2>
 <p><span class="kicker">Case study · the finding</span></p>
 <div class="columns">
-<div class="column" style="width:42%;">
+<div class="column" style="width:34%;">
 <div class="extends-chain">
   <div class="chain-box">Experiment 11</div>
   <div class="chain-edge">↓ <code>extends:</code></div>
@@ -551,13 +583,40 @@ all-gold@30 · vs 88% on a small distractor-free set.
   <div class="chain-edge">↓ <code>extends:</code></div>
   <div class="chain-box">Experiment 8</div>
 </div>
-</div><div class="column" style="width:58%;">
-<p>The reviewer opened Experiment 11’s wiki page and followed its <code>extends:</code> frontmatter edge back to Experiment 7. From there, back again to Experiment 8.</p>
-<p>Somewhere in that chain of inherited setup, a page said the pipeline treats the model’s honest <strong>“not visible on this page”</strong> answer as a successful extraction and stops the search.</p>
-<p>That is exactly the case where deeper searching was warranted. The bug had cascaded from Experiment 7 through 8 through 11 — and the graph, not a debugger, told the reviewer where else to look.</p>
+<p><em>Same inherited setup across all three.</em></p>
+</div><div class="column" style="width:66%;">
+<p>Following the <code>extends:</code> chain, the reviewer surfaced the mechanism: the pipeline treated the model’s honest <strong>“not visible on this page”</strong> answer as a successful extraction and stopped the search — exactly the case where deeper searching was warranted.</p>
+<p><strong>Reported vs.&nbsp;evidence-based counts</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Entity</th>
+<th style="text-align: center;">Reported</th>
+<th style="text-align: center;"><strong>Real</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ITAMCO</td>
+<td style="text-align: center;">17 / 17</td>
+<td style="text-align: center;"><strong>8 / 17</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Southwire</td>
+<td style="text-align: center;">14 / 17</td>
+<td style="text-align: center;"><strong>6 / 17</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CRC-ND</td>
+<td style="text-align: center;">17 / 17</td>
+<td style="text-align: center;"><strong>4 / 17</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The bug cascaded across Experiments 7, 8, and 11. The graph, not a debugger, told the reviewer where the fix had to reach.</p>
 </div></div>
 <div class="callout-highlight">
-<p>Real coverage on the flagship customer: <strong>8 of 17</strong>. Not 17 of 17.</p>
+<p>The LLM refusing to hallucinate looked identical to the LLM answering. The search stopped in exactly the case where deeper searching was warranted.</p>
 </div>
 <aside class="notes">
 <p>The specific mechanism to name: the frontmatter <code>extends:</code> edge on Experiment 11 pointed to Experiment 7. Experiment 7 pointed to Experiment 8. Following those typed edges backward surfaced the fact that the same inherited analytic frame was in all three experiments — so the bug was too.</p>

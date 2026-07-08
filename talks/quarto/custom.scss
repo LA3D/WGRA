@@ -297,6 +297,33 @@ blockquote.highlight {
   em { color: $muted; font-style: italic; }
 }
 
+// Case-study data tables (slides 10, 11): tabular-nums, compact,
+// with a red delta so Reported vs Real reads at a glance.
+.reveal .slides table {
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 0.72em;
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  width: 100%;
+
+  th, td {
+    padding: 0.35em 0.6em;
+    border-bottom: 1px solid rgba(20, 33, 61, 0.2);
+    font-variant-numeric: tabular-nums;
+  }
+  th {
+    color: $muted;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1.5px solid $navy;
+  }
+  td { color: $navy; }
+  td strong { color: $red; font-weight: 700; }
+  tbody tr:last-child td { border-bottom: none; }
+}
+
 // Extends chain visual for the Web Forager case-study finding slide.
 // Three navy boxes stacked, each linked by a labeled downward arrow.
 .reveal .extends-chain {
