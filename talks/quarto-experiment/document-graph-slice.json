@@ -1,0 +1,381 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "did:doc:a5bf3c6b1eb70329",
+        "label": "Briefing:\nClaims-based\nExtraction",
+        "type": "Document",
+        "size": "big"
+      }
+    },
+    {
+      "data": {
+        "id": "did:heading:681cf528926b7448",
+        "label": "The one-sentence goal",
+        "type": "Chunk",
+        "size": "mid"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:document_ingestion_retrieval_pipeline",
+        "label": "document-ingestion + ...",
+        "type": "Concept",
+        "refinement": "ex:document_pipeline"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:concepts_and_relationship",
+        "label": "concepts and relation...",
+        "type": "Concept",
+        "refinement": "ex:knowledge_representation_model"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:claim",
+        "label": "claims",
+        "type": "Concept",
+        "refinement": "ex:epistemic_unit"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:attributed",
+        "label": "attributed",
+        "type": "Concept",
+        "refinement": "ex:epistemic_property"
+      }
+    },
+    {
+      "data": {
+        "id": "did:heading:089e456d056eba45",
+        "label": "The core reframe: claims, not...",
+        "type": "Chunk",
+        "size": "mid"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:bare_triple",
+        "label": "bare triple",
+        "type": "Concept",
+        "refinement": "ex:anti_pattern"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:claim_payload",
+        "label": "claim payload",
+        "type": "Concept",
+        "refinement": "ex:claim_component"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:claim_envelope",
+        "label": "claim envelope",
+        "type": "Concept",
+        "refinement": "ex:claim_component"
+      }
+    },
+    {
+      "data": {
+        "id": "did:heading:ea4c2b4a19e28b8a",
+        "label": "The three-tier trust hierarchy",
+        "type": "Chunk",
+        "size": "mid"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:block",
+        "label": "Blocks = evidence, no...",
+        "type": "Concept",
+        "refinement": "ex:trust_tier"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:extraction_claim",
+        "label": "Extraction claims",
+        "type": "Concept",
+        "refinement": "ex:trust_tier"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:synthesis_claim",
+        "label": "Synthesis claims",
+        "type": "Concept",
+        "refinement": "ex:trust_tier"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:confidence",
+        "label": "Confidence",
+        "type": "Concept",
+        "refinement": "ex:trust_currency"
+      }
+    },
+    {
+      "data": {
+        "id": "did:heading:7494edf142d6c9b7",
+        "label": "Graph + retrieval (router, no...",
+        "type": "Chunk",
+        "size": "mid"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:thin_structural_index",
+        "label": "thin structural INDEX",
+        "type": "Concept",
+        "refinement": "ex:architectural_principle"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:graph_node",
+        "label": "Nodes are thin\nhandles",
+        "type": "Concept",
+        "refinement": "ex:graph_node_constraint"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:resolvable_backlink",
+        "label": "resolvable backlink t...",
+        "type": "Concept",
+        "refinement": "ex:architectural_invariant"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:shredding",
+        "label": "shredding",
+        "type": "Concept",
+        "refinement": "ex:anti_pattern"
+      }
+    },
+    {
+      "data": {
+        "id": "did:heading:9da258aacdb5c998",
+        "label": "Non-negotiable design princip...",
+        "type": "Chunk",
+        "size": "mid"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:late_binding",
+        "label": "Late binding everywhere",
+        "type": "Concept",
+        "refinement": "ex:design_principle"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:soft_over_hard",
+        "label": "Soft over hard",
+        "type": "Concept",
+        "refinement": "ex:design_principle"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:router_not_responder",
+        "label": "Router not responder",
+        "type": "Concept",
+        "refinement": "ex:design_principle"
+      }
+    },
+    {
+      "data": {
+        "id": "concept:provenance_is_first_clas",
+        "label": "Provenance is first-c...",
+        "type": "Concept",
+        "refinement": "ex:design_principle"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "did:doc:a5bf3c6b1eb70329",
+        "target": "did:heading:681cf528926b7448",
+        "label": "hasPart"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:681cf528926b7448",
+        "target": "concept:document_ingestion_retrieval_pipeline",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:681cf528926b7448",
+        "target": "concept:concepts_and_relationship",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:681cf528926b7448",
+        "target": "concept:claim",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:681cf528926b7448",
+        "target": "concept:attributed",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:doc:a5bf3c6b1eb70329",
+        "target": "did:heading:089e456d056eba45",
+        "label": "hasPart"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:089e456d056eba45",
+        "target": "concept:claim",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:089e456d056eba45",
+        "target": "concept:bare_triple",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:089e456d056eba45",
+        "target": "concept:claim_payload",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:089e456d056eba45",
+        "target": "concept:claim_envelope",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:doc:a5bf3c6b1eb70329",
+        "target": "did:heading:ea4c2b4a19e28b8a",
+        "label": "hasPart"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:ea4c2b4a19e28b8a",
+        "target": "concept:block",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:ea4c2b4a19e28b8a",
+        "target": "concept:extraction_claim",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:ea4c2b4a19e28b8a",
+        "target": "concept:synthesis_claim",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:ea4c2b4a19e28b8a",
+        "target": "concept:confidence",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:doc:a5bf3c6b1eb70329",
+        "target": "did:heading:7494edf142d6c9b7",
+        "label": "hasPart"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:7494edf142d6c9b7",
+        "target": "concept:thin_structural_index",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:7494edf142d6c9b7",
+        "target": "concept:graph_node",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:7494edf142d6c9b7",
+        "target": "concept:resolvable_backlink",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:7494edf142d6c9b7",
+        "target": "concept:shredding",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:doc:a5bf3c6b1eb70329",
+        "target": "did:heading:9da258aacdb5c998",
+        "label": "hasPart"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:9da258aacdb5c998",
+        "target": "concept:late_binding",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:9da258aacdb5c998",
+        "target": "concept:soft_over_hard",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:9da258aacdb5c998",
+        "target": "concept:router_not_responder",
+        "label": "mentions"
+      }
+    },
+    {
+      "data": {
+        "source": "did:heading:9da258aacdb5c998",
+        "target": "concept:provenance_is_first_clas",
+        "label": "mentions"
+      }
+    }
+  ]
+}
