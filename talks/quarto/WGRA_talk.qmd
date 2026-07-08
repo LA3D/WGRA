@@ -1,5 +1,5 @@
 ---
-title: "Extract, Retrieve, Synthesize"
+title: "Knowledge: Extract, Retrieve, Synthesize"
 subtitle: "From layout-aware extraction to durable, wiki-grounded research memory"
 author:
   - name: "Priscila Moreira"
