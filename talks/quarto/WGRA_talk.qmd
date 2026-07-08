@@ -570,7 +570,7 @@ Every log entry carries a `by: <human> via <agent>` line. Git preserves the amen
   jump (H2); ...</pre>
 ```
 
-*Real log entry from the markov_embeddings_and_rag wiki. `by:` + `via:` become the audit trail — no separate metadata file, no vendor system.*
+*Real log entry from the markov_embeddings_and_rag wiki. `by:` + `via:` become the audit trail — verifiable in git via `git blame` on the log file, no separate metadata store, no vendor system.*
 :::
 
 ::::
@@ -625,7 +625,7 @@ Every group is quietly re-answering questions another campus group already answe
 ::::
 
 ::: {.callout-highlight}
-See a federated interaction on the [team-scale page](https://la3d.github.io/WGRA/team-scale/) of the flyer — a five-minute clone-and-invoke session.
+See **MVP Eval Run 1** on the [team-scale page](https://la3d.github.io/WGRA/team-scale/) of the flyer — a five-minute clone-and-invoke federation session across three agents on a real PAD classification task.
 :::
 
 ## Agent capability · built-in workflow {.smaller}
@@ -641,7 +641,9 @@ every student prompts differently. The discipline lives in memory. It walks out 
 **Configured environment:**
 the discipline is in the repo. Every session starts from a known baseline. Any agent that reads `.claude/skills/` gets it.
 
-Four operations ship as single commands: `wiki-source`, `wiki-experiment`, `wiki-lint`, plus the verification gate that fires at commit time.
+- Four operations as single commands: `wiki-source`, `wiki-experiment`, `wiki-lint`, plus the verification gate at commit time.
+- **SessionStart hook** injects the wiki index + last 5 log entries at every session boot. Agent starts oriented, not blank.
+- **Discipline gates** catch common rationalizations before commit — e.g. *"I'll add the corpus tag later"* becomes a warning right when it appears.
 :::
 
 ::: {.column width="55%" .kg-caption}
@@ -753,7 +755,7 @@ The `ask` mechanism (clone-and-invoke `claude -p` in the peer wiki) is in templa
 - **Structure pages** · Index, MOC, Decision, Finding, ...
 - **Person / Org**
 
-**Semantic edges** connect them: `extends`, `supports`, `criticizes`, `related`, `up`, `authorOf`, `defines`, `source`, ...
+**36 semantic properties** connect them: `extends`, `supports`, `criticizes`, `related`, `up`, `authorOf`, `defines`, `source`, ...
 
 The ontology ships at [`la3d.github.io/llm-wiki-colab`](https://la3d.github.io/llm-wiki-colab/). Every wiki instantiated from the template inherits it — no per-project schema work.
 

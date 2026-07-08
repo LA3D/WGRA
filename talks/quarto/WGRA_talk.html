@@ -686,7 +686,7 @@ all-gold@30 · vs 88% on a small distractor-free set.
   gives cleaner trajectory edges than v5c2 (H1);
   claims-plus-walk degrades less on the 281→21k
   jump (H2); ...</pre>
-<p><em>Real log entry from the markov_embeddings_and_rag wiki. <code>by:</code> + <code>via:</code> become the audit trail — no separate metadata file, no vendor system.</em></p>
+<p><em>Real log entry from the markov_embeddings_and_rag wiki. <code>by:</code> + <code>via:</code> become the audit trail — verifiable in git via <code>git blame</code> on the log file, no separate metadata store, no vendor system.</em></p>
 </div></div>
 <aside class="notes">
 <p>The Web Forager case study demonstrated this in practice: two authors, two Claude Code sessions, no synchronous coordination. The wiki was the connective tissue between the two branches. Every log entry had <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution, so the reviewer could trace who claimed what without asking the person.</p>
@@ -735,7 +735,7 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <p><em>Agent card from the model_fusion group. The <code>capabilities:</code> and <code>topics:</code> fields are what peers grep against when they need help.</em></p>
 </div></div>
 <div class="callout-highlight">
-<p>See a federated interaction on the <a href="https://la3d.github.io/WGRA/team-scale/">team-scale page</a> of the flyer — a five-minute clone-and-invoke session.</p>
+<p>See <strong>MVP Eval Run 1</strong> on the <a href="https://la3d.github.io/WGRA/team-scale/">team-scale page</a> of the flyer — a five-minute clone-and-invoke federation session across three agents on a real PAD classification task.</p>
 </div>
 </section>
 <section id="agent-capability-built-in-workflow" class="slide level2 smaller">
@@ -745,7 +745,11 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <div class="column" style="width:45%;">
 <p><strong>Raw group subscription:</strong> every student prompts differently. The discipline lives in memory. It walks out with them.</p>
 <p><strong>Configured environment:</strong> the discipline is in the repo. Every session starts from a known baseline. Any agent that reads <code>.claude/skills/</code> gets it.</p>
-<p>Four operations ship as single commands: <code>wiki-source</code>, <code>wiki-experiment</code>, <code>wiki-lint</code>, plus the verification gate that fires at commit time.</p>
+<ul>
+<li>Four operations as single commands: <code>wiki-source</code>, <code>wiki-experiment</code>, <code>wiki-lint</code>, plus the verification gate at commit time.</li>
+<li><strong>SessionStart hook</strong> injects the wiki index + last 5 log entries at every session boot. Agent starts oriented, not blank.</li>
+<li><strong>Discipline gates</strong> catch common rationalizations before commit — e.g.&nbsp;<em>“I’ll add the corpus tag later”</em> becomes a warning right when it appears.</li>
+</ul>
 </div><div class="column kg-caption" style="width:55%;">
 <pre class="log-snippet">---
 <span class="k">name:</span> <span class="s">wiki-experiment</span>
@@ -858,7 +862,7 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <li><strong>Structure pages</strong> · Index, MOC, Decision, Finding, …</li>
 <li><strong>Person / Org</strong></li>
 </ul>
-<p><strong>Semantic edges</strong> connect them: <code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>related</code>, <code>up</code>, <code>authorOf</code>, <code>defines</code>, <code>source</code>, …</p>
+<p><strong>36 semantic properties</strong> connect them: <code>extends</code>, <code>supports</code>, <code>criticizes</code>, <code>related</code>, <code>up</code>, <code>authorOf</code>, <code>defines</code>, <code>source</code>, …</p>
 <p>The ontology ships at <a href="https://la3d.github.io/llm-wiki-colab/"><code>la3d.github.io/llm-wiki-colab</code></a>. Every wiki instantiated from the template inherits it — no per-project schema work.</p>
 <p><strong>SHACL shapes</strong> validate structure at commit time. <strong>Eleven canned SPARQL queries</strong> (<code>hub-notes</code>, <code>ancestors-of</code>, <code>supports-criticizes</code>, …) ship in <code>scripts/kg/sparql/</code>.</p>
 </div></div>
