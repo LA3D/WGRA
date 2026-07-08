@@ -1,0 +1,145 @@
+---
+title: "Wiki-Grounded Research Agents"
+subtitle: "Quarto + reveal.js proof of concept — one slide, embedded Cytoscape"
+author: "Chris R. Sweet · CRC · Notre Dame"
+date: "2026-07-08"
+format:
+  revealjs:
+    theme: white
+    slide-number: true
+    incremental: false
+    center: false
+    width: 1280
+    height: 720
+    embed-resources: false
+    resources:
+      - cytoscape.min.js
+      - instance-graph-slice.json
+    include-in-header:
+      - text: |
+          <script src="cytoscape.min.js"></script>
+---
+
+## The knowledge graph, live on the slide {.smaller}
+
+::: {.columns}
+
+::: {.column width="65%"}
+```{=html}
+<div id="graph" style="width:100%; height:520px; border: 1px solid #ccc; background: #fff; border-radius: 4px;"></div>
+```
+:::
+
+::: {.column width="35%"}
+`markov_embeddings_and_rag`
+
+30 nodes, 39 edges from a real research wiki.
+
+Gold-highlighted edges are the same shape as the web_forager cascade you just heard about:
+
+- 4-hop `extends` chain from a leaf finding to a foundational concept
+- 2 `criticizes` edges, one pointing at a page in the finding's own ancestry
+
+**Random-Walk-With-Restart** is the central hub at 48 inbound edges. Surfaced by the `hub-notes` SPARQL query, not hand-authored.
+
+No Alt-Tab. No browser-tab risk. Drag nodes to interact.
+:::
+
+:::
+
+```{=html}
+<script>
+const typeColor = {
+  'Concept':        '#0d4a8b',
+  'Synthesis':      '#7a5310',
+  'Entity':         '#1b6e2a',
+  'SourceSummary':  '#7a5310',
+  'Reference':      '#666',
+  'Index':          '#6a1b5b',
+  'UntypedNote':    '#aaa'
+};
+
+function initGraph() {
+  if (!window.cytoscape) { setTimeout(initGraph, 100); return; }
+  fetch('instance-graph-slice.json').then(r => r.json()).then(data => {
+    const cy = cytoscape({
+      container: document.getElementById('graph'),
+      elements: [
+        ...data.nodes.map(n => ({data: n.data})),
+        ...data.edges.map(e => ({data: e.data}))
+      ],
+      style: [
+        { selector: 'node', style: {
+          'background-color': ele => typeColor[ele.data('type')] || '#888',
+          'label': 'data(label)',
+          'color': '#1a1a1a',
+          'text-outline-color': '#fff',
+          'text-outline-width': 2,
+          'font-size': 9,
+          'font-family': 'Helvetica Neue, Arial, sans-serif',
+          'width': 20, 'height': 20,
+          'text-wrap': 'wrap',
+          'text-max-width': 100
+        }},
+        { selector: 'node[type = "Concept"]', style: { 'width': 26, 'height': 26 }},
+        { selector: 'edge', style: {
+          'width': 1,
+          'line-color': '#ccc',
+          'target-arrow-color': '#ccc',
+          'target-arrow-shape': 'triangle',
+          'curve-style': 'bezier',
+          'font-size': 7,
+          'color': '#888'
+        }},
+        { selector: 'edge[label = "extends"]',    style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.4 }},
+        { selector: 'edge[label = "supports"]',   style: { 'line-color': '#1b6e2a', 'target-arrow-color': '#1b6e2a', 'width': 1.4 }},
+        { selector: 'edge[label = "criticizes"]', style: { 'line-color': '#8b0d3f', 'target-arrow-color': '#8b0d3f', 'width': 1.6 }},
+        { selector: 'edge[casestudy = "yes"]', style: {
+          'line-color': '#b8860b',
+          'target-arrow-color': '#b8860b',
+          'width': 3,
+          'z-index': 10
+        }},
+        { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+      ],
+      layout: { name: 'cose', idealEdgeLength: 90, nodeOverlap: 14, animate: false, fit: true }
+    });
+    // Re-fit whenever this slide (re)becomes visible: cose can lay out oddly if
+    // the container had zero dimensions during initial init.
+    if (window.Reveal) {
+      Reveal.on('ready', () => { cy.resize(); cy.fit(); });
+      Reveal.on('slidechanged', () => { cy.resize(); cy.fit(); });
+    }
+  });
+}
+initGraph();
+</script>
+```
+
+::: {.notes}
+Speaker notes for this slide:
+
+Say: "This is a different research wiki, same pattern. The gold-highlighted edges have the exact shape as the web_forager cascade I just described — a four-hop extends chain from a leaf finding back through experimental lineage to a foundational concept, and a criticizes edge from that same leaf finding to a page five hops up its own ancestry."
+
+"Random-Walk-With-Restart is the central hub with 48 inbound edges. That surfaced automatically from graph structure. You didn't have to hand-author a 'start here' page."
+
+Then optionally: drag a node to demonstrate interactivity. Zoom in on the gold cluster.
+
+Advantage over the PowerPoint version: no Alt-Tab to Safari, no browser-tab risk, no fallback screenshots needed. If Wi-Fi drops during the talk, this slide still works because everything is local.
+:::
+
+## Why Quarto for this kind of talk
+
+::: {.incremental}
+
+- Slides authored in Markdown (the source file you're viewing is `.qmd`, one heading per slide, plain text plus fenced blocks).
+- Cytoscape.js loaded once at page level, then any slide can drop in a `<div>` container and render into it.
+- No context switch between the story and the demo. The graph is on the slide.
+- Same source can render to PDF/Beamer (`--to beamer`) or PowerPoint (`--to pptx`) if a colleague needs a static handout.
+- Speaker notes travel with the source, don't get lost when you re-export.
+
+:::
+
+::: {.notes}
+This slide is intentionally boring to show the contrast: the previous slide had a live interactive graph without any special stagecraft, and this one is just a bulleted list. Same Markdown source, same output pipeline.
+:::
