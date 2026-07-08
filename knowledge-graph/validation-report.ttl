@@ -1,2 +1,0 @@
-# pyshacl raised an exception
-# Unknown namespace prefix : llm-wiki-colab

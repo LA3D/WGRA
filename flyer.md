@@ -88,7 +88,7 @@ The Wiki-Grounded Research Agent decouples the wiki (your durable memory) from t
 
 Every typed edge in a wiki page's frontmatter reifies to an RDF triple. The wiki isn't just linked Markdown; it's a queryable knowledge graph with a formal 28-class ontology ([la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/)), SHACL-validated structure, and a shipped library of SPARQL queries an agent can run against `graph.ttl` directly.
 
-That layer buys queries prose can't answer. Find the pages holding the wiki together (one query returns Track-to-Track-Fusion at 45 inbound edges on a live research wiki). Walk a criticism edge transitively to surface every downstream claim implicated. Lint for `supports:` claims with no ingested source, at commit time. Graph queries, not grep queries, not RAG.
+That layer buys queries prose can't answer. Find the pages holding the wiki together (one query returns the top hub concept with its inbound-edge count). Walk a criticism edge transitively to surface every downstream claim implicated. Lint for `supports:` claims with no ingested source, at commit time. Graph queries, not grep queries, not RAG.
 
 **Prose + hyperlinks:** browsable memory. What an agent can ask is limited to what it can grep.
 **Reified graph:** SPARQL over meaning. Ships with the template.

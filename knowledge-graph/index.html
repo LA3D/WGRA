@@ -245,118 +245,9 @@ footer a { color: var(--muted); }
 Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic connections the pattern is designed for: <code>affiliation</code> from Person to Organization, <code>authorOf</code> from Person to note types, <code>supports</code> and <code>criticizes</code> from evidence pages to Concept, <code>up</code> for hierarchy, <code>implementation</code> from Concept to code notes, <code>defines</code> from ConceptNote to Concept. Page-to-page semantic properties (<code>extends</code>, <code>supports</code>, <code>criticizes</code>) are drawn as dashed self-loops on Concept because they can connect any concept-typed page to any other.
 </p>
 
-<h2>A real graph: the naval-sensor-fusion wiki</h2>
+<h2>A real graph and SPARQL results</h2>
 
-<p>Below is a slice of an actual research wiki reified to RDF: the <code>naval-sensor-fusion</code> project's llm-wiki, focused on the semantically-typed edges (<code>up</code>, <code>extends</code>, <code>supports</code>, <code>related</code>, <code>partOf</code>). The wiki's <code>mentions:</code> and <code>tag:</code> edges are omitted here because they dominate the graph and would obscure the semantic structure; the full graph is in <a href="graph.ttl"><code>graph.ttl</code></a> if you want everything.</p>
-
-<div class="graph-container">
-  <div class="controls">
-    <button onclick="navalCy.fit()">Fit</button>
-    <button onclick="navalCy.layout({name:'cose', animate:false, idealEdgeLength:100, nodeOverlap:12}).run()">Re-layout</button>
-  </div>
-  <div id="naval-graph" style="width:100%; height:100%;"></div>
-</div>
-<div class="legend">
-  <span><span class="swatch" style="background: var(--type-concept)"></span>Concept</span>
-  <span><span class="swatch" style="background: var(--type-entity)"></span>Entity</span>
-  <span><span class="swatch" style="background: var(--type-source)"></span>SourceSummary</span>
-  <span><span class="swatch" style="background: var(--type-reference)"></span>Reference</span>
-  <span><span class="swatch" style="background: var(--type-index)"></span>Index</span>
-  <span><span class="swatch" style="background: var(--type-synthesis)"></span>Synthesis</span>
-  <span><span class="swatch" style="background: var(--type-decision)"></span>Decision</span>
-</div>
-
-<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
-47 nodes, 74 edges. Click a node to see its outgoing typed edges. The wiki covers naval sensor fusion research: Kalman filters, drone detection, targeting cycles, cooperative engagement capability, and the platforms these sit on.
-</p>
-
-<h2>What the graph enables: SPARQL queries</h2>
-
-<p>Because the graph is real RDF, an agent can issue SPARQL queries against it directly. The base template ships eleven canned queries in <code>scripts/kg/sparql/*.rq</code> covering hierarchy traversal, hub detection, evidence walks, and orphan detection. All eleven were run in-process against the live <code>naval-sensor-fusion</code> wiki's <code>graph-full.ttl</code> in a July 2026 verification pass; every query executed without error. Three of the more illustrative results are shown below.</p>
-
-<h3>All typed evidence edges (supports / criticizes)</h3>
-
-<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
-PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
-
-SELECT ?source ?sourceTitle ?relation ?target ?targetTitle WHERE {
-    VALUES ?relation { llm-wiki-colab:supports llm-wiki-colab:criticizes }
-    ?source ?relation ?target .
-    ?source dcterms:title ?sourceTitle .
-    ?target dcterms:title ?targetTitle .
-} ORDER BY ?targetTitle ?relation</code></pre>
-
-<p>Executed via rdflib (<code>g.parse("scripts/kg/build/graph-full.ttl")</code> then <code>g.query(...)</code>) against the naval-sensor-fusion wiki. Nine rows returned; all are <code>supports</code> edges (no <code>criticizes</code> edges have been declared in this wiki yet).</p>
-
-<table>
-<thead><tr><th>Source</th><th>Relation</th><th>Target</th></tr></thead>
-<tbody>
-<tr><td>DeTrAck-UAV-Detection-Tracking</td><td>supports</td><td>Data-Association</td></tr>
-<tr><td>Drone-Detection-CNN-Fisheye</td><td>supports</td><td>Dynamic-Targeting-F2T2EA</td></tr>
-<tr><td>Cross-Domain-Correlation</td><td>supports</td><td>Evaluation-Scenarios</td></tr>
-<tr><td>Open-Architecture-Drone-Control</td><td>supports</td><td>Fusion-Architectures</td></tr>
-<tr><td>Air-Threat-Defense-Multi-Sensor-AI</td><td>supports</td><td>Fusion-Architectures</td></tr>
-<tr><td>ML-Algorithms-for-Drone-Detection-Survey</td><td>supports</td><td>Fusion-Architectures</td></tr>
-<tr><td>JDL-Fusion-Levels-Review</td><td>supports</td><td>Fusion-Architectures</td></tr>
-<tr><td>Kalman-Filter-Sensor-Fusion-Equivalence</td><td>supports</td><td>Information-Theoretic-Fusion</td></tr>
-<tr><td>Destroyer-Sensors-and-Fusion-Concepts</td><td>supports</td><td>Naval-Sensor-Fusion-Proposal</td></tr>
-</tbody>
-</table>
-
-<p>Four separate sources argue for Fusion-Architectures, making it the most-supported concept in the wiki. The Kalman-Filter-Sensor-Fusion-Equivalence paper supports Information-Theoretic-Fusion, which is the theoretical backing for the additive information-form update the wiki's Kalman explainer page describes. The absence of any <code>criticizes</code> rows is itself a signal: the wiki currently has no recorded counter-arguments, only supporting evidence. That itself is a lint the agent could act on ("this project has been growing an evidence base without recording any disputes; is that faithful?").</p>
-
-<h3>Ancestors of a concept (transitive hierarchy)</h3>
-
-<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
-PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
-
-SELECT ?ancestor ?ancestorTitle WHERE {
-    &lt;.../page/NOTE_SLUG&gt; llm-wiki-colab:up+ ?ancestor .
-    ?ancestor dcterms:title ?ancestorTitle .
-}</code></pre>
-
-<p>The <code>+</code> in <code>up+</code> is SPARQL's transitive-closure operator: one or more <code>up</code> hops. A single query returns the entire breadcrumb chain, not just the immediate parent. Executed against <code>Kalman-Filter-Explainer</code>:</p>
-
-<pre><code>Kalman-Filter-Explainer
-  → RPLIDAR-Tracking-Testbed
-  → Research-Plan
-  → Naval-Sensor-Fusion-Proposal
-  → Home</code></pre>
-
-<p>An agent asked "what's the project context around Kalman filtering here?" gets a four-hop chain up to the root, which it can walk to reconstruct scope. The chain being unbroken is the graph-level confirmation of what a structural lint would separately check: the explainer is correctly rooted. This is the traversal the <a href="../wiki-collaboration-story/">web_forager case study</a> did along <code>extends</code> instead of <code>up</code>; the shape is identical, the property is what differs.</p>
-
-<h3>Hub notes (structural centrality)</h3>
-
-<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
-PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
-PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-
-SELECT ?title (COUNT(?src) AS ?inbound) WHERE {
-    ?src ?pred ?note .
-    ?note dcterms:title ?title .
-    FILTER(?pred NOT IN (rdf:type, dcterms:title, dcterms:created,
-        llm-wiki-colab:tag, llm-wiki-colab:status, llm-wiki-colab:timeline))
-    FILTER(isIRI(?note))
-} GROUP BY ?title ORDER BY DESC(?inbound) LIMIT 25</code></pre>
-
-<p>The query counts inbound edges per note, excluding structural predicates that don't carry semantic connection (a title or a tag is not a fact about how a page connects). Top of 25 on the naval-sensor-fusion wiki:</p>
-
-<table>
-<thead><tr><th>Note</th><th>Inbound edges</th></tr></thead>
-<tbody>
-<tr><td>Track-to-Track-Fusion</td><td>45</td></tr>
-<tr><td>Fusion-Architectures</td><td>34</td></tr>
-<tr><td>Evaluation-Scenarios</td><td>30</td></tr>
-<tr><td>Data-Association</td><td>28</td></tr>
-<tr><td>Naval-Sensor-Fusion-Proposal</td><td>25</td></tr>
-<tr><td>Research-Plan</td><td>24</td></tr>
-<tr><td>RPLIDAR-Tracking-Testbed</td><td>23</td></tr>
-<tr><td>Sensor-Fusion-in-the-Kill-Chain</td><td>22</td></tr>
-<tr><td>Dynamic-Targeting-F2T2EA</td><td>20</td></tr>
-</tbody>
-</table>
-
-<p>Track-to-Track-Fusion is the clear hub, matching the intended shape of the wiki: the algorithm-taxonomy page holds the graph together. Notice that recently-merged doctrine material (Sensor-Fusion-in-the-Kill-Chain at 22, Dynamic-Targeting-F2T2EA at 20) already ranks near the top, evidence that the merge densely cross-linked into the core rather than sitting as a disconnected annex. These are exactly the pages an agent should read first when asked a broad question, and exactly the pages a linter should watch most carefully for stale claims. RAG's "top-k similar chunks" cannot recover this, because centrality is a graph property, not a similarity property.</p>
+<p>An interactive slice of a live research wiki, plus sample results from the eleven canned SPARQL queries the template ships in <code>scripts/kg/sparql/*.rq</code>, will appear here once a suitable example wiki is wired in. The queries cover hierarchy traversal (transitive <code>up+</code> property paths), hub detection (inbound-edge counts excluding structural predicates), evidence walks (<code>supports</code> / <code>criticizes</code>), and orphan detection. Each is executed against the wiki's built <code>graph-full.ttl</code> in-process via rdflib.</p>
 
 <h2>How the graph is built and validated</h2>
 
@@ -368,7 +259,7 @@ SELECT ?title (COUNT(?src) AS ?inbound) WHERE {
   <li><strong>Serialize.</strong> Emit the graph in multiple formats: Turtle (<code>graph.ttl</code>) for humans, JSON-LD (<code>graph.jsonld</code>) for JavaScript, an optional weighted variant (<code>graph-weights.ttl</code>).</li>
 </ol>
 
-<p>The graphs on this page are the actual <code>graph.ttl</code> output from a recent build of the naval-sensor-fusion wiki, converted to Cytoscape's JSON format by a small script (rdflib in, JSON out). Nothing was hand-authored.</p>
+<p>The ontology graph on this page renders the actual <code>ontology.ttl</code> and shape declarations from the <code>llm-wiki-colab</code> project, converted to Cytoscape's JSON format by a small script (rdflib in, JSON out). Nothing was hand-authored.</p>
 
 <h2>Wrap-up</h2>
 
@@ -376,7 +267,7 @@ SELECT ?title (COUNT(?src) AS ?inbound) WHERE {
 
 <footer>
   <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> shows semantic-edge traversal doing load-bearing work in a real project; <a href="../agent-capability/">Agent capability</a> covers the skills and gates that maintain the graph's discipline.</p>
-  <p><strong>Related sources:</strong> <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (the semantic foundation) · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the KG pipeline lives at <code>scripts/kg/</code>) · <a href="ontology.ttl"><code>ontology.ttl</code></a> and <a href="graph.ttl"><code>graph.ttl</code></a> (the actual TTL files this page visualizes)</p>
+  <p><strong>Related sources:</strong> <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (the semantic foundation) · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the KG pipeline lives at <code>scripts/kg/</code>) · <a href="ontology.ttl"><code>ontology.ttl</code></a> (the actual ontology this page visualizes)</p>
   <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
 </footer>
 
@@ -439,61 +330,10 @@ fetch('ontology-graph.json').then(r => r.json()).then(data => {
   });
 });
 
-// Naval instance graph
-const typeColor = {
-  'Concept':        getComputedStyle(document.documentElement).getPropertyValue('--type-concept').trim(),
-  'Entity':         getComputedStyle(document.documentElement).getPropertyValue('--type-entity').trim(),
-  'SourceSummary':  getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
-  'Reference':      getComputedStyle(document.documentElement).getPropertyValue('--type-reference').trim(),
-  'Index':          getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
-  'Synthesis':      getComputedStyle(document.documentElement).getPropertyValue('--type-synthesis').trim(),
-  'Decision':       getComputedStyle(document.documentElement).getPropertyValue('--type-decision').trim(),
-  'analysis':       '#888',
-  'UntypedNote':    '#aaa'
-};
-
-let navalCy;
-fetch('naval-graph-slice.json').then(r => r.json()).then(data => {
-  navalCy = cytoscape({
-    container: document.getElementById('naval-graph'),
-    elements: [
-      ...data.nodes.map(n => ({data: n.data})),
-      ...data.edges.map(e => ({data: e.data}))
-    ],
-    style: [
-      { selector: 'node', style: {
-        'background-color': ele => typeColor[ele.data('type')] || '#888',
-        'label': 'data(label)',
-        'color': '#1a1a1a',
-        'text-outline-color': '#fff',
-        'text-outline-width': 2,
-        'font-size': 9,
-        'font-family': 'Helvetica Neue, Arial, sans-serif',
-        'width': 20, 'height': 20,
-        'text-wrap': 'wrap',
-        'text-max-width': 90
-      }},
-      { selector: 'edge', style: {
-        'width': 1,
-        'line-color': '#ccc',
-        'target-arrow-color': '#ccc',
-        'target-arrow-shape': 'triangle',
-        'curve-style': 'bezier',
-        'label': 'data(label)',
-        'font-size': 8,
-        'color': '#888',
-        'text-background-color': '#fff',
-        'text-background-opacity': 0.85,
-        'text-background-padding': 1
-      }},
-      { selector: 'edge[label = "extends"]',    style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.6, 'color': '#0d4a8b' }},
-      { selector: 'edge[label = "supports"]',   style: { 'line-color': '#1b6e2a', 'target-arrow-color': '#1b6e2a', 'width': 1.4, 'color': '#1b6e2a' }},
-      { selector: 'edge[label = "criticizes"]', style: { 'line-color': '#8b0d3f', 'target-arrow-color': '#8b0d3f', 'width': 1.6, 'color': '#8b0d3f' }},
-      { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
-    ],
-    layout: { name: 'cose', idealEdgeLength: 100, nodeOverlap: 12, animate: false, fit: true }
-  });
-});
+// Instance-graph Cytoscape rendering was removed pending a replacement
+// example wiki. When the new graph is wired in, restore a block similar
+// to the ontology-graph fetch above, keyed to a #instance-graph container
+// and a JSON file (e.g. instance-graph-slice.json).
 </script>
 
 </body>
