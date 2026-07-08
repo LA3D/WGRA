@@ -1,32 +1,78 @@
 ---
 title: "Wiki-Grounded Research Agents"
-subtitle: "Quarto + reveal.js proof of concept — one slide, embedded Cytoscape"
-author: "Chris R. Sweet · CRC · Notre Dame"
-date: "2026-07-08"
+subtitle: "A shared living memory for scientists and their AI agents"
+author:
+  - name: "**Chris R. Sweet**"
+    affiliation: "Center for Research Computing, University of Notre Dame"
 format:
   revealjs:
-    theme: white
-    slide-number: true
+    theme: [default, custom.scss]
+    slide-number: c
     incremental: false
     center: false
     width: 1280
     height: 720
     embed-resources: false
-    resources:
-      - cytoscape.min.js
-      - instance-graph-slice.json
+    footer: "la3d.github.io/WGRA"
+    title-slide-attributes:
+      data-background-color: "#14213d"
     include-in-header:
       - text: |
           <script src="cytoscape.min.js"></script>
+    resources:
+      - cytoscape.min.js
+      - instance-graph-slice.json
 ---
+
+> The long-serving lab technician who knows every protocol, remembers every failed method, and never leaves.
+
+## Every LLM session starts from zero.
+
+[The problem]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 1</strong><span>context re-pasted</span></div>
+:::
+
+::: {.column width="8%"}
+<div class="session-break"><span class="symbol">∅</span>nothing<br>carries over</div>
+:::
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 2</strong><span>context re-pasted</span></div>
+:::
+
+::: {.column width="8%"}
+<div class="session-break"><span class="symbol">∅</span>nothing<br>carries over</div>
+:::
+
+::: {.column width="24%"}
+<div class="session-card"><strong>Session 3</strong><span>context re-pasted</span></div>
+:::
+
+::::
+
+<br>
+
+- ChatGPT and Claude conversations do not remember the last one.
+- Retrieval over your group's PDFs rediscovers the same chunks on every query.
+- Nothing accumulates between conversations. Nothing compounds between collaborators.
+
+::: {.callout-highlight}
+When the student who ran the analysis graduates, so does the knowledge.
+:::
 
 ## The knowledge graph, live on the slide {.smaller}
 
-::: {.columns}
+[Live KG demo · markov_embeddings_and_rag]{.kicker}
+
+:::: {.columns}
 
 ::: {.column width="65%"}
 ```{=html}
-<div id="graph" style="width:100%; height:520px; border: 1px solid #ccc; background: #fff; border-radius: 4px;"></div>
+<div id="graph" style="width:100%; height:500px; border: 1px solid #ccc; background: #fff; border-radius: 4px;"></div>
 ```
 :::
 
@@ -35,17 +81,17 @@ format:
 
 30 nodes, 39 edges from a real research wiki.
 
-Gold-highlighted edges are the same shape as the web_forager cascade you just heard about:
+**Gold-highlighted** edges have the same shape as the web_forager cascade:
 
-- 4-hop `extends` chain from a leaf finding to a foundational concept
-- 2 `criticizes` edges, one pointing at a page in the finding's own ancestry
+- 4-hop `extends` chain
+- 2 `criticizes` edges
 
 **Random-Walk-With-Restart** is the central hub at 48 inbound edges. Surfaced by the `hub-notes` SPARQL query, not hand-authored.
 
-No Alt-Tab. No browser-tab risk. Drag nodes to interact.
+No Alt-Tab. Drag nodes to interact.
 :::
 
-:::
+::::
 
 ```{=html}
 <script>
@@ -75,13 +121,13 @@ function initGraph() {
           'color': '#1a1a1a',
           'text-outline-color': '#fff',
           'text-outline-width': 2,
-          'font-size': 9,
+          'font-size': 8,
           'font-family': 'Helvetica Neue, Arial, sans-serif',
-          'width': 20, 'height': 20,
+          'width': 18, 'height': 18,
           'text-wrap': 'wrap',
-          'text-max-width': 100
+          'text-max-width': 90
         }},
-        { selector: 'node[type = "Concept"]', style: { 'width': 26, 'height': 26 }},
+        { selector: 'node[type = "Concept"]', style: { 'width': 24, 'height': 24 }},
         { selector: 'edge', style: {
           'width': 1,
           'line-color': '#ccc',
@@ -100,12 +146,10 @@ function initGraph() {
           'width': 3,
           'z-index': 10
         }},
-        { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+        { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#b8860b' }}
       ],
-      layout: { name: 'cose', idealEdgeLength: 90, nodeOverlap: 14, animate: false, fit: true }
+      layout: { name: 'cose', idealEdgeLength: 85, nodeOverlap: 14, animate: false, fit: true }
     });
-    // Re-fit whenever this slide (re)becomes visible: cose can lay out oddly if
-    // the container had zero dimensions during initial init.
     if (window.Reveal) {
       Reveal.on('ready', () => { cy.resize(); cy.fit(); });
       Reveal.on('slidechanged', () => { cy.resize(); cy.fit(); });
@@ -117,29 +161,27 @@ initGraph();
 ```
 
 ::: {.notes}
-Speaker notes for this slide:
-
 Say: "This is a different research wiki, same pattern. The gold-highlighted edges have the exact shape as the web_forager cascade I just described — a four-hop extends chain from a leaf finding back through experimental lineage to a foundational concept, and a criticizes edge from that same leaf finding to a page five hops up its own ancestry."
 
-"Random-Walk-With-Restart is the central hub with 48 inbound edges. That surfaced automatically from graph structure. You didn't have to hand-author a 'start here' page."
+Then drag a node to demonstrate interactivity. Zoom in on the gold cluster.
 
-Then optionally: drag a node to demonstrate interactivity. Zoom in on the gold cluster.
-
-Advantage over the PowerPoint version: no Alt-Tab to Safari, no browser-tab risk, no fallback screenshots needed. If Wi-Fi drops during the talk, this slide still works because everything is local.
+Advantage over the PowerPoint version: no Alt-Tab to Safari, no browser-tab risk, no fallback screenshots. If Wi-Fi drops during the talk, this slide still works because everything is local.
 :::
 
 ## Why Quarto for this kind of talk
 
-::: {.incremental}
+[Format]{.kicker}
 
-- Slides authored in Markdown (the source file you're viewing is `.qmd`, one heading per slide, plain text plus fenced blocks).
-- Cytoscape.js loaded once at page level, then any slide can drop in a `<div>` container and render into it.
+- Slides authored in Markdown. The source you're viewing is `.qmd`, one heading per slide.
+- Cytoscape.js loaded once at page level; any slide can drop a `<div>` and render into it.
 - No context switch between the story and the demo. The graph is on the slide.
 - Same source can render to PDF/Beamer (`--to beamer`) or PowerPoint (`--to pptx`) if a colleague needs a static handout.
-- Speaker notes travel with the source, don't get lost when you re-export.
+- Speaker notes travel with the source; they don't get lost when you re-export.
 
+::: {.callout-highlight}
+The demo isn't a browser window you switch to. It's part of the slide.
 :::
 
 ::: {.notes}
-This slide is intentionally boring to show the contrast: the previous slide had a live interactive graph without any special stagecraft, and this one is just a bulleted list. Same Markdown source, same output pipeline.
+This slide is intentionally boring in layout, to show the contrast: previous slide had a live interactive graph without any special stagecraft; this one is just a bulleted list. Same Markdown source, same output pipeline.
 :::

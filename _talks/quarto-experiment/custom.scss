@@ -1,0 +1,267 @@
+/*-- scss:defaults --*/
+
+// Colors extracted from the PowerPoint deck
+$navy:        #14213d;
+$navy-deep:   #0d1a30;
+$gold:        #b8860b;
+$gold-light:  #d4a835;
+$cream:       #f8ecc9;
+$off-white:   #f5e6c8;
+$sky-muted:   #b8c5d3;
+$red:         #a13a30;
+$muted:       #8a8a8a;
+$card-bg:     #eeeeec;
+$bg:          #fefefe;
+
+// Base variables
+$body-bg: $bg;
+$body-color: $navy;
+$link-color: $gold;
+
+$presentation-heading-color: $navy;
+$presentation-heading-font: "Charter", "Palatino", "Cambria", "Georgia", serif;
+$presentation-font-family: "Helvetica Neue", "Arial", sans-serif;
+$presentation-font-size-root: 32px;
+
+/*-- scss:rules --*/
+
+.reveal {
+  color: $navy;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: "Charter", "Palatino", "Cambria", "Georgia", serif;
+  color: $navy;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+
+.reveal a { color: $gold; text-decoration: none; }
+.reveal a:hover { text-decoration: underline; }
+
+.reveal code {
+  font-family: "Menlo", "Consolas", "Courier New", monospace;
+  background: rgba(20, 33, 61, 0.06);
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  color: $navy;
+  font-size: 0.85em;
+}
+
+.reveal strong { color: $navy; font-weight: 700; }
+
+// ---- Title slide ----
+// Applied via title-slide-attributes: data-background-color: #14213d in YAML.
+// Quarto renders: h1.title, .subtitle, .quarto-title-authors, .date.
+// We style each and inject a kicker via ::before on the title.
+
+.reveal .slides section.title-slide {
+  text-align: left;
+  padding: 3em 4em 2em !important;
+  color: white;
+
+  * { color: inherit; }
+
+  h1.title {
+    color: white;
+    font-size: 2.8em;
+    margin: 0 0 0.4em 0;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+
+  // Kicker: injected via CSS pseudo-element on the title
+  h1.title::before {
+    content: "SUMMER AI EXTRACTION GROUP";
+    display: block;
+    color: $gold;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.32em;
+    font-weight: 600;
+    font-family: "Helvetica Neue", sans-serif;
+    margin-bottom: 1.6em;
+    line-height: 1;
+  }
+
+  .subtitle {
+    font-size: 1.25em;
+    color: $off-white;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1.5em 0 0.6em;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  // Tagline: use blockquote inside the title slide for the italic line
+  blockquote {
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-style: italic;
+    color: $sky-muted;
+    font-size: 0.9em;
+    border-left: none;
+    padding: 0;
+    background: transparent;
+    margin: 0.8em 0 0;
+    text-align: left;
+    box-shadow: none;
+
+    p { margin: 0; }
+  }
+
+  .quarto-title-authors,
+  .quarto-title-author {
+    color: white;
+    margin-top: 2.5em;
+    text-align: left;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+
+    .quarto-title-author-name,
+    strong {
+      color: white;
+      font-weight: 700;
+      font-size: 1em;
+    }
+
+    .quarto-title-affiliation {
+      color: $sky-muted;
+      font-weight: 400;
+      margin-left: 1em;
+    }
+  }
+
+  // Horizontal rule above byline
+  .quarto-title-authors::before {
+    content: "";
+    display: block;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    width: 55%;
+    margin: 0 0 1.5em;
+  }
+
+  // Bottom footer: date left, URL right
+  &::after {
+    content: "9 JULY 2026        la3d.github.io/WGRA";
+    position: absolute;
+    left: 3em;
+    right: 3em;
+    bottom: 1.6em;
+    color: $gold;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// Hide Quarto's default date rendering on the title slide (we render via ::after)
+.reveal .slides section.title-slide .date { display: none; }
+
+// ---- Content slides ----
+.reveal .slides section h2 {
+  font-size: 1.7em;
+  color: $navy;
+  margin: 0 0 0.6em;
+  line-height: 1.15;
+}
+
+// Kicker for content slides (uppercase gold tracked)
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.55em;
+  color: $gold;
+  font-weight: 600;
+  font-family: "Helvetica Neue", sans-serif;
+  margin-bottom: 0.3em;
+  display: block;
+}
+
+// Highlighted callout box (cream bg, gold border, italic serif)
+.callout-highlight,
+div.callout-highlight,
+blockquote.highlight {
+  background: $cream;
+  border: 2px solid $gold;
+  border-radius: 6px;
+  padding: 0.9em 1.3em;
+  font-family: "Charter", "Palatino", "Cambria", "Georgia", serif;
+  font-style: italic;
+  font-weight: 700;
+  color: $navy;
+  margin: 1.2em 0;
+  font-size: 1.05em;
+  line-height: 1.4;
+
+  p { margin: 0; }
+}
+
+// Session-card pill (light gray rounded box, matches Image 2)
+.session-card {
+  background: $card-bg;
+  border-radius: 8px;
+  padding: 0.8em 1.2em;
+  display: inline-block;
+  min-width: 8em;
+  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+
+  strong { display: block; font-size: 1em; color: $navy; margin-bottom: 0.15em; }
+  span { color: $muted; font-size: 0.75em; }
+}
+
+// "Nothing carries over" indicator
+.session-break {
+  color: $red;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 0.7em;
+  text-align: center;
+  padding: 0.6em 0;
+
+  .symbol {
+    font-size: 1.6em;
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.15em;
+  }
+}
+
+// Slide number
+.reveal .slide-number {
+  color: $gold;
+  font-weight: 700;
+  background: transparent;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 0.75em;
+  right: 40px;
+  bottom: 15px;
+  letter-spacing: 0.05em;
+}
+
+// Footer (Quarto)
+.reveal .footer {
+  color: $muted;
+  font-size: 0.65em;
+  font-family: "Helvetica Neue", sans-serif;
+  letter-spacing: 0.02em;
+
+  a { color: $gold; font-weight: 700; }
+}
+
+// Two-column layout tweaks
+.reveal .columns { align-items: flex-start; gap: 1.2em; }
+.reveal .column { padding: 0 0.4em; }
+
+// Bulleted list styling
+.reveal ul { line-height: 1.5; }
+.reveal ul li { margin: 0.35em 0; color: $navy; }
+
+// Sane defaults for embedded HTML
+.reveal .graph-container { border-radius: 4px; }
