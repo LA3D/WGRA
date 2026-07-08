@@ -1,0 +1,528 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks",
+        "label": "Answer-Chunks",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "label": "BM25-Energy-Drift",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity",
+        "label": "Bridge-Entity",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk",
+        "label": "Claims-Plus-Walk",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "label": "Dense-RAG-Scale-Collapse",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "label": "Energy-Based-Drift",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking",
+        "label": "Entity-Overlap-Ranking",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design",
+        "label": "Extraction-Retrieval-Co-Design",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph",
+        "label": "Heterogeneous-Graph",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG",
+        "label": "Iterative-Chained-RAG",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL",
+        "label": "Iterative-NL-SPARQL",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "label": "Markov-Chain-v5c2",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial",
+        "label": "Markov-Retrieval-Tutorial",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings",
+        "label": "MiniLM-Embeddings",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "label": "MuSiQue-Benchmark",
+        "type": "Entity"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "MuSiQue-PoC-Results",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Operations-Basis",
+        "label": "Operations-Basis",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set",
+        "label": "Operator-Spanning-Set",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition",
+        "label": "Path-Length-Decomposition",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy",
+        "label": "Per-Question-Energy",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Question-Projection",
+        "label": "Question-Projection",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check",
+        "label": "RAG-Sanity-Check",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart",
+        "label": "Random-Walk-With-Restart",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Restart-Probability",
+        "label": "Restart-Probability",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization",
+        "label": "Softmax-Normalization",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes",
+        "label": "Three-Retrieval-Modes",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument",
+        "label": "Trajectory-Length-Argument",
+        "type": "Concept"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology",
+        "label": "Typed-Predicate-Ontology",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "label": "V5c2-Gold-Rank-Positions",
+        "type": "Synthesis"
+      }
+    },
+    {
+      "data": {
+        "id": "https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode",
+        "label": "Vanilla-RAG-Failure-Mode",
+        "type": "Concept"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "label": "extends",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "label": "extends",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Operations-Basis",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG",
+        "label": "extends",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL",
+        "label": "extends",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart",
+        "label": "extends",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial",
+        "label": "supports",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "label": "supports",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check",
+        "label": "criticizes",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology",
+        "label": "criticizes",
+        "casestudy": "yes"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Operations-Basis",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization",
+        "label": "related",
+        "casestudy": "no"
+      }
+    },
+    {
+      "data": {
+        "source": "https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results",
+        "target": "https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization",
+        "label": "related",
+        "casestudy": "no"
+      }
+    }
+  ]
+}

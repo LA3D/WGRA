@@ -245,9 +245,139 @@ footer a { color: var(--muted); }
 Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic connections the pattern is designed for: <code>affiliation</code> from Person to Organization, <code>authorOf</code> from Person to note types, <code>supports</code> and <code>criticizes</code> from evidence pages to Concept, <code>up</code> for hierarchy, <code>implementation</code> from Concept to code notes, <code>defines</code> from ConceptNote to Concept. Page-to-page semantic properties (<code>extends</code>, <code>supports</code>, <code>criticizes</code>) are drawn as dashed self-loops on Concept because they can connect any concept-typed page to any other.
 </p>
 
-<h2>A real graph and SPARQL results</h2>
+<h2>A real graph: the markov_embeddings_and_rag wiki</h2>
 
-<p>An interactive slice of a live research wiki, plus sample results from the eleven canned SPARQL queries the template ships in <code>scripts/kg/sparql/*.rq</code>, will appear here once a suitable example wiki is wired in. The queries cover hierarchy traversal (transitive <code>up+</code> property paths), hub detection (inbound-edge counts excluding structural predicates), evidence walks (<code>supports</code> / <code>criticizes</code>), and orphan detection. Each is executed against the wiki's built <code>graph-full.ttl</code> in-process via rdflib.</p>
+<p>Below is a slice of an actual research wiki reified to RDF: the <code>markov_embeddings_and_rag</code> project's llm-wiki, focused on the theory tree that runs through the group's work on Markov-walk retrieval. The full graph is in <a href="graph.ttl"><code>graph.ttl</code></a>. This wiki is the project that produced the "Real world example" callout on the flyer.</p>
+
+<div class="graph-container">
+  <div class="controls">
+    <button onclick="instanceCy.fit()">Fit</button>
+    <button onclick="instanceCy.layout({name:'cose', animate:false, idealEdgeLength:110, nodeOverlap:14}).run()">Re-layout</button>
+  </div>
+  <div id="instance-graph" style="width:100%; height:100%;"></div>
+</div>
+<div class="legend">
+  <span><span class="swatch" style="background: var(--type-concept)"></span>Concept</span>
+  <span><span class="swatch" style="background: var(--type-source)"></span>Synthesis</span>
+  <span><span class="swatch" style="background: var(--type-entity)"></span>Entity</span>
+  <span style="margin-left: 1em;"><span class="swatch" style="background: #b8860b; border-radius: 0; width: 14px; height: 3px;"></span>edges that made the case study possible</span>
+</div>
+
+<p style="font-size: 0.9em; color: var(--muted); margin-top: 0.7em;">
+30 nodes, 39 edges. All 10 <code>extends</code> edges are shown; <code>supports</code> and <code>criticizes</code> edges are highlighted, and a subset of <code>related</code> edges gives context. Node types dominated by Concept (17) and Synthesis (12), an unusually high Synthesis count that indicates the group's understanding has grown beyond what's in the papers they read.
+</p>
+
+<blockquote>
+  <p><strong>What the highlighted (gold) edges are.</strong> The flyer's "Real world example" callout describes the pattern: a finding on a demo branch cascaded through prior experiments via typed <code>extends:</code> edges, and a current empirical result <em>criticized</em> an earlier framework claim. On this wiki, that maps to a specific chain. <code>Dense-RAG-Scale-Collapse</code> is the leaf finding. Follow its <code>extends:</code> edges backward and you traverse <code>V5c2-Gold-Rank-Positions</code> → <code>Markov-Chain-v5c2</code> → <code>Iterative-NL-SPARQL</code> → <code>Iterative-Chained-RAG</code>: four hops of experimental lineage the reviewer could walk. And <code>Dense-RAG-Scale-Collapse</code> also <code>criticizes:</code> <code>RAG-Sanity-Check</code>, a page five hops up the <code>up:</code> hierarchy. The current experimental result contradicts an early framework claim, and the graph records both the finding and the disagreement together. These six edges (four extends + two criticisms) are what made the finding traceable and legible in a way body links alone could not have.</p>
+</blockquote>
+
+<h2>What the graph enables: SPARQL queries</h2>
+
+<p>Because the graph is real RDF, an agent can issue SPARQL queries against it directly. The base template ships eleven canned queries in <code>scripts/kg/sparql/*.rq</code> covering hierarchy traversal, hub detection, evidence walks, and orphan detection. All eleven were run in-process against the live <code>markov_embeddings_and_rag</code> wiki's <code>graph-full.ttl</code>; every query executed without error. Three of the more illustrative results are shown below.</p>
+
+<h3>All typed evidence edges (supports / criticizes)</h3>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT ?source ?sourceTitle ?relation ?target ?targetTitle WHERE {
+    VALUES ?relation { llm-wiki-colab:supports llm-wiki-colab:criticizes }
+    ?source ?relation ?target .
+    ?source dcterms:title ?sourceTitle .
+    ?target dcterms:title ?targetTitle .
+} ORDER BY ?targetTitle ?relation</code></pre>
+
+<p>Executed via rdflib against the markov_embeddings_and_rag wiki. Four rows returned — an unusual result: <em>both</em> <code>supports</code> and <code>criticizes</code> edges exist here, which most catalog and survey wikis don't reach.</p>
+
+<table>
+<thead><tr><th>Source</th><th>Relation</th><th>Target</th></tr></thead>
+<tbody>
+<tr><td>Dense-RAG-Scale-Collapse</td><td>criticizes</td><td>RAG-Sanity-Check</td></tr>
+<tr><td>Trajectory-Length-Argument</td><td>supports</td><td>Energy-Based-Drift</td></tr>
+<tr><td>Extraction-Retrieval-Co-Design</td><td>supports</td><td>Markov-Retrieval-Tutorial</td></tr>
+<tr><td>Iterative-NL-SPARQL</td><td>criticizes</td><td>Typed-Predicate-Ontology</td></tr>
+</tbody>
+</table>
+
+<p>The two criticism edges are the load-bearing ones for the wiki's discipline. <code>Dense-RAG-Scale-Collapse criticizes RAG-Sanity-Check</code> is exactly the pattern the flyer's Real world example describes: a current experimental finding contradicting an earlier framework claim, filed as a typed edge so the disagreement is preserved in the graph rather than lost when the successor page is written. The two supports edges anchor the theoretical scaffold: an argument (<code>Trajectory-Length-Argument</code>) supports an energy-drift claim, and a co-design principle supports the Markov-retrieval synthesis. RAG-only wikis rarely accumulate either kind of edge because there is no author with a stake in maintaining them; here the pattern's discipline makes them cheap enough to file that they exist.</p>
+
+<h3>Ancestors of a concept (transitive hierarchy)</h3>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT ?ancestor ?ancestorTitle WHERE {
+    &lt;.../page/NOTE_SLUG&gt; llm-wiki-colab:up+ ?ancestor .
+    ?ancestor dcterms:title ?ancestorTitle .
+}</code></pre>
+
+<p>The <code>+</code> in <code>up+</code> is SPARQL's transitive-closure operator: one or more <code>up</code> hops. A single query returns the entire breadcrumb chain. Executed against <code>Dense-RAG-Scale-Collapse</code> — the leaf experimental finding at the far end of the theory tree — the chain runs 12 hops deep:</p>
+
+<pre><code>Dense-RAG-Scale-Collapse
+  → V5c2-Gold-Rank-Positions
+  → Markov-Chain-v5c2
+  → Iterative-NL-SPARQL
+  → Iterative-Chained-RAG
+  → RAG-Sanity-Check
+  → Typed-Predicate-Ontology
+  → Operator-Spanning-Set
+  → Operations-Basis
+  → Markov-Retrieval-Tutorial
+  → Home
+  → WIKI-INDEX</code></pre>
+
+<p>Twelve hops from a current experimental result all the way up to the wiki root. An agent asked "what's the project context around this scale-collapse finding?" reconstructs the entire research trajectory in one query. Notice that <code>RAG-Sanity-Check</code> — the page <code>Dense-RAG-Scale-Collapse</code> <em>criticizes</em> — is itself in the ancestor chain (five hops up). The current finding contradicts a claim from its own conceptual heritage; the graph makes that visible.</p>
+
+<h3>Hub notes (structural centrality)</h3>
+
+<pre><code>PREFIX llm-wiki-colab: &lt;https://la3d.github.io/llm-wiki-colab/ontology#&gt;
+PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+
+SELECT ?title (COUNT(?src) AS ?inbound) WHERE {
+    ?src ?pred ?note .
+    ?note dcterms:title ?title .
+    FILTER(?pred NOT IN (rdf:type, dcterms:title, dcterms:created,
+        llm-wiki-colab:tag, llm-wiki-colab:status, llm-wiki-colab:timeline))
+    FILTER(isIRI(?note))
+} GROUP BY ?title ORDER BY DESC(?inbound) LIMIT 25</code></pre>
+
+<p>Top of 25 on the markov_embeddings_and_rag wiki:</p>
+
+<table>
+<thead><tr><th>Note</th><th>Type</th><th>Inbound edges</th></tr></thead>
+<tbody>
+<tr><td>Random-Walk-With-Restart</td><td>Concept</td><td>48</td></tr>
+<tr><td>Markov-Retrieval-Tutorial</td><td>Synthesis</td><td>42</td></tr>
+<tr><td>Path-Length-Decomposition</td><td>Concept</td><td>37</td></tr>
+<tr><td>Heterogeneous-Graph</td><td>Concept</td><td>34</td></tr>
+<tr><td>MuSiQue-PoC-Results</td><td>Synthesis</td><td>32</td></tr>
+<tr><td>BM25-Energy-Drift</td><td>Concept</td><td>31</td></tr>
+<tr><td>Energy-Based-Drift</td><td>Concept</td><td>30</td></tr>
+<tr><td>Trajectory-Length-Argument</td><td>Concept</td><td>24</td></tr>
+<tr><td>Operations-Basis</td><td>Synthesis</td><td>24</td></tr>
+<tr><td>Restart-Probability</td><td>Concept</td><td>22</td></tr>
+</tbody>
+</table>
+
+<p>Two structural features stand out. First, the top ten are research Concepts and Syntheses — no Index or admin pages. Compare to a topic-review wiki where topic Indexes dominate the hubs; here the theory is what holds the graph together. Second, the wiki's central algorithm — Random-Walk-With-Restart — surfaces automatically at the top with 48 inbound edges. Nobody had to hand-author a "start here" page; the query is the "start here" surface for a new reader or a fresh agent session.</p>
+
+<h2>Additional observations from the graph</h2>
+
+<p>The markov_embeddings_and_rag graph is unusually rich compared to the other example wikis. Four observations that fall out of it:</p>
+
+<ol>
+  <li><strong>Two branch points in the theory tree.</strong> Two Concepts are extended by more than one child, which are the places the research forked:
+    <ul>
+      <li><code>Markov-Chain-v5c2</code> is extended by both <code>V5c2-Gold-Rank-Positions</code> and <code>Claims-Plus-Walk</code>. Two experimental variants of the same base chain, filed side by side.</li>
+      <li><code>Energy-Based-Drift</code> is extended by both <code>Trajectory-Length-Argument</code> and <code>BM25-Energy-Drift</code>. The theoretical claim spawned a formal argument and a BM25-specific version, filed as siblings under the same parent.</li>
+    </ul>
+    An agent asked "what versions of X have we tried?" gets the fork structure back as a graph query, not as a git-log dig.
+  </li>
+  <li><strong>Four theoretical roots.</strong> Concepts that get extended by others but don't themselves extend anything: <code>Random-Walk-With-Restart</code>, <code>Heterogeneous-Graph</code>, <code>Operations-Basis</code>, <code>Iterative-Chained-RAG</code>. These are the load-bearing foundations of the group's framework. If you're onboarding, these are the four pages to read first.</li>
+  <li><strong>Five experimental leaves.</strong> Concepts that extend something but aren't yet extended: <code>Dense-RAG-Scale-Collapse</code>, <code>Trajectory-Length-Argument</code>, <code>BM25-Energy-Drift</code>, <code>Claims-Plus-Walk</code>, <code>Answer-Chunks</code>. These are the current experimental frontier. If you're the maintainer, these are the pages most likely to move next.</li>
+  <li><strong>Synthesis outnumbers SourceSummary 18 to 5.</strong> A 3.6:1 ratio of self-authored synthesis to external-paper summary. That is what a mature research-execution wiki looks like: the group's own understanding has grown well beyond the papers it started from. Neither a catalog wiki (where SourceSummary dominates) nor a survey wiki (where Index-plus-SourceSummary structures the graph) will reach this ratio; only a wiki where the group is <em>doing</em> the research does.</li>
+</ol>
 
 <h2>How the graph is built and validated</h2>
 
@@ -259,7 +389,7 @@ Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic con
   <li><strong>Serialize.</strong> Emit the graph in multiple formats: Turtle (<code>graph.ttl</code>) for humans, JSON-LD (<code>graph.jsonld</code>) for JavaScript, an optional weighted variant (<code>graph-weights.ttl</code>).</li>
 </ol>
 
-<p>The ontology graph on this page renders the actual <code>ontology.ttl</code> and shape declarations from the <code>llm-wiki-colab</code> project, converted to Cytoscape's JSON format by a small script (rdflib in, JSON out). Nothing was hand-authored.</p>
+<p>The ontology graph on this page renders the actual <code>ontology.ttl</code> from <code>llm-wiki-colab</code>. The instance graph and SPARQL results come from the actual <code>graph.ttl</code> output of a recent build of the markov_embeddings_and_rag wiki, converted to Cytoscape's JSON by a small rdflib-in-JSON-out script. Nothing was hand-authored.</p>
 
 <h2>Wrap-up</h2>
 
@@ -267,7 +397,7 @@ Nodes are the 28 classes a wiki page can inhabit. Edges express the semantic con
 
 <footer>
   <p><strong>Read next:</strong> <a href="../wiki-collaboration-story/">The Web Forager llm-wiki collaboration story</a> shows semantic-edge traversal doing load-bearing work in a real project; <a href="../agent-capability/">Agent capability</a> covers the skills and gates that maintain the graph's discipline.</p>
-  <p><strong>Related sources:</strong> <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (the semantic foundation) · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the KG pipeline lives at <code>scripts/kg/</code>) · <a href="ontology.ttl"><code>ontology.ttl</code></a> (the actual ontology this page visualizes)</p>
+  <p><strong>Related sources:</strong> <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> (the semantic foundation) · <a href="https://github.com/crcresearch/llm-wiki-memory-template">crcresearch/llm-wiki-memory-template</a> (the KG pipeline lives at <code>scripts/kg/</code>) · <a href="ontology.ttl"><code>ontology.ttl</code></a> and <a href="graph.ttl"><code>graph.ttl</code></a> (the actual TTL files this page visualizes)</p>
   <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
 </footer>
 
@@ -330,10 +460,66 @@ fetch('ontology-graph.json').then(r => r.json()).then(data => {
   });
 });
 
-// Instance-graph Cytoscape rendering was removed pending a replacement
-// example wiki. When the new graph is wired in, restore a block similar
-// to the ontology-graph fetch above, keyed to a #instance-graph container
-// and a JSON file (e.g. instance-graph-slice.json).
+// Instance graph (markov_embeddings_and_rag)
+const typeColor = {
+  'Concept':        getComputedStyle(document.documentElement).getPropertyValue('--type-concept').trim(),
+  'Synthesis':      getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Entity':         getComputedStyle(document.documentElement).getPropertyValue('--type-entity').trim(),
+  'SourceSummary':  getComputedStyle(document.documentElement).getPropertyValue('--type-source').trim(),
+  'Reference':      getComputedStyle(document.documentElement).getPropertyValue('--type-reference').trim(),
+  'Index':          getComputedStyle(document.documentElement).getPropertyValue('--type-index').trim(),
+  'UntypedNote':    '#aaa'
+};
+
+let instanceCy;
+fetch('instance-graph-slice.json').then(r => r.json()).then(data => {
+  instanceCy = cytoscape({
+    container: document.getElementById('instance-graph'),
+    elements: [
+      ...data.nodes.map(n => ({data: n.data})),
+      ...data.edges.map(e => ({data: e.data}))
+    ],
+    style: [
+      { selector: 'node', style: {
+        'background-color': ele => typeColor[ele.data('type')] || '#888',
+        'label': 'data(label)',
+        'color': '#1a1a1a',
+        'text-outline-color': '#fff',
+        'text-outline-width': 2,
+        'font-size': 9,
+        'font-family': 'Helvetica Neue, Arial, sans-serif',
+        'width': 20, 'height': 20,
+        'text-wrap': 'wrap',
+        'text-max-width': 100
+      }},
+      { selector: 'edge', style: {
+        'width': 1,
+        'line-color': '#ccc',
+        'target-arrow-color': '#ccc',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier',
+        'label': 'data(label)',
+        'font-size': 8,
+        'color': '#888',
+        'text-background-color': '#fff',
+        'text-background-opacity': 0.85,
+        'text-background-padding': 1
+      }},
+      { selector: 'edge[label = "extends"]',    style: { 'line-color': '#0d4a8b', 'target-arrow-color': '#0d4a8b', 'width': 1.4, 'color': '#0d4a8b' }},
+      { selector: 'edge[label = "supports"]',   style: { 'line-color': '#1b6e2a', 'target-arrow-color': '#1b6e2a', 'width': 1.4, 'color': '#1b6e2a' }},
+      { selector: 'edge[label = "criticizes"]', style: { 'line-color': '#8b0d3f', 'target-arrow-color': '#8b0d3f', 'width': 1.6, 'color': '#8b0d3f' }},
+      { selector: 'edge[casestudy = "yes"]', style: {
+        'line-color': '#b8860b',
+        'target-arrow-color': '#b8860b',
+        'width': 3,
+        'color': '#b8860b',
+        'z-index': 10
+      }},
+      { selector: 'node:selected', style: { 'border-width': 3, 'border-color': '#0d4a8b' }}
+    ],
+    layout: { name: 'cose', idealEdgeLength: 110, nodeOverlap: 14, animate: false, fit: true }
+  });
+});
 </script>
 
 </body>

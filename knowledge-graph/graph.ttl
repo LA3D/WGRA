@@ -1,0 +1,1216 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix llm-wiki-colab: <https://la3d.github.io/llm-wiki-colab/ontology#> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home> a llm-wiki-colab:UntypedNote ;
+    dcterms:title "Home" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/SCHEMA_markov_embeddings_and_rag> a llm-wiki-colab:Reference ;
+    dcterms:title "SCHEMA_markov_embeddings_and_rag" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/Page-Name>,
+        <https://la3d.github.io/llm-wiki-colab/page/Parent-Page> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/log_markov_embeddings_and_rag> a llm-wiki-colab:Index ;
+    dcterms:title "log_markov_embeddings_and_rag" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/README>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode>,
+        <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX>,
+        <https://la3d.github.io/llm-wiki-colab/page/energy-based-drift-doc>,
+        <https://la3d.github.io/llm-wiki-colab/page/experiment-spec-doc>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/question-projection-doc>,
+        <https://la3d.github.io/llm-wiki-colab/page/tutorial-pdf> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Dense-RAG-Scale-Collapse" ;
+    llm-wiki-colab:criticizes <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check> ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:tag "dense-rag",
+        "distractors",
+        "headline",
+        "musique",
+        "results",
+        "retrieval",
+        "scaling" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History> a llm-wiki-colab:Synthesis ;
+    dcterms:title "MuSiQue-Journey-History" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:tag "history",
+        "journey",
+        "linear-norm",
+        "methodology",
+        "musique",
+        "sweeps" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Uniform-Similarity-Chain" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:tag "controlled-test",
+        "design-principle",
+        "empirical",
+        "musique",
+        "object-agnostic",
+        "results",
+        "uniform-chain" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Decomposer-Quality-Analysis" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:tag "decomposer",
+        "decomposition-quality",
+        "llm-judge",
+        "musique",
+        "operator-basis" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG> .
+
+<https://la3d.github.io/llm-wiki-colab/page/README-Summary> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "README-Summary" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> ;
+    llm-wiki-colab:source <https://la3d.github.io/llm-wiki-colab/page/README> ;
+    llm-wiki-colab:tag "entry-point",
+        "overview",
+        "readme" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions> a llm-wiki-colab:Synthesis ;
+    dcterms:title "V5c2-Gold-Rank-Positions" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:tag "diagnostic",
+        "gold-rank",
+        "musique",
+        "results",
+        "retrieval",
+        "v5c2" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2> .
+
+<https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> a llm-wiki-colab:Index ;
+    dcterms:title "index_markov_embeddings_and_rag" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Claims-Plus-Walk" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:tag "claims",
+        "entity-resolution",
+        "markov-chain",
+        "musique",
+        "operations-basis",
+        "proposal",
+        "propositions",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Drift-Variants-MuSiQue" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:tag "design-principles",
+        "drift",
+        "empirical",
+        "musique",
+        "product-chain",
+        "results",
+        "simdrift" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking> a llm-wiki-colab:Concept ;
+    dcterms:title "Entity-Overlap-Ranking" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:tag "empirical",
+        "entity-overlap",
+        "independent-hop",
+        "musique",
+        "ranking",
+        "sparql" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> a llm-wiki-colab:Index ;
+    dcterms:title "Home_markov_embeddings_and_rag" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/SCHEMA_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode>,
+        <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_markov_embeddings_and_rag> ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/WIKI-INDEX> .
+
+<https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check> a llm-wiki-colab:Synthesis ;
+    dcterms:title "RAG-Sanity-Check" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Dense-RAG-Scale-Collapse>,
+        <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:tag "baselines",
+        "dense-retrieval",
+        "musique",
+        "rag",
+        "sanity-check",
+        "sparql" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Iterative-NL-SPARQL" ;
+    llm-wiki-colab:criticizes <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:tag "distillation",
+        "fallback-ladder",
+        "iterative",
+        "musique",
+        "ontology-free",
+        "sparql" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings> a llm-wiki-colab:Concept ;
+    dcterms:title "MiniLM-Embeddings" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:tag "embeddings",
+        "encoder",
+        "model" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures> a llm-wiki-colab:Entity ;
+    dcterms:title "Tutorial-Figures" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition> ;
+    llm-wiki-colab:tag "diagnostics",
+        "figures",
+        "output" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Independent-vs-Chained-Retrieval" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:tag "chained",
+        "independent",
+        "musique",
+        "retrieval-architecture",
+        "sparql",
+        "trade-offs" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Iterative-Chained-RAG" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Decomposer-Quality-Analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check>,
+        <https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> ;
+    llm-wiki-colab:tag "chained",
+        "final-answer-accuracy",
+        "iterative",
+        "llm-extraction",
+        "musique",
+        "rag" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/RAG-Sanity-Check> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness> a llm-wiki-colab:Entity ;
+    dcterms:title "Chain-Sanity-Test-Harness" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/log_markov_embeddings_and_rag> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> ;
+    llm-wiki-colab:tag "invariants",
+        "musique",
+        "sanity-tests",
+        "testing",
+        "validation" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus> a llm-wiki-colab:Entity ;
+    dcterms:title "Tutorial-Corpus" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries> ;
+    llm-wiki-colab:tag "corpus",
+        "data",
+        "manufacturing" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries> a llm-wiki-colab:Entity ;
+    dcterms:title "Tutorial-Queries" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus> ;
+    llm-wiki-colab:tag "evaluation",
+        "findings",
+        "queries" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark> a llm-wiki-colab:Entity ;
+    dcterms:title "HotpotQA-Benchmark" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification> ;
+    llm-wiki-colab:tag "benchmark",
+        "dataset",
+        "multi-hop",
+        "qa",
+        "wikipedia" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Tutorial-PDF-Summary" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary> ;
+    llm-wiki-colab:source <https://la3d.github.io/llm-wiki-colab/page/tutorial-pdf> ;
+    llm-wiki-colab:tag "primary-artifact",
+        "tutorial",
+        "writeup" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Markov-Chain-v5c2> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Markov-Chain-v5c2" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/V5c2-Gold-Rank-Positions>,
+        <https://la3d.github.io/llm-wiki-colab/page/figures/chain_v5c2_rank_distribution.png>,
+        <https://la3d.github.io/llm-wiki-colab/page/figures/chain_v5c2_recall_curve.png> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:tag "canonical-entities",
+        "headline",
+        "markov-chain",
+        "musique",
+        "retrieval",
+        "rwr" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Iterative-NL-SPARQL> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Named-Entity-Concept-Extraction" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:tag "bridge-mechanism",
+        "concept-extraction",
+        "corpus-pipeline",
+        "ner",
+        "spacy" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Typed-Predicate-Ontology> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Typed-Predicate-Ontology" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Iterative-Chained-RAG>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Entity-Overlap-Ranking>,
+        <https://la3d.github.io/llm-wiki-colab/page/Independent-vs-Chained-Retrieval>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> ;
+    llm-wiki-colab:tag "breakthrough",
+        "musique",
+        "ontology",
+        "predicate-grounding",
+        "sparql",
+        "vocabulary-alignment" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set> a llm-wiki-colab:Concept ;
+    dcterms:title "Operator-Spanning-Set" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/experiments/musique/sparql/design/training_set_analysis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection> ;
+    llm-wiki-colab:tag "hop-counting",
+        "operations-basis",
+        "query-construction",
+        "sparql",
+        "type-signatures" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy> a llm-wiki-colab:Concept ;
+    dcterms:title "Per-Question-Energy" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:tag "energy-based-models",
+        "extraction",
+        "formal-questions",
+        "summary-statistics" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> a llm-wiki-colab:Concept ;
+    dcterms:title "Three-Retrieval-Modes" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:tag "architecture",
+        "modes",
+        "query-time",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> a llm-wiki-colab:Concept ;
+    dcterms:title "Vanilla-RAG-Failure-Mode" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings> ;
+    llm-wiki-colab:tag "embeddings",
+        "failure-mode",
+        "motivation",
+        "rag" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks> a llm-wiki-colab:Concept ;
+    dcterms:title "Answer-Chunks" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection> ;
+    llm-wiki-colab:tag "answer-chunks",
+        "architecture",
+        "chunks",
+        "extraction",
+        "question-driven" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Extraction-Retrieval-Co-Design" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> ;
+    llm-wiki-colab:tag "architecture",
+        "design-principle",
+        "extraction",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Question-Projection> a llm-wiki-colab:Concept ;
+    dcterms:title "Question-Projection" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:tag "basis-set",
+        "discovery",
+        "energy-based-models",
+        "projection",
+        "query-time" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Experiment-Specification" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:source <https://la3d.github.io/llm-wiki-colab/page/experiment-spec-doc> ;
+    llm-wiki-colab:tag "benchmarks",
+        "bm25",
+        "drift",
+        "experiment",
+        "hotpotqa",
+        "paper" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> a llm-wiki-colab:Concept ;
+    dcterms:title "Softmax-Normalization" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> ;
+    llm-wiki-colab:tag "breakthrough",
+        "normalization",
+        "pi0",
+        "softmax",
+        "temperature",
+        "transition-matrix" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity> a llm-wiki-colab:Concept ;
+    dcterms:title "Bridge-Entity" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:tag "corpus-structure",
+        "graph",
+        "retrieval",
+        "vocabulary" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Energy-Based-Drift-Paper-Direction" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:source <https://la3d.github.io/llm-wiki-colab/page/energy-based-drift-doc> ;
+    llm-wiki-colab:tag "drift",
+        "energy-based-models",
+        "langevin",
+        "paper",
+        "research-direction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark> a llm-wiki-colab:Entity ;
+    dcterms:title "MuSiQue-Benchmark" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:tag "benchmark",
+        "dataset",
+        "multi-hop",
+        "musique",
+        "qa",
+        "wikipedia" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision> a llm-wiki-colab:SourceSummary ;
+    dcterms:title "Question-Projection-Retrieval-Vision" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes> ;
+    llm-wiki-colab:source <https://la3d.github.io/llm-wiki-colab/page/question-projection-doc> ;
+    llm-wiki-colab:tag "architecture",
+        "discovery",
+        "question-driven",
+        "research-direction",
+        "vision" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/index_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> a llm-wiki-colab:Concept ;
+    dcterms:title "Restart-Probability" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:tag "calibration",
+        "hop-range",
+        "hyperparameter",
+        "rwr" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Operations-Basis> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Operations-Basis" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Claims-Plus-Walk>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operator-Spanning-Set>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain> ;
+    llm-wiki-colab:tag "architecture",
+        "decomposition",
+        "future-direction",
+        "ontology",
+        "operations-basis",
+        "query-planning" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> a llm-wiki-colab:Concept ;
+    dcterms:title "Trajectory-Length-Argument" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> ;
+    llm-wiki-colab:supports <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift> ;
+    llm-wiki-colab:tag "drift",
+        "motivation",
+        "paper-argument",
+        "query-coupling",
+        "trajectory" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift> a llm-wiki-colab:Concept ;
+    dcterms:title "Energy-Based-Drift" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:tag "drift",
+        "energy-based-models",
+        "langevin",
+        "learned-component",
+        "research-direction" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction> .
+
+<https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift> a llm-wiki-colab:Concept ;
+    dcterms:title "BM25-Energy-Drift" ;
+    llm-wiki-colab:extends <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift> ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Per-Question-Energy>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:tag "bm25",
+        "drift",
+        "energy-based-models",
+        "experiment",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification> .
+
+<https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results> a llm-wiki-colab:Synthesis ;
+    dcterms:title "MuSiQue-PoC-Results" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Operations-Basis>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Uniform-Similarity-Chain> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Drift-Variants-MuSiQue>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Journey-History>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization> ;
+    llm-wiki-colab:tag "breakthrough",
+        "empirical",
+        "headline",
+        "multi-hop",
+        "musique",
+        "ner",
+        "results",
+        "softmax" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-Benchmark> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph> a llm-wiki-colab:Concept ;
+    dcterms:title "Heterogeneous-Graph" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> ;
+    llm-wiki-colab:tag "data-structure",
+        "graph",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition> a llm-wiki-colab:Concept ;
+    dcterms:title "Path-Length-Decomposition" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures> ;
+    llm-wiki-colab:tag "analysis",
+        "diagnostic",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> a llm-wiki-colab:Synthesis ;
+    dcterms:title "Markov-Retrieval-Tutorial" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/Answer-Chunks>,
+        <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Bridge-Entity>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Corpus>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Figures>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-Queries>,
+        <https://la3d.github.io/llm-wiki-colab/page/Vanilla-RAG-Failure-Mode> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Extraction-Retrieval-Co-Design>,
+        <https://la3d.github.io/llm-wiki-colab/page/Question-Projection-Retrieval-Vision>,
+        <https://la3d.github.io/llm-wiki-colab/page/README-Summary>,
+        <https://la3d.github.io/llm-wiki-colab/page/Tutorial-PDF-Summary> ;
+    llm-wiki-colab:tag "markov-chain",
+        "project-overview",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Home_markov_embeddings_and_rag> .
+
+<https://la3d.github.io/llm-wiki-colab/page/Random-Walk-With-Restart> a llm-wiki-colab:Concept ;
+    dcterms:title "Random-Walk-With-Restart" ;
+    llm-wiki-colab:mentions <https://la3d.github.io/llm-wiki-colab/page/BM25-Energy-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Chain-Sanity-Test-Harness>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift-Paper-Direction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Experiment-Specification>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/HotpotQA-Benchmark>,
+        <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial>,
+        <https://la3d.github.io/llm-wiki-colab/page/MiniLM-Embeddings>,
+        <https://la3d.github.io/llm-wiki-colab/page/MuSiQue-PoC-Results>,
+        <https://la3d.github.io/llm-wiki-colab/page/Named-Entity-Concept-Extraction>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability>,
+        <https://la3d.github.io/llm-wiki-colab/page/Softmax-Normalization>,
+        <https://la3d.github.io/llm-wiki-colab/page/Three-Retrieval-Modes>,
+        <https://la3d.github.io/llm-wiki-colab/page/Trajectory-Length-Argument> ;
+    llm-wiki-colab:related <https://la3d.github.io/llm-wiki-colab/page/Energy-Based-Drift>,
+        <https://la3d.github.io/llm-wiki-colab/page/Heterogeneous-Graph>,
+        <https://la3d.github.io/llm-wiki-colab/page/Path-Length-Decomposition>,
+        <https://la3d.github.io/llm-wiki-colab/page/Restart-Probability> ;
+    llm-wiki-colab:tag "algorithm",
+        "markov-chain",
+        "retrieval" ;
+    llm-wiki-colab:up <https://la3d.github.io/llm-wiki-colab/page/Markov-Retrieval-Tutorial> .
+
