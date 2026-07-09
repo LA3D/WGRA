@@ -694,27 +694,31 @@ the discipline is in the repo. Every session starts from a known baseline. Any a
 ::: {.column width="55%" .kg-caption}
 ```{=html}
 <pre class="log-snippet">---
-<span class="k">name:</span> <span class="s">wiki-experiment</span>
-<span class="k">description:</span> <span class="s">File experiment results to the wiki</span>
-  <span class="s">following the SCHEMA Ingest procedure. Use after</span>
-  <span class="s">a run produces metrics, ablations, or comparisons</span>
-  <span class="s">worth keeping as durable project memory.</span>
+<span class="k">name:</span> <span class="s">wiki-source</span>
+<span class="k">description:</span> <span class="s">Ingest a new source document (paper,</span>
+  <span class="s">article, design doc, README, external reference)</span>
+  <span class="s">into the wiki. Creates a source-summary page</span>
+  <span class="s">and links it into the existing wiki neighborhood.</span>
 ---
 
-# Procedure
-1. Read existing pages before writing.
-2. Create or update the experiment-results page:
-   <span class="k">type:</span> <span class="s2">synthesis</span> or <span class="s2">entity</span>,
-   <span class="k">up:</span> pointing to the benchmark page,
-   typed edges (<span class="s2">supports:</span>, <span class="s2">criticizes:</span>) when
-   the result confirms or refutes prior claims.
-3. Body: config, headline metrics, what changed,
-   what was surprising, link to results/ dir.
-4. <span class="k">Verification gate:</span> every numerical claim traces
-   to real script output. No projections.</pre>
+# Procedure (condensed)
+1. Read the source; discuss takeaways with user.
+2. Create source-summary page. Frontmatter:
+   <span class="k">type:</span> <span class="s2">source-summary</span>,
+   <span class="k">up:</span> closest existing parent page,
+   <span class="k">source:</span> URL or filesystem path,
+   typed edges (<span class="s2">supports:</span>, <span class="s2">criticizes:</span>,
+   <span class="s2">extends:</span>) to related wiki pages.
+3. Body: one-sentence opening; sections for
+   contribution, methods, intersections, quotes.
+4. Update related pages; fix cross-refs in
+   both directions on every affected page.
+5. Update <span class="k">index</span>; append log entry with
+   <span class="s2">by: &lt;name&gt; via claude-code</span>.
+6. <span class="k">Run Verification Gate</span> at commit time.</pre>
 ```
 
-*The `wiki-experiment` skill file from the template. Every project instantiated from `crcresearch/llm-wiki-memory-template` gets the same procedure, model-agnostic.*
+*The real `wiki-source` skill file from the template (condensed). Every project instantiated from `crcresearch/llm-wiki-memory-template` gets the same procedure, model-agnostic.*
 :::
 
 ::::
@@ -722,7 +726,7 @@ the discipline is in the repo. Every session starts from a known baseline. Any a
 ::: {.notes}
 Say: "The workflow isn't a Slack channel where senior people remind juniors of best practices. It ships as skill files in the repo. Every session, the SessionStart hook injects the wiki index and the last five log entries, so the agent starts oriented instead of starting blank. The verification gate then fires at commit time — you can't file a claim like '73.3% on MuSiQue' unless the wiki page traces to real script output. Projection-as-fact detection at the artifact level, not at the reviewer's discretion."
 
-The four operations that ship as single commands: `wiki-source` (ingest a source PDF or docset), `wiki-experiment` (file experiment results), `wiki-lint` (health-check the wiki), and the verification gate (fires as a PostToolUse advisory hook). All are in the base template.
+The four operations that ship as single commands, all in the base template: `wiki-source` (ingest a paper/article/design doc into a source-summary page; the RHS on this slide shows a condensed version of the actual skill file), `wiki-experiment` (file experiment results), `wiki-lint` (health-check the wiki for orphan pages, dead links, stale claims), and the verification gate (fires as a PostToolUse advisory hook). All four are in the `.claude/skills/` directory of `crcresearch/llm-wiki-memory-template`.
 :::
 
 ## Agent capability · multi-AI model {.smaller}
