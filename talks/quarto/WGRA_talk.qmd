@@ -506,7 +506,7 @@ Body links would have said "these are related somehow." The typed edge said "thi
 <div id="mini-graph" style="width:100%; height:340px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
 ```
 
-*Extends chain plus the two criticism edges. Same shape as the demo-branch cascade the reviewer walked.*
+*Different wiki (`markov_embeddings_and_rag`), same shape. Proof the extends-chain + criticism-to-ancestor pattern exists in real projects.*
 
 Full case study: [`la3d.github.io/WGRA/wiki-collaboration-story/`]{.mono}
 :::
