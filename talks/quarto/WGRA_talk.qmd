@@ -183,6 +183,52 @@ The point to make: every concept has a two-slot @type. The first slot is canonic
 Drag a Concept node to inspect it. The interactive graph is doing the same work as three static slides would have.
 :::
 
+## Two kinds of "hop" {.smaller}
+
+[Terminology · reasoning-hops vs retrieval-hops]{.kicker}
+
+Multi-hop in the literature conflates two different concepts.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Reasoning hop**
+
+A property of the *question*. One step in an inference chain, fixed by dataset annotation.
+
+MuSiQue's *"2-to-4 hop questions"* are compositions of connected single-hop questions, each depending on the previous answer.
+
+*Trivedi et al., TACL 2022*
+:::
+
+::: {.column width="50%"}
+**Retrieval hop**
+
+A property of the *system's execution*. One retrieval iteration, or one edge traversed in a graph, at run time.
+
+What our random walk does. Walk length is a retrieval-hop count.
+
+*HopRAG · IRCoT*
+:::
+
+::::
+
+::: {.callout-highlight}
+These don't need to align. Even single-reasoning-hop questions need multiple retrieval hops to build the *context envelope* (layout, related concepts, cross-document relationships) around each retrieved chunk.
+:::
+
+::: {.notes}
+Terminological pre-emption for the "why not just split the questions?" objection.
+
+Say: "There are actually two different notions of 'hop' in the RAG literature, and they get mixed constantly. Reasoning-hop is a property of the question, fixed at dataset construction. Retrieval-hop is a property of the system's execution. MuSiQue's 2-to-4 hop labels are reasoning-hops. Our random walk operates in retrieval-hop space. These are not the same thing."
+
+Then the natural follow-up: why don't retrieval-hops align 1-to-1 with reasoning-hops? Because retrieval also has to assemble the context envelope (layout, related concepts, cross-document relationships) around every chunk. That context isn't derivable from the question at all. Question decomposition only touches the question; the graph walk brings in structural and relational context that no amount of splitting reaches.
+
+Strongest version if pressed: the walk's stationary distribution is computed offline, before any question comes in. It's a property of the corpus, not the query. The question only enters at query time to derive our ranking. If retrieval-hops were reasoning-hops, the walk would need the question at every step. It doesn't.
+
+Transition to next slide: the 4-hop bridge chunk buried at rank 1,800 on the next slide is a retrieval-hop failure, not a reasoning failure.
+:::
+
 ## Dense RAG breaks on the bridges. {.smaller}
 
 [The retrieval problem]{.kicker}
@@ -506,7 +552,7 @@ Body links would have said "these are related somehow." The typed edge said "thi
 <div id="mini-graph" style="width:100%; height:340px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
 ```
 
-*Different wiki (`markov_embeddings_and_rag`), same shape. Proof the extends-chain + criticism-to-ancestor pattern exists in real projects.*
+*Extends chain plus the two criticism edges. Same shape as the demo-branch cascade the reviewer walked.*
 
 Full case study: [`la3d.github.io/WGRA/wiki-collaboration-story/`]{.mono}
 :::

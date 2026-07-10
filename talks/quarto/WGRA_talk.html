@@ -315,6 +315,43 @@ Chris Sweet
           display:block!important;
       }</style></aside>
 </section>
+<section id="two-kinds-of-hop" class="slide level2 smaller">
+<h2>Two kinds of “hop”</h2>
+<p><span class="kicker">Terminology · reasoning-hops vs retrieval-hops</span></p>
+<p>Multi-hop in the literature conflates two different concepts.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Reasoning hop</strong></p>
+<p>A property of the <em>question</em>. One step in an inference chain, fixed by dataset annotation.</p>
+<p>MuSiQue’s <em>“2-to-4 hop questions”</em> are compositions of connected single-hop questions, each depending on the previous answer.</p>
+<p><em>Trivedi et al., TACL 2022</em></p>
+</div><div class="column" style="width:50%;">
+<p><strong>Retrieval hop</strong></p>
+<p>A property of the <em>system’s execution</em>. One retrieval iteration, or one edge traversed in a graph, at run time.</p>
+<p>What our random walk does. Walk length is a retrieval-hop count.</p>
+<p><em>HopRAG · IRCoT</em></p>
+</div></div>
+<div class="callout-highlight">
+<p>These don’t need to align. Even single-reasoning-hop questions need multiple retrieval hops to build the <em>context envelope</em> (layout, related concepts, cross-document relationships) around each retrieved chunk.</p>
+</div>
+<aside class="notes">
+<p>Terminological pre-emption for the “why not just split the questions?” objection.</p>
+<p>Say: “There are actually two different notions of ‘hop’ in the RAG literature, and they get mixed constantly. Reasoning-hop is a property of the question, fixed at dataset construction. Retrieval-hop is a property of the system’s execution. MuSiQue’s 2-to-4 hop labels are reasoning-hops. Our random walk operates in retrieval-hop space. These are not the same thing.”</p>
+<p>Then the natural follow-up: why don’t retrieval-hops align 1-to-1 with reasoning-hops? Because retrieval also has to assemble the context envelope (layout, related concepts, cross-document relationships) around every chunk. That context isn’t derivable from the question at all. Question decomposition only touches the question; the graph walk brings in structural and relational context that no amount of splitting reaches.</p>
+<p>Strongest version if pressed: the walk’s stationary distribution is computed offline, before any question comes in. It’s a property of the corpus, not the query. The question only enters at query time to derive our ranking. If retrieval-hops were reasoning-hops, the walk would need the question at every step. It doesn’t.</p>
+<p>Transition to next slide: the 4-hop bridge chunk buried at rank 1,800 on the next slide is a retrieval-hop failure, not a reasoning failure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="dense-rag-breaks-on-the-bridges." class="slide level2 smaller">
 <h2>Dense RAG breaks on the bridges.</h2>
 <p><span class="kicker">The retrieval problem</span></p>
@@ -657,7 +694,7 @@ all-gold@30 · vs 88% on a small distractor-free set.
 <p><strong>75% coverage recovery</strong> after the fix cascaded back through two prior experiments.</p>
 </div><div class="column" style="width:58%;">
 <div id="mini-graph" style="width:100%; height:340px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
-<p><em>Different wiki (<code>markov_embeddings_and_rag</code>), same shape. Proof the extends-chain + criticism-to-ancestor pattern exists in real projects.</em></p>
+<p><em>Extends chain plus the two criticism edges. Same shape as the demo-branch cascade the reviewer walked.</em></p>
 <p>Full case study: <span class="mono"><code>la3d.github.io/WGRA/wiki-collaboration-story/</code></span></p>
 </div></div>
 <div class="callout-highlight">
