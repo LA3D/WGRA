@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge bundles · WGRA</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 780px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.55;
+  font-size: 17px;
+}
+nav.breadcrumb {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin-bottom: 1.5em;
+}
+nav.breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--muted);
+}
+nav.breadcrumb a:hover { border-bottom-style: solid; }
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .kicker {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.85em;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.4em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.9em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+header .lede {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin: 0.4em 0 0;
+}
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.35em;
+  color: var(--accent);
+  margin-top: 2.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.1em;
+  margin-top: 1.6em;
+  margin-bottom: 0.4em;
+}
+p { margin: 0.7em 0; }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.85em;
+  background: var(--callout-bg);
+  padding: 0.9em 1em;
+  border-radius: 4px;
+  border-left: 3px solid var(--muted);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 1em;
+}
+blockquote {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--muted);
+  padding: 0.7em 1em;
+  margin: 1em 0;
+  font-size: 0.97em;
+  color: var(--muted);
+}
+blockquote p { margin: 0.3em 0; }
+blockquote strong { color: var(--ink); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.94em;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--callout-bg);
+}
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+ul, ol { margin: 0.6em 0 0.8em 1.4em; padding: 0; }
+li { margin: 0.4em 0; }
+strong { color: var(--ink); }
+em { color: var(--ink); }
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+.pillar {
+  border-left: 3px solid var(--accent);
+  padding: 0.2em 0 0.2em 1em;
+  margin: 1.5em 0;
+}
+.pillar h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  h2 { page-break-after: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb">
+  <a href="../">← Wiki-Grounded Research Agent</a>
+</nav>
+
+<header>
+  <p class="kicker">Deep dive · Knowledge bundles</p>
+  <h1>Knowledge bundles</h1>
+  <p class="lede">Compiled competence for the LLM-plus-human loop, without the brain-download. What <em>The Matrix</em> gets right about rapid competence acquisition, what it gets wrong about the mechanism, and what a working bundle looks like today.</p>
+</header>
+
+<h2>Trinity's Bell 212</h2>
+
+<p>In <em>The Matrix</em>, Trinity sits still, wired in. She says <q>Tank, I need a pilot program for a B-212 helicopter.</q> Tank runs a load. Trinity opens her eyes and flies the helicopter off a Chicago rooftop.</p>
+
+<p>The scene works because the audience wants that mechanism to exist for real: fast, complete, no years of practice, no waiting for competence to accumulate. The useful move is to ask what would actually have to be true for the scene to happen, and to notice that the answer has two parts with very different fates.</p>
+
+<div class="pair">
+  <p><strong>Requirement 1.</strong> A packaged <em>bundle</em> carrying not just a flight manual but compiled pilot knowledge, expertise, and experience.</p>
+  <p><strong>Requirement 2.</strong> A means to <em>install</em> that bundle directly into Trinity's brain.</p>
+</div>
+
+<p>Requirement 2 is science fiction. Requirement 1 is not.</p>
+
+<h2>The mechanism is fiction. The insight is not.</h2>
+
+<p>Direct writing of complex skills into a human brain is not on any tractable horizon. Motor and procedural skill acquisition is gradual and embodied. It runs through cerebellum, basal ganglia, and motor cortex, and it consolidates through practice, often sleep-dependent (Ericsson &amp; Charness, 1994). Brain-computer interfaces are read-biased, not write-biased: they record neural signals to control prosthetics or cursors, and writing complex patterns into brain tissue is limited to targeted stimulation (Lebedev &amp; Nicolelis, 2017). The most Matrix-adjacent memory-transfer finding to date (Bédécarrats et al., 2018) transferred simple conditioning between sea slugs via injected RNA. It is controversial, does not generalize even to mice, and does not touch human skill transfer at any depth. A reviewer from cognitive science or brain-computer interface research will recognize a Matrix reference as rhetoric, not as a claim about engineering.</p>
+
+<p>Requirement 1 is a different story. What Trinity received in the film was <em>not</em> a flight-manual PDF. The film gets this right in its own physics: what the pilot-program has to be carrying, for Trinity to actually fly out of a rooftop rather than crash, is the compiled competence of an actual pilot. Book knowledge alone is not enough. Manual reading does not fly.</p>
+
+<h2>What compiled competence actually contains</h2>
+
+<p>Flying a helicopter requires three layers, not one:</p>
+
+<table>
+  <thead>
+    <tr><th>Layer</th><th>What the pilot has</th><th>Where it lives on the page</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Knowledge</strong></td>
+      <td>The airframe, the instruments, the physics, the vocabulary.</td>
+      <td>The manual. Facts, definitions, structured information.</td>
+    </tr>
+    <tr>
+      <td><strong>Expertise</strong></td>
+      <td>Which maneuvers to attempt over a city street. Which approach angle to a rooftop. How to weigh risks.</td>
+      <td>Judgment. What a flight instructor teaches. Decisions with reasons, criticism, synthesis.</td>
+    </tr>
+    <tr>
+      <td><strong>Experience</strong></td>
+      <td>How the controls actually respond under stress. What happens when a gust hits mid-maneuver.</td>
+      <td>Concrete cases, dated observations, honest write-ups of what worked and what did not.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Knowledge alone does not fly. Knowledge plus expertise does not fly. Only all three together fly. That is what the film's pilot-program has to be carrying for the scene to make sense, and it is the load-bearing insight that survives once the brain-installation mechanism is stripped away.</p>
+
+<p>The interesting question stops being <em>how do we build brain-writing</em> and becomes: <strong>can we compile knowledge, expertise, and experience into a portable artifact, and can we deliver it fast to someone who does not already have it?</strong> That is the ambition a knowledge bundle addresses.</p>
+
+<h2>A knowledge bundle, defined</h2>
+
+<p>A <em>knowledge bundle</em> is a shareable, LLM-authored wiki on a specific topic that a user consumes through their own LLM. It is an interlinked collection of Markdown pages, carrying the three layers together on purpose: not just facts, but the author's judgment about what matters, and the concrete cases behind the abstractions.</p>
+
+<p>The receiver is not the receiver's brain. The receiver is the receiver's LLM-assisted workflow. This is the extended-cognition tradition: Bush's Memex (1945), Licklider's man-computer symbiosis (1960), Engelbart's <em>Augmenting Human Intellect</em> (1962), Clark and Chalmers on the extended mind (1998). Cognition legitimately extends beyond the skull into external artifacts the agent reliably uses. A bundle plus a locally-instantiated LLM is exactly such an artifact.</p>
+
+<div class="pair">
+  <p><strong>The claim.</strong> Rapid competence acquisition, without brain writing. The consumer's neurology does not change. The consumer's <em>effective, LLM-mediated capability</em> expands, in seconds, to cover a domain someone else has already compiled.</p>
+  <p><strong>The framing.</strong> The Matrix names the destination. The knowledge bundle names how we get there today.</p>
+</div>
+
+<h2>The exemplar: <code>llm-wiki-KB</code></h2>
+
+<p>The clearest way to see what a bundle actually is, is to open one. The <a href="https://la3d-llm-agents.github.io/llm-wiki-KB/">llm-wiki-KB</a> is a knowledge bundle whose topic is the llm-wiki template itself: a bundle that teaches you how to build and use the very tool it was built with.</p>
+
+<ul>
+  <li><strong>Front door and supplementary site:</strong> <a href="https://la3d-llm-agents.github.io/llm-wiki-KB/">la3d-llm-agents.github.io/llm-wiki-KB</a></li>
+  <li><strong>The bundle</strong> (the wiki you actually consume): <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki">github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki</a></li>
+  <li><strong>The repository:</strong> <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB">github.com/LA3D-LLM-Agents/llm-wiki-KB</a></li>
+</ul>
+
+<p>Open the wiki and follow the <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/What-is-the-llm-wiki-Template"><em>What is the llm-wiki Template</em></a> page. What you see is not a set of tutorial slides or a chat-log dump. It is a set of interlinked pages that carry all three layers on purpose:</p>
+
+<div class="pillar">
+  <h3>Knowledge</h3>
+  <p>What the template is, what files it ships, what the slash commands do, what conventions the wiki uses. See the <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Installation-and-Setup"><em>Installation and Setup</em></a>, <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Everyday-Operations"><em>Everyday Operations</em></a>, and <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Wiki-Structure-and-Conventions"><em>Wiki Structure and Conventions</em></a> pages.</p>
+</div>
+
+<div class="pillar">
+  <h3>Expertise</h3>
+  <p>A <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Template-Philosophy"><em>Template-Philosophy</em></a> page arguing <em>why</em> the design works the way it does; a <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Bundle-Pages-and-Supplementary-Data"><em>Bundle Pages and Supplementary Data</em></a> decision document with an explicit tradeoff table over three storage strategies; the <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/OKF-Compatibility"><em>OKF Compatibility</em></a> page honestly labeling what is format-conformant, what is designed, and what is deferred.</p>
+</div>
+
+<div class="pillar">
+  <h3>Experience</h3>
+  <p>Gotchas recorded in place ("quote colons in the Card, or the federation index silently skips it"), an 838-line gold-answers file used to grade the bundle's responses, log entries dated and reasoned through. Bundle content that would ordinarily live only in the author's head, filed where the next reader can find it.</p>
+</div>
+
+<h2>How you consume it</h2>
+
+<p>The template ships an <code>agent-comms</code> feature with an <code>ask</code> primitive. Two equivalent forms:</p>
+
+<pre><code># slash command (Claude Code): the question needs no quotes
+/ask llm-wiki-KB What is the llm-wiki template and how do I install it?
+
+# underlying script: the question is a single quoted argument
+bash scripts/agent-comms/ask.sh llm-wiki-KB "What is the llm-wiki template and how do I install it?"</code></pre>
+
+<p>Under the hood, <code>ask</code> clones the bundle's wiki and hands it to your LLM as a durable reading surface. The LLM walks the interlinked pages, cites specific ones in its answer, and follows their cross-references when the question opens further. Omit the bundle name and <code>ask</code> uses discovery mode, which reads the federation's agent Cards to find a match. Bypass <code>ask</code> entirely and you can clone the wiki directly and point any LLM session at the folder.</p>
+
+<p>Either way, the shape of the consumer experience is what matters. You ask a question in the domain the bundle covers. The LLM answers grounded in expert-authored, cross-linked, provenance-preserving material rather than in its training weights. When the LLM is unsure, it says which page it is looking at and what is missing. When you extend the material, your extensions live in your own wiki alongside the imported bundle.</p>
+
+<h2>What changes when this works</h2>
+
+<p>If bundles deliver on the compiled-competence promise, several things follow that most current AI-over-documents workflows structurally cannot deliver:</p>
+
+<ul>
+  <li><strong>Courses ship as bundles.</strong> Faculty package a domain wiki once; students consume it through their own LLMs. The tutor is automatically grounded in the specific course material rather than in whatever the web returned. Extensions written by students during a semester are their own annotations on the bundle, not a fork that gets lost.</li>
+  <li><strong>Research groups ship institutional memory.</strong> The bundle survives when the postdoc leaves. Onboarding to a new lab means importing the group's bundle, not shadowing someone for six months.</li>
+  <li><strong>Domain expertise stops being fragile.</strong> If the bundle carries expertise and experience rather than only facts, the departure of the expert does not delete their judgment. That judgment is now inspectable, extendable, criticizable, and cite-able all the way back to its origin.</li>
+  <li><strong>Bundles compose.</strong> Federation of bundles (via agent Cards and the <code>ask</code> primitive) means a consumer can query multiple bundles at once, and discovery is a real operation rather than a search-engine gamble.</li>
+</ul>
+
+<p>None of this requires a Matrix. It requires <em>compiled competence</em>, a portable format for that compiled competence, and a language model that walks it well.</p>
+
+<h2>Where the current state stops short</h2>
+
+<p>The pitch above is real, but three limits are worth naming without dressing up:</p>
+
+<ul>
+  <li><strong>Experience is the hardest layer to author systematically.</strong> Knowledge captures itself as a side-effect of writing. Expertise captures itself when the author is doing synthesis work. Experience typically does not capture itself; it lives in logs, dated observations, and honest failure notes that most authors forget to record. Tooling to help authors capture experience at write-time (LLM-assisted logging, structured decision-record skills) is thin today.</li>
+  <li><strong>The consumer still needs their own LLM setup.</strong> A bundle assumes the reader has Claude Code, Cursor, or another agent installed and configured. The template is agent-agnostic, but not agent-optional.</li>
+  <li><strong>Bundle quality varies with author discipline.</strong> A bundle that carries only facts is a searchable textbook, not a mentor substitute. Three-layer capture is a <em>goal</em> of the format, not a guarantee of every bundle in it. Readers evaluating an unfamiliar bundle should check whether it carries expertise and experience, or only knowledge, before trusting it to teach them a domain rather than to look things up in it.</li>
+</ul>
+
+<p>None of these are fatal, and all three are working directions. But they are true today, and the pitch stays honest by naming them.</p>
+
+<h2>The claim in one paragraph</h2>
+
+<p>Trinity flies the helicopter because a bundle carrying compiled knowledge, expertise, and experience is delivered to the substrate that runs her. In the film that substrate is her brain, and the delivery mechanism is science fiction. In our case the substrate is the reader's LLM-assisted workflow, in the extended-cognition tradition, and the delivery mechanism is a shareable wiki plus an <code>ask</code> primitive. Both moves lead to the same destination: rapid competence acquisition, compiled ahead of time by someone who already has the domain, consumed at course-load speed by someone who does not. The Matrix names the ambition. The <code>llm-wiki-KB</code> bundle shows what one working instance looks like today.</p>
+
+<footer>
+  <p><strong>Read next:</strong> <a href="https://la3d-llm-agents.github.io/llm-wiki-KB/">the <code>llm-wiki-KB</code> bundle</a> is the exemplar; start with the <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/What-is-the-llm-wiki-Template">wiki's orientation page</a>. Or read the <a href="https://github.com/LA3D-LLM-Agents/llm-wiki-KB/wiki/Creating-a-Knowledge-Bundle">Creating a Knowledge Bundle</a> how-to for the end-to-end path from template to published bundle.</p>
+  <p><strong>Related sources:</strong> <em>The Matrix</em> (Wachowskis, 1999) · Ericsson &amp; Charness (1994) <em>Expert Performance</em>, Am. Psychologist · Lebedev &amp; Nicolelis (2017) <em>Brain-Machine Interfaces</em>, Physiol. Rev. · Bédécarrats et al. (2018) <em>RNA from Trained Aplysia</em>, eNeuro · Bush (1945) <em>As We May Think</em>, The Atlantic · Licklider (1960) <em>Man-Computer Symbiosis</em>, IRE Trans. HFE · Engelbart (1962) <em>Augmenting Human Intellect</em>, SRI · Clark &amp; Chalmers (1998) <em>The Extended Mind</em>, Analysis</p>
+  <p><a href="../">← Back to the Wiki-Grounded Research Agent flyer</a></p>
+</footer>
+
+</body>
+</html>
