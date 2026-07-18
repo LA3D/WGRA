@@ -167,17 +167,17 @@ footer a { color: var(--muted); }
   <p>For fifteen years the CRC has built web portals, gateways, and apps to collect, manage, and distribute data, the defining work of the Big Data era that preceded AI. That work continues. But the data has become siloed inside those very constructs, and the field's answer is the <strong>Data Fabric</strong>: AI-driven systems that connect data sources and make them accessible in a data-agnostic environment. The open question is how an individual researcher leverages that idea with AI agents tailored to their own work, in a way that learns as their experience accrues.</p>
 </div>
 
-<h2>One scientist, one tool</h2>
+<h2>The scientist interacts with an agent to discover and orchestrate tools</h2>
 
 <p>At the Extraction Group meeting I noted that a domain scientist extracting data from papers, APIs, and online datasets (supplementary information and the like) needs many tools. Olaf Wiest, the Grace-Rupley Professor of Chemistry and Biochemistry, said he wants one tool.</p>
 
-<p class="punch">This is that tool.</p>
+<p class="punch">He asked for one tool. What he needs is an agent.</p>
 
-<p>Olaf does not want one program that does everything. He wants to never learn ten portals. Those are different things, and the difference is where the whole idea turns. He should state what he needs to his own agent, working over his own memory, and never see a portal. The many tools still exist, but they move behind a uniform interface and are surfaced by discovery, not by Olaf memorizing each one. The plurality moves from the human's cognitive load to a discovery layer. A portal makes the researcher do the routing; a discoverable ecosystem of agents makes the agent do it.</p>
+<p>Not a monolithic program, and not a single screen hiding a fixed menu. Olaf interacts with an agent, his Research Agent, and describes what he needs. The agent discovers the tools that fit, orchestrates them, and works over his group's shared memory. The tools stay many; they sit behind the agent, found by discovery and composed on the fly, rather than operated one at a time by the scientist. A document extractor that reads a paper's structure can feed a graph extractor, with the agent discovering and composing the two rather than the scientist wiring a pipeline by hand. A portal makes the researcher run the tools. An agent runs them for the researcher, across everything the group already knows.</p>
 
 <div class="pair">
   <p><strong>Data Fabric:</strong> connects data sources in a data-agnostic environment.</p>
-  <p><strong>This tool:</strong> the fabric a researcher operates through their own agent, carrying their judgment and accruing their experience, and shareable as a unit.</p>
+  <p><strong>The Research Agent:</strong> the researcher's single point of contact, discovering and orchestrating the tools over shared group memory, carrying the group's judgment and accruing its experience, and shareable as a unit.</p>
 </div>
 
 <h2>Stop building apps for people to operate. Start building connectors for agents to discover.</h2>
@@ -199,25 +199,63 @@ footer a { color: var(--muted); }
 
 <p>Fifteen years of portals put the integration burden on the center, one bespoke build at a time. Self-advertising connectors move discovery into the agent and let the ecosystem compound. And the results do not vanish into an app: they accumulate in the researcher's living memory, which is the part a Data Fabric alone cannot do. The fabric connects data; it does not carry judgment or accrue experience. This does both, because the connectors are agents and what they extract lands in a memory that grows.</p>
 
-<h2>What it takes</h2>
+<h2>What we have today</h2>
 
-<p>A short, honest path, not a platform manifesto:</p>
+<p>The foundation is not hypothetical. It exists and it runs, as the <strong>LLM-wiki-template ecosystem</strong>: a shared template that every project instantiates, a living wiki that serves as shared memory across a project and group (many people and their agents writing to one attributed record, not a private notebook), a reified knowledge graph over that memory (RDF and SPARQL, already standards-based), knowledge bundles as the shareable unit, and a federation where each group's agent publishes a card and answers others through an <code>ask</code> primitive. Data sources reach the wiki today through lightweight ingest connectors. The step in front of us is not to invent the foundation. It is to make the tools researchers rely on self-advertising, and to let discovery emerge from what agents learn.</p>
 
-<ol>
-  <li><strong>Define the connector contract.</strong> One piece of shared foundation: a standard agent interface, intent plus a source pointer in, structured data plus provenance and confidence out. Everything else composes on top of it. Without it, connectors are bespoke again and we are back to portals.</li>
-  <li><strong>Make connectors discoverable.</strong> A small, curated capability description (data types, source types, domain terms) that the researcher's agent queries to find the right connector. Lightweight and per-domain, not a heavy global schema. This is what turns "many tools" into "one tool" for the human.</li>
-  <li><strong>Build a lighthouse, not a platform.</strong> Olaf's case, end to end, this semester: a handful of connectors (a paper-supplementary reader, a chemical-database connector, one dataset-repository puller), his memory as the workspace, results filed automatically. One scientist, working, before we generalize anything.</li>
-  <li><strong>Trust by construction.</strong> Extracted data enters the researcher's memory as a reviewable proposal, source-cited and confidence-tagged, so nothing lands unaudited. This is the safeguard that makes a domain scientist trust the output.</li>
-  <li><strong>Affordable and shareable from day one.</strong> Run the connector agents on institutional compute so cost is not the blocker, and package the result as a bundle a colleague loads and extends.</li>
-</ol>
+<div class="pair">
+  <p><strong>Have today:</strong> a non-proprietary, LLM-agnostic agent with persistent, shared memory. A template, a shared and attributed living-memory wiki, a reified knowledge graph, shareable bundles, and a federation with agent cards and <code>ask</code>.</p>
+  <p><strong>Build next:</strong> connectors that advertise themselves, and discovery that falls out of what agents learn.</p>
+</div>
+
+<h2>What comes next</h2>
+
+<h3>Discovery is accrued competence</h3>
+<p>As an agent learns how to work a source, its quirks, its schema, how to get clean data out, that competence is filed into a knowledge bundle. Published to the federation, it becomes discoverable: the next researcher's agent finds a connector that already knows a given database, without anyone wiring it by hand. Discovery is not a separate system to build. It is the learning loop the ecosystem already runs, pointed at the federation. Bundles populated by what agents learn <em>are</em> the discovery layer, and they are what link the federation together.</p>
+
+<h3>Make the group's tools available in the right way</h3>
+<p>The question for the Extraction group is not whether it has capable tools; it is how to make them available in the right way. A tool that lives inside one pipeline is reachable by one workflow. The same tool given a connector and a card advertises itself, and any researcher's agent can discover and compose it. Graph extraction, table and figure readers, database and API pullers: each can become a resource the whole federation finds and calls, rather than a step buried in a single project.</p>
+<p>The change is as much cultural as technical. The next request that arrives at the CRC stops being &ldquo;build me a portal&rdquo; and becomes &ldquo;how do we make this discoverable,&rdquo; and the tools and workflows we already maintain move onto that footing one at a time.</p>
+
+<h3>Two layers make it safe and interoperable</h3>
+<p><strong>A security and data-ownership layer.</strong> Connectors reach licensed databases and private group data, so the pipeline has to respect ownership from extraction through storage to sharing. Access control is the floor; the harder part is honoring a source's terms end to end, so that a connector to a licensed database never lets its output leak into a public bundle. Every group keeps its own memory, its own permissions, and its own rights.</p>
+<p><strong>Data-fabric-compatible publishing.</strong> The results should not sit in a walled garden. Publishing them in a data-fabric-compatible form lets them plug into the wider institutional and national fabric rather than compete with it, and we are already part of the way there: the knowledge graph emits standards-based RDF, the format a fabric consumes.</p>
+
+<h2>Locked in on nothing</h2>
+
+<p>Every vendor will hand your scientists a capable agent. None of them will give you a place to keep what the agent learns that you still control next year. That is the gap the template fills, and it fills it by staying neutral on all three axes at once:</p>
+
+<div class="pair">
+  <p><strong>Neutral agent:</strong> any LLM plugs in through the template's overlays and skills. When a better model arrives, adopting it is a new overlay, not a migration.</p>
+  <p><strong>Portable memory:</strong> your knowledge lives in an open bundle (markdown and a standards-based graph). Move to another solution and take your bundle with you.</p>
+  <p><strong>Portable tools:</strong> connectors speak an open, cross-vendor protocol, so if you change agents the tools and connectors keep working.</p>
+</div>
+
+<p>Use whatever platform is best for capability today. Keep your memory, your discovery, and your discipline in a template you own, so switching costs you nothing. In a market where the eventual winner is unknowable, the safe bet is the layer that stays true no matter who wins.</p>
 
 <h2>The ask</h2>
 
-<p>Start with one scientist. Greenlight the one-tool build for Olaf, with a handful of connectors and his own memory, and let the ecosystem grow from a working example that other faculty can see and fork. Under-promise the platform; over-deliver the first scientist. That is how you join the research agents revolution: not with another portal, but with the first connector that advertises itself.</p>
+<p>Two commitments, one small and one structural.</p>
+
+<p><strong>Support the template.</strong> Back the llm-wiki-template as shared infrastructure, the neutral, non-proprietary substrate every project can build on. This is a picks-and-shovels investment, not a bet on any vendor, and it is what makes the three guarantees above real for whoever adopts it.</p>
+
+<p><strong>Re-evaluate projects going forward.</strong> Make compatibility and future-proofing a standard question for every new project, and for existing ones as they evolve. The test is short:</p>
+
+<ol>
+  <li>Does it keep the agent, the memory, and the tools portable, so the group is locked in on no vendor?</li>
+  <li>Does it produce discoverable, reusable resources rather than a one-off portal?</li>
+  <li>Does it build on shared memory and discipline instead of reinventing them?</li>
+</ol>
+
+<p>A project that clears that bar is future-proof by construction: it can ride whatever platform wins, and its knowledge stays the group's own.</p>
+
+<p>Then start where it is concrete: the first Research Agent for Olaf, over memory he owns, discovering and orchestrating the tools he needs, so the rest of the group can see it and fork it. Under-promise the platform; over-deliver the first scientist. That is how you join the research agents revolution: not with another portal, but with an agent the researcher controls, over knowledge that stays theirs.</p>
 
 <div class="cta">
   <h2>Get involved.</h2>
-  <p><strong>Start:</strong> one researcher, a handful of self-advertising connectors, their own living memory.</p>
+  <p><strong>Support:</strong> back the template as shared, non-proprietary infrastructure.</p>
+  <p><strong>Future-proof:</strong> make new projects portable and discoverable by default.</p>
+  <p><strong>Start:</strong> one researcher, their own memory, the tools discovered around them.</p>
   <p><strong>Contact:</strong> Chris Sweet &middot; <a href="mailto:csweet1@nd.edu">csweet1@nd.edu</a> &middot; CRC, University of Notre Dame</p>
 </div>
 
