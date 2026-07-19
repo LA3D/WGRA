@@ -156,6 +156,10 @@ footer a { color: var(--muted); }
   <p><strong>The connector</strong> reads the service's self-description and answers questions no one built a screen for, including joins and counts a portal would never have offered a button for.</p>
 </div>
 
+<h2>The ontology is the point</h2>
+
+<p>It is tempting to call PAD the <em>easy</em> case because it already publishes an ontology and an OpenAPI spec. Read it the other way round: that small ontology is exactly why an agent can reason over PAD reliably. The aim is not to make the AI clever enough to guess at undescribed sources, reasoning directly over raw, unlabelled data is measurably less accurate and often needs a human in the loop to catch the mistakes. The aim is the reverse: give every API, database, and dataset a <em>small</em> ontology, which is cheap to author and is the thing that makes the AI's reasoning trustworthy. Where a source has none, a connector's first job is to help produce one, once, so that every agent afterward reasons over the data reliably instead of re-interpreting it on every query. PAD is not the case to move past; it is the shape we want everywhere.</p>
+
 <h2>A worked scenario: a card in your hand</h2>
 
 <p>The input is a photo of one physical PAD card, nothing else, no portal. The card prints a QR code that encodes its ID (the <code>sample_id</code> in the API), so a single photo is enough to start.</p>
@@ -189,7 +193,7 @@ footer a { color: var(--muted); }
   <li><strong>A trustable answer.</strong> &ldquo;This is ChemoPAD card 81560. For Doxorubicin the concentration reading is reliable, and here are the card regions the model uses. For a harder drug such as Cisplatin I would flag the reading as noisy and point to the spectroscopy-fusion work as the way to improve it.&rdquo;</li>
 </ol>
 
-<p>The answer is not just a number. It shows <em>where on the card</em> the model looks and <em>how far to trust it</em>, and every claim traces to a source: the card record and image from the live API, the model and its attention map from a knowledge bundle the agent discovered and was authorized to read. No UI, no per-endpoint code, and the two halves, live data and accrued expertise, composed into one explainable result.</p>
+<p>The answer is not just a number. It shows <em>where on the card</em> the model looks and <em>how far to trust it</em> — and that trust comes from the knowledge bundle's own validated model statistics (accuracy measured on held-out, HPLC-calibrated data), not from the agent's own confidence. Every claim traces to a source: the card record and image from the live API, the model and its attention map from a knowledge bundle the agent discovered and was authorized to read. No UI, no per-endpoint code, and the two halves, live data and accrued expertise, composed into one explainable result.</p>
 
 <h2>More examples, in text</h2>
 

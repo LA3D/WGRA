@@ -112,6 +112,9 @@ blockquote p { margin: 0.25em 0; }
 ol { margin: 0.9em 0; padding-left: 1.4em; }
 ol li { margin: 0.6em 0; }
 ol li strong { color: var(--accent); }
+.arch { margin: 1.4em 0 0.5em; overflow-x: auto; }
+.arch svg { width: 100%; height: auto; min-width: 560px; display: block; }
+.arch-cap { font-size: 0.9em; color: var(--muted); font-style: italic; margin: 0.3em 0 0; text-align: center; }
 .cta {
   margin-top: 2.5em;
   padding: 1.3em 1.4em;
@@ -212,12 +215,9 @@ footer a { color: var(--muted); }
 
 <h2>What comes next</h2>
 
-<h3>Discovery is accrued competence</h3>
-<p>As an agent learns how to work a source, its quirks, its schema, how to get clean data out, that competence is filed into a knowledge bundle. Published to the federation, it becomes discoverable: the next researcher's agent finds a connector that already knows a given database, without anyone wiring it by hand. Discovery is not a separate system to build. It is the learning loop the ecosystem already runs, pointed at the federation. Bundles populated by what agents learn <em>are</em> the discovery layer, and they are what link the federation together.</p>
-
-<h3>Make the group's tools available in the right way</h3>
-<p>The question for the Extraction group is not whether it has capable tools; it is how to make them available in the right way. A tool that lives inside one pipeline is reachable by one workflow. The same tool given a connector and a card advertises itself, and any researcher's agent can discover and compose it. Graph extraction, table and figure readers, database and API pullers: each can become a resource the whole federation finds and calls, rather than a step buried in a single project.</p>
-<p>The change is as much cultural as technical. The next request that arrives at the CRC stops being &ldquo;build me a portal&rdquo; and becomes &ldquo;how do we make this discoverable,&rdquo; and the tools and workflows we already maintain move onto that footing one at a time.</p>
+<h3>Make the group's tools discoverable</h3>
+<p>The question for the Extraction group is not whether it has capable tools; it is how to make them available in the right way. A tool that lives inside one pipeline is reachable by one workflow; the same tool given a connector and a card advertises itself, and any researcher's agent can discover and compose it. Graph extraction, table and figure readers, database and API pullers each become a resource the whole federation finds and calls, rather than a step buried in one project.</p>
+<p>And discovery is not a separate system to build: as an agent learns how to work a source, that competence is filed into a knowledge bundle and published to the federation, so the next agent finds it without anyone wiring it by hand. The change is as much cultural as technical, and the next request to the CRC stops being &ldquo;build me a portal&rdquo; and becomes &ldquo;how do we make this discoverable,&rdquo; with the tools we already maintain moving onto that footing one at a time.</p>
 
 <h3>Two layers make it safe and interoperable</h3>
 <p><strong>A security and data-ownership layer.</strong> Connectors reach licensed databases and private group data, so the pipeline has to respect ownership from extraction through storage to sharing. Access control is the floor; the harder part is honoring a source's terms end to end, so that a connector to a licensed database never lets its output leak into a public bundle. Every group keeps its own memory, its own permissions, and its own rights.</p>
@@ -234,6 +234,83 @@ footer a { color: var(--muted); }
 </div>
 
 <p>Use whatever platform is best for capability today. Keep your memory, your discovery, and your discipline in a template you own, so switching costs you nothing. In a market where the eventual winner is unknowable, the safe bet is the layer that stays true no matter who wins.</p>
+
+<h2>What we're building</h2>
+
+<p>Concretely, the shape is simple. Every researcher works through their own <strong>Research Agent</strong> over their own <strong>wiki</strong> — the shared, durable memory — all built on one non-proprietary <strong>template</strong>. The agent installs <strong>tools and connectors</strong> from <strong>marketplaces</strong>, and shares knowledge with peers as <strong>bundles</strong> through the <strong>federation</strong>. The connectors are the reach into the world: self-advertising agents that pull data from <strong>external sources</strong> — papers, APIs, and datasets like PAD — into the wiki. Nothing here is a portal. Every box is either memory the researcher owns or a discoverable agent the LLM drives.</p>
+
+<div class="arch">
+<svg viewBox="0 0 980 400" role="img" aria-label="Architecture: a researcher's agent works over their own wiki on a shared template; marketplaces install tools and connectors; the federation shares knowledge bundles; connectors reach out to external data sources such as papers, APIs, and PAD.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8a97a5"/></marker>
+  </defs>
+  <g font-family="'Helvetica Neue','Arial',sans-serif">
+    <!-- arrows (under boxes) -->
+    <g fill="none" stroke="#8a97a5" stroke-width="1.6">
+      <path d="M408 340 L408 306" marker-end="url(#ah)"/>
+      <path d="M413 68 L409 125" marker-start="url(#ah)" marker-end="url(#ah)"/>
+      <path d="M230 205 L292 205" marker-end="url(#ah)"/>
+      <path d="M512 148 L700 94" marker-start="url(#ah)" marker-end="url(#ah)"/>
+      <path d="M520 192 L573 192" marker-start="url(#ah)" marker-end="url(#ah)"/>
+      <path d="M730 190 L773 190" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    </g>
+    <g font-size="10" font-style="italic" fill="#555">
+      <text x="432" y="326">built on</text>
+      <text x="446" y="101">works in</text>
+      <text x="261" y="196" text-anchor="middle">install</text>
+      <text x="600" y="108" text-anchor="middle">publish · ask</text>
+      <text x="546" y="184" text-anchor="middle" font-size="9.5">orchestrate</text>
+      <text x="751" y="182" text-anchor="middle" font-size="9.5">reach out</text>
+    </g>
+
+    <!-- TEMPLATE -->
+    <rect x="30" y="340" width="920" height="50" rx="8" fill="#f4f7fb" stroke="#0d4a8b" stroke-width="1.6"/>
+    <text x="490" y="363" text-anchor="middle" font-size="13" font-weight="700" fill="#0d4a8b">Template</text>
+    <text x="490" y="380" text-anchor="middle" font-size="10.5" fill="#555">the shared, non-proprietary substrate everything is built on</text>
+
+    <!-- USER -->
+    <rect x="330" y="18" width="170" height="50" rx="8" fill="#fafcff" stroke="#0d4a8b" stroke-width="1.6"/>
+    <text x="415" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">You + your LLM</text>
+    <text x="415" y="57" text-anchor="middle" font-size="10.5" fill="#555">your Research Agent</text>
+
+    <!-- FEDERATION -->
+    <rect x="700" y="25" width="255" height="72" rx="8" fill="#fafcff" stroke="#0d4a8b" stroke-width="1.6"/>
+    <text x="828" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">Federation</text>
+    <text x="828" y="70" text-anchor="middle" font-size="10.5" fill="#555">knowledge bundles,</text>
+    <text x="828" y="85" text-anchor="middle" font-size="10.5" fill="#555">shared with peers by ask</text>
+
+    <!-- MARKETPLACES -->
+    <rect x="30" y="158" width="200" height="92" rx="8" fill="#fafcff" stroke="#0d4a8b" stroke-width="1.6"/>
+    <text x="130" y="188" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">Marketplaces</text>
+    <text x="130" y="206" text-anchor="middle" font-size="10.5" fill="#555">tools &amp; connectors</text>
+    <text x="130" y="222" text-anchor="middle" font-size="10.5" fill="#555">you install</text>
+
+    <!-- INSTANCE + wiki -->
+    <rect x="295" y="128" width="225" height="175" rx="8" fill="#ffffff" stroke="#0d4a8b" stroke-width="2.4"/>
+    <text x="408" y="151" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1a1a1a">Your project</text>
+    <rect x="312" y="180" width="191" height="112" rx="6" fill="#eef4fb" stroke="#0d4a8b" stroke-width="1.3"/>
+    <text x="408" y="210" text-anchor="middle" font-size="13" font-weight="700" fill="#0d4a8b">your wiki</text>
+    <text x="408" y="230" text-anchor="middle" font-size="10.5" fill="#555">shared, durable memory</text>
+    <text x="408" y="248" text-anchor="middle" font-size="10" fill="#555">everything the agent learns</text>
+    <text x="408" y="270" text-anchor="middle" font-size="10" fill="#555">published as a bundle</text>
+
+    <!-- CONNECTORS -->
+    <rect x="575" y="150" width="155" height="85" rx="8" fill="#fafcff" stroke="#0d4a8b" stroke-width="2.4"/>
+    <text x="653" y="178" text-anchor="middle" font-size="13" font-weight="700" fill="#0d4a8b">Connectors</text>
+    <text x="653" y="196" text-anchor="middle" font-size="10" fill="#555">self-advertising agents</text>
+    <text x="653" y="212" text-anchor="middle" font-size="10" fill="#555">discovered, not wired</text>
+
+    <!-- EXTERNAL -->
+    <rect x="775" y="142" width="180" height="100" rx="8" fill="#f4f7fb" stroke="#0d4a8b" stroke-width="1.6" stroke-dasharray="3 3"/>
+    <text x="865" y="169" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a1a1a">External data</text>
+    <text x="865" y="185" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1a1a1a">&amp; tools</text>
+    <text x="865" y="205" text-anchor="middle" font-size="10" fill="#555">papers · APIs</text>
+    <text x="865" y="220" text-anchor="middle" font-size="10" fill="#555">datasets</text>
+    <text x="865" y="235" text-anchor="middle" font-size="10" fill="#555">(e.g. PAD)</text>
+  </g>
+</svg>
+</div>
+<p class="arch-cap">The researcher works through an agent over memory they own, on a shared template; connectors reach out to external data and tools; the federation shares knowledge across groups.</p>
 
 <h2>The ask</h2>
 
