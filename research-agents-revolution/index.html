@@ -163,7 +163,7 @@ footer a { color: var(--muted); }
 <header>
   <h1>Joining the Research Agents Revolution</h1>
   <p class="tagline">When the agent works for the researcher, the thing we build stops being a portal and starts being a connector that advertises itself.</p>
-  <p class="kicker">A note from the Center for Research Computing on what comes after fifteen years of gateways.</p>
+  <p class="kicker">A note from the Center for Research Computing on what comes after the portal era.</p>
 </header>
 
 <div class="framing">
@@ -202,7 +202,7 @@ footer a { color: var(--muted); }
   <p><strong>Connector world:</strong> a source ships a self-advertising connector once, and from that moment every agent and every researcher discovers it. No central integration step. The ecosystem grows without us in the loop, and because a connector is a shareable unit, one researcher's setup is something a colleague forks.</p>
 </div>
 
-<p>Fifteen years of portals put the integration burden on the center, one bespoke build at a time. Self-advertising connectors move discovery into the agent and let the ecosystem compound. And the results do not vanish into an app: they accumulate in the researcher's living memory, which is the part a Data Fabric alone cannot do. The fabric connects data; it does not carry judgment or accrue experience. This does both, because the connectors are agents and what they extract lands in a memory that grows.</p>
+<p>Portals put the integration burden on the center, one bespoke build at a time. Self-advertising connectors move discovery into the agent and let the ecosystem compound. And the results do not vanish into an app: they accumulate in the researcher's living memory, which is the part a Data Fabric alone cannot do. The fabric connects data; it does not carry judgment or accrue experience. This does both, because the connectors are agents and what they extract lands in a memory that grows.</p>
 
 <h2>What we have today</h2>
 
@@ -235,12 +235,12 @@ footer a { color: var(--muted); }
 
 <p>Use whatever platform is best for capability today. Keep your memory, your discovery, and your discipline in a template you own, so switching costs you nothing. In a market where the eventual winner is unknowable, the safe bet is the layer that stays true no matter who wins.</p>
 
-<h2>What we're building</h2>
+<h2>What we've built</h2>
 
-<p>Concretely, the shape is simple. Every researcher works through their own <strong>Research Agent</strong> over their own <strong>wiki</strong> — the shared, durable memory — all built on one non-proprietary <strong>template</strong>. The agent installs <strong>tools and connectors</strong> from <strong>marketplaces</strong>, and shares knowledge with peers as <strong>bundles</strong> through the <strong>federation</strong>. The connectors are the reach into the world: self-advertising agents that pull data from <strong>external sources</strong> — papers, APIs, and datasets like PAD — into the wiki. Nothing here is a portal. Every box is either memory the researcher owns or a discoverable agent the LLM drives.</p>
+<p>Concretely, here is the shape, and the core of it runs today. Every researcher works through their own <strong>Research Agent</strong> over their own <strong>wiki</strong> — the shared, durable memory — on one non-proprietary <strong>template</strong>. That template, the living memory, its reified knowledge graph, the shareable <strong>bundles</strong>, and the <strong>federation</strong> that carries them between groups all exist and run now, and the appendix shows a working <strong>connector</strong>-agent reading a live service end to end. The federation is already reachable through a standard, read-only MCP server, so any MCP-capable host — Claude Code, Claude Desktop, Cursor — can discover, open, and search shared bundles, with the researcher's own model doing the reasoning. The diagram is the whole architecture; the <strong>marketplaces</strong> of tools and connectors, and the reach into more of the external world, are where the roadmap below fills in the edges. Nothing here is a portal: every box is either memory the researcher owns or a discoverable agent the LLM drives.</p>
 
 <div class="arch">
-<svg viewBox="0 0 980 400" role="img" aria-label="Architecture: a researcher's agent works over their own wiki on a shared template; marketplaces install tools and connectors; the federation shares knowledge bundles; connectors reach out to external data sources such as papers, APIs, and PAD.">
+<svg viewBox="0 0 980 400" role="img" aria-label="Architecture: a researcher's agent works over their own wiki on a shared template; marketplaces install tools and connectors; the federation shares knowledge bundles and an MCP server gives any host read access to them; connectors reach out to external data sources such as papers, APIs, and PAD.">
   <defs>
     <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8a97a5"/></marker>
   </defs>
@@ -258,7 +258,7 @@ footer a { color: var(--muted); }
       <text x="432" y="326">built on</text>
       <text x="446" y="101">works in</text>
       <text x="261" y="196" text-anchor="middle">install</text>
-      <text x="600" y="108" text-anchor="middle">publish · ask</text>
+      <text x="598" y="118" text-anchor="middle">publish · ask</text>
       <text x="546" y="184" text-anchor="middle" font-size="9.5">orchestrate</text>
       <text x="751" y="182" text-anchor="middle" font-size="9.5">reach out</text>
     </g>
@@ -278,6 +278,15 @@ footer a { color: var(--muted); }
     <text x="828" y="52" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a1a">Federation</text>
     <text x="828" y="70" text-anchor="middle" font-size="10.5" fill="#555">knowledge bundles,</text>
     <text x="828" y="85" text-anchor="middle" font-size="10.5" fill="#555">shared with peers by ask</text>
+
+    <!-- MCP hosts read the federation via the MCP server (a route separate from ask) -->
+    <rect x="510" y="36" width="82" height="32" rx="7" fill="#f4f7fb" stroke="#0d4a8b" stroke-width="1.4" stroke-dasharray="3 3"/>
+    <text x="551" y="50" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1a1a1a">MCP hosts</text>
+    <text x="551" y="62" text-anchor="middle" font-size="8" fill="#555">e.g. Claude Desktop</text>
+    <path d="M592 52 L606 52" fill="none" stroke="#8a97a5" stroke-width="1.6" marker-end="url(#ah)"/>
+    <rect x="608" y="34" width="92" height="40" rx="7" fill="#fafcff" stroke="#0d4a8b" stroke-width="2"/>
+    <text x="654" y="52" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0d4a8b">MCP server</text>
+    <text x="654" y="65" text-anchor="middle" font-size="8.5" fill="#555">reads bundles</text>
 
     <!-- MARKETPLACES -->
     <rect x="30" y="158" width="200" height="92" rx="8" fill="#fafcff" stroke="#0d4a8b" stroke-width="1.6"/>
@@ -312,29 +321,28 @@ footer a { color: var(--muted); }
 </div>
 <p class="arch-cap">The researcher works through an agent over memory they own, on a shared template; connectors reach out to external data and tools; the federation shares knowledge across groups.</p>
 
-<h2>The ask</h2>
+<h2>What happens when an agent is wrong</h2>
 
-<p>Two commitments, one small and one structural.</p>
+<p>A fair and sharp objection: a wrong claim filed into shared memory, then discovered and built on by a colleague's agent, is the failure that scales exactly as fast as the ecosystem does. The architecture answers it at the moment of writing, not with faith in the model. Every claim is filed <em>as a claim</em>, attributed to a person and the agent that wrote it (<code>by: &lt;human&gt; via &lt;agent&gt;</code>) and versioned in git, so provenance is always traceable. A verification gate blocks the agent from filing numerical results that are not backed by real output, catching projection-as-fact before it lands. And corrections do not overwrite: a superseding claim is filed <em>alongside</em> the original with a cross-reference, so a later reader or agent meets the correction and the trajectory, not a silently wrong fact.</p>
 
-<p><strong>Support the template.</strong> Back the llm-wiki-template as shared infrastructure, the neutral, non-proprietary substrate every project can build on. This is a picks-and-shovels investment, not a bet on any vendor, and it is what makes the three guarantees above real for whoever adopts it.</p>
+<p>Crucially, how far to trust a number comes from its cited source and, where one exists, a validated statistic — never from an agent's self-reported confidence, which is uncalibrated. Those correctness conventions live in the <em>template</em>, so every project inherits them, and stewarding that template is where the center's role concentrates. The ecosystem itself stays completely open: anyone can build a connector, publish a bundle, or join the federation, with no gatekeeper. The center's job is to maintain the shared, non-proprietary template and the trust gates that make that openness safe, not to govern what people build on it. Its leverage does not shrink; it moves from building portals to stewarding the commons everyone else builds on.</p>
 
-<p><strong>Re-evaluate projects going forward.</strong> Make compatibility and future-proofing a standard question for every new project, and for existing ones as they evolve. The test is short:</p>
+<h2>Roadmap</h2>
+
+<p>The foundation runs; here is where it goes next.</p>
 
 <ol>
-  <li>Does it keep the agent, the memory, and the tools portable, so the group is locked in on no vendor?</li>
-  <li>Does it produce discoverable, reusable resources rather than a one-off portal?</li>
-  <li>Does it build on shared memory and discipline instead of reinventing them?</li>
+  <li><strong>Many vendors, one repo.</strong> Optimize the environment so collaborators on different LLMs — Claude, GPT, and whatever comes next — work in the same shared repository, each through their own model, with attribution and conflict resolution keeping the memory coherent.</li>
+  <li><strong>Painless updates.</strong> A simple update path so existing users pull the rapidly evolving new features into their projects without disrupting work already underway.</li>
+  <li><strong>Markov-chain navigation.</strong> Distribution-based Markov walks over the wiki's own graph, so the agent retrieves the right neighbourhood of pages by trajectory rather than by keyword — the project's core retrieval research, pointed at how an agent reads its memory.</li>
+  <li><strong>Markov chains to large data.</strong> The same walk extended hierarchically to connect the wiki to large materials and data databases, ordering what to pull from a big external corpus the way it orders pages in the wiki.</li>
 </ol>
 
-<p>A project that clears that bar is future-proof by construction: it can ride whatever platform wins, and its knowledge stays the group's own.</p>
-
-<p>Then start where it is concrete: the first Research Agent for Olaf, over memory he owns, discovering and orchestrating the tools he needs, so the rest of the group can see it and fork it. Under-promise the platform; over-deliver the first scientist. That is how you join the research agents revolution: not with another portal, but with an agent the researcher controls, over knowledge that stays theirs.</p>
+<p>None of this is a portal. It is an agent the researcher controls, over knowledge that stays theirs, and an ecosystem anyone can build on.</p>
 
 <div class="cta">
   <h2>Get involved.</h2>
-  <p><strong>Support:</strong> back the template as shared, non-proprietary infrastructure.</p>
-  <p><strong>Future-proof:</strong> make new projects portable and discoverable by default.</p>
-  <p><strong>Start:</strong> one researcher, their own memory, the tools discovered around them.</p>
+  <p>The template is open and the ecosystem is open. Bring a project, a data source, or a research group, and build on it.</p>
   <p><strong>Contact:</strong> Chris Sweet &middot; <a href="mailto:csweet1@nd.edu">csweet1@nd.edu</a> &middot; CRC, University of Notre Dame</p>
 </div>
 

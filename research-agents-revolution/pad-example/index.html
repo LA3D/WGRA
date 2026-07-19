@@ -182,9 +182,9 @@ footer a { color: var(--muted); }
   <p><strong>A federated PAD knowledge bundle (the federation):</strong> which concentration model applies, the card regions it relies on (the overlay, right), and how far to trust the reading.</p>
 </div>
 
-<p>One source is live and operational; the other is an accrued knowledge base the agent discovered in the group's federation and was authorized to read. The agent itself ran on a general-purpose LLM (Claude in this run) and is model-agnostic, so the same connector works with a different model. The concentration model whose attention is shown on the right is a sparse per-drug regressor (Lasso / PLS) that lives in the knowledge bundle.</p>
+<p>One source is live and operational; the other is an accrued knowledge base from the group's own federation, which the agent located through the federation index and was authorized to read. (Here the bundle is the team's own; cross-group discovery — finding a bundle another lab published — is the next milestone.) The agent itself ran on a general-purpose LLM (Claude in this run) and is model-agnostic, so the same connector works with a different model. The concentration model whose attention is shown on the right is a sparse per-drug regressor (Lasso / PLS) that lives in the knowledge bundle.</p>
 
-<p>From that single photo the agent runs the loop, and every step here is real:</p>
+<p>From that single photo, the loop runs. Each piece below is real — the API calls were made live and the model statistics come straight from the bundle — composed into the answer an agent with both in reach would give:</p>
 
 <ol>
   <li><strong>QR &rarr; ID.</strong> The QR encodes PAD ID 81560, printed on the card as <code>81560:chemo</code>.</li>
