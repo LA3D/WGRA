@@ -10,6 +10,7 @@
   --muted: #555;
   --rule: #ccc;
   --accent: #0d4a8b;
+  --eco: #157347;
   --callout-bg: #f4f4f4;
   --callout-border: #cfcfcf;
 }
@@ -112,6 +113,32 @@ blockquote p { margin: 0.25em 0; }
 ol { margin: 0.9em 0; padding-left: 1.4em; }
 ol li { margin: 0.6em 0; }
 ol li strong { color: var(--accent); }
+.tag {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.62em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #fff;
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  margin-right: 0.55em;
+  vertical-align: 0.14em;
+  white-space: nowrap;
+}
+.tag-template { background: var(--accent); }
+.tag-ecosystem { background: var(--eco); }
+.roadmap li.ecosystem strong { color: var(--eco); }
+.legend {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 0.9em;
+  color: var(--muted);
+  margin: 0.2em 0 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1.6em;
+}
+.legend span { display: inline-flex; align-items: baseline; }
 .arch { margin: 1.4em 0 0.5em; overflow-x: auto; }
 .arch svg { width: 100%; height: auto; min-width: 560px; display: block; }
 .arch-cap { font-size: 0.9em; color: var(--muted); font-style: italic; margin: 0.3em 0 0; text-align: center; }
@@ -173,7 +200,7 @@ footer a { color: var(--muted); }
 <p>Not a monolithic program, and not a single screen hiding a fixed menu. Olaf interacts with an agent, his Research Agent, and describes what he needs. The agent discovers the tools that fit, orchestrates them, and works over his group's shared memory. The tools stay many; they sit behind the agent, found by discovery and composed on the fly, rather than operated one at a time by the scientist. A document extractor that reads a paper's structure can feed a graph extractor, with the agent discovering and composing the two rather than the scientist wiring a pipeline by hand. A portal makes the researcher run the tools. An agent runs them for the researcher, across everything the group already knows.</p>
 
 <div class="framing">
-  <p>This isn't only Olaf's problem. For fifteen years centers like the CRC have built web portals, gateways, and apps to collect, manage, and distribute data, the defining work of the Big Data era that preceded AI. But that data has become siloed inside those very constructs, and the field's emerging answer is the <strong>Data Fabric</strong>: AI-driven systems that connect data sources and make them accessible in a data-agnostic environment. The open question is the one Olaf's observation posed: how an individual researcher leverages the Data Fabric idea with an agent tailored to their own work, in a way that learns as their experience accrues.</p>
+  <p>This isn't only Olaf's problem. For fifteen years centers like the CRC have built web portals, gateways, and apps to collect, manage, and distribute data, the defining work of the Big Data era that preceded AI. But that data has become siloed inside those very constructs, and the field's emerging answer is the <strong>Data Fabric</strong>: AI-driven systems that connect data sources and make them accessible in a data-agnostic environment. The open question is the one Olaf's observation posed: how an individual researcher leverages the Data Fabric idea with an agent tailored to their own work, in a way that learns as their experience accrues. <a href="data-fabric/">See the data fabric we mean &rarr;</a></p>
 </div>
 
 <div class="pair">
@@ -329,13 +356,15 @@ footer a { color: var(--muted); }
 
 <p>The foundation runs; here is where it goes next.</p>
 
-<ol>
-  <li><strong>Many vendors, one repo.</strong> Optimize the environment so collaborators on different LLMs — Claude, GPT, and whatever comes next — work in the same shared repository, each through their own model, with attribution and conflict resolution keeping the memory coherent.</li>
-  <li><strong>Painless updates.</strong> A simple update path so existing users pull the rapidly evolving new features into their projects without disrupting work already underway.</li>
-  <li><strong>A connector kit and marketplace.</strong> A template and SDK to wrap any source — an API, a database, a dataset — as a self-advertising connector that speaks the open MCP standard, distributed through a CRC-hosted marketplace so any researcher's agent can discover and install it.</li>
-  <li><strong>Ontology-assist for undescribed sources.</strong> Tooling that helps a source without a semantic layer get a small one — LLM-drafted, human-checked — so an agent reasons over described data reliably instead of guessing at raw responses, which is measurably less accurate.</li>
-  <li><strong>Markov-chain navigation.</strong> Distribution-based Markov walks over the wiki's own graph, so the agent retrieves the right neighbourhood of pages by trajectory rather than by keyword — the project's core retrieval research, pointed at how an agent reads its memory.</li>
-  <li><strong>Markov chains to large data.</strong> The same walk extended hierarchically to connect the wiki to large materials and data databases, ordering what to pull from a big external corpus the way it orders pages in the wiki.</li>
+<p class="legend"><span><span class="tag tag-template">Template</span> the governed core</span><span><span class="tag tag-ecosystem">Ecosystem</span> open, anyone builds</span></p>
+
+<ol class="roadmap">
+  <li class="template"><span class="tag tag-template">Template</span><strong>Many vendors, one repo.</strong> Optimize the environment so collaborators on different LLMs — Claude, GPT, and whatever comes next — work in the same shared repository, each through their own model, with attribution and conflict resolution keeping the memory coherent.</li>
+  <li class="template"><span class="tag tag-template">Template</span><strong>Painless updates.</strong> A simple update path so existing users pull the rapidly evolving new features into their projects without disrupting work already underway.</li>
+  <li class="ecosystem"><span class="tag tag-ecosystem">Ecosystem</span><strong>A connector kit and marketplace.</strong> A template and SDK to wrap any source — an API, a database, a dataset — as a self-advertising connector that speaks the open MCP standard, distributed through a CRC-hosted marketplace so any researcher's agent can discover and install it.</li>
+  <li class="ecosystem"><span class="tag tag-ecosystem">Ecosystem</span><strong>Ontology-assist for undescribed sources.</strong> Tooling that helps a source without a semantic layer get a small one — LLM-drafted, human-checked — so an agent reasons over described data reliably instead of guessing at raw responses, which is measurably less accurate.</li>
+  <li class="template"><span class="tag tag-template">Template</span><strong>Markov-chain navigation.</strong> Distribution-based Markov walks over the wiki's own graph, so the agent retrieves the right neighbourhood of pages by trajectory rather than by keyword — the project's core retrieval research, pointed at how an agent reads its memory.</li>
+  <li class="ecosystem"><span class="tag tag-ecosystem">Ecosystem</span><strong>Markov chains to large data.</strong> The same walk extended hierarchically to connect the wiki to large materials and data databases, ordering what to pull from a big external corpus the way it orders pages in the wiki.</li>
 </ol>
 
 <p>None of this is a portal. It is an agent the researcher controls, over knowledge that stays theirs, and an ecosystem anyone can build on.</p>

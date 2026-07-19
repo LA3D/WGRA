@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appendix: the data fabric we mean</title>
+<style>
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #ccc;
+  --accent: #0d4a8b;
+  --eco: #157347;
+  --callout-bg: #f4f4f4;
+  --callout-border: #cfcfcf;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Charter', 'Georgia', 'Cambria', serif;
+  color: var(--ink);
+  max-width: 820px;
+  margin: 2.5em auto;
+  padding: 0 1.5em;
+  line-height: 1.5;
+  font-size: 17px;
+}
+header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2em;
+  margin-bottom: 1.5em;
+}
+header .eyebrow {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6em;
+}
+header h1 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 2em;
+  color: var(--accent);
+  margin: 0 0 0.25em;
+  letter-spacing: -0.01em;
+}
+header .tagline { font-size: 1.15em; font-weight: 700; margin: 0.3em 0; }
+header .kicker { font-style: italic; color: var(--muted); margin: 0.4em 0 0; }
+h2 {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 1.4em;
+  color: var(--accent);
+  margin-top: 2.2em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+p { margin: 0.7em 0; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+a:hover { text-decoration: none; }
+code {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 0.88em;
+  background: var(--callout-bg);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+.framing {
+  margin: 1.5em 0 2.2em;
+  padding: 1em 1.3em;
+  background: #fafcff;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  font-size: 1.05em;
+  line-height: 1.55;
+}
+.framing p { margin: 0; }
+.framing strong { color: var(--accent); }
+figure.fabric { margin: 1.6em 0; }
+figure.fabric img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  display: block;
+}
+figure.fabric figcaption {
+  font-size: 0.9em;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.5em;
+  text-align: center;
+}
+.map { list-style: none; padding: 0; margin: 1.1em 0; }
+.map li {
+  padding: 0.7em 0 0.7em 0.9em;
+  border-left: 3px solid var(--eco);
+  margin: 0.7em 0;
+}
+.map li .layer {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+.map li .layer::after { content: ''; }
+.pair {
+  background: var(--callout-bg);
+  border-left: 4px solid var(--accent);
+  padding: 0.7em 1em;
+  margin: 1.2em 0;
+  font-size: 0.97em;
+}
+.pair p { margin: 0.25em 0; }
+.back { margin-top: 2.5em; font-size: 0.95em; }
+footer {
+  margin-top: 2.5em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+footer a { color: var(--muted); }
+@media print {
+  body { max-width: none; margin: 1.2cm; font-size: 10.5pt; }
+  header h1 { font-size: 1.8em; }
+  h2 { page-break-after: avoid; font-size: 1.2em; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">Research Agents Revolution &middot; Appendix</p>
+  <h1>The data fabric we mean</h1>
+  <p class="tagline">Not another data lake. A knowledge-centric integration layer that connects sources into one queryable, provenance-tracked body of knowledge, with AI doing the connecting.</p>
+  <p class="kicker">The flyer's question was how an individual researcher leverages this idea with an agent of their own. This is the idea.</p>
+</header>
+
+<div class="framing">
+  <p>The main note says the field's emerging answer to siloed data is the <strong>Data Fabric</strong>. This is the picture we have in mind when we say it: sources feed a woven integration layer, entity alignment stitches them together, ontologies keep the meaning current, anyone can query in natural language, and every step is tracked for provenance. The point is not to move the data into one place; it is to connect what already exists so an agent can reason across all of it.</p>
+</div>
+
+<figure class="fabric">
+  <img src="data-fabric.png" alt="Knowledge-Driven Data Fabric infographic: a woven integration layer fed from below by AI outputs, cloud data stores and data lakes, zero-trust security, apps and repositories (XML, PDF, Doc, JSON, Web), and a blockchain audit log; above it, self-aware ingestion, AI-based entity alignment, ontology updates, semantic query with a natural-language interface, provenance tracking, and recommendations.">
+  <figcaption>The knowledge-driven data fabric: an AI-driven integration layer for connected knowledge. Sources feed in from below; ingestion, alignment, semantic query, and provenance sit on top.</figcaption>
+</figure>
+
+<h2>Where our work already lives on this picture</h2>
+
+<p>The flyer's argument is that this fabric is worth little to an individual scientist until they can plug into it with an agent that learns their own work. That plug-in exists and runs today, and much of it maps directly onto the layers above.</p>
+
+<ul class="map">
+  <li><span class="layer">Self-aware ingestion.</span> A connector-agent reads a source's own ontology and API and pulls data in without a hand-built integration. The appendix connector against Notre Dame's PAD service does exactly this: it reads the service's self-description and answers questions no one built a screen for.</li>
+  <li><span class="layer">Ontology updates and entity alignment.</span> The wiki's lightweight schema and its knowledge-graph extractor keep a living, typed structure over the memory, so new material aligns to what is already there instead of landing loose.</li>
+  <li><span class="layer">Semantic query and the natural-language interface.</span> The memory is reified as an RDF and SPARQL knowledge graph, and the federation's <code>ask</code> primitive plus a standard, read-only MCP server let any capable host query shared knowledge in plain language, with the researcher's own model reasoning over it.</li>
+  <li><span class="layer">Provenance tracking.</span> Every claim is filed as a claim, attributed to a person and the agent that wrote it (<code>by: &lt;human&gt; via &lt;agent&gt;</code>), versioned in git, and screened by a verification gate that blocks numbers not backed by real output. Corrections are filed alongside the original, not over it.</li>
+  <li><span class="layer">Connected knowledge across groups.</span> Knowledge bundles are the shareable unit, and a federation of agent cards carries them between groups, which is the connected-knowledge promise made concrete at the level of research teams.</li>
+</ul>
+
+<h2>What the fabric alone does not do</h2>
+
+<div class="pair">
+  <p><strong>The fabric</strong> connects data sources and makes them queryable. That is real, and hard, and worth doing.</p>
+  <p><strong>What it does not do</strong> is carry judgment or accrue experience. It connects data; it does not remember why a result was trusted, who corrected it, or what a group learned along the way.</p>
+</div>
+
+<p>That is the part the Research Agent and its living memory add. The researcher works through an agent over a shared wiki they own, on a non-proprietary template, and what the agent extracts lands in a memory that grows and stays attributed. So the fabric connects the data, and the memory keeps the understanding. The two together are what let an individual researcher actually leverage the idea, rather than watch it happen at the level of the institution.</p>
+
+<p class="back">&larr; <a href="../">Back to Research Agents: The Competitive Edge</a></p>
+
+<footer>
+  <p>Center for Research Computing, University of Notre Dame. Concept graphic from the group's data-fabric work.</p>
+</footer>
+</body>
+</html>
