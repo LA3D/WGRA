@@ -1,0 +1,19 @@
+---
+title: "WGRA Notes"
+subtitle: "Field notes and essays on wiki-grounded research agents"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  fields: [date, title, description, categories]
+---
+
+The running record behind [WGRA](https://la3d.github.io/WGRA/): a wiki that sits between a research group's sources and its AI agent as durable, shared, git-versioned memory. The main site holds the evergreen pitch and deep dives; these notes turn the project's own log outward.
+
+Two kinds of posts:
+
+- **Field notes**: dated, short, honest. What we built, what we learned, what we decided, what broke. Tagged `field-notes`.
+- **Essays**: longer arcs not already covered by a deep dive, the **Research Agents** strategy series (`research-agents`) and the **retrieval foundations** behind it (`retrieval`).
+
+Each post carries a status: built, partly built, design, or plan. Present tense means it runs today.

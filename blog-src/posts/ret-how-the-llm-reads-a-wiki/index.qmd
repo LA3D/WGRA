@@ -1,0 +1,23 @@
+---
+title: "How the LLM actually reads a wiki"
+description: "The LLM navigates by name-matched grep off the index, not by following links, so every edge-quality gain helps humans and extractors, not the LLM, until a retrieval step injects the graph."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Empirical observation.** Grounded in real wikis, not projected.
+:::
+
+**Thesis.** The LLM navigates by name-matched grep off the index, not by following links, so every edge-quality gain helps humans and extractors, not the LLM, until a retrieval step injects the graph.
+
+**Draws on.** Drawn from the wiki's LLM-Wiki-Read-Path and Graph-Comparison-Empirical.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

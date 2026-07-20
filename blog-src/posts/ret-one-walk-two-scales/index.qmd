@@ -1,0 +1,23 @@
+---
+title: "The same walk at two scales"
+description: "One random-walk primitive suggests which wiki pages to read and orders which corpus chunks to extract: identical math, different graph."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** One random-walk primitive suggests which wiki pages to read and orders which corpus chunks to extract: identical math, different graph.
+
+**Draws on.** Drawn from the wiki's Hierarchical-Markov-Retrieval. Corpus side demonstrated; wiki side is open work.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

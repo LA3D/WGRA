@@ -1,0 +1,23 @@
+---
+title: "When dense retrieval quietly fails at K=10"
+description: "On a 4-hop question over 21k chunks, dense retrieval delivers one gold chunk of four; the graph walk pins the bridge chunks it misses. Retrieval is envelope assembly, not question answering."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Built and demonstrated.** This runs today; caveats are noted inline.
+:::
+
+**Thesis.** On a 4-hop question over 21k chunks, dense retrieval delivers one gold chunk of four; the graph walk pins the bridge chunks it misses. Retrieval is envelope assembly, not question answering.
+
+**Draws on.** Drawn from the wiki's Retrieval-Context-Envelope-Site. Live site and simulation; the full at-scale comparison is still deferred on compute.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

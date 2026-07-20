@@ -1,0 +1,23 @@
+---
+title: "Why random-walk beats SPARQL for question answering"
+description: "SPARQL fails hard, returning empty, when structure is provisional; random-walk-with-restart degrades gracefully into ranked neighborhoods an LLM can reason over."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** SPARQL fails hard, returning empty, when structure is provisional; random-walk-with-restart degrades gracefully into ranked neighborhoods an LLM can reason over.
+
+**Draws on.** Drawn from the wiki's Distribution-vs-Pattern-Retrieval and Content-vs-Topology-Questions.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

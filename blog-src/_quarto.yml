@@ -1,0 +1,26 @@
+project:
+  type: website
+  output-dir: ../blog
+
+website:
+  title: "WGRA Notes"
+  description: "Field notes and essays on wiki-grounded research agents"
+  site-url: https://la3d.github.io/WGRA/blog/
+  navbar:
+    right:
+      - text: "WGRA"
+        href: https://la3d.github.io/WGRA/
+      - text: "The pitch"
+        href: https://la3d.github.io/WGRA/research-agents-revolution/
+      - about.qmd
+      - icon: github
+        href: https://github.com/LA3D/WGRA
+  page-footer: "Wiki-Grounded Research Agent · Center for Research Computing, University of Notre Dame"
+
+format:
+  html:
+    theme: [default, brand.scss]
+    toc: true
+    toc-depth: 2
+    grid:
+      body-width: 820px

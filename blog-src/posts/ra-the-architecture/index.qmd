@@ -1,0 +1,23 @@
+---
+title: "The architecture: template, instance, wiki, fabric"
+description: "The load-bearing distinction is three layers earlier drafts collapsed: tools install into the instance, but subtype and bundle-publishing are properties of the wiki, and the instance is the hub."
+date: "2026-07-20"
+categories: [research-agents, architecture]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** The load-bearing distinction is three layers earlier drafts collapsed: tools install into the instance, but subtype and bundle-publishing are properties of the wiki, and the instance is the hub.
+
+**Draws on.** Drawn from the wiki's Ecosystem-Architecture; the diagram lives in the flyer and the data-fabric appendix.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

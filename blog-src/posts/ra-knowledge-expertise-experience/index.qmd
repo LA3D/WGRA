@@ -1,0 +1,23 @@
+---
+title: "Knowledge, expertise, experience"
+description: "Vanilla RAG lives at the knowledge layer; a wiki-plus-LLM substitutes for an advisor only when it also carries the author's judgment and grounded cases."
+date: "2026-07-20"
+categories: [research-agents]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Framing.** A position and argument, not an artifact.
+:::
+
+**Thesis.** Vanilla RAG lives at the knowledge layer; a wiki-plus-LLM substitutes for an advisor only when it also carries the author's judgment and grounded cases.
+
+**Draws on.** Drawn from the wiki's Knowledge-Expertise-Experience.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

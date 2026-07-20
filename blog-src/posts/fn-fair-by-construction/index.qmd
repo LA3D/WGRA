@@ -1,0 +1,17 @@
+---
+title: "FAIR, by construction"
+description: "A group's outputs come out Findable, Accessible, and Interoperable by construction, and Reusable once machine-readable licensing lands."
+date: "2026-07-20"
+categories: [field-notes, fair]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Framing.** A position and argument, not an artifact.
+:::
+
+**What happened.** FAIR was written for data a machine can act on with little human help, and it never named the machine. Here it is the Research Agent.
+
+**Why it matters.** A group's outputs come out Findable, Accessible, and Interoperable by construction, and Reusable once machine-readable licensing lands.
+
+**Details.** Now a first-class framing on the flyer and its [data-fabric appendix](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/); grounded in the wiki's Discovery-Architecture.

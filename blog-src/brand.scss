@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+// Match the research-agents-revolution flyer identity.
+$primary:                #0d4a8b;
+$link-color:             #0d4a8b;
+$body-color:             #1a1a1a;
+$font-family-serif:      Charter, Georgia, Cambria, serif;
+$font-family-sans-serif: "Helvetica Neue", Arial, sans-serif;
+$headings-font-family:   "Helvetica Neue", Arial, sans-serif;
+$font-family-base:       $font-family-serif;
+
+/*-- scss:rules --*/
+body { font-size: 17px; line-height: 1.5; }
+h1, h2, h3 { color: #0d4a8b; letter-spacing: -0.01em; }
+h2 { border-bottom: 2px solid #0d4a8b; padding-bottom: .2rem; margin-top: 1.8rem; }
+a { text-underline-offset: .15em; }
+code { background: #f4f4f4; }
+.callout { border-left-width: 4px; }

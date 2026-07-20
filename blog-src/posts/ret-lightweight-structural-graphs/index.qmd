@@ -1,0 +1,23 @@
+---
+title: "Lightweight structural graphs, and the entity-resolution trap"
+description: "Cheap structural edges plus lightweight extracted content deliver most of the coverage; heavy content-graph engineering buys diminishing returns because entity resolution is fragile."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** Cheap structural edges plus lightweight extracted content deliver most of the coverage; heavy content-graph engineering buys diminishing returns because entity resolution is fragile.
+
+**Draws on.** Drawn from the wiki's Lightweight-Structural-Graphs and Graph-Comparison-Empirical.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

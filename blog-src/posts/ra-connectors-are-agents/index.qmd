@@ -1,0 +1,23 @@
+---
+title: "Connectors are agents, not adapters"
+description: "Extraction is interpretive work, so a connector is an agent that wraps a source, declares a capability, and files provenance; a small ontology per source is what lets it reason instead of guess."
+date: "2026-07-20"
+categories: [research-agents, connectors]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** Extraction is interpretive work, so a connector is an agent that wraps a source, declares a capability, and files provenance; a small ontology per source is what lets it reason instead of guess.
+
+**Draws on.** Drawn from the wiki's Connector-Agents.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

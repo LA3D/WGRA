@@ -1,0 +1,23 @@
+---
+title: "From ask to full agentic systems"
+description: "Consumers range from single-shot ask to multi-step plan/retrieve/act/update agents; the action primitive is what today's template is missing."
+date: "2026-07-20"
+categories: [research-agents]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** Consumers range from single-shot ask to multi-step plan/retrieve/act/update agents; the action primitive is what today's template is missing.
+
+**Draws on.** Drawn from the wiki's Agent-Systems. Provisional and forward-looking.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

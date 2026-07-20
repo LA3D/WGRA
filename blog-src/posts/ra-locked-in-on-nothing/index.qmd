@@ -1,0 +1,23 @@
+---
+title: "Locked in on nothing"
+description: "While the frontier labs converge on agent-plus-connectors-plus-discovery, the fundable play is the neutral layer: neutral agent, portable memory, portable tools, and now portable identity."
+date: "2026-07-20"
+categories: [research-agents]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Strategy / position.**
+:::
+
+**Thesis.** While the frontier labs converge on agent-plus-connectors-plus-discovery, the fundable play is the neutral layer: neutral agent, portable memory, portable tools, and now portable identity.
+
+**Draws on.** Drawn from the wiki's Vendor-Neutral-Positioning.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

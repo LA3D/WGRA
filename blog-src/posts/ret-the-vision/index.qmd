@@ -1,0 +1,23 @@
+---
+title: "The retrieval vision in one post"
+description: "Graph-informed retrieval for LLM-maintained wikis rests on three claims: random-walk over SPARQL, lightweight over heavy graphs, and one walk applied at two scales."
+date: "2026-07-20"
+categories: [retrieval]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Design.** The intended approach, not yet implemented.
+:::
+
+**Thesis.** Graph-informed retrieval for LLM-maintained wikis rests on three claims: random-walk over SPARQL, lightweight over heavy graphs, and one walk applied at two scales.
+
+**Draws on.** Drawn from the wiki's Vision.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

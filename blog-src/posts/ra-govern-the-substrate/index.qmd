@@ -1,0 +1,23 @@
+---
+title: "Govern the substrate, leave the ecosystem open"
+description: "Governance authority is scoped to the template only; plugins, bundles, and federation are permissionless by design, with the taxonomies serving as shared vocabulary, not control."
+date: "2026-07-20"
+categories: [research-agents, governance]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Policy / position.**
+:::
+
+**Thesis.** Governance authority is scoped to the template only; plugins, bundles, and federation are permissionless by design, with the taxonomies serving as shared vocabulary, not control.
+
+**Draws on.** Drawn from the wiki's Ecosystem-Governance.
+
+## Outline
+
+- 
+- 
+- 
+
+_Stub. Expand from the seed page(s) above._

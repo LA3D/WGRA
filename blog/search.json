@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About WGRA Notes",
+    "section": "",
+    "text": "WGRA (“Wiki-Grounded Research Agent”) is a pattern for research-group memory: an LLM-authored wiki that sits between a group’s raw sources and its AI coding agent (Claude Code, Cursor, and the like), acting as durable, shared, git-versioned project memory. It is built on the llm-wiki-memory-template.\nThese Notes are the dated companion to the main WGRA site. The main site carries the evergreen explainers and case studies; the Notes carry the field record: experiment results, design decisions, and lessons drawn from the project’s own working log, plus longer essays on arcs the deep dives do not yet cover.\nTwo genres:\n\nField notes turn the wiki’s internal log outward, one dated post at a time.\nEssays develop the Research Agents strategy and its retrieval foundations.\n\nEvery post declares whether the thing it describes is built, partly built, a design, or a plan, so present tense always means it runs today.\nMaintained by Chris Sweet, Center for Research Computing, University of Notre Dame (csweet1@nd.edu)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "WGRA Notes",
+    "section": "",
+    "text": "The running record behind WGRA: a wiki that sits between a research group’s sources and its AI agent as durable, shared, git-versioned memory. The main site holds the evergreen pitch and deep dives; these notes turn the project’s own log outward.\nTwo kinds of posts:\n\nField notes: dated, short, honest. What we built, what we learned, what we decided, what broke. Tagged field-notes.\nEssays: longer arcs not already covered by a deep dive, the Research Agents strategy series (research-agents) and the retrieval foundations behind it (retrieval).\n\nEach post carries a status: built, partly built, design, or plan. Present tense means it runs today.\n\n\n\n\n\n\n\n\nNo matching items"
+  }
+]

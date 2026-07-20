@@ -1,0 +1,17 @@
+---
+title: "Reaching credentialed sources: the broker pattern"
+description: "One rule: the LLM never touches the secret. A non-LLM broker holds the token and returns only data. SSH ControlMaster is a working in-house instance."
+date: "2026-07-19"
+categories: [field-notes, identity]
+draft: true
+---
+
+::: {.callout-note title="Status"}
+**Partly built.** The load-bearing shape is demonstrated; the general version is next.
+:::
+
+**What happened.** It is the present-day form of the control-plane / data-plane split, and it is DID-ready at the same seam: swap the OAuth token for a verifiable credential later.
+
+**Why it matters.** One rule: the LLM never touches the secret. A non-LLM broker holds the token and returns only data. SSH ControlMaster is a working in-house instance.
+
+**Details.** Drawn from the wiki's Agent-Source-Auth. Honest limit: ControlMaster is a coarse, campus-local broker, not a scoped entitlement.
