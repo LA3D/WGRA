@@ -182,7 +182,7 @@ footer a { color: var(--muted); }
   <p><strong>A federated PAD knowledge bundle (the federation):</strong> which concentration model applies, the card regions it relies on (the overlay, right), and how far to trust the reading.</p>
 </div>
 
-<p>One source is live and operational; the other is an accrued knowledge base from the group's own federation, which the agent located through the federation index and was authorized to read. (Here the bundle is the team's own; cross-group discovery, finding a bundle another lab published, is the next milestone.) The agent itself ran on a general-purpose LLM (Claude in this run) and is model-agnostic, so the same connector works with a different model. The concentration model whose attention is shown on the right is a sparse per-drug regressor (Lasso / PLS) that lives in the knowledge bundle.</p>
+<p>One source is live; the other is an accrued knowledge base from the group's own federation, which the agent located through the federation index and was authorized to read. (Here the bundle is the team's own; cross-group discovery, finding a bundle another lab published, is the next milestone.) The agent itself ran on a general-purpose LLM (Claude in this run) and is model-agnostic, so the same connector works with a different model. The concentration model whose attention is shown on the right is a sparse per-drug regressor (Lasso / PLS) that lives in the knowledge bundle.</p>
 
 <p>From that single photo, the loop runs. Each piece below is real (the API calls were made live and the model statistics come straight from the bundle), composed into the answer an agent with both in reach would give:</p>
 
@@ -193,7 +193,7 @@ footer a { color: var(--muted); }
   <li><strong>A trustable answer.</strong> &ldquo;This is ChemoPAD card 81560. For Doxorubicin the concentration reading is reliable, and here are the card regions the model uses. For a harder drug such as Cisplatin I would flag the reading as noisy and point to the spectroscopy-fusion work as the way to improve it.&rdquo;</li>
 </ol>
 
-<p>The answer is not just a number. It shows <em>where on the card</em> the model looks and <em>how far to trust it</em>, and that trust comes from the knowledge bundle's own validated model statistics (accuracy measured on held-out, HPLC-calibrated data), not from the agent's own confidence. Every claim traces to a source: the card record and image from the live API, the model and its attention map from a knowledge bundle the agent discovered and was authorized to read. No UI, no per-endpoint code, and the two halves, live data and accrued expertise, composed into one explainable result.</p>
+<p>The answer is more than a number: it shows <em>where on the card</em> the model looks and <em>how far to trust it</em>, and that trust comes from the knowledge bundle's own validated model statistics (accuracy measured on held-out, HPLC-calibrated data), not from the agent's own confidence. Every claim traces to a source: the card record and image from the live API, the model and its attention map from a knowledge bundle the agent discovered and was authorized to read. No UI, no per-endpoint code: the two halves, live data and accrued expertise, compose into one explainable result.</p>
 
 <h2>More examples, in text</h2>
 
