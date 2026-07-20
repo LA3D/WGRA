@@ -3,15 +3,32 @@ title: "FAIR, by construction"
 description: "A group's outputs come out Findable, Accessible, and Interoperable by construction, and Reusable once machine-readable licensing lands."
 date: "2026-07-20"
 categories: [field-notes, fair]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Framing.** A position and argument, not an artifact.
+**Framing, mostly built.** Findable, Accessible, and Interoperable hold today; Reusable is provenance-complete, with machine-readable licensing still on the roadmap.
 :::
 
-**What happened.** FAIR was written for data a machine can act on with little human help, and it never named the machine. Here it is the Research Agent.
+**What happened.** We added a FAIR framing to the [pitch](https://la3d.github.io/WGRA/research-agents-revolution/) and its [data-fabric appendix](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/). The interesting part is not that FAIR is a box funders like to see ticked. It is that the architecture already satisfies it, and for a reason most FAIR pitches miss.
 
-**Why it matters.** A group's outputs come out Findable, Accessible, and Interoperable by construction, and Reusable once machine-readable licensing lands.
+**Why it matters.** FAIR (Findable, Accessible, Interoperable, Reusable) was written in 2016 for data that a *machine* can act on with minimal human help. It specified the properties and left the actor unnamed. Here the actor is the Research Agent. So this is not FAIR bolted on for legitimacy; it is the machine-actionability FAIR always assumed, with a concrete consumer attached.
 
-**Details.** Now a first-class framing on the flyer and its [data-fabric appendix](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/); grounded in the wiki's Discovery-Architecture.
+## The mapping
+
+Each letter lines up with a mechanism the group already runs:
+
+- **Findable.** Self-advertising connectors and a searchable index, with persistent identifiers for every source and bundle.
+- **Accessible.** Open discovery, consumption gated on the visibility ladder. This is the nuance most people get wrong: FAIR's "A" means *open where possible, authenticated where necessary, and metadata reachable even when the data is not*. It does not mean "everything is public."
+- **Interoperable.** A standards-based RDF and DCAT graph, plus an open tool protocol (MCP), with typed links between claims.
+- **Reusable.** Portable, provenance-tagged bundles you can take with you. Corrections are filed alongside the original, not over it, so a later reader meets the trajectory, not a silently rewritten fact.
+
+## The honest part
+
+Reusable is where we are not done. FAIR's "R" wants a clear, machine-readable licence attached to every artifact, and that layer is still on the roadmap. It lives with the credentialed-source work: a connector to a licensed database must never let its output leak into a public bundle. So the accurate claim is **Findable, Accessible, and Interoperable by construction today; Reusable is provenance-complete, with the licensing half still to build.** Present tense means it runs; the licensing sentence is deliberately future.
+
+## Why it is strategic, not decorative
+
+Funders increasingly *mandate* FAIR data-management plans. "This makes your group's outputs FAIR by construction, without a portal" is language a program officer recognizes on sight, and it complements the data-fabric framing cleanly: the fabric is the *how*, FAIR is the recognized principles the fabric serves.
+
+The design detail behind all of this is in the wiki's `Discovery-Architecture` page, which also treats decentralized identifiers as the "findable" persistent-identifier layer.

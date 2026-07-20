@@ -7,10 +7,38 @@
     "text": "WGRA (“Wiki-Grounded Research Agent”) is a pattern for research-group memory: an LLM-authored wiki that sits between a group’s raw sources and its AI coding agent (Claude Code, Cursor, and the like), acting as durable, shared, git-versioned project memory. It is built on the llm-wiki-memory-template.\nThese Notes are the dated companion to the main WGRA site. The main site carries the evergreen explainers and case studies; the Notes carry the field record: experiment results, design decisions, and lessons drawn from the project’s own working log, plus longer essays on arcs the deep dives do not yet cover.\nTwo genres:\n\nField notes turn the wiki’s internal log outward, one dated post at a time.\nEssays develop the Research Agents strategy and its retrieval foundations.\n\nEvery post declares whether the thing it describes is built, partly built, a design, or a plan, so present tense always means it runs today.\nMaintained by Chris Sweet, Center for Research Computing, University of Notre Dame (csweet1@nd.edu)."
   },
   {
+    "objectID": "posts/fn-fair-by-construction/index.html",
+    "href": "posts/fn-fair-by-construction/index.html",
+    "title": "FAIR, by construction",
+    "section": "",
+    "text": "NoteStatus\n\n\n\nFraming, mostly built. Findable, Accessible, and Interoperable hold today; Reusable is provenance-complete, with machine-readable licensing still on the roadmap.\nWhat happened. We added a FAIR framing to the pitch and its data-fabric appendix. The interesting part is not that FAIR is a box funders like to see ticked. It is that the architecture already satisfies it, and for a reason most FAIR pitches miss.\nWhy it matters. FAIR (Findable, Accessible, Interoperable, Reusable) was written in 2016 for data that a machine can act on with minimal human help. It specified the properties and left the actor unnamed. Here the actor is the Research Agent. So this is not FAIR bolted on for legitimacy; it is the machine-actionability FAIR always assumed, with a concrete consumer attached."
+  },
+  {
+    "objectID": "posts/fn-fair-by-construction/index.html#the-mapping",
+    "href": "posts/fn-fair-by-construction/index.html#the-mapping",
+    "title": "FAIR, by construction",
+    "section": "The mapping",
+    "text": "The mapping\nEach letter lines up with a mechanism the group already runs:\n\nFindable. Self-advertising connectors and a searchable index, with persistent identifiers for every source and bundle.\nAccessible. Open discovery, consumption gated on the visibility ladder. This is the nuance most people get wrong: FAIR’s “A” means open where possible, authenticated where necessary, and metadata reachable even when the data is not. It does not mean “everything is public.”\nInteroperable. A standards-based RDF and DCAT graph, plus an open tool protocol (MCP), with typed links between claims.\nReusable. Portable, provenance-tagged bundles you can take with you. Corrections are filed alongside the original, not over it, so a later reader meets the trajectory, not a silently rewritten fact."
+  },
+  {
+    "objectID": "posts/fn-fair-by-construction/index.html#the-honest-part",
+    "href": "posts/fn-fair-by-construction/index.html#the-honest-part",
+    "title": "FAIR, by construction",
+    "section": "The honest part",
+    "text": "The honest part\nReusable is where we are not done. FAIR’s “R” wants a clear, machine-readable licence attached to every artifact, and that layer is still on the roadmap. It lives with the credentialed-source work: a connector to a licensed database must never let its output leak into a public bundle. So the accurate claim is Findable, Accessible, and Interoperable by construction today; Reusable is provenance-complete, with the licensing half still to build. Present tense means it runs; the licensing sentence is deliberately future."
+  },
+  {
+    "objectID": "posts/fn-fair-by-construction/index.html#why-it-is-strategic-not-decorative",
+    "href": "posts/fn-fair-by-construction/index.html#why-it-is-strategic-not-decorative",
+    "title": "FAIR, by construction",
+    "section": "Why it is strategic, not decorative",
+    "text": "Why it is strategic, not decorative\nFunders increasingly mandate FAIR data-management plans. “This makes your group’s outputs FAIR by construction, without a portal” is language a program officer recognizes on sight, and it complements the data-fabric framing cleanly: the fabric is the how, FAIR is the recognized principles the fabric serves.\nThe design detail behind all of this is in the wiki’s Discovery-Architecture page, which also treats decentralized identifiers as the “findable” persistent-identifier layer."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "WGRA Notes",
     "section": "",
-    "text": "The running record behind WGRA: a wiki that sits between a research group’s sources and its AI agent as durable, shared, git-versioned memory. The main site holds the evergreen pitch and deep dives; these notes turn the project’s own log outward.\nTwo kinds of posts:\n\nField notes: dated, short, honest. What we built, what we learned, what we decided, what broke. Tagged field-notes.\nEssays: longer arcs not already covered by a deep dive, the Research Agents strategy series (research-agents) and the retrieval foundations behind it (retrieval).\n\nEach post carries a status: built, partly built, design, or plan. Present tense means it runs today.\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "The running record behind WGRA: a wiki that sits between a research group’s sources and its AI agent as durable, shared, git-versioned memory. The main site holds the evergreen pitch and deep dives; these notes turn the project’s own log outward.\nTwo kinds of posts:\n\nField notes: dated, short, honest. What we built, what we learned, what we decided, what broke. Tagged field-notes.\nEssays: longer arcs not already covered by a deep dive, the Research Agents strategy series (research-agents) and the retrieval foundations behind it (retrieval).\n\nEach post carries a status: built, partly built, design, or plan. Present tense means it runs today.\n\n\n\n\n\n\n\n\n\nFAIR, by construction\n\n\n\nfield-notes\n\nfair\n\n\n\nA group’s outputs come out Findable, Accessible, and Interoperable by construction, and Reusable once machine-readable licensing lands.\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -1,6 +1,8 @@
 [
   {
     "listing": "/index.html",
-    "items": []
+    "items": [
+      "/posts/fn-fair-by-construction/index.html"
+    ]
   }
 ]
