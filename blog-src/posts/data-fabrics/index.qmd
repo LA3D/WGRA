@@ -1,20 +1,20 @@
 ---
 title: "Data fabrics"
-description: "The field's emerging answer to siloed data is an AI-driven integration layer, and a wiki-grounded agent is how an individual researcher plugs into it."
+description: "A data fabric is a metadata-driven layer that unifies distributed data where it lives; our knowledge graph and connectors are what let a wiki-grounded agent plug into one."
 date: "2026-07-14"
 categories: [ecosystem]
 ---
 
-For fifteen years, centers built portals and apps to collect and share data, and the data ended up siloed inside those very constructs. The field's emerging answer is the **data fabric**: AI-driven systems that connect data sources and make them accessible in a data-agnostic environment. Not another data lake, an integration layer, with AI doing the connecting.
+**What a data fabric actually is.** A data fabric is a *design* for data management, not a product: an integrated layer (the "fabric") that sits over an organization's scattered, heterogeneous data sources and makes them usable together. [Gartner's framing](https://www.gartner.com/en/data-analytics/topics/data-fabric) is that it uses *metadata to automate* the integration work teams otherwise do by hand. The defining move is that it connects data **where it lives** rather than copying everything into one store: centralized in access, but not necessarily consolidated in storage.
 
-The open question is how an *individual* researcher builds on that idea with an agent tailored to their own work, rather than watching it happen at the level of the institution. The wiki-grounded agent is the answer: the fabric connects the data, and the wiki keeps the understanding, the judgment, the provenance, and the experience the fabric alone cannot carry.
+Three ingredients make that work. **Active metadata**: not just static schemas and glossaries (that is passive metadata) but continuous signals about how data is actually used, which the fabric analyzes to suggest and automate connections. A **knowledge graph and ontology**: the semantic layer that links raw sources to shared concepts, so a query can span systems by meaning instead of by hand-wired joins. And **AI**: to discover assets, infer relationships, and keep the integration current as sources change.
 
-We are already part of the way onto the picture. The knowledge graph emits standards-based RDF (facts as subject-predicate-object triples), the format a fabric consumes. Connectors are the self-aware ingestion layer. Attribution and the verification gate are provenance tracking. Published this way, a group's outputs come out FAIR by construction on three of the four axes, Findable, Accessible, and Interoperable, with Reusable following once machine-readable licensing lands.
+That is what separates a fabric from the things it gets confused with. A **data lake** or warehouse *consolidates*: move all the data into one big store first. A **portal** wires one bespoke integration per source. A fabric does neither; it leaves data in place and unifies it through the metadata and semantic layer. (A data *mesh*, for contrast, is a governance stance, distributed domain ownership, and can be built on fabric technology.)
 
-The data fabric is the *how*; the wiki-grounded agent is what lets a researcher actually use it. ([The picture we mean.](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/))
+**Why a wiki-grounded agent belongs on this picture.** The pieces a fabric is built from are pieces we already have. The wiki's knowledge graph and small ontologies *are* a semantic layer. The typed edges are active metadata. Connectors are the automated integration. So a group's outputs come out as standards-based RDF, ready to plug into a wider institutional fabric, and FAIR by construction on three of four axes. The fabric is the *how* of connecting data at scale; the wiki-grounded agent is how an individual researcher participates in one, and keeps the judgment and provenance a fabric alone does not carry. ([The picture we mean.](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/))
 
 ## Related
 
-- [The wiki is a knowledge graph](../knowledge-graphs/), the RDF layer a fabric consumes.
-- [Connectors are agents](../connectors/), the ingestion side of the fabric.
+- [The wiki is a knowledge graph](../knowledge-graphs/), the semantic layer a fabric runs on.
+- [Connectors are agents](../connectors/), the automated integration into the fabric.
 - [Decentralized identifiers](../decentralized-identifiers/), portable identity and the FAIR "findable" anchor.

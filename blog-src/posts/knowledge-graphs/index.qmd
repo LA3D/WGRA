@@ -5,7 +5,9 @@ date: "2026-05-14"
 categories: [graph]
 ---
 
-Every typed edge in a page's front matter reifies to (is recorded as) an RDF triple, a *subject-predicate-object* fact a database can query. So the wiki is not just interlinked markdown; it is a queryable **knowledge graph**, with a formal ontology (an explicit vocabulary of page and relationship types), SHACL rules that check the structure is valid, and a shipped library of SPARQL queries (SPARQL is the query language for graphs, like SQL for tables) an agent can run against the graph directly.
+A **knowledge graph** represents information as entities (the nodes) and the relationships between them (the edges), with enough formal meaning attached that software can query and reason over it, not just display it. The infoboxes behind Wikipedia, feeding a graph you can query, are the familiar example. The wiki here becomes one almost for free.
+
+Every typed edge in a page's front matter reifies to (is recorded as) an RDF triple, a *subject-predicate-object* fact a database can query. So the wiki is not just interlinked markdown; it is a queryable knowledge graph, with a formal ontology (an explicit vocabulary of page and relationship types), SHACL rules that check the structure is valid, and a shipped library of SPARQL queries (SPARQL is the query language for graphs, like SQL for tables) an agent can run against the graph directly.
 
 That layer buys queries prose and keyword search cannot answer. Ask which pages hold the wiki together: one query returned a page on Random-Walk-With-Restart (a graph-ranking method, the idea behind PageRank) with 48 inbound edges on a live research wiki. Walk a `criticizes:` edge transitively to surface every downstream claim a retraction implicates. Lint, at commit time, for `supports:` claims with no ingested source. These are graph queries over meaning, not keyword queries.
 

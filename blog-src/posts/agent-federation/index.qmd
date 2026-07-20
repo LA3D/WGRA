@@ -5,7 +5,9 @@ date: "2026-06-19"
 categories: [ecosystem]
 ---
 
-Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group's institutional memory often walks out with them. Federation is the answer.
+**Federation** means independent systems that each keep their own data, control, and rules, while agreeing on a shared way to interoperate: no central authority owns the whole. Email federates (many servers, one protocol); so does the web. Agent federation applies that shape to research-group memory.
+
+The problem it solves: every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group's institutional memory often walks out with them.
 
 Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an **agent card**, a small public profile that declares what the group knows about and how to reach it. Your agent can then query a peer's memory, their benchmark results, their tried-and-abandoned methods, the workflow that produced a specific figure, with the peer's permission, and cited back to specific pages in their wiki.
 
