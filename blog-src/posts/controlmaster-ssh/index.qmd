@@ -1,0 +1,14 @@
+---
+title: "ControlMaster: the broker pattern, already running"
+description: "SSH connection multiplexing is a working, in-house example of the one rule for reaching credentialed sources: the agent never touches the secret."
+date: "2026-07-09"
+categories: [infrastructure]
+---
+
+Reaching a credentialed source safely comes down to one rule: **the LLM never touches the secret**. A non-LLM broker holds the credential, makes the authenticated request, and returns only data. The agent reasons and asks for a result; it never sees the key.
+
+We already run an instance of this, and it is not exotic: SSH **ControlMaster**. Accessing Notre Dame's CRC uses connection multiplexing. An initial master connection authenticates once (SSH key plus Duo), and every downstream operation reuses the authenticated control socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent or skill talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes.
+
+It is a coarse broker, honestly. A ControlMaster session carries full shell privilege, not a scoped token, and it is campus-local, another group cannot use your socket. But it demonstrates the load-bearing architecture: authenticate once, out of band, and let the agent use a delegated channel. And it is forward-compatible: the same broker seam that holds an SSH key or an OAuth token today can present a verifiable credential tomorrow.
+
+The lesson: you reach credentialed data by putting a broker between the agent and the secret, and you already do this for the cluster.

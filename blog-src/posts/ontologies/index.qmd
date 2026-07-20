@@ -1,0 +1,14 @@
+---
+title: "Ontologies, kept small"
+description: "A small, shared ontology is what lets an agent reason over described data instead of guessing, and the reliability comes from keeping it lightweight, not heavy."
+date: "2026-05-21"
+categories: [graph]
+---
+
+The wiki's graph is grounded in a formal ontology, the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) vocabulary, with SHACL constraints that validate structure. An ontology is just an explicit statement of what the entities are, how they relate, and what the fields mean.
+
+The load-bearing idea is that the ontology should be **small**. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human in the loop to catch mistakes. So the reliable path is not "make the agent clever enough to guess at undescribed sources." It is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that.
+
+This is why the ontology stays lightweight rather than a heavy formal one that over-commits provisional structure. A small semantic layer is what makes reasoning trustworthy; a heavy one manufactures crispness and returns over-confident results.
+
+It is also the connector contract. A source is not integrated when you can call its API; it is integrated when it is described well enough for an agent to reason over it without guessing. The same move applies to documents (a document-structure ontology improves extraction) and to any API or database a connector reaches. The small ontology is the reliability mechanism.

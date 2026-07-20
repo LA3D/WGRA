@@ -1,0 +1,16 @@
+---
+title: "The deep dives"
+description: "Five longer treatments on the WGRA site: memory that compounds, team scale, agent capability, the knowledge graph, and knowledge bundles."
+date: "2026-06-04"
+categories: [deep-dives]
+---
+
+The nuggets here are bites. When you want the full argument on one of the pillars, the WGRA site has a deep dive for each, longer, worked, with real examples.
+
+- **[Memory that compounds](https://la3d.github.io/WGRA/memory-that-compounds/)**: why a wiki accumulates where RAG rediscovers, and why failed methods and walked-back claims are preserved, not deleted (the file-drawer effect, filed alongside with a *Status* note).
+- **[Team scale](https://la3d.github.io/WGRA/team-scale/)**: collaboration within a group (attribution, conflict resolution) and federation across groups (agent cards, querying a peer's memory with permission).
+- **[Agent capability](https://la3d.github.io/WGRA/agent-capability/)**: discipline in the artifact, the verification gate, discipline gates, the four built-in operations, and the real case where a typed edge let a reviewer in a separate session catch a bug that recovered 75% more coverage.
+- **[The knowledge graph](https://la3d.github.io/WGRA/knowledge-graph/)**: typed edges reified to RDF, SPARQL over meaning, SHACL validation, shown on live graphs.
+- **[Knowledge bundles](https://la3d.github.io/WGRA/knowledge-bundles/)**: the wiki packaged as a portable, shareable unit of compiled competence.
+
+These nuggets and those deep dives are two lengths of the same story: graze here, go deep there.

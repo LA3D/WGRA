@@ -1,0 +1,14 @@
+---
+title: "Decentralized identifiers"
+description: "Portable, self-sovereign identity so a source or agent is found and trusted without a central registry, the piece that keeps discovery open while access stays gated."
+date: "2026-07-18"
+categories: [identity]
+---
+
+Today discovery in the federation leans on a curated index, and access leans on a GitHub credential. Both work, and both tie identity to one platform's account. **Decentralized identifiers (DIDs)** are how identity becomes portable.
+
+A DID is a persistent, location-independent identifier that its subject controls cryptographically, resolving to a document with no central registration authority. It does three jobs discovery needs. It gives every source, agent, and bundle a stable identifier that survives moving hosts (the FAIR "findable" persistent-identifier principle, done self-sovereignly). Its service endpoints are themselves a discovery primitive: resolve one DID and you get pointers to the source's catalog, its agent card, its endpoints. And it anchors trust, a verifiable credential verified against a DID is how consumption gets gated while discovery stays open.
+
+There is a neat fit with the rest of the stack: a DID document is itself RDF, so identity, description, and discovery live in one graph rather than three systems, and a DID is the canonical identifier a source's small ontology attaches to. It is also the fourth leg of "locked in on nothing": portable agent, portable memory, portable tools, and now portable identity, replacing the current reliance on a platform login.
+
+The honest status: this is design and a plan, not something built. The cheapest test is `did:web` on the existing GitHub Pages, no ledger, to prove portability before spending anything heavier.

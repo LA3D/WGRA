@@ -1,0 +1,14 @@
+---
+title: "Data fabrics"
+description: "The field's emerging answer to siloed data is an AI-driven integration layer, and a wiki-grounded agent is how an individual researcher plugs into it."
+date: "2026-07-14"
+categories: [ecosystem]
+---
+
+For fifteen years, centers built portals and apps to collect and share data, and the data ended up siloed inside those very constructs. The field's emerging answer is the **data fabric**: AI-driven systems that connect data sources and make them accessible in a data-agnostic environment. Not another data lake, an integration layer, with AI doing the connecting.
+
+The open question is how an *individual* researcher builds on that idea with an agent tailored to their own work, rather than watching it happen at the level of the institution. The wiki-grounded agent is the answer: the fabric connects the data, and the wiki keeps the understanding, the judgment, the provenance, and the experience the fabric alone cannot carry.
+
+We are already part of the way onto the picture. The knowledge graph emits standards-based RDF, the format a fabric consumes. Connectors are the self-aware ingestion layer. Attribution and the verification gate are provenance tracking. Published this way, a group's outputs come out FAIR by construction on three of the four axes, Findable, Accessible, and Interoperable, with Reusable following once machine-readable licensing lands.
+
+The data fabric is the *how*; the wiki-grounded agent is what lets a researcher actually use it. ([The picture we mean.](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/))

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Chris Sweet">
+<meta name="dcterms.date" content="2026-07-02">
+<meta name="description" content="A connector is not a static adapter but an agent that wraps a source, declares a capability, and files results with provenance; a small ontology per source makes it reliable.">
 
-<title>WGRA Nuggets</title>
+<title>Connectors are agents – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +29,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f6e93ea9ccd94950dbbd0705d6507235.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f6e93ea9ccd94950dbbd0705d6507235.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,65 +73,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -141,7 +84,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">WGRA Nuggets</span>
     </a>
   </div>
@@ -160,7 +103,7 @@ window.Quarto = {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
   <li class="nav-item compact">
@@ -179,23 +122,42 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="YnVuZGxlcw==">bundles <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGVlcC1kaXZlcw==">deep-dives <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWNvc3lzdGVt">ecosystem <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Zm91bmRhdGlvbnM=">foundations <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Z3JhcGg=">graph <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aWRlbnRpdHk=">identity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW5mcmFzdHJ1Y3R1cmU=">infrastructure <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">WGRA Nuggets</h1>
-<p class="subtitle lead">Browsable bites on the ideas behind the Wiki-Grounded Research Agent</p>
-</div>
+<h1 class="title">Connectors are agents</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">ecosystem</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    A connector is not a static adapter but an agent that wraps a source, declares a capability, and files results with provenance; a small ontology per source makes it reliable.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chris Sweet </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 2, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -205,305 +167,14 @@ window.Quarto = {
 </header>
 
 
-<p>One idea per nugget: short, self-contained, and browsable in any order. The <a href="https://la3d.github.io/WGRA/">flyer</a> is the full pitch and the <a href="https://la3d.github.io/WGRA/">deep dives</a> go long; these sit in between, a set of concepts you can graze rather than a story you follow start to finish.</p>
-<p>Start anywhere. If you want the lineage, <a href="posts/karpathy-llm-wiki/">Karpathy’s llm-wiki</a> is where the whole thing begins.</p>
+<p>Off-the-shelf sources (papers, PDFs, notes, tables) come into the wiki through the standard ingest path. Databases, APIs, and complex figures need a connector, and a connector is not a static adapter.</p>
+<p>Extraction is interpretive work: reading a table out of a paper, reconciling a supplementary spreadsheet against the paper’s notation, normalizing to a schema, attaching provenance and a confidence, retrying when a source is malformed. That is open-ended, so a connector is an <strong>agent</strong> that wraps a source, declares a capability, does the messy extraction, and files the result with its provenance. The researcher’s hub agent discovers and orchestrates a fleet of them.</p>
+<p>The reliability mechanism is a small ontology per source (see <a href="../ontologies/">Ontologies, kept small</a>): reasoning over an explicit small ontology is accurate, guessing at raw responses is not. So a connector is finished not when it can call the API but when the source is described well enough to reason over without guessing.</p>
+<p>We built one against Notre Dame’s PAD service: it reads the service’s own ontology and OpenAPI, exposes one generic read-only tool, and answers live questions with no per-endpoint code and no UI (<a href="https://la3d.github.io/WGRA/research-agents-revolution/pad-example/">see it working</a>). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="aWRlbnRpdHk=" data-listing-date-sort="1784347200000" data-listing-file-modified-sort="1784582457643" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="227">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/decentralized-identifiers/index.html" class="no-external">Decentralized identifiers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('aWRlbnRpdHk='); return false;">identity</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/decentralized-identifiers/index.html" class="no-external">
-<p>Portable, self-sovereign identity so a source or agent is found and trusted without a central registry, the piece that keeps discovery open while access stays gated.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/decentralized-identifiers/index.html" class="no-external">
-<div class="listing-date">
-Jul 18, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZWNvc3lzdGVt" data-listing-date-sort="1784001600000" data-listing-file-modified-sort="1784582457639" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/data-fabrics/index.html" class="no-external">Data fabrics</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvc3lzdGVt'); return false;">ecosystem</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/data-fabrics/index.html" class="no-external">
-<p>The field’s emerging answer to siloed data is an AI-driven integration layer, and a wiki-grounded agent is how an individual researcher plugs into it.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/data-fabrics/index.html" class="no-external">
-<div class="listing-date">
-Jul 14, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="aW5mcmFzdHJ1Y3R1cmU=" data-listing-date-sort="1783569600000" data-listing-file-modified-sort="1784582457635" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="213">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/controlmaster-ssh/index.html" class="no-external">ControlMaster: the broker pattern, already running</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('aW5mcmFzdHJ1Y3R1cmU='); return false;">infrastructure</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/controlmaster-ssh/index.html" class="no-external">
-<p>SSH connection multiplexing is a working, in-house example of the one rule for reaching credentialed sources: the agent never touches the secret.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/controlmaster-ssh/index.html" class="no-external">
-<div class="listing-date">
-Jul 9, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="ZWNvc3lzdGVt" data-listing-date-sort="1782964800000" data-listing-file-modified-sort="1784582457626" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/connectors/index.html" class="no-external">Connectors are agents</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvc3lzdGVt'); return false;">ecosystem</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/connectors/index.html" class="no-external">
-<p>A connector is not a static adapter but an agent that wraps a source, declares a capability, and files results with provenance; a small ontology per source makes it reliable.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/connectors/index.html" class="no-external">
-<div class="listing-date">
-Jul 2, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="ZWNvc3lzdGVt" data-listing-date-sort="1782532800000" data-listing-file-modified-sort="1784582457631" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="177">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/marketplace/index.html" class="no-external">A marketplace for tools</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvc3lzdGVt'); return false;">ecosystem</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/marketplace/index.html" class="no-external">
-<p>Some capabilities are plugins an agent installs, distributed through a marketplace the center can host, and discovery hides which is which.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/marketplace/index.html" class="no-external">
-<div class="listing-date">
-Jun 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="ZWNvc3lzdGVt" data-listing-date-sort="1781841600000" data-listing-file-modified-sort="1784582457620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/agent-federation/index.html" class="no-external">Agent federation</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWNvc3lzdGVt'); return false;">ecosystem</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/agent-federation/index.html" class="no-external">
-<p>Each group runs its own wiki and publishes an agent card; your agent can query a peer group’s memory, with permission, cited back to their pages.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/agent-federation/index.html" class="no-external">
-<div class="listing-date">
-Jun 19, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="YnVuZGxlcw==" data-listing-date-sort="1781150400000" data-listing-file-modified-sort="1784582409390" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="187">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/knowledge-bundles/index.html" class="no-external">Knowledge bundles</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('YnVuZGxlcw=='); return false;">bundles</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/knowledge-bundles/index.html" class="no-external">
-<p>A wiki authored to be consumed by other people’s LLMs: portable, shareable compiled competence, with an OKF import/export path for interoperability.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/knowledge-bundles/index.html" class="no-external">
-<div class="listing-date">
-Jun 11, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="ZGVlcC1kaXZlcw==" data-listing-date-sort="1780545600000" data-listing-file-modified-sort="1784582409387" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="166">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/the-deep-dives/index.html" class="no-external">The deep dives</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGVlcC1kaXZlcw=='); return false;">deep-dives</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/the-deep-dives/index.html" class="no-external">
-<p>Five longer treatments on the WGRA site: memory that compounds, team scale, agent capability, the knowledge graph, and knowledge bundles.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/the-deep-dives/index.html" class="no-external">
-<div class="listing-date">
-Jun 4, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="Zm91bmRhdGlvbnM=" data-listing-date-sort="1780027200000" data-listing-file-modified-sort="1784582409384" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/our-collaborative-recipe/index.html" class="no-external">Our recipe: a collaborative llm-wiki</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zm91bmRhdGlvbnM='); return false;">foundations</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/our-collaborative-recipe/index.html" class="no-external">
-<p>The llm-wiki-memory-template turns Karpathy’s single-user pattern into shared, attributed, multi-writer memory for a research group.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/our-collaborative-recipe/index.html" class="no-external">
-<div class="listing-date">
-May 29, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="Z3JhcGg=" data-listing-date-sort="1779336000000" data-listing-file-modified-sort="1784582409380" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="211">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/ontologies/index.html" class="no-external">Ontologies, kept small</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3JhcGg='); return false;">graph</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/ontologies/index.html" class="no-external">
-<p>A small, shared ontology is what lets an agent reason over described data instead of guessing, and the reliability comes from keeping it lightweight, not heavy.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/ontologies/index.html" class="no-external">
-<div class="listing-date">
-May 21, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="Z3JhcGg=" data-listing-date-sort="1778731200000" data-listing-file-modified-sort="1784582409377" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="212">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/knowledge-graphs/index.html" class="no-external">The wiki is a knowledge graph</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3JhcGg='); return false;">graph</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/knowledge-graphs/index.html" class="no-external">
-<p>Every typed edge reifies to an RDF triple, so the wiki is a SPARQL-queryable graph, which buys queries prose and grep cannot answer.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/knowledge-graphs/index.html" class="no-external">
-<div class="listing-date">
-May 14, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="Zm91bmRhdGlvbnMlMkNncmFwaA==" data-listing-date-sort="1778040000000" data-listing-file-modified-sort="1784582409374" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="221">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/wiki-front-matter/index.html" class="no-external">Wiki front matter: the typed edges</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zm91bmRhdGlvbnM='); return false;">foundations</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z3JhcGg='); return false;">graph</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/wiki-front-matter/index.html" class="no-external">
-<p>A few lines of YAML at the top of each page carry the relationships that turn linked markdown into something an agent can reason over.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/wiki-front-matter/index.html" class="no-external">
-<div class="listing-date">
-May 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-categories="Zm91bmRhdGlvbnM=" data-listing-date-sort="1776830400000" data-listing-file-modified-sort="1784582409371" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/karpathy-llm-wiki/index.html" class="no-external">Karpathy’s llm-wiki</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Zm91bmRhdGlvbnM='); return false;">foundations</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/karpathy-llm-wiki/index.html" class="no-external">
-<p>The pattern underneath everything here: an LLM that builds and maintains a wiki as it works, so knowledge compounds instead of being rediscovered on every query.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/karpathy-llm-wiki/index.html" class="no-external">
-<div class="listing-date">
-Apr 22, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

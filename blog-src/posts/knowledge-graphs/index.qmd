@@ -1,0 +1,14 @@
+---
+title: "The wiki is a knowledge graph"
+description: "Every typed edge reifies to an RDF triple, so the wiki is a SPARQL-queryable graph, which buys queries prose and grep cannot answer."
+date: "2026-05-14"
+categories: [graph]
+---
+
+Every typed edge in a page's front matter reifies to an RDF triple. So the wiki is not just interlinked markdown; it is a queryable knowledge graph, with a formal ontology, SHACL-validated structure, and a shipped library of SPARQL queries an agent can run against the graph directly.
+
+That layer buys queries prose and grep cannot answer. Ask which pages hold the wiki together (one query returned Random-Walk-With-Restart at 48 inbound edges on a live research wiki). Walk a `criticizes:` edge transitively to surface every downstream claim a retraction implicates. Lint, at commit time, for `supports:` claims with no ingested source. These are graph queries over meaning, not keyword queries.
+
+The distinction matters because a browsable pile of markdown limits an agent to what it can grep. A reified graph lets it query relationships, transitive closures, and structural roles. And it ships with the template, so a project gets it without building graph infrastructure.
+
+One honest caveat is worth keeping. The graph is only as valuable as its consumption, and today an LLM navigating a wiki reads by name-matching, not by walking the graph. So the graph is dark matter until a retrieval step reads it on the LLM's behalf. Building the graph is necessary; wiring it into the read path is the open work.

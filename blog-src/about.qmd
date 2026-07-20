@@ -1,16 +1,9 @@
 ---
-title: "About WGRA Notes"
+title: "About WGRA Nuggets"
 ---
 
-**WGRA** ("Wiki-Grounded Research Agent") is a pattern for research-group memory: an LLM-authored wiki that sits between a group's raw sources and its AI coding agent (Claude Code, Cursor, and the like), acting as durable, shared, git-versioned project memory. It is built on the [`llm-wiki-memory-template`](https://github.com/crcresearch/llm-wiki-memory-template).
+**WGRA** ("Wiki-Grounded Research Agent") is a pattern for research-group memory: an LLM-authored wiki that sits between a group's raw sources and its AI agent, as durable, shared, git-versioned project memory.
 
-These **Notes** are the dated companion to the [main WGRA site](https://la3d.github.io/WGRA/). The main site carries the evergreen explainers and case studies; the Notes carry the field record: experiment results, design decisions, and lessons drawn from the project's own working log, plus longer essays on arcs the deep dives do not yet cover.
-
-Two genres:
-
-- **Field notes** turn the wiki's internal log outward, one dated post at a time.
-- **Essays** develop the **Research Agents** strategy and its **retrieval foundations**.
-
-Every post declares whether the thing it describes is built, partly built, a design, or a plan, so present tense always means it runs today.
+These **Nuggets** break the idea into its conceptual parts, one bite each. They are deliberately short and independent, meant for browsing, not reading in order. The [main WGRA site](https://la3d.github.io/WGRA/) carries the full flyer and the longer deep dives; the nuggets are the graze-able middle.
 
 Maintained by Chris Sweet, Center for Research Computing, University of Notre Dame (`csweet1@nd.edu`).

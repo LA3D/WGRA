@@ -1,6 +1,6 @@
 ---
-title: "WGRA Notes"
-subtitle: "Field notes and essays on wiki-grounded research agents"
+title: "WGRA Nuggets"
+subtitle: "Browsable bites on the ideas behind the Wiki-Grounded Research Agent"
 listing:
   contents: posts
   sort: "date desc"
@@ -9,11 +9,6 @@ listing:
   fields: [date, title, description, categories]
 ---
 
-The running record behind [WGRA](https://la3d.github.io/WGRA/): a wiki that sits between a research group's sources and its AI agent as durable, shared, git-versioned memory. The main site holds the evergreen pitch and deep dives; these notes turn the project's own log outward.
+One idea per nugget: short, self-contained, and browsable in any order. The [flyer](https://la3d.github.io/WGRA/) is the full pitch and the [deep dives](https://la3d.github.io/WGRA/) go long; these sit in between, a set of concepts you can graze rather than a story you follow start to finish.
 
-Two kinds of posts:
-
-- **Field notes**: dated, short, honest. What we built, what we learned, what we decided, what broke. Tagged `field-notes`.
-- **Essays**: longer arcs not already covered by a deep dive, the **Research Agents** strategy series (`research-agents`) and the **retrieval foundations** behind it (`retrieval`).
-
-Each post carries a status: built, partly built, design, or plan. Present tense means it runs today.
+Start anywhere. If you want the lineage, [Karpathy's llm-wiki](posts/karpathy-llm-wiki/) is where the whole thing begins.

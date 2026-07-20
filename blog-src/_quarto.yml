@@ -3,8 +3,8 @@ project:
   output-dir: ../blog
 
 website:
-  title: "WGRA Notes"
-  description: "Field notes and essays on wiki-grounded research agents"
+  title: "WGRA Nuggets"
+  description: "Browsable bites on the ideas behind the Wiki-Grounded Research Agent"
   site-url: https://la3d.github.io/WGRA/blog/
   navbar:
     right:

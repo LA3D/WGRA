@@ -1,0 +1,16 @@
+---
+title: "Wiki front matter: the typed edges"
+description: "A few lines of YAML at the top of each page carry the relationships that turn linked markdown into something an agent can reason over."
+date: "2026-05-06"
+categories: [foundations, graph]
+---
+
+Every page in the wiki opens with a small block of YAML front matter. Two fields are required: `type:` (what kind of page this is) and `up:` (its parent). The interesting part is the optional **typed edges**: `extends:`, `supports:`, `criticizes:`, `requires:`, `related:`. Each names a relationship to another page, by name.
+
+This is the load-bearing metadata. `related:` is an honest catch-all for provisional structure; `extends:`, `supports:`, and `criticizes:` are stronger claims, used where the material actually makes them. A page that criticizes another says so in one line, and that line is machine-readable.
+
+Front matter does three jobs at once. It **places** the page in a hierarchy that humans and agents navigate by. It **records** the relationships between ideas that prose otherwise buries in sentences. And it **reifies** to a graph: every typed edge becomes an RDF triple, so the same annotation a human reads is a structure a query can walk.
+
+The discipline is calibrated to content. An experimental wiki keeps structural placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
+
+The point: the metadata is cheap to write, the agent maintains it as it works, and it is the seam where a pile of markdown becomes a graph.

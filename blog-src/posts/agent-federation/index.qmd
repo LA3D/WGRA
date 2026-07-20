@@ -1,0 +1,14 @@
+---
+title: "Agent federation"
+description: "Each group runs its own wiki and publishes an agent card; your agent can query a peer group's memory, with permission, cited back to their pages."
+date: "2026-06-19"
+categories: [ecosystem]
+---
+
+Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group's institutional memory often walks out with them. Federation is the answer.
+
+Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an **agent card** that declares what the group knows about and what channels it subscribes to. Your agent can then query a peer's memory, their DFT functional benchmarks, their tried-and-abandoned ML potentials, the workflow that produced a specific figure, with the peer's permission, and cited back to specific pages in their wiki.
+
+The consumer channel is an `ask` primitive: discover which groups have relevant knowledge, then query them. Discovery is open (anyone can find that a bundle exists); consumption is gated (the peer's repo permissions decide who reads). A read-only MCP server lets standard hosts such as Claude Desktop and Cursor reach shared bundles too, a route separate from `ask`.
+
+Federation keeps memory where it belongs, in each group, while making it reachable. Institutional knowledge stops being locked in individual labs and becomes your peers' actual work, queryable through your agent.
