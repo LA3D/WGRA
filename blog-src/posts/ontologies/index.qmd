@@ -1,17 +1,17 @@
 ---
 title: "Ontologies, kept small"
-description: "A small, shared ontology is what lets an agent reason over described data instead of guessing, and the reliability comes from keeping it lightweight, not heavy."
+description: "An ontology is a formal vocabulary for a domain; real ones are often large. This project's stance is the opposite, keep it small, because that is what makes an agent's reasoning reliable."
 date: "2026-05-21"
 categories: [graph]
 ---
 
-The wiki's graph is grounded in a formal ontology, the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) vocabulary, with SHACL constraints (rules that check the structure is valid) over it. An **ontology** is just an explicit statement of what the entities are, how they relate, and what the fields mean.
+**What an ontology is.** An ontology is a formal specification of the concepts in a domain: the kinds of things that exist, how they relate, and the constraints on them. It is a long knowledge-representation tradition with a W3C authoring standard, **OWL**, and large real examples you may already use, [schema.org](https://schema.org) (the shared vocabulary search engines read off web pages) and the Gene Ontology (millions of biology annotations). Real ontologies are frequently big and heavyweight.
 
-The load-bearing idea is that the ontology should be **small**. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human in the loop to catch mistakes. So the reliable path is not "make the agent clever enough to guess at undescribed sources." It is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that.
+Its companion for validation is **SHACL** (Shapes Constraint Language), also a W3C standard. You declare *shapes*, for instance "a page of `type: source` must have exactly one `source:` field, and it must be a URL", and SHACL checks a data graph against those shapes and emits a pass/fail report. It is a schema-validator for graphs.
 
-This is why the ontology stays lightweight rather than a heavy formal one that over-commits provisional structure. A small semantic layer is what makes reasoning trustworthy; a heavy one manufactures crispness and returns over-confident results.
+**Our stance: keep it small.** Against that heavyweight backdrop, this project deliberately goes the other way. The wiki's graph is grounded in a small ontology (the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) vocabulary) with SHACL over it, and the argument for keeping it small is a reliability one. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human to catch mistakes. So the reliable path is not "make the agent clever enough to guess at undescribed sources"; it is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that. A heavy ontology over-commits provisional structure and returns over-confident results; a small one is what makes reasoning trustworthy.
 
-It is also the connector contract. A source is not integrated when you can call its API; it is integrated when it is described well enough for an agent to reason over it without guessing. The same move applies to documents (a document-structure ontology improves extraction) and to any API or database a connector reaches. The small ontology is the reliability mechanism.
+That is also the connector contract: a source is not integrated when you can call its API, but when it is described well enough for an agent to reason over without guessing.
 
 ## Related
 

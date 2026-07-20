@@ -5,15 +5,13 @@ date: "2026-05-06"
 categories: [foundations, graph]
 ---
 
-Every page in the wiki opens with a small block of YAML front matter. Two fields are required: `type:` (what kind of page this is) and `up:` (its parent). The interesting part is the optional **typed edges**: `extends:`, `supports:`, `criticizes:`, `requires:`, `related:`. Each names a relationship to another page, by name.
+**What front matter is.** If you have used a static-site generator or a modern note app, you have already met front matter: the small block of YAML metadata fenced by `---` at the top of a file. Jekyll, Hugo, Obsidian, and Quarto (which renders this page) all use it to attach structured fields, a title, a date, tags, to an otherwise free-text document.
 
-This is the load-bearing metadata. `related:` is an honest catch-all for provisional structure; `extends:`, `supports:`, and `criticizes:` are stronger claims, used where the material actually makes them. A page that criticizes another says so in one line, and that line is machine-readable.
+Making the *links between pages* typed and machine-readable is also established prior art, most cleanly in **Semantic MediaWiki**: instead of a plain link, you annotate it with a property (`[[author::Ada Lovelace]]`), and the property name classifies the relationship, turning a wiki into a queryable database. The idea is that a link should carry *what kind* of link it is, not just point somewhere.
 
-Front matter does three jobs at once. It **places** the page in a hierarchy that humans and agents navigate by. It **records** the relationships between ideas that prose otherwise buries in sentences. And it **reifies** to a graph: reify just means turning that implicit relationship into an explicit data record, so every typed edge becomes an RDF triple (a *subject-predicate-object* fact, like *this page* `criticizes` *that one*, that a database can query).
+**How this wiki uses it.** Every page opens with front matter. Two fields are required, `type:` (what kind of page) and `up:` (its parent). The rest are optional typed edges: `extends:`, `supports:`, `criticizes:`, `requires:`, `related:`. Each names a relationship to another page. These particular edge names are this schema's choice, not the general pattern; `related:` is an honest catch-all, while `extends:`, `supports:`, and `criticizes:` are stronger claims used only where the material makes them.
 
-The discipline is calibrated to content. An experimental wiki keeps structural placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
-
-The point: the metadata is cheap to write, the agent maintains it as it works, and it is the seam where a pile of markdown becomes a graph.
+The payoff is that this metadata **reifies** to a graph. Reify just means turning an implicit relationship into an explicit data record, so every typed edge becomes an RDF triple (a *subject-predicate-object* fact, like *this page* `criticizes` *that one*, that a database can query). The same annotation a human reads is a structure software can walk. The discipline is calibrated to content: an experimental wiki keeps placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
 
 ## Related
 

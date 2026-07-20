@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-07-18">
-<meta name="description" content="Portable, self-sovereign identity so a source or agent is found and trusted without a central registry, the piece that keeps discovery open while access stays gated.">
+<meta name="description" content="Online identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.">
 
 <title>Decentralized identifiers – WGRA Nuggets</title>
 <style>
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Portable, self-sovereign identity so a source or agent is found and trusted without a central registry, the piece that keeps discovery open while access stays gated.
+    Online identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.
   </div>
 </div>
 
@@ -177,10 +177,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Today discovery in the federation leans on a curated index, and access leans on a GitHub credential. Both work, and both tie identity to one platform’s account. <strong>Decentralized identifiers (DIDs)</strong> are how identity becomes portable.</p>
-<p>A DID is a persistent, location-independent identifier that its subject controls cryptographically, resolving to a small document with no central registration authority (no company or registry has to vouch for it). It does three jobs discovery needs. It gives every source, agent, and bundle a stable identifier that survives moving hosts (the FAIR “findable” persistent-identifier principle, done without a central issuer). Its service endpoints are themselves a discovery primitive: resolve one DID and you get pointers to the source’s catalog, its agent card, its endpoints. And it anchors trust, a verifiable credential (a cryptographically signed claim, like a digital ID card) checked against a DID is how consumption gets gated while discovery stays open.</p>
-<p>There is a neat fit with the rest of the stack: a DID document is itself RDF, so identity, description, and discovery live in one graph rather than three systems, and a DID is the canonical identifier a source’s small ontology attaches to. It is also the fourth leg of “locked in on nothing”: portable agent, portable memory, portable tools, and now portable identity, replacing the current reliance on a platform login.</p>
-<p>The honest status: this is design and a plan, not something built. The cheapest test is <code>did:web</code> (the simplest DID method, where the identity document is just a file on a normal web domain, no blockchain) on the existing GitHub Pages, to prove portability before spending anything heavier.</p>
+<p><strong>The problem, and what a DID is.</strong> Almost every identity you have online is issued and controlled by someone else. You “log in with Google,” your university account is created and revoked by IT, your GitHub identity belongs to GitHub. Convenient, but your identity, and everything attached to it, lives at the mercy of that platform: close the account and it is gone. A <strong>decentralized identifier (DID)</strong> inverts that. Defined by a <a href="https://www.w3.org/TR/did-1.1/">W3C standard</a> (a Recommendation since 2022), it is an identifier of the form <code>did:method:something</code> that <em>you</em> create and control with a cryptographic key, and that resolves to a small public document (the DID document) listing your keys and service endpoints, where to reach you, with no company or registry needed to issue it or vouch for it. That is the core of self-sovereign identity: the identifier is yours, portable, and no one can take it away by closing an account.</p>
+<p>DIDs travel with <strong>verifiable credentials</strong>. A verifiable credential is a cryptographically signed claim, a digital diploma, a driver’s license, or “this holder is a current faculty member”, following an issuer / holder / verifier model: an issuer signs it, you hold it, and any verifier checks the signature against the issuer’s DID <em>without contacting the issuer</em>. Trust is in the signature, not a central database.</p>
+<p><strong>Why it matters here.</strong> Today the federation’s discovery leans on a curated index and access on a GitHub credential, both tie identity to one platform’s account. DIDs make that identity portable, the fourth leg of “locked in on nothing” alongside a portable agent, memory, and tools. Concretely they do three jobs: a stable identifier that survives moving hosts (the “findable” part of FAIR, the Findable-Accessible-Interoperable-Reusable data principles, done without a central issuer); service endpoints in the DID document that double as a discovery primitive (resolve one identifier, get pointers to a participant’s catalog, agent card, and endpoints); and a trust anchor, a verifiable credential checked against a DID gates consumption while discovery stays open. A DID document is itself RDF, so identity, description, and discovery land in one graph rather than three systems.</p>
+<p><strong>Honest status:</strong> design and a plan, not something built. The cheapest test is <code>did:web</code> (the simplest DID method, where the DID document is just a file on a normal web domain, no blockchain) on the existing GitHub Pages, to prove portability before spending anything heavier.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>

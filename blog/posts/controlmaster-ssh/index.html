@@ -8,9 +8,9 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-07-09">
-<meta name="description" content="SSH connection multiplexing is a working, in-house example of the one rule for reaching credentialed sources: the agent never touches the secret.">
+<meta name="description" content="SSH ControlMaster reuses one authenticated connection, its real purpose is speed. The pattern worth borrowing is the credential broker: the agent never holds the secret.">
 
-<title>ControlMaster: the broker pattern, already running – WGRA Nuggets</title>
+<title>ControlMaster, and the credential-broker pattern – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ControlMaster: the broker pattern, already running</h1>
+<h1 class="title">ControlMaster, and the credential-broker pattern</h1>
   <div class="quarto-categories">
     <div class="quarto-category">infrastructure</div>
   </div>
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    SSH connection multiplexing is a working, in-house example of the one rule for reaching credentialed sources: the agent never touches the secret.
+    SSH ControlMaster reuses one authenticated connection, its real purpose is speed. The pattern worth borrowing is the credential broker: the agent never holds the secret.
   </div>
 </div>
 
@@ -177,10 +177,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Reaching a credentialed source safely comes down to one rule: <strong>the LLM never touches the secret</strong>. A non-LLM <strong>broker</strong> holds the credential, makes the authenticated request, and returns only data. The agent reasons and asks for a result; it never sees the key.</p>
-<p>We already run an instance of this, and it is not exotic: SSH <strong>ControlMaster</strong>. Accessing Notre Dame’s CRC uses connection multiplexing, where one authenticated connection is reused for many operations. An initial master connection authenticates once (SSH key plus a Duo two-factor prompt), and every downstream operation reuses the authenticated control socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent or skill talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes.</p>
-<p>It is a coarse broker, honestly. A ControlMaster session carries full shell privilege, not a narrowly scoped permission, and it is campus-local, another group cannot use your socket. But it demonstrates the load-bearing architecture: authenticate once, out of band, and let the agent use a delegated channel. And it is forward-compatible: the same broker seam that holds an SSH key or a login token today can present a verifiable credential (a cryptographically signed claim, like a digital ID card) tomorrow.</p>
-<p>The lesson: you reach credentialed data by putting a broker between the agent and the secret, and you already do this for the cluster.</p>
+<p><strong>What SSH ControlMaster actually is.</strong> ControlMaster is a stock OpenSSH <em>client</em> feature (since 2004), turned on with the <code>ControlMaster</code>, <code>ControlPath</code>, and <code>ControlPersist</code> directives in your <code>ssh_config</code>. The first connection to a host does the full handshake, TCP, encryption, authentication, and opens a local control socket; every later session to the same host reuses that socket and skips the handshake. Its real purpose is <strong>speed</strong>: it removes the per-connection setup cost, which matters for automation and deployments that open many short SSH sessions. Security is not why it exists.</p>
+<p><strong>The pattern worth stealing: the credential broker.</strong> Reaching a credentialed source <em>safely</em> comes down to one rule: the thing doing the reasoning never holds the secret. A separate, non-LLM component, a <strong>credential broker</strong> (sometimes a “secretless broker”), holds the real credential; the agent sends a request with a placeholder, and the broker swaps the secret in as the request leaves. The threat model is explicit and current for AI agents: prompt injection, a confused tool call, or a sandbox breach. If the agent never held the secret, it cannot leak one. This is an established pattern with real tooling (CyberArk’s Secretless Broker, secrets managers, sidecar proxies).</p>
+<p><strong>Why we point at ControlMaster.</strong> We borrow ControlMaster as a <em>ready-made instance</em> of that shape. Accessing Notre Dame’s CRC, one master connection authenticates once (SSH key plus a Duo two-factor prompt), and every downstream operation rides the authenticated socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes. It is a <em>coarse</em> broker, honestly, a ControlMaster session carries full shell privilege, not a narrowly scoped permission, and it is campus-local. But it demonstrates the architecture: authenticate once out of band, hand the agent a delegated channel. And the same seam that holds an SSH key or a login token today could present a verifiable credential tomorrow.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>

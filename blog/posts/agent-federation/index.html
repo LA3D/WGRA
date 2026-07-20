@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-06-19">
-<meta name="description" content="Each group runs its own wiki and publishes an agent card; your agent can query a peer group’s memory, with permission, cited back to their pages.">
+<meta name="description" content="Federation means autonomous systems that interoperate with no central owner; here each group’s agent publishes an A2A agent card, so peers can discover and query its memory with permission.">
 
 <title>Agent federation – WGRA Nuggets</title>
 <style>
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Each group runs its own wiki and publishes an agent card; your agent can query a peer group’s memory, with permission, cited back to their pages.
+    Federation means autonomous systems that interoperate with no central owner; here each group’s agent publishes an A2A agent card, so peers can discover and query its memory with permission.
   </div>
 </div>
 
@@ -177,10 +177,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Federation</strong> means independent systems that each keep their own data, control, and rules, while agreeing on a shared way to interoperate: no central authority owns the whole. Email federates (many servers, one protocol); so does the web. Agent federation applies that shape to research-group memory.</p>
-<p>The problem it solves: every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group’s institutional memory often walks out with them.</p>
-<p>Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong>, a small public profile that declares what the group knows about and how to reach it. Your agent can then query a peer’s memory, their benchmark results, their tried-and-abandoned methods, the workflow that produced a specific figure, with the peer’s permission, and cited back to specific pages in their wiki.</p>
-<p>The consumer channel is an <code>ask</code> primitive: discover which group has relevant knowledge, then query it. Discovery is open (anyone can find that a bundle exists); consumption is gated (the peer’s repository permissions decide who reads). A read-only MCP server (Model Context Protocol, an open standard that lets any AI host such as Claude Desktop or Cursor use a shared tool) lets those hosts reach shared bundles too, a route separate from <code>ask</code>.</p>
+<p><strong>What federation is.</strong> Federation means independent systems that each keep their own data, control, and rules, while agreeing on a shared way to interoperate: no central authority owns the whole. Email federates (many servers, one protocol); so does the web. Agent federation applies that shape to research-group memory and to the agents that speak for each group.</p>
+<p><strong>The problem it solves.</strong> Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group’s institutional memory often walks out with them.</p>
+<p><strong>How it works here.</strong> Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong>. That term is not ours; it comes from Google’s <strong>A2A (Agent2Agent) protocol</strong>, an open standard (introduced 2025, now under the Linux Foundation) that lets agents built by different vendors discover and delegate to each other. An agent card is a small public JSON document declaring an agent’s identity, its skills, its endpoint, and how to authenticate, exactly the profile another agent needs to decide whether and how to call it.</p>
+<p>With cards in place, your agent can query a peer’s memory, their benchmark results, their tried-and-abandoned methods, the workflow behind a figure, with the peer’s permission and cited back to specific pages. The consumer channel is an <code>ask</code> primitive: discover which group has relevant knowledge, then query it. Discovery is open (anyone can see a bundle exists); consumption is gated (the peer’s repository permissions decide who reads). Two open standards sit side by side: A2A for agent-to-agent discovery and delegation, and MCP (Model Context Protocol, which lets any AI host such as Claude Desktop or Cursor use a shared tool) for tool and data access; a read-only MCP server lets those hosts reach shared bundles too.</p>
 <p>Federation keeps memory where it belongs, in each group, while making it reachable. Institutional knowledge stops being locked in individual labs and becomes your peers’ actual work, queryable through your agent.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>

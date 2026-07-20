@@ -1,17 +1,15 @@
 ---
-title: "ControlMaster: the broker pattern, already running"
-description: "SSH connection multiplexing is a working, in-house example of the one rule for reaching credentialed sources: the agent never touches the secret."
+title: "ControlMaster, and the credential-broker pattern"
+description: "SSH ControlMaster reuses one authenticated connection, its real purpose is speed. The pattern worth borrowing is the credential broker: the agent never holds the secret."
 date: "2026-07-09"
 categories: [infrastructure]
 ---
 
-Reaching a credentialed source safely comes down to one rule: **the LLM never touches the secret**. A non-LLM **broker** holds the credential, makes the authenticated request, and returns only data. The agent reasons and asks for a result; it never sees the key.
+**What SSH ControlMaster actually is.** ControlMaster is a stock OpenSSH *client* feature (since 2004), turned on with the `ControlMaster`, `ControlPath`, and `ControlPersist` directives in your `ssh_config`. The first connection to a host does the full handshake, TCP, encryption, authentication, and opens a local control socket; every later session to the same host reuses that socket and skips the handshake. Its real purpose is **speed**: it removes the per-connection setup cost, which matters for automation and deployments that open many short SSH sessions. Security is not why it exists.
 
-We already run an instance of this, and it is not exotic: SSH **ControlMaster**. Accessing Notre Dame's CRC uses connection multiplexing, where one authenticated connection is reused for many operations. An initial master connection authenticates once (SSH key plus a Duo two-factor prompt), and every downstream operation reuses the authenticated control socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent or skill talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes.
+**The pattern worth stealing: the credential broker.** Reaching a credentialed source *safely* comes down to one rule: the thing doing the reasoning never holds the secret. A separate, non-LLM component, a **credential broker** (sometimes a "secretless broker"), holds the real credential; the agent sends a request with a placeholder, and the broker swaps the secret in as the request leaves. The threat model is explicit and current for AI agents: prompt injection, a confused tool call, or a sandbox breach. If the agent never held the secret, it cannot leak one. This is an established pattern with real tooling (CyberArk's Secretless Broker, secrets managers, sidecar proxies).
 
-It is a coarse broker, honestly. A ControlMaster session carries full shell privilege, not a narrowly scoped permission, and it is campus-local, another group cannot use your socket. But it demonstrates the load-bearing architecture: authenticate once, out of band, and let the agent use a delegated channel. And it is forward-compatible: the same broker seam that holds an SSH key or a login token today can present a verifiable credential (a cryptographically signed claim, like a digital ID card) tomorrow.
-
-The lesson: you reach credentialed data by putting a broker between the agent and the secret, and you already do this for the cluster.
+**Why we point at ControlMaster.** We borrow ControlMaster as a *ready-made instance* of that shape. Accessing Notre Dame's CRC, one master connection authenticates once (SSH key plus a Duo two-factor prompt), and every downstream operation rides the authenticated socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes. It is a *coarse* broker, honestly, a ControlMaster session carries full shell privilege, not a narrowly scoped permission, and it is campus-local. But it demonstrates the architecture: authenticate once out of band, hand the agent a delegated channel. And the same seam that holds an SSH key or a login token today could present a verifiable credential tomorrow.
 
 ## Related
 

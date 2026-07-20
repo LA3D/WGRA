@@ -1,17 +1,15 @@
 ---
 title: "Connectors are agents"
-description: "A connector is not a static adapter but an agent that wraps a source, declares a capability, and files results with provenance; a small ontology per source makes it reliable."
+description: "In data integration a connector is a static, pluggable adapter (think Kafka Connect, Fivetran). For interpretive extraction, ours are agents instead, and a small ontology per source is what makes them reliable."
 date: "2026-07-02"
 categories: [ecosystem]
 ---
 
-Off-the-shelf sources (papers, PDFs, notes, tables) come into the wiki through the standard ingest path. Databases, APIs, and complex figures need a connector, and a connector is not a static adapter.
+**What a connector is.** In data integration, a connector is a pluggable adapter that moves data between a system and an external source, a database, an API, a file store, a message queue, a SaaS app, and normalizes it into a common shape. The pattern is everywhere: Kafka Connect's *source* and *sink* connectors (read from external into a pipeline, or write from the pipeline out), and the integration platforms (Fivetran, MuleSoft, Talend) whose whole business is a catalog of them. The conventional connector is a **static adapter**: it maps a fixed endpoint to a fixed schema, deterministically, with no interpretation. That predictability is both its virtue and its ceiling.
 
-Extraction is interpretive work: reading a table out of a paper, reconciling a supplementary spreadsheet against the paper's notation, normalizing to a schema, attaching provenance and a confidence, retrying when a source is malformed. That is open-ended, so a connector is an **agent** that wraps a source, declares a capability, does the messy extraction, and files the result with its provenance. The researcher's hub agent discovers and orchestrates a fleet of them.
+**Why ours are agents instead.** Off-the-shelf sources (papers, PDFs, tables) come into the wiki through a standard ingest path. But databases, APIs, and complex figures need real interpretation: reading a table out of a paper, reconciling a supplementary spreadsheet against the paper's notation, normalizing to a schema, attaching provenance and a confidence, retrying when a source is malformed. A static adapter cannot do that. So here a connector is an **agent** that wraps a source, declares a capability, does the messy extraction, and files the result with its provenance, and the researcher's hub agent orchestrates a fleet of them.
 
-The reliability mechanism is a small ontology per source (see [Ontologies, kept small](../ontologies/)): reasoning over an explicit small ontology is accurate, guessing at raw responses is not. So a connector is finished not when it can call the API but when the source is described well enough to reason over without guessing.
-
-We built one against Notre Dame's PAD service: it reads the service's own ontology and its OpenAPI spec (a machine-readable list of the API's calls), exposes one generic read-only tool, and answers live questions with no per-endpoint code and no interface at all ([see it working](https://la3d.github.io/WGRA/research-agents-revolution/pad-example/)). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.
+The reliability mechanism is a small ontology per source (see [Ontologies, kept small](../ontologies/)): reasoning over an explicit small description is accurate, guessing at raw responses is not. So one of these connectors is finished not when it can call the API but when the source is described well enough to reason over without guessing. We built one against Notre Dame's PAD service: it reads the service's own ontology and its OpenAPI spec (a machine-readable list of the API's calls), exposes one generic read-only tool, and answers live questions with no per-endpoint code ([see it working](https://la3d.github.io/WGRA/research-agents-revolution/pad-example/)). And discovery abstracts over delivery: the agent asks for a capability without caring whether it resolves to a plugin it installs or a service it calls.
 
 ## Related
 

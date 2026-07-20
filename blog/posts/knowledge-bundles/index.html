@@ -8,7 +8,7 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-06-11">
-<meta name="description" content="A wiki authored to be consumed by other people’s LLMs: portable, shareable compiled competence, with an OKF import/export path for interoperability.">
+<meta name="description" content="Packaging a knowledge base so any LLM can consume it, portable, not locked to a tool. Google’s Open Knowledge Format is the emerging standard; a bundle is our instance of it.">
 
 <title>Knowledge bundles – WGRA Nuggets</title>
 <style>
@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    A wiki authored to be consumed by other people’s LLMs: portable, shareable compiled competence, with an OKF import/export path for interoperability.
+    Packaging a knowledge base so any LLM can consume it, portable, not locked to a tool. Google’s Open Knowledge Format is the emerging standard; a bundle is our instance of it.
   </div>
 </div>
 
@@ -177,10 +177,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A <strong>knowledge bundle</strong> is a wiki authored with the intent that other people consume it through their own LLMs. Bundles are wikis, but not every wiki is a bundle; the distinguishing property is intent to share and be queried by non-authors.</p>
-<p>The point of a bundle is that it ships <strong>compiled competence</strong>, not just searchable content. A student learning knowledge engineering opens a query session against a bundle on that domain and gets the group’s accumulated judgment, not a reading list. Bundles come in two shapes: a <em>reference</em> bundle uses a neutral retrieve-synthesize-cite protocol; a <em>pedagogical</em> bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.</p>
-<p>Because a bundle is just a git repo of markdown plus its graph, it is portable: you can take it to another tool. The roadmap adds import and export in <a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/">OKF</a>, the Open Knowledge Format, Google Cloud’s 2026 open spec that formalizes exactly this llm-wiki pattern as a portable markdown bundle, so our bundles interoperate with other open-knowledge tooling rather than living in a walled garden. That portability is the whole point: your memory is yours, and it moves.</p>
-<p>This is the shareable unit of the ecosystem: the thing a group publishes and a peer consumes.</p>
+<p><strong>The general idea: package knowledge for reuse.</strong> A knowledge base has historically been trapped in a tool, a proprietary format, a specific RAG index, one vendor’s platform. The move a <em>knowledge bundle</em> makes is to package curated knowledge so that any LLM or agent can consume it, with no SDK and no lock-in. This is a real industry direction, not a local coinage. In June 2026, Google Cloud published the <a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/"><strong>Open Knowledge Format (OKF)</strong></a>, a vendor-neutral open specification that represents knowledge as a directory of markdown files with YAML front matter (one required field, <code>type</code>), explicitly so that knowledge written by one producer can be read by a different agent. It is positioned as a portable alternative to RAG for “AI memory.”</p>
+<p>The relationship is worth stating carefully: OKF is the general standard, and the llm-wiki pattern this project uses is <em>one instance that conforms to it</em>, not the other way around.</p>
+<p><strong>What a bundle is here.</strong> A bundle is a wiki authored with the intent that other people consume it through their own LLMs. Bundles are wikis, but not every wiki is a bundle; the distinguishing property is intent to share and be queried by non-authors. The point is that a bundle ships <em>compiled competence</em>, not just searchable content: a student opens a query session against a bundle on knowledge engineering and gets the group’s accumulated judgment, not a reading list. Bundles come in two shapes: a <em>reference</em> bundle uses a neutral retrieve-synthesize-cite protocol; a <em>pedagogical</em> bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.</p>
+<p>Because a bundle is just a git repo of markdown plus its graph, it is portable, and OKF import and export is on the roadmap so bundles interoperate with the wider open-knowledge world rather than living in a walled garden. Your memory is yours, and it moves.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>

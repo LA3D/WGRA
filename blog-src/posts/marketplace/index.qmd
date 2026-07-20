@@ -1,17 +1,17 @@
 ---
 title: "A marketplace for tools"
-description: "Some capabilities are plugins an agent installs, distributed through a marketplace the center can host, and discovery hides which is which."
+description: "The app-store model applied to agent tools: a catalog for discovery, versioning, updates, and trust, so a capability is installed, not hand-wired."
 date: "2026-06-27"
 categories: [ecosystem]
 ---
 
-Not every tool is a connector that reaches out to a source. A graph extractor or a figure reader is a capability an agent simply installs. Those travel through a **marketplace**.
+**What a software marketplace is.** A marketplace is the app-store model applied to software components: a centralized catalog where you discover, install, version, update, and usually trust-check third-party add-ons without wiring each one in by hand. You already use several, the phone app stores, the VS Code extension marketplace, npm, browser add-on stores. The shape is always the same: the host app defines *extension points*, a plugin ships a manifest declaring what it provides, and a registry the client queries handles discovery, versions, and updates.
 
-The marketplace is the distribution-and-discovery layer for tools, the way federation is for bundles. A researcher's agent discovers a capability (say "graph extraction") and installs it, and the center can host the marketplace cheaply. Crucially, discovery abstracts over delivery: the agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.
+**How it fits here.** Not every tool is a connector that reaches out to a source. A graph extractor or a figure reader is a capability an agent simply installs, and those travel through a marketplace, the distribution-and-discovery layer for tools, the way federation is for bundles. A researcher's agent discovers a capability ("graph extraction") and installs it, and the center can host the catalog cheaply.
 
-This is not hypothetical. A working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg of the ecosystem is proven, not promised; what remains is a connector-specific kit on top of it.
+The load-bearing idea is the same one that makes app stores work: discovery abstracts over delivery. The agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.
 
-Together with connectors and federation, the marketplace is how the group's tools stop being buried in one pipeline and become resources any researcher's agent can find.
+This is not hypothetical: a working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg is proven, not promised; what remains is a connector-specific kit on top of it. Together with connectors and federation, the marketplace is how a group's tools stop being buried in one pipeline and become resources any researcher's agent can find.
 
 ## Related
 

@@ -5,15 +5,15 @@ date: "2026-05-29"
 categories: [foundations]
 ---
 
-Karpathy's pattern is written for one person and their agent. Our recipe, the [llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template), is what it takes to make it work for a group.
+Karpathy's pattern is written for one person and their agent. Our recipe, the [llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template), is what it takes to make it work for a group, and the group case is a well-worn problem. Any shared knowledge base with multiple concurrent writers, from Wikipedia to Google Docs to a plain git repository, faces the same three challenges: **provenance** (who claimed what), **conflict resolution** (two people editing at once), and **quality control** (keeping bad edits out). Decades of collaborative-editing work, revision histories, operational transforms, CRDTs, git merge, exist to handle them. Our recipe is one instantiation, tuned for the case where an LLM does the writing.
 
-The core is the same: an LLM-authored wiki of cross-linked markdown, front matter carrying typed edges, the agent doing all the maintenance. What we add is everything the group case needs.
+The core is the same as Karpathy's: an LLM-authored wiki of cross-linked markdown, front matter carrying typed edges, the agent doing all the maintenance. What we add maps onto those three challenges.
 
-**Attribution.** Every entry carries a `by: <human> via <agent>` line, so who claimed what, with which tool, stays legible, and git preserves the full amendment history.
+**Provenance.** Every entry carries a `by: <human> via <agent>` line, so who claimed what, with which tool, stays legible, and git preserves the full amendment history.
 
-**A conflict protocol.** When two collaborators write at once, mechanical conflicts resolve automatically and semantic ones route through an LLM-assisted merge, so both contributions land and neither overwrites the other.
+**Conflict resolution.** When two collaborators write at once, mechanical conflicts resolve automatically (a git merge) and semantic ones route through an LLM-assisted merge, so both contributions land and neither overwrites the other.
 
-**Discipline in the artifact.** A verification gate blocks numerical claims not backed by real output, and named discipline gates catch the rationalizations that produce bad writes. The discipline lives in the repo, not in whoever happened to prompt well.
+**Quality control.** A verification gate blocks numerical claims not backed by real output, and named discipline gates catch the rationalizations that produce bad writes. The discipline lives in the repo, not in whoever happened to prompt well.
 
 It is also model-neutral. The wiki is the durable memory; the model doing the work today (Claude Code, Cursor, whatever comes next) is disposable. Different assistants read the wiki through their own commands and skills while sharing the same policy files, gates, and schema, so one student can use Claude Code and another Cursor on the same project, and adopting a better model next year is a new overlay, not a migration.
 
