@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -168,11 +178,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group’s institutional memory often walks out with them. Federation is the answer.</p>
-<p>Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong> that declares what the group knows about and what channels it subscribes to. Your agent can then query a peer’s memory, their DFT functional benchmarks, their tried-and-abandoned ML potentials, the workflow that produced a specific figure, with the peer’s permission, and cited back to specific pages in their wiki.</p>
-<p>The consumer channel is an <code>ask</code> primitive: discover which groups have relevant knowledge, then query them. Discovery is open (anyone can find that a bundle exists); consumption is gated (the peer’s repo permissions decide who reads). A read-only MCP server lets standard hosts such as Claude Desktop and Cursor reach shared bundles too, a route separate from <code>ask</code>.</p>
+<p>Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong>, a small public profile that declares what the group knows about and how to reach it. Your agent can then query a peer’s memory, their benchmark results, their tried-and-abandoned methods, the workflow that produced a specific figure, with the peer’s permission, and cited back to specific pages in their wiki.</p>
+<p>The consumer channel is an <code>ask</code> primitive: discover which group has relevant knowledge, then query it. Discovery is open (anyone can find that a bundle exists); consumption is gated (the peer’s repository permissions decide who reads). A read-only MCP server (Model Context Protocol, an open standard that lets any AI host such as Claude Desktop or Cursor use a shared tool) lets those hosts reach shared bundles too, a route separate from <code>ask</code>.</p>
 <p>Federation keeps memory where it belongs, in each group, while making it reachable. Institutional knowledge stops being locked in individual labs and becomes your peers’ actual work, queryable through your agent.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../knowledge-bundles/">Knowledge bundles</a>, the thing a peer publishes and you query.</li>
+<li><a href="../connectors/">Connectors are agents</a>, how outside sources get into a wiki in the first place.</li>
+<li><a href="../decentralized-identifiers/">Decentralized identifiers</a>, portable identity for who is allowed to read.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

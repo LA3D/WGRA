@@ -9,6 +9,11 @@ Not every tool is a connector that reaches out to a source. A graph extractor or
 
 The marketplace is the distribution-and-discovery layer for tools, the way federation is for bundles. A researcher's agent discovers a capability (say "graph extraction") and installs it, and the center can host the marketplace cheaply. Crucially, discovery abstracts over delivery: the agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.
 
-This is not hypothetical. A working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code CLI. So the marketplace leg of the ecosystem is proven, not promised; what remains is a connector-specific kit on top of it.
+This is not hypothetical. A working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg of the ecosystem is proven, not promised; what remains is a connector-specific kit on top of it.
 
 Together with connectors and federation, the marketplace is how the group's tools stop being buried in one pipeline and become resources any researcher's agent can find.
+
+## Related
+
+- [Connectors are agents](../connectors/), the sibling delivery mode (reach out vs install).
+- [Agent federation](../agent-federation/), the same discover-then-use idea for knowledge.

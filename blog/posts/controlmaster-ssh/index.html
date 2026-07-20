@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -167,12 +177,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Reaching a credentialed source safely comes down to one rule: <strong>the LLM never touches the secret</strong>. A non-LLM broker holds the credential, makes the authenticated request, and returns only data. The agent reasons and asks for a result; it never sees the key.</p>
-<p>We already run an instance of this, and it is not exotic: SSH <strong>ControlMaster</strong>. Accessing Notre Dame’s CRC uses connection multiplexing. An initial master connection authenticates once (SSH key plus Duo), and every downstream operation reuses the authenticated control socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent or skill talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes.</p>
-<p>It is a coarse broker, honestly. A ControlMaster session carries full shell privilege, not a scoped token, and it is campus-local, another group cannot use your socket. But it demonstrates the load-bearing architecture: authenticate once, out of band, and let the agent use a delegated channel. And it is forward-compatible: the same broker seam that holds an SSH key or an OAuth token today can present a verifiable credential tomorrow.</p>
+<p>Reaching a credentialed source safely comes down to one rule: <strong>the LLM never touches the secret</strong>. A non-LLM <strong>broker</strong> holds the credential, makes the authenticated request, and returns only data. The agent reasons and asks for a result; it never sees the key.</p>
+<p>We already run an instance of this, and it is not exotic: SSH <strong>ControlMaster</strong>. Accessing Notre Dame’s CRC uses connection multiplexing, where one authenticated connection is reused for many operations. An initial master connection authenticates once (SSH key plus a Duo two-factor prompt), and every downstream operation reuses the authenticated control socket without re-authenticating. Map it onto the rule and it lines up: the socket is the broker; the agent or skill talks to the socket, never the key or the 2FA; the human authorizes the master once; killing it revokes.</p>
+<p>It is a coarse broker, honestly. A ControlMaster session carries full shell privilege, not a narrowly scoped permission, and it is campus-local, another group cannot use your socket. But it demonstrates the load-bearing architecture: authenticate once, out of band, and let the agent use a delegated channel. And it is forward-compatible: the same broker seam that holds an SSH key or a login token today can present a verifiable credential (a cryptographically signed claim, like a digital ID card) tomorrow.</p>
 <p>The lesson: you reach credentialed data by putting a broker between the agent and the secret, and you already do this for the cluster.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../decentralized-identifiers/">Decentralized identifiers</a>, the portable credential the broker could carry next.</li>
+<li><a href="../connectors/">Connectors are agents</a>, the things that reach credentialed sources.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

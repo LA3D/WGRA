@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -169,10 +179,17 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Not every tool is a connector that reaches out to a source. A graph extractor or a figure reader is a capability an agent simply installs. Those travel through a <strong>marketplace</strong>.</p>
 <p>The marketplace is the distribution-and-discovery layer for tools, the way federation is for bundles. A researcher’s agent discovers a capability (say “graph extraction”) and installs it, and the center can host the marketplace cheaply. Crucially, discovery abstracts over delivery: the agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.</p>
-<p>This is not hypothetical. A working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code CLI. So the marketplace leg of the ecosystem is proven, not promised; what remains is a connector-specific kit on top of it.</p>
+<p>This is not hypothetical. A working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg of the ecosystem is proven, not promised; what remains is a connector-specific kit on top of it.</p>
 <p>Together with connectors and federation, the marketplace is how the group’s tools stop being buried in one pipeline and become resources any researcher’s agent can find.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../connectors/">Connectors are agents</a>, the sibling delivery mode (reach out vs install).</li>
+<li><a href="../agent-federation/">Agent federation</a>, the same discover-then-use idea for knowledge.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

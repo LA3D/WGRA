@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -170,9 +180,17 @@ ul.task-list li input[type="checkbox"] {
 <p>Off-the-shelf sources (papers, PDFs, notes, tables) come into the wiki through the standard ingest path. Databases, APIs, and complex figures need a connector, and a connector is not a static adapter.</p>
 <p>Extraction is interpretive work: reading a table out of a paper, reconciling a supplementary spreadsheet against the paper’s notation, normalizing to a schema, attaching provenance and a confidence, retrying when a source is malformed. That is open-ended, so a connector is an <strong>agent</strong> that wraps a source, declares a capability, does the messy extraction, and files the result with its provenance. The researcher’s hub agent discovers and orchestrates a fleet of them.</p>
 <p>The reliability mechanism is a small ontology per source (see <a href="../ontologies/">Ontologies, kept small</a>): reasoning over an explicit small ontology is accurate, guessing at raw responses is not. So a connector is finished not when it can call the API but when the source is described well enough to reason over without guessing.</p>
-<p>We built one against Notre Dame’s PAD service: it reads the service’s own ontology and OpenAPI, exposes one generic read-only tool, and answers live questions with no per-endpoint code and no UI (<a href="https://la3d.github.io/WGRA/research-agents-revolution/pad-example/">see it working</a>). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.</p>
+<p>We built one against Notre Dame’s PAD service: it reads the service’s own ontology and its OpenAPI spec (a machine-readable list of the API’s calls), exposes one generic read-only tool, and answers live questions with no per-endpoint code and no interface at all (<a href="https://la3d.github.io/WGRA/research-agents-revolution/pad-example/">see it working</a>). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../ontologies/">Ontologies, kept small</a>, the per-source description that makes a connector reliable.</li>
+<li><a href="../marketplace/">A marketplace for tools</a>, the other way a capability reaches an agent.</li>
+<li><a href="../agent-federation/">Agent federation</a>, where extracted knowledge gets shared.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

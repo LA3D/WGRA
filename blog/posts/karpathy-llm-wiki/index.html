@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -167,13 +177,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Most work with LLMs and documents is RAG: upload files, retrieve chunks at query time, generate an answer. It works, but the model rediscovers the same knowledge from scratch on every question. Nothing accumulates.</p>
+<p>Most work with LLMs and documents is RAG (retrieval-augmented generation): upload files, retrieve matching chunks at query time, generate an answer. It works, but the model rediscovers the same knowledge from scratch on every question. Nothing accumulates.</p>
 <p><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy’s llm-wiki pattern</a> flips that. Instead of retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki: a structured, interlinked set of markdown pages that sits between you and the sources. Add a new source and the model reads it, extracts what matters, and integrates it, updating entity pages, revising summaries, flagging where new data contradicts old claims. The knowledge is compiled once and kept current, not re-derived per query.</p>
 <p>The key property is that the wiki is a <strong>compounding artifact</strong>. The cross-references are already there, the contradictions already flagged, the synthesis already reflects everything read. You never write it; the LLM does the bookkeeping (summarizing, cross-referencing, filing) that makes a knowledge base useful over time. You curate sources and ask questions; the LLM does the grunt work. Obsidian is the IDE, the LLM is the programmer, the wiki is the codebase.</p>
 <p>The lineage runs back to Vannevar Bush’s Memex (1945): a private, curated knowledge store with associative trails between documents. Bush’s vision was closer to this than to what the web became. The part he could not solve was who does the maintenance: humans abandon wikis because the upkeep grows faster than the value. The LLM does not get bored, does not forget a cross-reference, and can touch fifteen files in one pass, so the wiki stays maintained because maintenance costs almost nothing.</p>
 <p>Everything else in these nuggets is what happens when you take this pattern seriously for a research group.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../our-collaborative-recipe/">Our recipe: a collaborative llm-wiki</a>, the same pattern made multi-writer.</li>
+<li><a href="../wiki-front-matter/">Wiki front matter</a>, the metadata that gives the pages structure.</li>
+<li><a href="../the-deep-dives/">The deep dives</a>, the longer treatments on the main site.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -168,11 +178,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>A <strong>knowledge bundle</strong> is a wiki authored with the intent that other people consume it through their own LLMs. Bundles are wikis, but not every wiki is a bundle; the distinguishing property is intent to share and be queried by non-authors.</p>
-<p>The point of a bundle is that it ships <strong>compiled competence</strong>, not just searchable content. A student learning knowledge engineering opens an ask session against a bundle on that domain and gets the group’s accumulated judgment, not a reading list. Bundles come in two shapes: a <em>reference</em> bundle uses a neutral retrieve-synthesize-cite protocol; a <em>pedagogical</em> bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.</p>
-<p>Because a bundle is just a git repo of markdown plus a reified graph, it is portable: you can take it to another tool. The roadmap adds OKF-compatible import and export so bundles interoperate with other open-knowledge tooling rather than living in a walled garden. That portability is the whole point, your memory is yours, and it moves.</p>
+<p>The point of a bundle is that it ships <strong>compiled competence</strong>, not just searchable content. A student learning knowledge engineering opens a query session against a bundle on that domain and gets the group’s accumulated judgment, not a reading list. Bundles come in two shapes: a <em>reference</em> bundle uses a neutral retrieve-synthesize-cite protocol; a <em>pedagogical</em> bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.</p>
+<p>Because a bundle is just a git repo of markdown plus its graph, it is portable: you can take it to another tool. The roadmap adds import and export in <a href="https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/">OKF</a>, the Open Knowledge Format, Google Cloud’s 2026 open spec that formalizes exactly this llm-wiki pattern as a portable markdown bundle, so our bundles interoperate with other open-knowledge tooling rather than living in a walled garden. That portability is the whole point: your memory is yours, and it moves.</p>
 <p>This is the shareable unit of the ecosystem: the thing a group publishes and a peer consumes.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../agent-federation/">Agent federation</a>, how a bundle gets discovered and queried across groups.</li>
+<li><a href="../our-collaborative-recipe/">Our recipe: a collaborative llm-wiki</a>, what a bundle is made of.</li>
+<li><a href="../marketplace/">A marketplace for tools</a>, the sibling distribution channel for tools.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

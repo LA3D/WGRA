@@ -5,7 +5,7 @@ date: "2026-04-22"
 categories: [foundations]
 ---
 
-Most work with LLMs and documents is RAG: upload files, retrieve chunks at query time, generate an answer. It works, but the model rediscovers the same knowledge from scratch on every question. Nothing accumulates.
+Most work with LLMs and documents is RAG (retrieval-augmented generation): upload files, retrieve matching chunks at query time, generate an answer. It works, but the model rediscovers the same knowledge from scratch on every question. Nothing accumulates.
 
 [Andrej Karpathy's llm-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) flips that. Instead of retrieving from raw documents at query time, the LLM incrementally builds and maintains a persistent wiki: a structured, interlinked set of markdown pages that sits between you and the sources. Add a new source and the model reads it, extracts what matters, and integrates it, updating entity pages, revising summaries, flagging where new data contradicts old claims. The knowledge is compiled once and kept current, not re-derived per query.
 
@@ -14,3 +14,9 @@ The key property is that the wiki is a **compounding artifact**. The cross-refer
 The lineage runs back to Vannevar Bush's Memex (1945): a private, curated knowledge store with associative trails between documents. Bush's vision was closer to this than to what the web became. The part he could not solve was who does the maintenance: humans abandon wikis because the upkeep grows faster than the value. The LLM does not get bored, does not forget a cross-reference, and can touch fifteen files in one pass, so the wiki stays maintained because maintenance costs almost nothing.
 
 Everything else in these nuggets is what happens when you take this pattern seriously for a research group.
+
+## Related
+
+- [Our recipe: a collaborative llm-wiki](../our-collaborative-recipe/), the same pattern made multi-writer.
+- [Wiki front matter](../wiki-front-matter/), the metadata that gives the pages structure.
+- [The deep dives](../the-deep-dives/), the longer treatments on the main site.

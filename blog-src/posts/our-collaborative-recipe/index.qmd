@@ -18,3 +18,9 @@ The core is the same: an LLM-authored wiki of cross-linked markdown, front matte
 It is also model-neutral. The wiki is the durable memory; the model doing the work today (Claude Code, Cursor, whatever comes next) is disposable. Different assistants read the wiki through their own commands and skills while sharing the same policy files, gates, and schema, so one student can use Claude Code and another Cursor on the same project, and adopting a better model next year is a new overlay, not a migration.
 
 The recipe is a template, not a platform. You fork it, you own it, and you take your memory with you.
+
+## Related
+
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the single-user pattern this extends.
+- [Agent federation](../agent-federation/), how one group's wiki reaches another's.
+- [The deep dives](../the-deep-dives/), team scale and agent capability in full.

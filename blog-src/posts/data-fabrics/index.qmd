@@ -9,6 +9,12 @@ For fifteen years, centers built portals and apps to collect and share data, and
 
 The open question is how an *individual* researcher builds on that idea with an agent tailored to their own work, rather than watching it happen at the level of the institution. The wiki-grounded agent is the answer: the fabric connects the data, and the wiki keeps the understanding, the judgment, the provenance, and the experience the fabric alone cannot carry.
 
-We are already part of the way onto the picture. The knowledge graph emits standards-based RDF, the format a fabric consumes. Connectors are the self-aware ingestion layer. Attribution and the verification gate are provenance tracking. Published this way, a group's outputs come out FAIR by construction on three of the four axes, Findable, Accessible, and Interoperable, with Reusable following once machine-readable licensing lands.
+We are already part of the way onto the picture. The knowledge graph emits standards-based RDF (facts as subject-predicate-object triples), the format a fabric consumes. Connectors are the self-aware ingestion layer. Attribution and the verification gate are provenance tracking. Published this way, a group's outputs come out FAIR by construction on three of the four axes, Findable, Accessible, and Interoperable, with Reusable following once machine-readable licensing lands.
 
 The data fabric is the *how*; the wiki-grounded agent is what lets a researcher actually use it. ([The picture we mean.](https://la3d.github.io/WGRA/research-agents-revolution/data-fabric/))
+
+## Related
+
+- [The wiki is a knowledge graph](../knowledge-graphs/), the RDF layer a fabric consumes.
+- [Connectors are agents](../connectors/), the ingestion side of the fabric.
+- [Decentralized identifiers](../decentralized-identifiers/), portable identity and the FAIR "findable" anchor.

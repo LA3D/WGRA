@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -168,11 +178,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Today discovery in the federation leans on a curated index, and access leans on a GitHub credential. Both work, and both tie identity to one platform’s account. <strong>Decentralized identifiers (DIDs)</strong> are how identity becomes portable.</p>
-<p>A DID is a persistent, location-independent identifier that its subject controls cryptographically, resolving to a document with no central registration authority. It does three jobs discovery needs. It gives every source, agent, and bundle a stable identifier that survives moving hosts (the FAIR “findable” persistent-identifier principle, done self-sovereignly). Its service endpoints are themselves a discovery primitive: resolve one DID and you get pointers to the source’s catalog, its agent card, its endpoints. And it anchors trust, a verifiable credential verified against a DID is how consumption gets gated while discovery stays open.</p>
+<p>A DID is a persistent, location-independent identifier that its subject controls cryptographically, resolving to a small document with no central registration authority (no company or registry has to vouch for it). It does three jobs discovery needs. It gives every source, agent, and bundle a stable identifier that survives moving hosts (the FAIR “findable” persistent-identifier principle, done without a central issuer). Its service endpoints are themselves a discovery primitive: resolve one DID and you get pointers to the source’s catalog, its agent card, its endpoints. And it anchors trust, a verifiable credential (a cryptographically signed claim, like a digital ID card) checked against a DID is how consumption gets gated while discovery stays open.</p>
 <p>There is a neat fit with the rest of the stack: a DID document is itself RDF, so identity, description, and discovery live in one graph rather than three systems, and a DID is the canonical identifier a source’s small ontology attaches to. It is also the fourth leg of “locked in on nothing”: portable agent, portable memory, portable tools, and now portable identity, replacing the current reliance on a platform login.</p>
-<p>The honest status: this is design and a plan, not something built. The cheapest test is <code>did:web</code> on the existing GitHub Pages, no ledger, to prove portability before spending anything heavier.</p>
+<p>The honest status: this is design and a plan, not something built. The cheapest test is <code>did:web</code> (the simplest DID method, where the identity document is just a file on a normal web domain, no blockchain) on the existing GitHub Pages, to prove portability before spending anything heavier.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../data-fabrics/">Data fabrics</a>, where FAIR and portable identity meet.</li>
+<li><a href="../agent-federation/">Agent federation</a>, the discovery layer DIDs would open up.</li>
+<li><a href="../controlmaster-ssh/">ControlMaster</a>, the credential seam a DID would slot into.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

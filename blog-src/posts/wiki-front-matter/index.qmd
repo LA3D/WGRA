@@ -9,8 +9,14 @@ Every page in the wiki opens with a small block of YAML front matter. Two fields
 
 This is the load-bearing metadata. `related:` is an honest catch-all for provisional structure; `extends:`, `supports:`, and `criticizes:` are stronger claims, used where the material actually makes them. A page that criticizes another says so in one line, and that line is machine-readable.
 
-Front matter does three jobs at once. It **places** the page in a hierarchy that humans and agents navigate by. It **records** the relationships between ideas that prose otherwise buries in sentences. And it **reifies** to a graph: every typed edge becomes an RDF triple, so the same annotation a human reads is a structure a query can walk.
+Front matter does three jobs at once. It **places** the page in a hierarchy that humans and agents navigate by. It **records** the relationships between ideas that prose otherwise buries in sentences. And it **reifies** to a graph: reify just means turning that implicit relationship into an explicit data record, so every typed edge becomes an RDF triple (a *subject-predicate-object* fact, like *this page* `criticizes` *that one*, that a database can query).
 
 The discipline is calibrated to content. An experimental wiki keeps structural placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
 
 The point: the metadata is cheap to write, the agent maintains it as it works, and it is the seam where a pile of markdown becomes a graph.
+
+## Related
+
+- [The wiki is a knowledge graph](../knowledge-graphs/), what those triples let you query.
+- [Ontologies, kept small](../ontologies/), the vocabulary the edges draw from.
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the pattern these pages instantiate.

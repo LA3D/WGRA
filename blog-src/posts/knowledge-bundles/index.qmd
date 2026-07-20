@@ -7,8 +7,14 @@ categories: [bundles]
 
 A **knowledge bundle** is a wiki authored with the intent that other people consume it through their own LLMs. Bundles are wikis, but not every wiki is a bundle; the distinguishing property is intent to share and be queried by non-authors.
 
-The point of a bundle is that it ships **compiled competence**, not just searchable content. A student learning knowledge engineering opens an ask session against a bundle on that domain and gets the group's accumulated judgment, not a reading list. Bundles come in two shapes: a *reference* bundle uses a neutral retrieve-synthesize-cite protocol; a *pedagogical* bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.
+The point of a bundle is that it ships **compiled competence**, not just searchable content. A student learning knowledge engineering opens a query session against a bundle on that domain and gets the group's accumulated judgment, not a reading list. Bundles come in two shapes: a *reference* bundle uses a neutral retrieve-synthesize-cite protocol; a *pedagogical* bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.
 
-Because a bundle is just a git repo of markdown plus a reified graph, it is portable: you can take it to another tool. The roadmap adds OKF-compatible import and export so bundles interoperate with other open-knowledge tooling rather than living in a walled garden. That portability is the whole point, your memory is yours, and it moves.
+Because a bundle is just a git repo of markdown plus its graph, it is portable: you can take it to another tool. The roadmap adds import and export in [OKF](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/), the Open Knowledge Format, Google Cloud's 2026 open spec that formalizes exactly this llm-wiki pattern as a portable markdown bundle, so our bundles interoperate with other open-knowledge tooling rather than living in a walled garden. That portability is the whole point: your memory is yours, and it moves.
 
 This is the shareable unit of the ecosystem: the thing a group publishes and a peer consumes.
+
+## Related
+
+- [Agent federation](../agent-federation/), how a bundle gets discovered and queried across groups.
+- [Our recipe: a collaborative llm-wiki](../our-collaborative-recipe/), what a bundle is made of.
+- [A marketplace for tools](../marketplace/), the sibling distribution channel for tools.

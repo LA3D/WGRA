@@ -11,4 +11,10 @@ Extraction is interpretive work: reading a table out of a paper, reconciling a s
 
 The reliability mechanism is a small ontology per source (see [Ontologies, kept small](../ontologies/)): reasoning over an explicit small ontology is accurate, guessing at raw responses is not. So a connector is finished not when it can call the API but when the source is described well enough to reason over without guessing.
 
-We built one against Notre Dame's PAD service: it reads the service's own ontology and OpenAPI, exposes one generic read-only tool, and answers live questions with no per-endpoint code and no UI ([see it working](https://la3d.github.io/WGRA/research-agents-revolution/pad-example/)). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.
+We built one against Notre Dame's PAD service: it reads the service's own ontology and its OpenAPI spec (a machine-readable list of the API's calls), exposes one generic read-only tool, and answers live questions with no per-endpoint code and no interface at all ([see it working](https://la3d.github.io/WGRA/research-agents-revolution/pad-example/)). Discovery abstracts over delivery: the agent asks for a capability and does not care whether it resolves to a plugin it installs or a service it calls.
+
+## Related
+
+- [Ontologies, kept small](../ontologies/), the per-source description that makes a connector reliable.
+- [A marketplace for tools](../marketplace/), the other way a capability reaches an agent.
+- [Agent federation](../agent-federation/), where extracted knowledge gets shared.

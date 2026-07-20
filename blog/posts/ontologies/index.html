@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -167,12 +177,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The wiki’s graph is grounded in a formal ontology, the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> vocabulary, with SHACL constraints that validate structure. An ontology is just an explicit statement of what the entities are, how they relate, and what the fields mean.</p>
+<p>The wiki’s graph is grounded in a formal ontology, the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> vocabulary, with SHACL constraints (rules that check the structure is valid) over it. An <strong>ontology</strong> is just an explicit statement of what the entities are, how they relate, and what the fields mean.</p>
 <p>The load-bearing idea is that the ontology should be <strong>small</strong>. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human in the loop to catch mistakes. So the reliable path is not “make the agent clever enough to guess at undescribed sources.” It is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that.</p>
 <p>This is why the ontology stays lightweight rather than a heavy formal one that over-commits provisional structure. A small semantic layer is what makes reasoning trustworthy; a heavy one manufactures crispness and returns over-confident results.</p>
 <p>It is also the connector contract. A source is not integrated when you can call its API; it is integrated when it is described well enough for an agent to reason over it without guessing. The same move applies to documents (a document-structure ontology improves extraction) and to any API or database a connector reaches. The small ontology is the reliability mechanism.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../knowledge-graphs/">The wiki is a knowledge graph</a>, what the ontology structures.</li>
+<li><a href="../connectors/">Connectors are agents</a>, where a per-source ontology earns its keep.</li>
+<li><a href="../wiki-front-matter/">Wiki front matter</a>, the typed edges the ontology names.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

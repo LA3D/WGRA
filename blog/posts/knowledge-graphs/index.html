@@ -103,6 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">The pitch</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About WGRA Nuggets</span></a>
   </li>  
@@ -122,8 +126,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -167,12 +177,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Every typed edge in a page’s front matter reifies to an RDF triple. So the wiki is not just interlinked markdown; it is a queryable knowledge graph, with a formal ontology, SHACL-validated structure, and a shipped library of SPARQL queries an agent can run against the graph directly.</p>
-<p>That layer buys queries prose and grep cannot answer. Ask which pages hold the wiki together (one query returned Random-Walk-With-Restart at 48 inbound edges on a live research wiki). Walk a <code>criticizes:</code> edge transitively to surface every downstream claim a retraction implicates. Lint, at commit time, for <code>supports:</code> claims with no ingested source. These are graph queries over meaning, not keyword queries.</p>
+<p>Every typed edge in a page’s front matter reifies to (is recorded as) an RDF triple, a <em>subject-predicate-object</em> fact a database can query. So the wiki is not just interlinked markdown; it is a queryable <strong>knowledge graph</strong>, with a formal ontology (an explicit vocabulary of page and relationship types), SHACL rules that check the structure is valid, and a shipped library of SPARQL queries (SPARQL is the query language for graphs, like SQL for tables) an agent can run against the graph directly.</p>
+<p>That layer buys queries prose and keyword search cannot answer. Ask which pages hold the wiki together: one query returned a page on Random-Walk-With-Restart (a graph-ranking method, the idea behind PageRank) with 48 inbound edges on a live research wiki. Walk a <code>criticizes:</code> edge transitively to surface every downstream claim a retraction implicates. Lint, at commit time, for <code>supports:</code> claims with no ingested source. These are graph queries over meaning, not keyword queries.</p>
 <p>The distinction matters because a browsable pile of markdown limits an agent to what it can grep. A reified graph lets it query relationships, transitive closures, and structural roles. And it ships with the template, so a project gets it without building graph infrastructure.</p>
 <p>One honest caveat is worth keeping. The graph is only as valuable as its consumption, and today an LLM navigating a wiki reads by name-matching, not by walking the graph. So the graph is dark matter until a retrieval step reads it on the LLM’s behalf. Building the graph is necessary; wiring it into the read path is the open work.</p>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../wiki-front-matter/">Wiki front matter</a>, where the triples come from.</li>
+<li><a href="../ontologies/">Ontologies, kept small</a>, the vocabulary and the validation rules.</li>
+<li><a href="../data-fabrics/">Data fabrics</a>, where standards-based graphs plug into the wider world.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

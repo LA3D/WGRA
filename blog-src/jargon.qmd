@@ -1,0 +1,52 @@
+---
+title: "Jargon lookup"
+description: "Plain-language definitions of the terms used across the nuggets, each linked to where it comes up."
+---
+
+The nuggets try to gloss terms as they go. This page is the quick lookup: one plain sentence each, with a link to the nugget where the idea is developed.
+
+**RAG (retrieval-augmented generation)**: the common setup: upload documents, retrieve matching chunks at query time, generate an answer. The model rediscovers knowledge on every query; nothing accumulates. → [Karpathy's llm-wiki](posts/karpathy-llm-wiki/)
+
+**llm-wiki**: instead of retrieving from raw files, an LLM builds and maintains a wiki as it works, so knowledge compounds. → [Karpathy's llm-wiki](posts/karpathy-llm-wiki/)
+
+**Front matter / typed edges**: the small YAML block at the top of each page (`type:`, `up:`, `extends:`, `supports:`, `criticizes:`, `related:`) that records how pages relate. → [Wiki front matter](posts/wiki-front-matter/)
+
+**RDF triple**: a fact stored as subject-predicate-object, like *this page* `criticizes` *that page*, in a form a database can query. → [The wiki is a knowledge graph](posts/knowledge-graphs/)
+
+**Reify**: to turn something implicit (a typed edge in prose) into an explicit data record (an RDF triple). → [Wiki front matter](posts/wiki-front-matter/)
+
+**SPARQL**: the query language for RDF graphs; the graph equivalent of SQL. → [The wiki is a knowledge graph](posts/knowledge-graphs/)
+
+**SHACL**: a rule language that checks a graph's structure is valid (for example, every `supports:` must cite a source). → [The wiki is a knowledge graph](posts/knowledge-graphs/)
+
+**Ontology**: an explicit statement of what the entities are, how they relate, and what the fields mean. Kept deliberately small here. → [Ontologies, kept small](posts/ontologies/)
+
+**Random-Walk-With-Restart (RWR)**: a graph-ranking method that spreads importance across a graph from a set of starting nodes; the idea behind PageRank. → [The wiki is a knowledge graph](posts/knowledge-graphs/)
+
+**Knowledge bundle**: a wiki authored so that other people's LLMs can consume it; the shareable unit of the ecosystem. → [Knowledge bundles](posts/knowledge-bundles/)
+
+**OKF (Open Knowledge Format)**: [Google Cloud's open specification](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/) (2026) that formalizes the llm-wiki pattern as a portable bundle of markdown with YAML front matter, so wikis by different producers work with different agents. → [Knowledge bundles](posts/knowledge-bundles/)
+
+**Agent card**: a small public profile a group's agent publishes: what it knows about and how to reach it. → [Agent federation](posts/agent-federation/)
+
+**`ask` primitive**: the federation's query channel: find which group has relevant knowledge, then query it (with permission). → [Agent federation](posts/agent-federation/)
+
+**MCP (Model Context Protocol)**: an open standard that lets any AI host (Claude Desktop, Cursor) use a shared tool or read shared data. → [Agent federation](posts/agent-federation/)
+
+**Connector**: an agent that wraps a data source, declares a capability, does the interpretive extraction, and files results with provenance. → [Connectors are agents](posts/connectors/)
+
+**Marketplace**: the distribution-and-discovery layer for installable tool plugins, the way federation is for bundles. → [A marketplace for tools](posts/marketplace/)
+
+**Broker pattern**: a non-LLM component holds the credential and returns only data, so the agent never sees the secret. → [ControlMaster](posts/controlmaster-ssh/)
+
+**ControlMaster**: an SSH feature that authenticates a connection once and reuses it; a working instance of the broker pattern. → [ControlMaster](posts/controlmaster-ssh/)
+
+**Data fabric**: an AI-driven integration layer that connects scattered data sources into one queryable, data-agnostic environment. → [Data fabrics](posts/data-fabrics/)
+
+**FAIR**: data that is Findable, Accessible, Interoperable, and Reusable; the data-management standard funders increasingly require. → [Data fabrics](posts/data-fabrics/)
+
+**DID (decentralized identifier)**: a persistent identifier its subject controls cryptographically, resolvable without any central registry. → [Decentralized identifiers](posts/decentralized-identifiers/)
+
+**`did:web`**: the simplest DID method: the identity document is just a file on a normal web domain, no blockchain. → [Decentralized identifiers](posts/decentralized-identifiers/)
+
+**Verifiable credential**: a cryptographically signed claim, like a digital ID card, checked against a DID. → [Decentralized identifiers](posts/decentralized-identifiers/)
