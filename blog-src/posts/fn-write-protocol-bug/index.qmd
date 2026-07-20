@@ -3,7 +3,7 @@ title: "When our own push protocol leaked conflict markers"
 description: "A real multi-writer collision: the semantic resolver reported failure and the wrapper committed the conflict markers anyway, because the resolver's exit code was ignored."
 date: "2026-07-19"
 categories: [field-notes, tooling]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

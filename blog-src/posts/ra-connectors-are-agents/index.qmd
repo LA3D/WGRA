@@ -3,21 +3,19 @@ title: "Connectors are agents, not adapters"
 description: "Extraction is interpretive work, so a connector is an agent that wraps a source, declares a capability, and files provenance; a small ontology per source is what lets it reason instead of guess."
 date: "2026-07-20"
 categories: [research-agents, connectors]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Design.** The intended approach, not yet implemented.
+**Design, with a working proof of concept.** The general model is a design; one connector (PAD) has been built and run.
 :::
 
-**Thesis.** Extraction is interpretive work, so a connector is an agent that wraps a source, declares a capability, and files provenance; a small ontology per source is what lets it reason instead of guess.
+**Thesis.** A connector is not a static adapter. It is an agent.
 
-**Draws on.** Drawn from the wiki's Connector-Agents.
+A static adapter is a fixed function: same input, same call, same shape out. Real extraction is nothing like that. Reading a table out of a paper, reconciling a supplementary spreadsheet against the paper's notation, negotiating a database's quirks, normalizing to a schema, attaching provenance and a confidence, retrying when a source is malformed, that is open-ended, interpretive work. So a connector is an agent that wraps a source, declares a capability, does the messy extraction, and files the result with its provenance. The researcher's hub agent discovers and orchestrates a fleet of them.
 
-## Outline
+Calling it an "agent" is the risky half, though, because an agent that guesses is worse than no agent. The reliability mechanism is a **small ontology per source**. An LLM reasoning over an explicit small ontology (what the entities are, how they relate, what the fields mean) is accurate; an LLM inferring that structure from raw, unlabelled responses is measurably less accurate and often needs a human in the loop. So the ontology is part of the connector contract: a connector is not finished when it can call the API, it is finished when the source is described well enough for an agent to reason over it without guessing.
 
-- 
-- 
-- 
+One more load-bearing idea: **discovery abstracts over delivery**. The agent discovers a capability, say "graph extraction," and invokes it without caring whether that resolves to a marketplace plugin it installs or a hosted service it calls. Delivery mode is an operations decision, never a user-facing one.
 
-_Stub. Expand from the seed page(s) above._
+PAD (Paper Analytical Devices) is the first real candidate because it already self-describes, with both an OWL/RDF ontology and an OpenAPI spec. We read one to learn what it is and the other to learn how to call it, and [built the connector](../fn-pad-connector-poc/).

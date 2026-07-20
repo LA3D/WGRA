@@ -3,7 +3,7 @@ title: "Reaching credentialed sources: the broker pattern"
 description: "One rule: the LLM never touches the secret. A non-LLM broker holds the token and returns only data. SSH ControlMaster is a working in-house instance."
 date: "2026-07-19"
 categories: [field-notes, identity]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

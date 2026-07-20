@@ -3,21 +3,19 @@ title: "Lightweight structural graphs, and the entity-resolution trap"
 description: "Cheap structural edges plus lightweight extracted content deliver most of the coverage; heavy content-graph engineering buys diminishing returns because entity resolution is fragile."
 date: "2026-07-20"
 categories: [retrieval]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Design.** The intended approach, not yet implemented.
+**Argument.** Grounded in predicate distributions from three real wikis (measured), not an A/B retrieval benchmark.
 :::
 
-**Thesis.** Cheap structural edges plus lightweight extracted content deliver most of the coverage; heavy content-graph engineering buys diminishing returns because entity resolution is fragile.
+**Thesis.** Lightweight structural graphs plus lightweight extracted content, walked by a random walk, beat heavy content-graph engineering on the cost-benefit axis for experimental science.
 
-**Draws on.** Drawn from the wiki's Lightweight-Structural-Graphs and Graph-Comparison-Empirical.
+There are three layers, not two. The **structural** layer is mechanical and unambiguous: chunks in documents, section hierarchies, parent chains, wikilinks. The **lightweight extracted** layer takes named entities, concepts, and citations at face value, keeping surface forms distinct with no canonicalization. The **heavy** layer is the expensive one: aggressive entity resolution plus formal, ontology-enforced typed assertions. The claim is that you should not build your retrieval loop around that third layer.
 
-## Outline
+The reason is the entity-resolution trap. Heavy graphs fail two ways: under-merging, when "Obama" and "President Obama" stay separate nodes, and over-merging, when "Washington" collapses a person, a state, and a university into one. Resolution is unsolved for real corpora, and it fails worst on exactly the rare, context-disambiguated entities that scientists actually ask about. A structural or lightweight graph has no resolution step, so no resolution failure is possible.
 
-- 
-- 
-- 
+And the coverage you give up is small. Research material is already organized around the structure the graph captures, and questions usually touch both a structural locus and a named entity, so a walk over the combined graph returns useful neighborhoods. The marginal gain from heavy typing is small next to its maintenance cost.
 
-_Stub. Expand from the seed page(s) above._
+Heavy typing does pay off somewhere: bibliographic review wikis and fixed-ontology knowledge bases, where the material is objectively typeable. It does not pay off in experimental science, where forcing `extends`, `supports`, and `criticizes` onto provisional work manufactures a crispness the material does not have, and produces over-confident query results. The evidence for this is distributional, the predicate counts across three real wikis differ by exactly the amount their content shape predicts, and it is honest to say that is an argument from those counts, not a head-to-head retrieval benchmark.

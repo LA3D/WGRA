@@ -3,7 +3,7 @@ title: "The smallest experiment that would validate DIDs"
 description: "Before any credential or harvesting work, mint did:web for two or three federation participants on GitHub Pages and test four falsifiable hypotheses."
 date: "2026-07-19"
 categories: [field-notes, identity]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

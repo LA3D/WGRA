@@ -3,21 +3,19 @@ title: "From ask to full agentic systems"
 description: "Consumers range from single-shot ask to multi-step plan/retrieve/act/update agents; the action primitive is what today's template is missing."
 date: "2026-07-20"
 categories: [research-agents]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Design.** The intended approach, not yet implemented.
+**Provisional.** Explicitly forward-looking; the framing should evolve as concrete agent work produces evidence.
 :::
 
-**Thesis.** Consumers range from single-shot ask to multi-step plan/retrieve/act/update agents; the action primitive is what today's template is missing.
+**Thesis.** Agent systems are the *consumers* of the retrieval substrate. The vision provides the substrate; agents are the higher-order operators that call it.
 
-**Draws on.** Drawn from the wiki's Agent-Systems. Provisional and forward-looking.
+At the light end is **ask**: a single shot. Extract seed concepts from the question, run a random walk over the wiki graph, take the top pages, synthesize an answer with citations. At the heavy end is a **full agent system**: plan, retrieve, act, and update the wiki as a side effect of working. The primitive that separates the two is **action**. Everything else, memory, retrieval, provenance, discipline, already exists in the template stack; the action primitive is what makes something an agent rather than a smart assistant with memory.
 
-## Outline
+Three composition patterns fall out. Ask as a retrieval consumer. Wiki as agent memory, where the agent writes its findings and its log back as it goes. And corpus-scale retrieval, where an agent drops from the wiki down to the raw corpus when the wiki lacks coverage, then files a durable synthesis back up.
 
-- 
-- 
-- 
+Three questions the vision does not yet answer. When should an agent trust the wiki versus fall back to the corpus (the cached-but-stale failure mode)? How does the action primitive interact with wiki correctness (provenance discipline matters *more* once an agent can write)? And what is the right ergonomic surface between the retrieval substrate and the orchestrator on top of it?
 
-_Stub. Expand from the seed page(s) above._
+This one is deliberately provisional. The natural build progression looks like `/wiki-ask`, then `/wiki-verify`, then `/wiki-plan`, then multi-agent orchestration, but nothing on that list is committed to. The honest caution is the point: an agent that calls a bad retrieval tool still gets bad results. Agents raise the stakes for retrieval quality; they do not paper over retrieval limits.

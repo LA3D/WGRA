@@ -3,7 +3,7 @@ title: "Redrawing the architecture as a data fabric"
 description: "The template instantiates an agent and its llm-wiki memory onto a shared data fabric; boxes float above the fabric, tethered by a line and a dot, and the template has instantiate arrows to both."
 date: "2026-07-19"
 categories: [field-notes, architecture]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

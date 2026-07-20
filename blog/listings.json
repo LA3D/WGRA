@@ -2,7 +2,26 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/fn-fair-by-construction/index.html"
+      "/posts/ret-lightweight-structural-graphs/index.html",
+      "/posts/ra-govern-the-substrate/index.html",
+      "/posts/ra-connectors-are-agents/index.html",
+      "/posts/ra-agents-as-consumers/index.html",
+      "/posts/ret-how-the-llm-reads-a-wiki/index.html",
+      "/posts/ret-the-vision/index.html",
+      "/posts/ra-locked-in-on-nothing/index.html",
+      "/posts/ra-the-architecture/index.html",
+      "/posts/ra-knowledge-expertise-experience/index.html",
+      "/posts/fn-fair-by-construction/index.html",
+      "/posts/ret-one-walk-two-scales/index.html",
+      "/posts/ret-when-dense-retrieval-fails/index.html",
+      "/posts/ret-random-walk-beats-sparql/index.html",
+      "/posts/fn-write-protocol-bug/index.html",
+      "/posts/fn-discovery-reframed-dids/index.html",
+      "/posts/fn-broker-and-controlmaster/index.html",
+      "/posts/fn-skills-marketplace/index.html",
+      "/posts/fn-did-web-experiment/index.html",
+      "/posts/fn-data-fabric-diagram/index.html",
+      "/posts/fn-pad-connector-poc/index.html"
     ]
   }
 ]

@@ -3,7 +3,7 @@ title: "A working connector against PAD"
 description: "A ~180-line agent reads PAD's own ontology and API and answers live questions, then composes with private federation bundles."
 date: "2026-07-18"
 categories: [field-notes, connectors]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

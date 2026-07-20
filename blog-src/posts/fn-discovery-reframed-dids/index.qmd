@@ -3,7 +3,7 @@ title: "Discovery, reframed around DIDs"
 description: "Our discovery is a curated federation index, which contradicts the self-advertising-connector pitch. The target is decentralized self-description harvested into the graph."
 date: "2026-07-19"
 categories: [field-notes, discovery]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}

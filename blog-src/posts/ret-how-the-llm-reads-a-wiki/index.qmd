@@ -3,21 +3,19 @@ title: "How the LLM actually reads a wiki"
 description: "The LLM navigates by name-matched grep off the index, not by following links, so every edge-quality gain helps humans and extractors, not the LLM, until a retrieval step injects the graph."
 date: "2026-07-20"
 categories: [retrieval]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Empirical observation.** Grounded in real wikis, not projected.
+**Empirical observation.** Grounded in real wikis. The caveat: predicate counts measure what got *written*, not what gets *read* at retrieval time.
 :::
 
-**Thesis.** The LLM navigates by name-matched grep off the index, not by following links, so every edge-quality gain helps humans and extractors, not the LLM, until a retrieval step injects the graph.
+**Thesis.** When an LLM answers a question against a wiki today, it navigates by name, not by graph.
 
-**Draws on.** Drawn from the wiki's LLM-Wiki-Read-Path and Graph-Comparison-Empirical.
+Watch what actually happens. Two things do the work: the `CLAUDE.md` instructions that tell the agent to consult the wiki at all, and ordinary filesystem tools plus reading comprehension, read the index, grep for a matching filename, open the file. That is it. Navigation is name-based. `[Coscientist-2023](Coscientist-2023)` and the plain string `Coscientist-2023` behave identically; the link syntax is decorative from the read path's perspective. The LLM does not follow links as links, does not use typed edges as edges, and does not touch the reified RDF graph at all.
 
-## Outline
+The uncomfortable implication: **every improvement to link and edge quality improves a structure the LLM does not walk.** Those improvements are real and worth making, they help humans, the extractor, and downstream pipelines, but they are invisible to the LLM's current read path. In one wiki, typed edges saw zero adoption across 137 pages even though the machinery was sitting in the SCHEMA, and it changed nothing about how the LLM read that wiki.
 
-- 
-- 
-- 
+None of this means the graph is useless. It means the graph is dark matter until something upstream of the LLM consumes it and injects the result into the LLM's context. That something is a retrieval step: a random walk that reads the graph on the LLM's behalf and hands it a reading list, at exactly the choice point where name-matching is blindest.
 
-_Stub. Expand from the seed page(s) above._
+The honest scope: at the current scale (the largest of these wikis is around 130 pages) name-matched navigation is genuinely competitive. It breaks later, at larger scale, with shallow context assembly and lost cross-domain connections. The retrieval step is insurance against the scale we are heading toward, not a fix for a fire today.

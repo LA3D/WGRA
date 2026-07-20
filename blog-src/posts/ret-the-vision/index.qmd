@@ -3,21 +3,21 @@ title: "The retrieval vision in one post"
 description: "Graph-informed retrieval for LLM-maintained wikis rests on three claims: random-walk over SPARQL, lightweight over heavy graphs, and one walk applied at two scales."
 date: "2026-07-20"
 categories: [retrieval]
-draft: true
+draft: false
 ---
 
 ::: {.callout-note title="Status"}
-**Design.** The intended approach, not yet implemented.
+**Framing.** A reasoning trail, not a finished implementation. The corpus side is demonstrated; the wiki side is open work.
 :::
 
-**Thesis.** Graph-informed retrieval for LLM-maintained wikis rests on three claims: random-walk over SPARQL, lightweight over heavy graphs, and one walk applied at two scales.
+**Thesis.** A specific stance on graph-informed retrieval for LLM-maintained wikis and their source corpora, built on three claims.
 
-**Draws on.** Drawn from the wiki's Vision.
+First, the honest boundary: dense retrieval-augmented generation is well-suited to a broad class of applications, single-hop question answering, factual lookup, chat over documents, and it stays the right default there. The literature documents its limits most consistently where the data has alternate views the embedding cannot traverse: multi-hop reasoning, cross-document evidence chains, provenance. That is the band this vision is scoped to, scientific research, and nowhere else.
 
-## Outline
+**Claim one: distribution beats pattern-matching.** A crisp query language like SPARQL returns empty when the structure it asks for is not there, which is the common case when typed edges are provisional and sparse. A random walk assigns some mass to every node, so sparse edges change *where* the mass lands rather than breaking the query, and it hands back a ranked neighborhood a language model can reason over.
 
-- 
-- 
-- 
+**Claim two: lightweight graphs carry most of the weight.** Cheap, reliable structural edges (chunks in documents, section hierarchies, wikilinks, parent chains) plus lightweight extracted content (entity mentions, concept nodes, citation edges) add real semantic reach without paying the full cost of aggressive entity resolution and formal cross-document assertions, which is where heavy content graphs get brittle.
 
-_Stub. Expand from the seed page(s) above._
+**Claim three: one walk, two scales.** The same random-walk primitive runs over the combined graph. At the wiki level it suggests which pages to read; at the corpus level it orders which chunks to extract. The walk math does not care whether an edge is structural or content-derived; it walks all of them, weighted by whatever the extractor emits.
+
+What this is not: not a rejection of vanilla RAG, not a rejection of SPARQL for maintenance, and not a shipped system.
