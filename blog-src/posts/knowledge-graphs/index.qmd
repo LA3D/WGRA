@@ -9,7 +9,17 @@ categories: [graph]
 
 Every typed edge in a page's front matter reifies to (is recorded as) an RDF triple, a *subject-predicate-object* fact a database can query. So the wiki is not just interlinked markdown; it is a queryable knowledge graph, with a formal ontology (an explicit vocabulary of page and relationship types), SHACL rules that check the structure is valid, and a shipped library of SPARQL queries (SPARQL is the query language for graphs, like SQL for tables) an agent can run against it directly.
 
-That layer buys queries prose and keyword search cannot answer. Ask which pages hold the wiki together: one query returned a page on Random-Walk-With-Restart (a graph-ranking method, the idea behind PageRank) with 48 inbound edges on a live research wiki. Walk a `criticizes:` edge transitively to surface every downstream claim a retraction implicates. Lint, at commit time, for `supports:` claims with no ingested source. These are graph queries over meaning, not keyword queries.
+That layer buys queries prose and keyword search cannot answer. "Which page holds the wiki together" is a single query over the `mentions` edges:
+
+```sparql
+SELECT ?page (COUNT(?src) AS ?inbound)
+WHERE  { ?src :mentions ?page }
+GROUP BY ?page
+ORDER BY DESC(?inbound)
+LIMIT 1
+```
+
+On a live research wiki that returned the page on Random-Walk-With-Restart (a graph-ranking method, the idea behind PageRank) with 48 inbound edges, the structural hub, which grep could never surface. Other questions have the same shape: walk a `criticizes:` edge transitively to find every downstream claim a retraction implicates, or lint at commit time for `supports:` claims with no ingested source. These are graph queries over meaning, not keyword queries.
 
 The distinction matters because a browsable pile of markdown limits an agent to what it can grep. A reified graph lets it query relationships, transitive closures, and structural roles, and it ships with the template, so a project gets it without building graph infrastructure.
 

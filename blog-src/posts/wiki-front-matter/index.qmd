@@ -11,7 +11,21 @@ Making the *links between pages* typed and machine-readable is also established 
 
 **How this wiki uses it.** Every page opens with front matter. Two fields are required, `type:` (what kind of page) and `up:` (its parent). The rest are optional typed edges: `extends:`, `supports:`, `criticizes:`, `requires:`, `related:`. Each names a relationship to another page. These particular edge names are this schema's choice, not the general pattern; `related:` is an honest catch-all, while `extends:`, `supports:`, and `criticizes:` are stronger claims used only where the material makes them.
 
-The payoff is that this metadata **reifies** to a graph. Reify just means turning an implicit relationship into an explicit data record, so every typed edge becomes an RDF triple (a *subject-predicate-object* fact, like *this page* `criticizes` *that one*, that a database can query). The same annotation a human reads is a structure software can walk. The discipline is calibrated to content: an experimental wiki keeps placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
+Here is the top of a real page:
+
+```yaml
+---
+type: synthesis
+up: "[[Retrieval-Vision]]"
+extends: "[[Distribution-vs-Pattern-Retrieval]]"
+criticizes: "[[Heavy-Content-Graphs]]"
+related: ["[[Lightweight-Structural-Graphs]]"]
+---
+```
+
+That block alone tells you the page is a *synthesis*, sits under the retrieval vision, builds on one page, disputes another, and is loosely tied to a third, all before you read a word of its prose. A human skims it; an agent parses it.
+
+The payoff is that this metadata **reifies** to a graph. Reify just means turning an implicit relationship into an explicit data record, so every typed edge becomes an RDF triple, a *subject-predicate-object* fact. The `criticizes:` line above becomes the triple `this-page criticizes Heavy-Content-Graphs`, which a database can query. The same annotation a human reads is a structure software can walk. The discipline is calibrated to content: an experimental wiki keeps placement strict and treats `related:` as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.
 
 ## Related
 

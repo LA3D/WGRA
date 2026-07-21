@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -182,7 +217,16 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>What front matter is.</strong> If you have used a static-site generator or a modern note app, you have already met front matter: the small block of YAML metadata fenced by <code>---</code> at the top of a file. Jekyll, Hugo, Obsidian, and Quarto (which renders this page) all use it to attach structured fields, a title, a date, tags, to an otherwise free-text document.</p>
 <p>Making the <em>links between pages</em> typed and machine-readable is also established prior art, most cleanly in <strong>Semantic MediaWiki</strong>: instead of a plain link, you annotate it with a property (<code>[[author::Ada Lovelace]]</code>), and the property name classifies the relationship, turning a wiki into a queryable database. The idea is that a link should carry <em>what kind</em> of link it is, not just point somewhere.</p>
 <p><strong>How this wiki uses it.</strong> Every page opens with front matter. Two fields are required, <code>type:</code> (what kind of page) and <code>up:</code> (its parent). The rest are optional typed edges: <code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>requires:</code>, <code>related:</code>. Each names a relationship to another page. These particular edge names are this schema’s choice, not the general pattern; <code>related:</code> is an honest catch-all, while <code>extends:</code>, <code>supports:</code>, and <code>criticizes:</code> are stronger claims used only where the material makes them.</p>
-<p>The payoff is that this metadata <strong>reifies</strong> to a graph. Reify just means turning an implicit relationship into an explicit data record, so every typed edge becomes an RDF triple (a <em>subject-predicate-object</em> fact, like <em>this page</em> <code>criticizes</code> <em>that one</em>, that a database can query). The same annotation a human reads is a structure software can walk. The discipline is calibrated to content: an experimental wiki keeps placement strict and treats <code>related:</code> as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.</p>
+<p>Here is the top of a real page:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> synthesis</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">up</span><span class="kw">:</span><span class="at"> </span><span class="st">"[[Retrieval-Vision]]"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">extends</span><span class="kw">:</span><span class="at"> </span><span class="st">"[[Distribution-vs-Pattern-Retrieval]]"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">criticizes</span><span class="kw">:</span><span class="at"> </span><span class="st">"[[Heavy-Content-Graphs]]"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">related</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"[[Lightweight-Structural-Graphs]]"</span><span class="kw">]</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That block alone tells you the page is a <em>synthesis</em>, sits under the retrieval vision, builds on one page, disputes another, and is loosely tied to a third, all before you read a word of its prose. A human skims it; an agent parses it.</p>
+<p>The payoff is that this metadata <strong>reifies</strong> to a graph. Reify just means turning an implicit relationship into an explicit data record, so every typed edge becomes an RDF triple, a <em>subject-predicate-object</em> fact. The <code>criticizes:</code> line above becomes the triple <code>this-page criticizes Heavy-Content-Graphs</code>, which a database can query. The same annotation a human reads is a structure software can walk. The discipline is calibrated to content: an experimental wiki keeps placement strict and treats <code>related:</code> as a catch-all; a review wiki over a fixed corpus can afford aggressive typed edges. Forcing crisp edges onto provisional work manufactures a confidence the material does not have.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>
