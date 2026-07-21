@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chris Sweet">
+<meta name="dcterms.date" content="2026-07-21">
+<meta name="description" content="A first controlled test on one real research project: an agent navigating an llm-wiki answered questions more accurately than RAG over the same raw files, and with zero fabrications. Honest early numbers, with the caveats.">
+
+<title>llm-wiki vs RAG: a first measurement – WGRA Nuggets</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f6e93ea9ccd94950dbbd0705d6507235.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">WGRA Nuggets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://la3d.github.io/WGRA/"> 
+<span class="menu-text">WGRA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://la3d.github.io/WGRA/research-agents-revolution/"> 
+<span class="menu-text">The pitch</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About WGRA Nuggets</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/LA3D/WGRA"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#the-three-systems-precisely" id="toc-the-three-systems-precisely" class="nav-link active" data-scroll-target="#the-three-systems-precisely">The three systems, precisely</a></li>
+  <li><a href="#how-it-was-run" id="toc-how-it-was-run" class="nav-link" data-scroll-target="#how-it-was-run">How it was run</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#why-the-wiki-wins-in-one-example" id="toc-why-the-wiki-wins-in-one-example" class="nav-link" data-scroll-target="#why-the-wiki-wins-in-one-example">Why the wiki wins, in one example</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats">Caveats</a></li>
+  <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">What comes next</a></li>
+  <li><a href="#the-code" id="toc-the-code" class="nav-link" data-scroll-target="#the-code">The code</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related">Related</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">llm-wiki vs RAG: a first measurement</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">evidence</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A first controlled test on one real research project: an agent navigating an llm-wiki answered questions more accurately than RAG over the same raw files, and with zero fabrications. Honest early numbers, with the caveats.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chris Sweet </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>The question.</strong> There are three ways an AI can answer a question about a research project. It can run <strong>retrieval-augmented generation (RAG)</strong> over the project’s raw files: embed the question, pull the most similar chunks of text, and hand them to a language model. It can answer <strong>on its own</strong>, from what the model already learned in training, with no access to the project at all. Or it can consult an <strong>llm-wiki</strong>: a curated, interlinked knowledge base written alongside the work, which an agent reads by opening whole pages and following the links between them. This post reports a first, controlled measurement of how those three do on the same questions, on one real project.</p>
+<p>The short version: the llm-wiki won every category of question, roughly doubling RAG’s score overall, and it never fabricated an answer. The rest of this post is how that was measured and why you should not over-read a single run.</p>
+<section id="the-three-systems-precisely" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-systems-precisely">The three systems, precisely</h2>
+<ul>
+<li><strong>RAG</strong> is the “index my repo” baseline. Chunk every durable file (code, logs, result reports, notes), embed the chunks, retrieve the top matches for a question, and answer only from those. This is what most “chat with your documents” tools do.</li>
+<li><strong>LLM alone</strong> is the control. The same model answers with no retrieved context. If it scores well, the test is contaminated: the model already knew the answers. If it scores near zero, then whatever the other systems achieve is coming from retrieval, not from training data.</li>
+<li><strong>llm-wiki</strong> is the knowledge base used the way it is meant to be used: not chopped into fragments and searched, but <em>navigated</em>. An agent lists the pages, opens the ones that look relevant, follows references to related pages, and reasons across several of them before answering. The wiki is a compounding artifact that records not just facts but the judgment and experience behind them.</li>
+</ul>
+<p>The distinction that matters is what each source contains. Raw files hold <em>facts</em>: the number in a results table, the setting in a config. A good wiki holds facts too, but also the <em>reasoning</em>: which approach was chosen over which alternative and why, what was tried and abandoned, and how an apparently contradictory result was later resolved. That second layer is written into the wiki and, often, exists nowhere in the raw files.</p>
+</section>
+<section id="how-it-was-run" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-was-run">How it was run</h2>
+<p><strong>The project.</strong> The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki.</p>
+<p><strong>The questions.</strong> Forty questions, each tagged by what kind of answer it needs:</p>
+<ul>
+<li><strong>factoid</strong>: a specific value that sits in one place (“what accuracy did baseline X reach, on which corpus?”).</li>
+<li><strong>method</strong>: how a procedure actually works (“how does this retrieval kernel modify the transition probabilities?”).</li>
+<li><strong>judgment</strong>: which choice was made and why (“was this design preferred over the alternative, and on what evidence?”).</li>
+<li><strong>cross-source</strong>: a conclusion spread across many records, often the resolution of a result that was later revised (“was this observed trade-off a real property of the method, or an artifact?”).</li>
+</ul>
+<p><strong>The protocol.</strong> One frozen model answers every arm, from only what it is given, and is told to say “not answerable” rather than guess. RAG and the LLM-alone control get a single retrieval pass into a fixed context budget; the llm-wiki arm navigates over several steps. A separate, blind scoring pass then rates each answer from 0 (wrong or declined) to 3 (fully correct, including the load-bearing specifics) against a fixed reference answer, and also flags any answer that asserts a fabricated or wrong fact. The scorer never sees which system produced an answer.</p>
+<p><strong>One fairness exclusion.</strong> The project ran an early sub-experiment on a benchmark it later abandoned as unsuitable, and the wiki authors recorded the <em>lesson</em> from it but never transcribed its numeric tables. Four factoid questions asked for exactly those un-transcribed numbers. Because we cannot know whether a differently-run wiki would have kept them, leaving those questions in would penalize the wiki for a sampling accident rather than a real weakness, so they were removed. That leaves 40 questions. (See the caveats: this exclusion is also entangled with an API interruption.)</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>Mean correctness, 0 to 3, on 40 questions:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Question type</th>
+<th style="text-align: center;">RAG</th>
+<th style="text-align: center;">LLM alone</th>
+<th style="text-align: center;">llm-wiki</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>factoid (n=6)</td>
+<td style="text-align: center;">2.33</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;"><strong>2.83</strong></td>
+</tr>
+<tr class="even">
+<td>method (n=8)</td>
+<td style="text-align: center;">1.50</td>
+<td style="text-align: center;">0.38</td>
+<td style="text-align: center;"><strong>3.00</strong></td>
+</tr>
+<tr class="odd">
+<td>judgment (n=10)</td>
+<td style="text-align: center;">0.90</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;"><strong>3.00</strong></td>
+</tr>
+<tr class="even">
+<td>cross-source (n=16)</td>
+<td style="text-align: center;">1.12</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;"><strong>2.19</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>overall (n=40)</strong></td>
+<td style="text-align: center;"><strong>1.32</strong></td>
+<td style="text-align: center;"><strong>0.10</strong></td>
+<td style="text-align: center;"><strong>2.65</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Two more numbers per system: the share of answers graded fully or mostly correct, and the count of answers that fabricated a fact.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">RAG</th>
+<th style="text-align: center;">LLM alone</th>
+<th style="text-align: center;">llm-wiki</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>correct (score 2 or 3)</td>
+<td style="text-align: center;">42%</td>
+<td style="text-align: center;">2%</td>
+<td style="text-align: center;"><strong>90%</strong></td>
+</tr>
+<tr class="even">
+<td>fabricated answers</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Four things stand out.</p>
+<p><strong>The llm-wiki won every category.</strong> Even on factoids, where RAG is supposed to be strongest, the wiki edged ahead (2.83 to 2.33), because its curated pages state the number cleanly while the raw files sometimes bury it. Overall the wiki nearly doubled RAG’s score.</p>
+<p><strong>The gap widened with reasoning.</strong> On factoids the margin was modest. On method and judgment questions the wiki was perfect (3.00) against RAG’s 1.50 and 0.90. Those are the questions whose answers are synthesized reasoning, present in the wiki and in no single raw file. This is the whole premise of an llm-wiki: it stores how you think about the work, not only what the work produced.</p>
+<p><strong>Retrieval, not memory, did the work.</strong> The LLM-alone control scored 0.10 and declined 92% of the questions. The model cannot answer questions about a private project from training data, so the wiki’s and RAG’s scores are genuinely coming from the material they read, not from what the model already knew.</p>
+<p><strong>The wiki did not fabricate.</strong> RAG produced ten answers with a wrong or invented specific; the llm-wiki produced none. Reading a whole curated page in context, rather than a 180-word fragment torn out of a raw log, removes most of the raw material for confident-but-wrong answers.</p>
+</section>
+<section id="why-the-wiki-wins-in-one-example" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-wiki-wins-in-one-example">Why the wiki wins, in one example</h2>
+<p>One question asked whether a retrieval trade-off the team once reported was a real property of their method. RAG retrieved a chunk that <em>stated</em> the trade-off and answered “yes.” The llm-wiki agent opened the project’s history page, found that the trade-off had later been diagnosed as an artifact of a normalization choice and eliminated, and answered “no, and here is what resolved it.” The correct answer was a conclusion the team reached over time and wrote down in one place. RAG cannot retrieve a chunk that was never written; the wiki had it, and the agent could navigate to it.</p>
+</section>
+<section id="caveats" class="level2">
+<h2 class="anchored" data-anchor-id="caveats">Caveats</h2>
+<p>This is a first run, and it should be read as a signal, not a verdict.</p>
+<ul>
+<li><strong>One project, forty questions, one run.</strong> Nothing here is established until it repeats on other projects with more questions.</li>
+<li><strong>The same model family answered and judged.</strong> Grading against a fixed reference limits self-preference, but the strongest check is a judge from a different model, which we have not yet run.</li>
+<li><strong>An API interruption shaped the run.</strong> Partway through, our language-model API access was cut off. The llm-wiki answers had already been produced, but they were then <em>scored in-session by the same model</em> rather than through the normal automated path, and a planned control (the same navigating agent pointed at the raw files, to separate “agentic navigation” from “wiki content”) could not be scored at all. So RAG here is single-shot retrieval while the llm-wiki is an agent navigating pages: they differ in <em>how</em> they read as well as in <em>what</em> they read. Untangling those two is the first thing the next run will do.</li>
+<li><strong>The four excluded factoids.</strong> They were removed for the coverage-fairness reason above; that choice is defensible but it is a choice, and it is reported here so you can weigh it.</li>
+</ul>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">What comes next</h2>
+<p>The clean version of this test is already scoped. We have a separate project that has ingested a real corpus of scientific papers into an llm-wiki, and when API access returns we will rerun there with the controls this run lacked: a same-mode agent over the raw papers, a judge from a different model, and a larger, coverage-balanced question set. If the pattern holds with those confounds removed, the claim gets much stronger. If it does not, that is worth knowing too, and it will be reported the same way.</p>
+</section>
+<section id="the-code" class="level2">
+<h2 class="anchored" data-anchor-id="the-code">The code</h2>
+<p>The whole thing is a small, reusable pipeline, and it is deliberately boring: each stage reads and writes plain JSONL files, so any run is inspectable and rerunnable, and the stages compose. Build the corpus from a project’s files. Write a question set tagged by type. Run each retrieval arm to produce contexts. Answer with a frozen model. Score blind against references. Point it at any project that has both a raw repository and an llm-wiki, and it produces the tables above. It lives in the project’s experiment directory so the next corpus is a config change, not a rewrite.</p>
+</section>
+<section id="related" class="level2">
+<h2 class="anchored" data-anchor-id="related">Related</h2>
+<ul>
+<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the pattern under test here.</li>
+<li><a href="../our-collaborative-recipe/">Our recipe: the pattern made concrete</a>, how the wiki this test used is actually built and maintained.</li>
+<li><a href="../knowledge-bundles/">Knowledge bundles</a>, what a wiki becomes when it is packaged for others to consume.</li>
+</ul>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2005.11401">Lewis et al., “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” (2020)</a>, the RAG method that is the baseline here.</li>
+<li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy, “llm-wiki” (gist)</a>, the knowledge-base pattern the winning arm uses.</li>
+<li><a href="https://arxiv.org/abs/2306.05685">Zheng et al., “Judging LLM-as-a-Judge” (2023)</a>, the LLM-as-judge scoring approach and its known biases.</li>
+<li><a href="https://arxiv.org/abs/1908.10084">Reimers and Gurevych, “Sentence-BERT” (2019)</a>, the sentence-embedding retrieval the RAG arm relies on.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/la3d\.github\.io\/WGRA\/blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Wiki-Grounded Research Agent · Center for Research Computing, University of Notre Dame</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

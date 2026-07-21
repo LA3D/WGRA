@@ -1,0 +1,96 @@
+---
+title: "llm-wiki vs RAG: a first measurement"
+description: "A first controlled test on one real research project: an agent navigating an llm-wiki answered questions more accurately than RAG over the same raw files, and with zero fabrications. Honest early numbers, with the caveats."
+date: "2026-07-21"
+categories: [evidence]
+---
+
+**The question.** There are three ways an AI can answer a question about a research project. It can run **retrieval-augmented generation (RAG)** over the project's raw files: embed the question, pull the most similar chunks of text, and hand them to a language model. It can answer **on its own**, from what the model already learned in training, with no access to the project at all. Or it can consult an **llm-wiki**: a curated, interlinked knowledge base written alongside the work, which an agent reads by opening whole pages and following the links between them. This post reports a first, controlled measurement of how those three do on the same questions, on one real project.
+
+The short version: the llm-wiki won every category of question, roughly doubling RAG's score overall, and it never fabricated an answer. The rest of this post is how that was measured and why you should not over-read a single run.
+
+## The three systems, precisely
+
+- **RAG** is the "index my repo" baseline. Chunk every durable file (code, logs, result reports, notes), embed the chunks, retrieve the top matches for a question, and answer only from those. This is what most "chat with your documents" tools do.
+- **LLM alone** is the control. The same model answers with no retrieved context. If it scores well, the test is contaminated: the model already knew the answers. If it scores near zero, then whatever the other systems achieve is coming from retrieval, not from training data.
+- **llm-wiki** is the knowledge base used the way it is meant to be used: not chopped into fragments and searched, but *navigated*. An agent lists the pages, opens the ones that look relevant, follows references to related pages, and reasons across several of them before answering. The wiki is a compounding artifact that records not just facts but the judgment and experience behind them.
+
+The distinction that matters is what each source contains. Raw files hold *facts*: the number in a results table, the setting in a config. A good wiki holds facts too, but also the *reasoning*: which approach was chosen over which alternative and why, what was tried and abandoned, and how an apparently contradictory result was later resolved. That second layer is written into the wiki and, often, exists nowhere in the raw files.
+
+## How it was run
+
+**The project.** The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki.
+
+**The questions.** Forty questions, each tagged by what kind of answer it needs:
+
+- **factoid**: a specific value that sits in one place ("what accuracy did baseline X reach, on which corpus?").
+- **method**: how a procedure actually works ("how does this retrieval kernel modify the transition probabilities?").
+- **judgment**: which choice was made and why ("was this design preferred over the alternative, and on what evidence?").
+- **cross-source**: a conclusion spread across many records, often the resolution of a result that was later revised ("was this observed trade-off a real property of the method, or an artifact?").
+
+**The protocol.** One frozen model answers every arm, from only what it is given, and is told to say "not answerable" rather than guess. RAG and the LLM-alone control get a single retrieval pass into a fixed context budget; the llm-wiki arm navigates over several steps. A separate, blind scoring pass then rates each answer from 0 (wrong or declined) to 3 (fully correct, including the load-bearing specifics) against a fixed reference answer, and also flags any answer that asserts a fabricated or wrong fact. The scorer never sees which system produced an answer.
+
+**One fairness exclusion.** The project ran an early sub-experiment on a benchmark it later abandoned as unsuitable, and the wiki authors recorded the *lesson* from it but never transcribed its numeric tables. Four factoid questions asked for exactly those un-transcribed numbers. Because we cannot know whether a differently-run wiki would have kept them, leaving those questions in would penalize the wiki for a sampling accident rather than a real weakness, so they were removed. That leaves 40 questions. (See the caveats: this exclusion is also entangled with an API interruption.)
+
+## Results
+
+Mean correctness, 0 to 3, on 40 questions:
+
+| Question type | RAG | LLM alone | llm-wiki |
+|---|:--:|:--:|:--:|
+| factoid (n=6) | 2.33 | 0.00 | **2.83** |
+| method (n=8) | 1.50 | 0.38 | **3.00** |
+| judgment (n=10) | 0.90 | 0.00 | **3.00** |
+| cross-source (n=16) | 1.12 | 0.06 | **2.19** |
+| **overall (n=40)** | **1.32** | **0.10** | **2.65** |
+
+Two more numbers per system: the share of answers graded fully or mostly correct, and the count of answers that fabricated a fact.
+
+| | RAG | LLM alone | llm-wiki |
+|---|:--:|:--:|:--:|
+| correct (score 2 or 3) | 42% | 2% | **90%** |
+| fabricated answers | 10 | 2 | **0** |
+
+Four things stand out.
+
+**The llm-wiki won every category.** Even on factoids, where RAG is supposed to be strongest, the wiki edged ahead (2.83 to 2.33), because its curated pages state the number cleanly while the raw files sometimes bury it. Overall the wiki nearly doubled RAG's score.
+
+**The gap widened with reasoning.** On factoids the margin was modest. On method and judgment questions the wiki was perfect (3.00) against RAG's 1.50 and 0.90. Those are the questions whose answers are synthesized reasoning, present in the wiki and in no single raw file. This is the whole premise of an llm-wiki: it stores how you think about the work, not only what the work produced.
+
+**Retrieval, not memory, did the work.** The LLM-alone control scored 0.10 and declined 92% of the questions. The model cannot answer questions about a private project from training data, so the wiki's and RAG's scores are genuinely coming from the material they read, not from what the model already knew.
+
+**The wiki did not fabricate.** RAG produced ten answers with a wrong or invented specific; the llm-wiki produced none. Reading a whole curated page in context, rather than a 180-word fragment torn out of a raw log, removes most of the raw material for confident-but-wrong answers.
+
+## Why the wiki wins, in one example
+
+One question asked whether a retrieval trade-off the team once reported was a real property of their method. RAG retrieved a chunk that *stated* the trade-off and answered "yes." The llm-wiki agent opened the project's history page, found that the trade-off had later been diagnosed as an artifact of a normalization choice and eliminated, and answered "no, and here is what resolved it." The correct answer was a conclusion the team reached over time and wrote down in one place. RAG cannot retrieve a chunk that was never written; the wiki had it, and the agent could navigate to it.
+
+## Caveats
+
+This is a first run, and it should be read as a signal, not a verdict.
+
+- **One project, forty questions, one run.** Nothing here is established until it repeats on other projects with more questions.
+- **The same model family answered and judged.** Grading against a fixed reference limits self-preference, but the strongest check is a judge from a different model, which we have not yet run.
+- **An API interruption shaped the run.** Partway through, our language-model API access was cut off. The llm-wiki answers had already been produced, but they were then *scored in-session by the same model* rather than through the normal automated path, and a planned control (the same navigating agent pointed at the raw files, to separate "agentic navigation" from "wiki content") could not be scored at all. So RAG here is single-shot retrieval while the llm-wiki is an agent navigating pages: they differ in *how* they read as well as in *what* they read. Untangling those two is the first thing the next run will do.
+- **The four excluded factoids.** They were removed for the coverage-fairness reason above; that choice is defensible but it is a choice, and it is reported here so you can weigh it.
+
+## What comes next
+
+The clean version of this test is already scoped. We have a separate project that has ingested a real corpus of scientific papers into an llm-wiki, and when API access returns we will rerun there with the controls this run lacked: a same-mode agent over the raw papers, a judge from a different model, and a larger, coverage-balanced question set. If the pattern holds with those confounds removed, the claim gets much stronger. If it does not, that is worth knowing too, and it will be reported the same way.
+
+## The code
+
+The whole thing is a small, reusable pipeline, and it is deliberately boring: each stage reads and writes plain JSONL files, so any run is inspectable and rerunnable, and the stages compose. Build the corpus from a project's files. Write a question set tagged by type. Run each retrieval arm to produce contexts. Answer with a frozen model. Score blind against references. Point it at any project that has both a raw repository and an llm-wiki, and it produces the tables above. It lives in the project's experiment directory so the next corpus is a config change, not a rewrite.
+
+## Related
+
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the pattern under test here.
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), how the wiki this test used is actually built and maintained.
+- [Knowledge bundles](../knowledge-bundles/), what a wiki becomes when it is packaged for others to consume.
+
+## Sources
+
+- [Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (2020)](https://arxiv.org/abs/2005.11401), the RAG method that is the baseline here.
+- [Andrej Karpathy, "llm-wiki" (gist)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), the knowledge-base pattern the winning arm uses.
+- [Zheng et al., "Judging LLM-as-a-Judge" (2023)](https://arxiv.org/abs/2306.05685), the LLM-as-judge scoring approach and its known biases.
+- [Reimers and Gurevych, "Sentence-BERT" (2019)](https://arxiv.org/abs/1908.10084), the sentence-embedding retrieval the RAG arm relies on.
