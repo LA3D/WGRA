@@ -11,7 +11,22 @@ categories: [ecosystem]
 
 The load-bearing idea is the same one that makes app stores work: discovery abstracts over delivery. The agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.
 
-This is not hypothetical: a working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg is proven, not promised; what remains is a connector-specific kit on top of it. Together with connectors and federation, the marketplace is how a group's tools stop being buried in one pipeline and become resources any researcher's agent can find.
+This is not hypothetical: a working plugin marketplace already packages group skills into installable plugins. Each plugin is one entry in the marketplace manifest:
+
+```json
+{ "name": "graph-data-extraction",
+  "source": "./plugins/graph-data-extraction",
+  "description": "Digitize chart images into numeric data" }
+```
+
+and a researcher installs it with two commands:
+
+```
+/plugin marketplace add chrissweet/csweet-skills-marketplace
+/plugin install graph-data-extraction@csweet-skills-marketplace
+```
+
+The whole thing was validated end to end with the Claude Code command-line tool. So the marketplace leg is proven, not promised; what remains is a connector-specific kit on top of it. Together with connectors and federation, the marketplace is how a group's tools stop being buried in one pipeline and become resources any researcher's agent can find.
 
 ## Related
 

@@ -7,7 +7,20 @@ categories: [foundations]
 
 Most work with LLMs and documents is RAG (retrieval-augmented generation): upload files, retrieve matching chunks at query time, generate an answer. It works, but the model rediscovers the same knowledge from scratch on every question. Nothing accumulates.
 
-[Andrej Karpathy's llm-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) flips that. Instead of retrieving from raw documents at query time, the LLM *compiles* them once into a persistent wiki, a structured, interlinked set of markdown pages, and reads that compiled layer at query time. The shape most write-ups lead with is three layers: an immutable `raw/` folder of your source documents, a `wiki/` folder of the LLM-written pages, and a schema file (a `CLAUDE.md` or similar) that tells the model the conventions. Add a source and the model reads it, extracts what matters, and integrates it, updating entity pages, revising summaries, flagging contradictions. Knowledge is compiled once and kept current, not re-derived per query.
+[Andrej Karpathy's llm-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) flips that. Instead of retrieving from raw documents at query time, the LLM *compiles* them once into a persistent wiki, a structured, interlinked set of markdown pages, and reads that compiled layer at query time. The shape most write-ups lead with is three layers: an immutable `raw/` folder of your source documents, a `wiki/` folder of the LLM-written pages, and a schema file (a `CLAUDE.md` or similar) that tells the model the conventions:
+
+```
+my-project/
+├── raw/            # immutable source documents (the LLM reads, never edits)
+│   ├── coscientist-2023.pdf
+│   └── benchmark.csv
+├── wiki/           # the LLM-written pages: summaries, entity pages, an index, a log
+│   ├── index.md
+│   └── Coscientist-2023.md
+└── CLAUDE.md       # the schema: the conventions the LLM follows
+```
+
+Add a source and the model reads it, extracts what matters, and integrates it, updating entity pages, revising summaries, flagging contradictions. Knowledge is compiled once and kept current, not re-derived per query.
 
 The key property is that the wiki is a **compounding artifact**. The cross-references are already there, the contradictions already flagged, the synthesis already reflects everything read. You never write it; the LLM does the bookkeeping (summarizing, cross-referencing, filing) that makes a knowledge base useful over time. You curate sources and ask questions; the LLM does the grunt work. Obsidian is the IDE, the LLM is the programmer, the wiki is the codebase.
 

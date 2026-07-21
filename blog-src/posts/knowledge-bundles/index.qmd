@@ -5,7 +5,14 @@ date: "2026-06-11"
 categories: [bundles]
 ---
 
-**The general idea: package knowledge for reuse.** A knowledge base has historically been trapped in a tool, a proprietary format, a specific RAG index, one vendor's platform. The move a *knowledge bundle* makes is to package curated knowledge so that any LLM or agent can consume it, with no SDK and no lock-in. This is a real industry direction, not a local coinage. In June 2026, Google Cloud published the [**Open Knowledge Format (OKF)**](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/), a vendor-neutral open specification that represents knowledge as a directory of markdown files with YAML front matter (one required field, `type`), explicitly so that knowledge written by one producer can be read by a different agent. It is positioned as a portable alternative to RAG for "AI memory."
+**The general idea: package knowledge for reuse.** A knowledge base has historically been trapped in a tool, a proprietary format, a specific RAG index, one vendor's platform. The move a *knowledge bundle* makes is to package curated knowledge so that any LLM or agent can consume it, with no SDK and no lock-in. This is a real industry direction, not a local coinage. In June 2026, Google Cloud published the [**Open Knowledge Format (OKF)**](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/), a vendor-neutral open specification that represents knowledge as a directory of markdown files with YAML front matter (one required field, `type`), explicitly so that knowledge written by one producer can be read by a different agent. It is positioned as a portable alternative to RAG for "AI memory." In practice an OKF bundle is just a directory of markdown you could open in any editor:
+
+```
+knowledge-engineering-bundle/
+├── index.md               # a catalog of the pages
+├── ontologies.md          # each page: YAML front matter + prose
+└── expert-systems.md
+```
 
 The relationship is worth stating carefully: OKF is the general standard, and the llm-wiki pattern this project uses is *one instance that conforms to it*, not the other way around.
 

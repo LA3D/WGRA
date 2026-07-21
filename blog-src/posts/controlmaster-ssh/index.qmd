@@ -5,7 +5,18 @@ date: "2026-07-09"
 categories: [infrastructure]
 ---
 
-**What SSH ControlMaster actually is.** ControlMaster is a stock OpenSSH *client* feature (since 2004), turned on with the `ControlMaster`, `ControlPath`, and `ControlPersist` directives in your `ssh_config`. The first connection to a host does the full handshake, TCP, encryption, authentication, and opens a local control socket; every later session to the same host reuses that socket and skips the handshake. Its real purpose is **speed**: it removes the per-connection setup cost, which matters for automation and deployments that open many short SSH sessions. Security is not why it exists.
+**What SSH ControlMaster actually is.** ControlMaster is a stock OpenSSH *client* feature (since 2004), turned on with a few directives in your `ssh_config`:
+
+```
+# ~/.ssh/config
+Host crc
+    HostName        crcfe01.crc.nd.edu
+    ControlMaster   auto
+    ControlPath     ~/.ssh/cm-%r@%h:%p
+    ControlPersist  10m
+```
+
+The first connection to a host does the full handshake, TCP, encryption, authentication, and opens a local control socket; every later session to the same host reuses that socket and skips the handshake. Its real purpose is **speed**: it removes the per-connection setup cost, which matters for automation and deployments that open many short SSH sessions. Security is not why it exists.
 
 **The pattern worth stealing: the credential broker.** Reaching a credentialed source *safely* comes down to one rule: the thing doing the reasoning never holds the secret. A separate, non-LLM component, a **credential broker** (sometimes a "secretless broker"), holds the real credential; the agent sends a request with a placeholder, and the broker swaps the secret in as the request leaves. The threat model is explicit and current for AI agents: prompt injection, a confused tool call, or a sandbox breach. If the agent never held the secret, it cannot leak one. This is an established pattern with real tooling (CyberArk's Secretless Broker, secrets managers, sidecar proxies).
 

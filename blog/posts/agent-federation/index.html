@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -180,7 +215,16 @@ ul.task-list li input[type="checkbox"] {
 
 <p><strong>What federation is.</strong> Federation means independent systems that each keep their own data, control, and rules, while agreeing on a shared way to interoperate: no central authority owns the whole. Email federates (many servers, one protocol); so does the web. Agent federation applies that shape to research-group memory and to the agents that speak for each group.</p>
 <p><strong>The problem it solves.</strong> Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group’s institutional memory often walks out with them.</p>
-<p><strong>How it works here.</strong> Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong>. That term is not ours; it comes from Google’s <strong>A2A (Agent2Agent) protocol</strong>, an open standard (introduced 2025, now under the Linux Foundation) that lets agents built by different vendors discover and delegate to each other. An agent card is a small public JSON document declaring an agent’s identity, its skills, its endpoint, and how to authenticate, exactly the profile another agent needs to decide whether and how to call it.</p>
+<p><strong>How it works here.</strong> Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an <strong>agent card</strong>. That term is not ours; it comes from Google’s <strong>A2A (Agent2Agent) protocol</strong>, an open standard (introduced 2025, now under the Linux Foundation) that lets agents built by different vendors discover and delegate to each other. An agent card is a small public JSON document declaring an agent’s identity, its skills, its endpoint, and how to authenticate, exactly the profile another agent needs to decide whether and how to call it. Abbreviated, one looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"comp-chem-group"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"DFT functional benchmarks and ML-potential notes"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://compchem.example.edu/agent"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"skills"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span> <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"dft-benchmarks"</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"query our functional benchmark table"</span> <span class="fu">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With cards in place, your agent can query a peer’s memory, their benchmark results, their tried-and-abandoned methods, the workflow behind a figure, with the peer’s permission and cited back to specific pages. The consumer channel is an <code>ask</code> primitive: discover which group has relevant knowledge, then query it. Discovery is open (anyone can see a bundle exists); consumption is gated (the peer’s repository permissions decide who reads). Two open standards sit side by side: A2A for agent-to-agent discovery and delegation, and MCP (Model Context Protocol, which lets any AI host such as Claude Desktop or Cursor use a shared tool) for tool and data access; a read-only MCP server lets those hosts reach shared bundles too.</p>
 <p>Federation keeps memory where it belongs, in each group, while making it reachable. Institutional knowledge stops being locked in individual labs and becomes your peers’ actual work, queryable through your agent.</p>
 <section id="related" class="level2">

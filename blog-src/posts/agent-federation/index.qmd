@@ -9,7 +9,19 @@ categories: [ecosystem]
 
 **The problem it solves.** Every research group is quietly re-answering questions another campus group answered last year, and when a PI leaves, that group's institutional memory often walks out with them.
 
-**How it works here.** Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an **agent card**. That term is not ours; it comes from Google's **A2A (Agent2Agent) protocol**, an open standard (introduced 2025, now under the Linux Foundation) that lets agents built by different vendors discover and delegate to each other. An agent card is a small public JSON document declaring an agent's identity, its skills, its endpoint, and how to authenticate, exactly the profile another agent needs to decide whether and how to call it.
+**How it works here.** Each group runs its own Wiki-Grounded Research Agent: its own wiki, its own memory, its own permissions. Its agent publishes an **agent card**. That term is not ours; it comes from Google's **A2A (Agent2Agent) protocol**, an open standard (introduced 2025, now under the Linux Foundation) that lets agents built by different vendors discover and delegate to each other. An agent card is a small public JSON document declaring an agent's identity, its skills, its endpoint, and how to authenticate, exactly the profile another agent needs to decide whether and how to call it. Abbreviated, one looks like this:
+
+```json
+{
+  "name": "comp-chem-group",
+  "description": "DFT functional benchmarks and ML-potential notes",
+  "url": "https://compchem.example.edu/agent",
+  "skills": [
+    { "id": "dft-benchmarks",
+      "description": "query our functional benchmark table" }
+  ]
+}
+```
 
 With cards in place, your agent can query a peer's memory, their benchmark results, their tried-and-abandoned methods, the workflow behind a figure, with the peer's permission and cited back to specific pages. The consumer channel is an `ask` primitive: discover which group has relevant knowledge, then query it. Discovery is open (anyone can see a bundle exists); consumption is gated (the peer's repository permissions decide who reads). Two open standards sit side by side: A2A for agent-to-agent discovery and delegation, and MCP (Model Context Protocol, which lets any AI host such as Claude Desktop or Cursor use a shared tool) for tool and data access; a read-only MCP server lets those hosts reach shared bundles too.
 

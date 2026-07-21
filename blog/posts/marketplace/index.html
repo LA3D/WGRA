@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -181,7 +216,14 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>What a software marketplace is.</strong> A marketplace is the app-store model applied to software components: a centralized catalog where you discover, install, version, update, and usually trust-check third-party add-ons without wiring each one in by hand. You already use several, the phone app stores, the VS Code extension marketplace, npm, browser add-on stores. The shape is always the same: the host app defines <em>extension points</em>, a plugin ships a manifest declaring what it provides, and a registry the client queries handles discovery, versions, and updates.</p>
 <p><strong>How it fits here.</strong> Not every tool is a connector that reaches out to a source. A graph extractor or a figure reader is a capability an agent simply installs, and those travel through a marketplace, the distribution-and-discovery layer for tools, the way federation is for bundles. A researcher’s agent discovers a capability (“graph extraction”) and installs it, and the center can host the catalog cheaply.</p>
 <p>The load-bearing idea is the same one that makes app stores work: discovery abstracts over delivery. The agent finds a capability and uses it, without caring whether that resolves to a plugin it installs from the marketplace or a connector it calls over the network. Delivery mode is an operations decision, never a user-facing one.</p>
-<p>This is not hypothetical: a working plugin marketplace already packages group skills into installable plugins, validated end to end with the Claude Code command-line tool. So the marketplace leg is proven, not promised; what remains is a connector-specific kit on top of it. Together with connectors and federation, the marketplace is how a group’s tools stop being buried in one pipeline and become resources any researcher’s agent can find.</p>
+<p>This is not hypothetical: a working plugin marketplace already packages group skills into installable plugins. Each plugin is one entry in the marketplace manifest:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"graph-data-extraction"</span><span class="fu">,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"source"</span><span class="fu">:</span> <span class="st">"./plugins/graph-data-extraction"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Digitize chart images into numeric data"</span> <span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and a researcher installs it with two commands:</p>
+<pre><code>/plugin marketplace add chrissweet/csweet-skills-marketplace
+/plugin install graph-data-extraction@csweet-skills-marketplace</code></pre>
+<p>The whole thing was validated end to end with the Claude Code command-line tool. So the marketplace leg is proven, not promised; what remains is a connector-specific kit on top of it. Together with connectors and federation, the marketplace is how a group’s tools stop being buried in one pipeline and become resources any researcher’s agent can find.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>

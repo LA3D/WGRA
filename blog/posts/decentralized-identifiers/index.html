@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -179,6 +214,20 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>The problem, and what a DID is.</strong> Almost every identity you have online is issued and controlled by someone else. You “log in with Google,” your university account is created and revoked by IT, your GitHub identity belongs to GitHub. Convenient, but your identity, and everything attached to it, lives at the mercy of that platform: close the account and it is gone. A <strong>decentralized identifier (DID)</strong> inverts that. Defined by a <a href="https://www.w3.org/TR/did-1.1/">W3C standard</a> (a Recommendation since 2022), it is an identifier of the form <code>did:method:something</code> that <em>you</em> create and control with a cryptographic key, and that resolves to a small public document (the DID document) listing your keys and service endpoints, where to reach you, with no company or registry needed to issue it or vouch for it. That is the core of self-sovereign identity: the identifier is yours, portable, and no one can take it away by closing an account.</p>
+<p>The simplest method, <code>did:web</code>, needs no blockchain at all: the identifier <code>did:web:compchem.example.edu</code> just resolves to a JSON file served at <code>https://compchem.example.edu/.well-known/did.json</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"did:web:compchem.example.edu"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"verificationMethod"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"did:web:compchem.example.edu#key-1"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Ed25519VerificationKey2020"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"publicKeyMultibase"</span><span class="fu">:</span> <span class="st">"z6MkhaXgBZD..."</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"service"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"KnowledgeBundle"</span><span class="fu">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"serviceEndpoint"</span><span class="fu">:</span> <span class="st">"https://github.com/compchem/wiki"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Resolving the DID hands you a public key (to check the holder’s signatures) and a service endpoint (where their bundle lives), with no registry in the loop.</p>
 <p>DIDs travel with <strong>verifiable credentials</strong>. A verifiable credential is a cryptographically signed claim, a digital diploma, a driver’s license, or “this holder is a current faculty member”, following an issuer / holder / verifier model: an issuer signs it, you hold it, and any verifier checks the signature against the issuer’s DID <em>without contacting the issuer</em>. Trust is in the signature, not a central database.</p>
 <p><strong>Why it matters here.</strong> Today the federation’s discovery leans on a curated index and access on a GitHub credential, both tie identity to one platform’s account. DIDs make that identity portable, the fourth leg of “locked in on nothing” alongside a portable agent, memory, and tools. Concretely they do three jobs: a stable identifier that survives moving hosts (the “findable” part of FAIR, the Findable-Accessible-Interoperable-Reusable data principles, done without a central issuer); service endpoints in the DID document that double as a discovery primitive (resolve one identifier, get pointers to a participant’s catalog, agent card, and endpoints); and a trust anchor, a verifiable credential checked against a DID gates consumption while discovery stays open. A DID document is itself RDF, so identity, description, and discovery land in one graph rather than three systems.</p>
 <p><strong>Honest status:</strong> design and a plan, not something built. The cheapest test is <code>did:web</code> (the simplest DID method, where the DID document is just a file on a normal web domain, no blockchain) on the existing GitHub Pages, to prove portability before spending anything heavier.</p>
