@@ -19,7 +19,7 @@ The distinction that matters is what each source contains. Raw files hold *facts
 
 ## How it was run
 
-**The project.** The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki.
+**The project.** The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki. The project's published, public-facing form is the [retrieval-context-envelope](https://la3d.github.io/retrieval-context-envelope) site, which makes the same graph-retrieval argument on open benchmark data.
 
 **The questions.** Forty questions, each tagged by what kind of answer it needs:
 
@@ -27,6 +27,13 @@ The distinction that matters is what each source contains. Raw files hold *facts
 - **method**: how a procedure actually works ("how does this retrieval kernel modify the transition probabilities?").
 - **judgment**: which choice was made and why ("was this design preferred over the alternative, and on what evidence?").
 - **cross-source**: a conclusion spread across many records, often the resolution of a result that was later revised ("was this observed trade-off a real property of the method, or an artifact?").
+
+A few of the actual questions, one per type, with the project's internal numbers left out (the full set is held back until the real-corpus run, where it can be released against data readers can check):
+
+- *factoid*: "What restart probability does the random-walk-with-restart retriever use by default?"
+- *method*: "How does the energy-based drift kernel modify the graph's transition probabilities?"
+- *judgment*: "Was the object-agnostic chain variant preferred over the corpus-grounded one, and on what evidence?"
+- *cross-source*: "Was an observed trade-off, coverage gained but ranking strength lost, a real property of the method or an artifact of a normalization choice?"
 
 **The protocol.** One frozen model answers every arm, from only what it is given, and is told to say "not answerable" rather than guess. RAG and the LLM-alone control get a single retrieval pass into a fixed context budget; the llm-wiki arm navigates over several steps. A separate, blind scoring pass then rates each answer from 0 (wrong or declined) to 3 (fully correct, including the load-bearing specifics) against a fixed reference answer, and also flags any answer that asserts a fabricated or wrong fact. The scorer never sees which system produced an answer.
 
@@ -90,6 +97,7 @@ The whole thing is a small, reusable pipeline, and it is deliberately boring: ea
 
 ## Sources
 
+- [The retrieval-context-envelope site](https://la3d.github.io/retrieval-context-envelope), the public face of the graph-retrieval project used as the test corpus here.
 - [Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (2020)](https://arxiv.org/abs/2005.11401), the RAG method that is the baseline here.
 - [Andrej Karpathy, "llm-wiki" (gist)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), the knowledge-base pattern the winning arm uses.
 - [Zheng et al., "Judging LLM-as-a-Judge" (2023)](https://arxiv.org/abs/2306.05685), the LLM-as-judge scoring approach and its known biases.

@@ -198,13 +198,20 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="how-it-was-run" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-was-run">How it was run</h2>
-<p><strong>The project.</strong> The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki.</p>
+<p><strong>The project.</strong> The test corpus is a real internal research project on graph-based retrieval. It comes in two forms that share the same underlying work: about 200 durable artifacts (source code, run logs, result reports, and the git history) and a 48-page llm-wiki authored alongside the experiments. RAG indexes the artifacts; the llm-wiki arm reads the wiki. The project’s published, public-facing form is the <a href="https://la3d.github.io/retrieval-context-envelope">retrieval-context-envelope</a> site, which makes the same graph-retrieval argument on open benchmark data.</p>
 <p><strong>The questions.</strong> Forty questions, each tagged by what kind of answer it needs:</p>
 <ul>
 <li><strong>factoid</strong>: a specific value that sits in one place (“what accuracy did baseline X reach, on which corpus?”).</li>
 <li><strong>method</strong>: how a procedure actually works (“how does this retrieval kernel modify the transition probabilities?”).</li>
 <li><strong>judgment</strong>: which choice was made and why (“was this design preferred over the alternative, and on what evidence?”).</li>
 <li><strong>cross-source</strong>: a conclusion spread across many records, often the resolution of a result that was later revised (“was this observed trade-off a real property of the method, or an artifact?”).</li>
+</ul>
+<p>A few of the actual questions, one per type, with the project’s internal numbers left out (the full set is held back until the real-corpus run, where it can be released against data readers can check):</p>
+<ul>
+<li><em>factoid</em>: “What restart probability does the random-walk-with-restart retriever use by default?”</li>
+<li><em>method</em>: “How does the energy-based drift kernel modify the graph’s transition probabilities?”</li>
+<li><em>judgment</em>: “Was the object-agnostic chain variant preferred over the corpus-grounded one, and on what evidence?”</li>
+<li><em>cross-source</em>: “Was an observed trade-off, coverage gained but ranking strength lost, a real property of the method or an artifact of a normalization choice?”</li>
 </ul>
 <p><strong>The protocol.</strong> One frozen model answers every arm, from only what it is given, and is told to say “not answerable” rather than guess. RAG and the LLM-alone control get a single retrieval pass into a fixed context budget; the llm-wiki arm navigates over several steps. A separate, blind scoring pass then rates each answer from 0 (wrong or declined) to 3 (fully correct, including the load-bearing specifics) against a fixed reference answer, and also flags any answer that asserts a fabricated or wrong fact. The scorer never sees which system produced an answer.</p>
 <p><strong>One fairness exclusion.</strong> The project ran an early sub-experiment on a benchmark it later abandoned as unsuitable, and the wiki authors recorded the <em>lesson</em> from it but never transcribed its numeric tables. Four factoid questions asked for exactly those un-transcribed numbers. Because we cannot know whether a differently-run wiki would have kept them, leaving those questions in would penalize the wiki for a sampling accident rather than a real weakness, so they were removed. That leaves 40 questions. (See the caveats: this exclusion is also entangled with an API interruption.)</p>
@@ -318,6 +325,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <ul>
+<li><a href="https://la3d.github.io/retrieval-context-envelope">The retrieval-context-envelope site</a>, the public face of the graph-retrieval project used as the test corpus here.</li>
 <li><a href="https://arxiv.org/abs/2005.11401">Lewis et al., “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” (2020)</a>, the RAG method that is the baseline here.</li>
 <li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy, “llm-wiki” (gist)</a>, the knowledge-base pattern the winning arm uses.</li>
 <li><a href="https://arxiv.org/abs/2306.05685">Zheng et al., “Judging LLM-as-a-Judge” (2023)</a>, the LLM-as-judge scoring approach and its known biases.</li>
