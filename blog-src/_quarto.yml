@@ -7,6 +7,9 @@ website:
   description: "Browsable bites on the ideas behind the Wiki-Grounded Research Agent"
   site-url: https://la3d.github.io/WGRA/blog/
   navbar:
+    logo: assets/la3d-logo.png
+    logo-href: https://la3d.github.io/
+    logo-alt: "Laboratory for Assured AI Applications Development (LA3D)"
     right:
       - text: "WGRA"
         href: https://la3d.github.io/WGRA/
