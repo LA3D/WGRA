@@ -534,6 +534,15 @@ Apr 22, 2026
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
+<script>
+  // Quarto applies navbar `logo-href` to both the logo and the title anchors.
+  // We want the LA3D logo to link to the org home but the "WGRA Nuggets" title
+  // to link to the blog, so repoint just the title anchor here.
+  document.addEventListener("DOMContentLoaded", function () {
+    var title = document.querySelector("a.navbar-brand:not(.navbar-brand-logo)");
+    if (title) { title.setAttribute("href", "https://la3d.github.io/WGRA/blog/"); }
+  });
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

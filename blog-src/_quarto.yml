@@ -24,6 +24,7 @@ website:
 format:
   html:
     theme: [default, brand.scss]
+    include-after-body: navbar-title-fix.html
     toc: true
     toc-depth: 2
     grid:
