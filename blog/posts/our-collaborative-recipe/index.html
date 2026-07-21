@@ -182,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="llm-wiki-diagram.png" class="img-fluid figure-img"></p>
-<figcaption>Instantiating the template creates an instance (a repo such as <code>llm-wiki-colab</code>) with its own dedicated llm-wiki. The user works in the instance, installs tools from marketplaces, and publishes to and queries the federation, all standing on the shared template.</figcaption>
+<figcaption>The architecture: the non-proprietary template instantiates your agent (you plus an LLM, with tools, gates, and hooks) and its llm-wiki memory (an RDF and SPARQL graph), and both tether to a shared data fabric. Marketplaces and connectors feed up into the fabric, connectors reach out to external data such as PAD, and the federation makes the memory reachable by peers and shared bundles, read through an MCP server by hosts like Claude Desktop and Cursor.</figcaption>
 </figure>
 </div>
 <p><strong>A schema, not a suggestion.</strong> A <code>SCHEMA_&lt;repo&gt;.md</code> file is the authoritative conventions the agent follows: the page <code>type:</code> vocabulary, the required frontmatter (<code>type:</code>, <code>up:</code>), the typed-edge set (<code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>requires:</code>, <code>related:</code>), naming and cross-reference rules, and the special files, <code>index_&lt;repo&gt;.md</code> (the catalog of every page), <code>log_&lt;repo&gt;.md</code> (an append-only chronological record), and <code>Home_&lt;repo&gt;.md</code>. Karpathy leaves all of this to you; the template ships it and keeps it consistent.</p>
