@@ -186,6 +186,13 @@ ul.task-list li input[type="checkbox"] {
 <p>The relationship is worth stating carefully: OKF is the general standard, and the llm-wiki pattern this project uses is <em>one instance that conforms to it</em>, not the other way around.</p>
 <p><strong>What a bundle is here.</strong> A bundle is a wiki authored with the intent that other people consume it through their own LLMs. Bundles are wikis, but not every wiki is a bundle; the distinguishing property is intent to share and be queried by non-authors. The point is that a bundle ships <em>compiled competence</em>, not just searchable content: a student opens a query session against a bundle on knowledge engineering and gets the group’s accumulated judgment, not a reading list. Bundles come in two shapes: a <em>reference</em> bundle uses a neutral retrieve-synthesize-cite protocol; a <em>pedagogical</em> bundle ships a Socratic or worked-example protocol embedded in its own content, so the teaching travels with the material.</p>
 <p>Because a bundle is just a git repo of markdown plus its graph, it is portable, and OKF import and export is on the roadmap so bundles interoperate with the wider open-knowledge world rather than living in a walled garden. Your memory is yours, and it moves.</p>
+<p><strong>A real example: <code>llm-wiki-KB</code>.</strong> Our own reference bundle, <a href="https://la3d-llm-agents.github.io/llm-wiki-KB/">llm-wiki-KB</a>, takes the template itself as its topic. It is an LLM-authored wiki you point an agent at and ask; the page below is its human-facing front door and the home for supplementary material, while the knowledge lives in the wiki behind it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="llm-wiki-kb.png" class="img-fluid figure-img"></p>
+<figcaption>The llm-wiki-KB bundle’s front page: a human-facing entry to a bundle that is meant to be read by an LLM, with a “consume it via an LLM” example and links into the wiki, its start-here page, and its federation Card.</figcaption>
+</figure>
+</div>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>

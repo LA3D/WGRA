@@ -20,6 +20,10 @@ The relationship is worth stating carefully: OKF is the general standard, and th
 
 Because a bundle is just a git repo of markdown plus its graph, it is portable, and OKF import and export is on the roadmap so bundles interoperate with the wider open-knowledge world rather than living in a walled garden. Your memory is yours, and it moves.
 
+**A real example: `llm-wiki-KB`.** Our own reference bundle, [llm-wiki-KB](https://la3d-llm-agents.github.io/llm-wiki-KB/), takes the template itself as its topic. It is an LLM-authored wiki you point an agent at and ask; the page below is its human-facing front door and the home for supplementary material, while the knowledge lives in the wiki behind it.
+
+![The llm-wiki-KB bundle's front page: a human-facing entry to a bundle that is meant to be read by an LLM, with a "consume it via an LLM" example and links into the wiki, its start-here page, and its federation Card.](llm-wiki-kb.png)
+
 ## Related
 
 - [Agent federation](../agent-federation/), how a bundle gets discovered and queried across groups.
