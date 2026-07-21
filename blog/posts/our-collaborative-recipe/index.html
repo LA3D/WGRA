@@ -181,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Karpathy’s note is deliberately abstract. It says so outright: <em>“This document is intentionally abstract. It describes the idea, not a specific implementation… share it with your LLM agent and work together to instantiate a version that fits your needs.”</em> That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="llm-wiki-diagram.png" class="img-fluid figure-img"></p>
+<p><img src="architecture-diagram.png" class="img-fluid figure-img"></p>
 <figcaption>The architecture: the non-proprietary template instantiates your agent (you plus an LLM, with tools, gates, and hooks) and its llm-wiki memory (an RDF and SPARQL graph), and both tether to a shared data fabric. Marketplaces and connectors feed up into the fabric, connectors reach out to external data such as PAD, and the federation makes the memory reachable by peers and shared bundles, read through an MCP server by hosts like Claude Desktop and Cursor.</figcaption>
 </figure>
 </div>
