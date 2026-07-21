@@ -20,3 +20,8 @@ One honest limit: this compile-once approach wins for personal and small-team kn
 - [Our recipe: a collaborative llm-wiki](../our-collaborative-recipe/), the same pattern made multi-writer.
 - [Wiki front matter](../wiki-front-matter/), the metadata that gives the pages structure.
 - [The deep dives](../the-deep-dives/), the longer treatments on the main site.
+
+## Sources
+
+- [Andrej Karpathy, "llm-wiki" (gist)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), the pattern.
+- [Vannevar Bush, "As We May Think" / Memex (Wikipedia)](https://en.wikipedia.org/wiki/Memex), the 1945 lineage.

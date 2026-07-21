@@ -17,3 +17,8 @@ This is not hypothetical: a working plugin marketplace already packages group sk
 
 - [Connectors are agents](../connectors/), the sibling delivery mode (reach out vs install).
 - [Agent federation](../agent-federation/), the same discover-then-use idea for knowledge.
+
+## Sources
+
+- [App store (Wikipedia)](https://en.wikipedia.org/wiki/App_store), the general distribution model.
+- [Claude Code plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces), the marketplace/manifest mechanism used here.

@@ -19,3 +19,8 @@ These nuggets and those deep dives are two lengths of the same story: graze here
 
 - [Karpathy's llm-wiki](../karpathy-llm-wiki/), the idea the deep dives build on.
 - [Our recipe: a collaborative llm-wiki](../our-collaborative-recipe/), the implementation behind them.
+
+## Sources
+
+- [Beyond Memory (Saboia Moreira et al., 2026, Zenodo)](https://doi.org/10.5281/zenodo.21213175), the paper behind the pillars.
+- [llm-wiki-memory-template (GitHub)](https://github.com/crcresearch/llm-wiki-memory-template), the template the deep dives document.

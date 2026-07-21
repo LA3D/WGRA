@@ -20,3 +20,9 @@ One honest caveat is worth keeping. The graph is only as valuable as its consump
 - [Wiki front matter](../wiki-front-matter/), where the triples come from.
 - [Ontologies, kept small](../ontologies/), the vocabulary and the validation rules.
 - [Data fabrics](../data-fabrics/), where standards-based graphs plug into the wider world.
+
+## Sources
+
+- [Google Knowledge Graph (Wikipedia)](https://en.wikipedia.org/wiki/Google_Knowledge_Graph) and [Wikidata](https://www.wikidata.org), flagship real knowledge graphs.
+- [RDF vs property graphs (Neo4j)](https://neo4j.com/blog/knowledge-graph/rdf-vs-property-graphs-knowledge-graphs/), the two common implementations.
+- [W3C SPARQL 1.1](https://www.w3.org/TR/sparql11-query/), the query language.

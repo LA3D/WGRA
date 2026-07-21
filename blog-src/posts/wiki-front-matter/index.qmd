@@ -18,3 +18,8 @@ The payoff is that this metadata **reifies** to a graph. Reify just means turnin
 - [The wiki is a knowledge graph](../knowledge-graphs/), what those triples let you query.
 - [Ontologies, kept small](../ontologies/), the vocabulary the edges draw from.
 - [Karpathy's llm-wiki](../karpathy-llm-wiki/), the pattern these pages instantiate.
+
+## Sources
+
+- [Jekyll: Front Matter](https://jekyllrb.com/docs/front-matter/), the standard YAML metadata convention.
+- [Semantic MediaWiki: Properties and types](https://www.semantic-mediawiki.org/wiki/Help:Properties_and_types), typed links as prior art.

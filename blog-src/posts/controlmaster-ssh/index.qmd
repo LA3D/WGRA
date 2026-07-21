@@ -15,3 +15,8 @@ categories: [infrastructure]
 
 - [Decentralized identifiers](../decentralized-identifiers/), the portable credential the broker could carry next.
 - [Connectors are agents](../connectors/), the things that reach credentialed sources.
+
+## Sources
+
+- [OpenSSH Cookbook: Multiplexing (Wikibooks)](https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Multiplexing) and [Using SSH multiplexing (Scott Lowe)](https://blog.scottlowe.org/2015/12/11/using-ssh-multiplexing/), what ControlMaster is and why (speed).
+- [CyberArk Secretless Broker](https://github.com/cyberark/secretless-broker), the credential-broker pattern with tooling.

@@ -1,6 +1,6 @@
 ---
 title: "Ontologies, kept small"
-description: "An ontology is a formal vocabulary for a domain; real ones are often large. This project's stance is the opposite, keep it small, because that is what makes an agent's reasoning reliable."
+description: "An ontology is a formal vocabulary for a domain; real ones are often large. This project's stance is the opposite, keep it small, and a real PAD example shows why that is what makes an agent's reasoning reliable."
 date: "2026-05-21"
 categories: [graph]
 ---
@@ -9,12 +9,36 @@ categories: [graph]
 
 Its companion for validation is **SHACL** (Shapes Constraint Language), also a W3C standard. You declare *shapes*, for instance "a page of `type: source` must have exactly one `source:` field, and it must be a URL", and SHACL checks a data graph against those shapes and emits a pass/fail report. It is a schema-validator for graphs.
 
-**Our stance: keep it small.** Against that heavyweight backdrop, this project deliberately goes the other way. The wiki's graph is grounded in a small ontology (the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) vocabulary) with SHACL over it, and the argument for keeping it small is a reliability one. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human to catch mistakes. So the reliable path is not "make the agent clever enough to guess at undescribed sources"; it is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that. A heavy ontology over-commits provisional structure and returns over-confident results; a small one is what makes reasoning trustworthy.
+**Our stance: keep it small.** Against that heavyweight backdrop, this project deliberately goes the other way. The wiki's graph is grounded in a small ontology (the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) vocabulary) with SHACL over it, and the argument for keeping it small is a reliability one. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human to catch mistakes. So the reliable path is not "make the agent clever enough to guess at undescribed sources"; it is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that.
 
-That is also the connector contract: a source is not integrated when you can call its API, but when it is described well enough for an agent to reason over without guessing.
+**A concrete example: PAD.** Notre Dame's [Paper Analytical Devices service](https://pad.crc.nd.edu) returns a drug-test card as flat JSON, roughly:
+
+```json
+{ "sample_id": 55713, "quantity": 100, "project": 38,
+  "test_name": "12LanePADKenya2015",
+  "processed_file_location": ".../55713_processed.png" }
+```
+
+On its own that is opaque: is `quantity` a count, a mass, a percentage? What identifies the drug? The service's small ontology (`/ontology/ontology.ttl`) supplies the meaning in a few lines:
+
+```turtle
+pad:AnalyticalCard  pad:belongsToProject  pad:Project ;
+                    pad:quantity          xsd:decimal ;   # a concentration, in percent
+                    pad:imageLocation     xsd:anyURI .
+pad:Project         pad:hasSample         pad:Sample .     # the drugs this project tests for
+pad:NeuralNetwork   pad:trainedOnProject  pad:Project .    # the model that identifies them
+```
+
+Now an agent reasons instead of guesses. `quantity: 100` is 100% strength, not a count. The card is scoped by its `Project`, so the candidate drugs are that project's sample list, and to auto-identify one it should reach for a `NeuralNetwork` trained on that project. The processed image lives at `imageLocation`. None of that meaning is in the raw record; the ontology carries it. That is the connector contract in miniature: a source is usable when it is *described* well enough to reason over, not when someone has hand-coded what each field means. A heavy ontology would over-commit and return over-confident results; this small one is enough to make the reasoning trustworthy.
 
 ## Related
 
 - [The wiki is a knowledge graph](../knowledge-graphs/), what the ontology structures.
 - [Connectors are agents](../connectors/), where a per-source ontology earns its keep.
 - [Wiki front matter](../wiki-front-matter/), the typed edges the ontology names.
+
+## Sources
+
+- [W3C OWL](https://www.w3.org/OWL/) and [W3C SHACL](https://www.w3.org/TR/shacl/), the authoring and validation standards.
+- [schema.org](https://schema.org) and the [Gene Ontology](https://geneontology.org), large real ontologies.
+- [PAD ontology (`ontology.ttl`)](https://pad.crc.nd.edu/ontology/ontology.ttl), the source of the worked example.

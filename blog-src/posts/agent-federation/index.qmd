@@ -20,3 +20,8 @@ Federation keeps memory where it belongs, in each group, while making it reachab
 - [Knowledge bundles](../knowledge-bundles/), the thing a peer publishes and you query.
 - [Connectors are agents](../connectors/), how outside sources get into a wiki in the first place.
 - [Decentralized identifiers](../decentralized-identifiers/), portable identity for who is allowed to read.
+
+## Sources
+
+- [Federated architecture (GeeksforGeeks)](https://www.geeksforgeeks.org/system-design/federated-architecture-system-design/), federation in the general sense.
+- [Agent2Agent (A2A) protocol (IBM)](https://www.ibm.com/think/topics/agent2agent-protocol) and the [A2A protocol site](https://a2a-protocol.org/latest/), where "agent card" is defined.

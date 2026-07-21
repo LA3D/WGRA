@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "WGRA Nuggets",
     "section": "",
-    "text": "One idea per nugget: short, self-contained, and browsable in any order. The flyer is the full pitch and the deep dives go long; these sit in between, a set of concepts you can graze rather than a story you follow start to finish.\nStart anywhere. If you want the lineage, Karpathy’s llm-wiki is where the whole thing begins.\n\n\n\n\n\n\n\n\n\nDecentralized identifiers\n\n\n\nidentity\n\n\n\nOnline identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.\n\n\n\n\n\nJul 18, 2026\n\n\n\n\n\n\n\nData fabrics\n\n\n\necosystem\n\n\n\nA data fabric is a metadata-driven layer that unifies distributed data where it lives; our knowledge graph and connectors are what let a wiki-grounded agent plug into one.\n\n\n\n\n\nJul 14, 2026\n\n\n\n\n\n\n\nControlMaster, and the credential-broker pattern\n\n\n\ninfrastructure\n\n\n\nSSH ControlMaster reuses one authenticated connection, its real purpose is speed. The pattern worth borrowing is the credential broker: the agent never holds the secret.\n\n\n\n\n\nJul 9, 2026\n\n\n\n\n\n\n\nConnectors are agents\n\n\n\necosystem\n\n\n\nIn data integration a connector is a static, pluggable adapter (think Kafka Connect, Fivetran). For interpretive extraction, ours are agents instead, and a small ontology per source is what makes them reliable.\n\n\n\n\n\nJul 2, 2026\n\n\n\n\n\n\n\nA marketplace for tools\n\n\n\necosystem\n\n\n\nThe app-store model applied to agent tools: a catalog for discovery, versioning, updates, and trust, so a capability is installed, not hand-wired.\n\n\n\n\n\nJun 27, 2026\n\n\n\n\n\n\n\nAgent federation\n\n\n\necosystem\n\n\n\nFederation means autonomous systems that interoperate with no central owner; here each group’s agent publishes an A2A agent card, so peers can discover and query its memory with permission.\n\n\n\n\n\nJun 19, 2026\n\n\n\n\n\n\n\nKnowledge bundles\n\n\n\nbundles\n\n\n\nPackaging a knowledge base so any LLM can consume it, portable, not locked to a tool. Google’s Open Knowledge Format is the emerging standard; a bundle is our instance of it.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\nThe deep dives\n\n\n\ndeep-dives\n\n\n\nFive longer treatments on the WGRA site: memory that compounds, team scale, agent capability, the knowledge graph, and knowledge bundles.\n\n\n\n\n\nJun 4, 2026\n\n\n\n\n\n\n\nOur recipe: a collaborative llm-wiki\n\n\n\nfoundations\n\n\n\nThe llm-wiki-memory-template turns Karpathy’s single-user pattern into shared, attributed, multi-writer memory for a research group.\n\n\n\n\n\nMay 29, 2026\n\n\n\n\n\n\n\nOntologies, kept small\n\n\n\ngraph\n\n\n\nAn ontology is a formal vocabulary for a domain; real ones are often large. This project’s stance is the opposite, keep it small, because that is what makes an agent’s reasoning reliable.\n\n\n\n\n\nMay 21, 2026\n\n\n\n\n\n\n\nThe wiki is a knowledge graph\n\n\n\ngraph\n\n\n\nEvery typed edge reifies to an RDF triple, so the wiki is a SPARQL-queryable graph, which buys queries prose and grep cannot answer.\n\n\n\n\n\nMay 14, 2026\n\n\n\n\n\n\n\nWiki front matter: the typed edges\n\n\n\nfoundations\n\ngraph\n\n\n\nA few lines of YAML at the top of each page carry the relationships that turn linked markdown into something an agent can reason over.\n\n\n\n\n\nMay 6, 2026\n\n\n\n\n\n\n\nKarpathy’s llm-wiki\n\n\n\nfoundations\n\n\n\nThe pattern underneath everything here: an LLM that builds and maintains a wiki as it works, so knowledge compounds instead of being rediscovered on every query.\n\n\n\n\n\nApr 22, 2026\n\n\n\n\n\nNo matching items"
+    "text": "One idea per nugget: short, self-contained, and browsable in any order. The flyer is the full pitch and the deep dives go long; these sit in between, a set of concepts you can graze rather than a story you follow start to finish.\nStart anywhere. If you want the lineage, Karpathy’s llm-wiki is where the whole thing begins.\n\n\n\n\n\n\n\n\n\nDecentralized identifiers\n\n\n\nidentity\n\n\n\nOnline identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.\n\n\n\n\n\nJul 18, 2026\n\n\n\n\n\n\n\nData fabrics\n\n\n\necosystem\n\n\n\nA data fabric is a metadata-driven layer that unifies distributed data where it lives; our knowledge graph and connectors are what let a wiki-grounded agent plug into one.\n\n\n\n\n\nJul 14, 2026\n\n\n\n\n\n\n\nControlMaster, and the credential-broker pattern\n\n\n\ninfrastructure\n\n\n\nSSH ControlMaster reuses one authenticated connection, its real purpose is speed. The pattern worth borrowing is the credential broker: the agent never holds the secret.\n\n\n\n\n\nJul 9, 2026\n\n\n\n\n\n\n\nConnectors are agents\n\n\n\necosystem\n\n\n\nIn data integration a connector is a static, pluggable adapter (think Kafka Connect, Fivetran). For interpretive extraction, ours are agents instead, and a small ontology per source is what makes them reliable.\n\n\n\n\n\nJul 2, 2026\n\n\n\n\n\n\n\nA marketplace for tools\n\n\n\necosystem\n\n\n\nThe app-store model applied to agent tools: a catalog for discovery, versioning, updates, and trust, so a capability is installed, not hand-wired.\n\n\n\n\n\nJun 27, 2026\n\n\n\n\n\n\n\nAgent federation\n\n\n\necosystem\n\n\n\nFederation means autonomous systems that interoperate with no central owner; here each group’s agent publishes an A2A agent card, so peers can discover and query its memory with permission.\n\n\n\n\n\nJun 19, 2026\n\n\n\n\n\n\n\nKnowledge bundles\n\n\n\nbundles\n\n\n\nPackaging a knowledge base so any LLM can consume it, portable, not locked to a tool. Google’s Open Knowledge Format is the emerging standard; a bundle is our instance of it.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\nThe deep dives\n\n\n\ndeep-dives\n\n\n\nFive longer treatments on the WGRA site: memory that compounds, team scale, agent capability, the knowledge graph, and knowledge bundles.\n\n\n\n\n\nJun 4, 2026\n\n\n\n\n\n\n\nOur recipe: the pattern made concrete\n\n\n\nfoundations\n\n\n\nKarpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.\n\n\n\n\n\nMay 29, 2026\n\n\n\n\n\n\n\nOntologies, kept small\n\n\n\ngraph\n\n\n\nAn ontology is a formal vocabulary for a domain; real ones are often large. This project’s stance is the opposite, keep it small, and a real PAD example shows why that is what makes an agent’s reasoning reliable.\n\n\n\n\n\nMay 21, 2026\n\n\n\n\n\n\n\nThe wiki is a knowledge graph\n\n\n\ngraph\n\n\n\nEvery typed edge reifies to an RDF triple, so the wiki is a SPARQL-queryable graph, which buys queries prose and grep cannot answer.\n\n\n\n\n\nMay 14, 2026\n\n\n\n\n\n\n\nWiki front matter: the typed edges\n\n\n\nfoundations\n\ngraph\n\n\n\nA few lines of YAML at the top of each page carry the relationships that turn linked markdown into something an agent can reason over.\n\n\n\n\n\nMay 6, 2026\n\n\n\n\n\n\n\nKarpathy’s llm-wiki\n\n\n\nfoundations\n\n\n\nThe pattern underneath everything here: an LLM that builds and maintains a wiki as it works, so knowledge compounds instead of being rediscovered on every query.\n\n\n\n\n\nApr 22, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/knowledge-graphs/index.html",
@@ -28,18 +28,32 @@
     "text": "Related\n\nWiki front matter, where the triples come from.\nOntologies, kept small, the vocabulary and the validation rules.\nData fabrics, where standards-based graphs plug into the wider world."
   },
   {
+    "objectID": "posts/knowledge-graphs/index.html#sources",
+    "href": "posts/knowledge-graphs/index.html#sources",
+    "title": "The wiki is a knowledge graph",
+    "section": "Sources",
+    "text": "Sources\n\nGoogle Knowledge Graph (Wikipedia) and Wikidata, flagship real knowledge graphs.\nRDF vs property graphs (Neo4j), the two common implementations.\nW3C SPARQL 1.1, the query language."
+  },
+  {
     "objectID": "posts/our-collaborative-recipe/index.html",
     "href": "posts/our-collaborative-recipe/index.html",
-    "title": "Our recipe: a collaborative llm-wiki",
+    "title": "Our recipe: the pattern made concrete",
     "section": "",
-    "text": "Karpathy’s pattern is written for one person and their agent. Our recipe, the llm-wiki-memory-template, is what it takes to make it work for a group, and the group case is a well-worn problem. Any shared knowledge base with multiple concurrent writers, from Wikipedia to Google Docs to a plain git repository, faces the same three challenges: provenance (who claimed what), conflict resolution (two people editing at once), and quality control (keeping bad edits out). Decades of collaborative-editing work, revision histories, operational transforms, CRDTs, git merge, exist to handle them. Our recipe is one instantiation, tuned for the case where an LLM does the writing.\nThe core is the same as Karpathy’s: an LLM-authored wiki of cross-linked markdown, front matter carrying typed edges, the agent doing all the maintenance. What we add maps onto those three challenges.\nProvenance. Every entry carries a by: &lt;human&gt; via &lt;agent&gt; line, so who claimed what, with which tool, stays legible, and git preserves the full amendment history.\nConflict resolution. When two collaborators write at once, mechanical conflicts resolve automatically (a git merge) and semantic ones route through an LLM-assisted merge, so both contributions land and neither overwrites the other.\nQuality control. A verification gate blocks numerical claims not backed by real output, and named discipline gates catch the rationalizations that produce bad writes. The discipline lives in the repo, not in whoever happened to prompt well.\nIt is also model-neutral. The wiki is the durable memory; the model doing the work today (Claude Code, Cursor, whatever comes next) is disposable. Different assistants read the wiki through their own commands and skills while sharing the same policy files, gates, and schema, so one student can use Claude Code and another Cursor on the same project, and adopting a better model next year is a new overlay, not a migration.\nThe recipe is a template, not a platform. You fork it, you own it, and you take your memory with you."
+    "text": "Karpathy’s note is deliberately abstract. It says so outright: “This document is intentionally abstract. It describes the idea, not a specific implementation… share it with your LLM agent and work together to instantiate a version that fits your needs.” That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The llm-wiki-memory-template makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.\nA schema, not a suggestion. A SCHEMA_&lt;repo&gt;.md file is the authoritative conventions the agent follows: the page type: vocabulary, the required frontmatter (type:, up:), the typed-edge set (extends:, supports:, criticizes:, requires:, related:), naming and cross-reference rules, and the special files, index_&lt;repo&gt;.md (the catalog of every page), log_&lt;repo&gt;.md (an append-only chronological record), and Home_&lt;repo&gt;.md. Karpathy leaves all of this to you; the template ships it and keeps it consistent.\nInstance and wiki are separated. The project repo (the instance, where tools install) is distinct from the wiki itself, a nested, separately git-versioned directory that carries a subtype and is what gets published as a bundle. Tools install into the instance; subtype and sharing are properties of the wiki.\nA reified knowledge graph, built in. A pipeline under scripts/kg/ extracts the frontmatter and body links into RDF, validates them with SHACL against the la3d/llm-wiki-colab ontology, and produces a SPARQL-queryable graph.ttl with a shipped library of canned queries. One command (build-graph.sh) rebuilds it after edits.\nDiscipline in the artifact. A verification gate blocks the agent from filing numerical results that are not backed by real script output. Named discipline gates pair each common rationalization (“this is basically what the data would show”) with the check that defeats it. A SessionStart hook reminds every new agent session, before it does anything, that the wiki is project memory. These are hooks and commands the harness runs, not habits a user has to remember.\nFour operations as single commands. Ingest a source, query the wiki, lint for staleness, and verify a change before commit, each is one command the agent reaches for when the context calls for it. Karpathy describes these as workflows you develop yourself; the template makes them concrete and repeatable.\nMulti-writer collision handling. A push protocol (wiki_push) pushes optimistically, and on a collision it fetches, union-merges the index and log automatically, routes genuine content conflicts to an LLM-assisted resolver, and retries, so two collaborators writing at once both land and neither overwrites the other. Every entry carries a by: &lt;human&gt; via &lt;agent&gt; attribution line, and git keeps the full amendment history.\nModel-neutral overlays. Claude Code, Cursor, and whatever comes next each read the same wiki through their own commands and skills while sharing the policy files, gates, and schema. Swapping the model is a new overlay, not a migration; the wiki is the durable part, the model is disposable.\nKarpathy gives you the idea and says “your LLM can figure out the rest.” The recipe is the rest, figured out once, tested, and forkable. It is a template, not a platform: you own it, and you take your memory with you."
   },
   {
     "objectID": "posts/our-collaborative-recipe/index.html#related",
     "href": "posts/our-collaborative-recipe/index.html#related",
-    "title": "Our recipe: a collaborative llm-wiki",
+    "title": "Our recipe: the pattern made concrete",
     "section": "Related",
-    "text": "Related\n\nKarpathy’s llm-wiki, the single-user pattern this extends.\nAgent federation, how one group’s wiki reaches another’s.\nThe deep dives, team scale and agent capability in full."
+    "text": "Related\n\nKarpathy’s llm-wiki, the abstract idea this implements.\nWiki front matter and the knowledge graph, two of the things the schema pins down.\nAgent federation, how one group’s wiki reaches another’s."
+  },
+  {
+    "objectID": "posts/our-collaborative-recipe/index.html#sources",
+    "href": "posts/our-collaborative-recipe/index.html#sources",
+    "title": "Our recipe: the pattern made concrete",
+    "section": "Sources",
+    "text": "Sources\n\nllm-wiki-memory-template (GitHub), the implementation described here.\nAndrej Karpathy, “llm-wiki” (gist), the abstract idea it instantiates.\nBeyond Memory (Saboia Moreira et al., 2026, Zenodo) and the la3d/llm-wiki-colab ontology."
   },
   {
     "objectID": "posts/controlmaster-ssh/index.html",
@@ -56,6 +70,13 @@
     "text": "Related\n\nDecentralized identifiers, the portable credential the broker could carry next.\nConnectors are agents, the things that reach credentialed sources."
   },
   {
+    "objectID": "posts/controlmaster-ssh/index.html#sources",
+    "href": "posts/controlmaster-ssh/index.html#sources",
+    "title": "ControlMaster, and the credential-broker pattern",
+    "section": "Sources",
+    "text": "Sources\n\nOpenSSH Cookbook: Multiplexing (Wikibooks) and Using SSH multiplexing (Scott Lowe), what ControlMaster is and why (speed).\nCyberArk Secretless Broker, the credential-broker pattern with tooling."
+  },
+  {
     "objectID": "posts/knowledge-bundles/index.html",
     "href": "posts/knowledge-bundles/index.html",
     "title": "Knowledge bundles",
@@ -68,6 +89,13 @@
     "title": "Knowledge bundles",
     "section": "Related",
     "text": "Related\n\nAgent federation, how a bundle gets discovered and queried across groups.\nOur recipe: a collaborative llm-wiki, what a bundle is made of.\nA marketplace for tools, the sibling distribution channel for tools."
+  },
+  {
+    "objectID": "posts/knowledge-bundles/index.html#sources",
+    "href": "posts/knowledge-bundles/index.html#sources",
+    "title": "Knowledge bundles",
+    "section": "Sources",
+    "text": "Sources\n\nGoogle Cloud: the Open Knowledge Format, the OKF spec announcement (June 2026).\nGoogle Cloud announces the Open Knowledge Format (Search Engine Journal), independent coverage."
   },
   {
     "objectID": "posts/decentralized-identifiers/index.html",
@@ -84,11 +112,18 @@
     "text": "Related\n\nData fabrics, where FAIR and portable identity meet.\nAgent federation, the discovery layer DIDs would open up.\nControlMaster, the credential seam a DID would slot into."
   },
   {
+    "objectID": "posts/decentralized-identifiers/index.html#sources",
+    "href": "posts/decentralized-identifiers/index.html#sources",
+    "title": "Decentralized identifiers",
+    "section": "Sources",
+    "text": "Sources\n\nW3C Decentralized Identifiers (DIDs) v1.1 and the 2022 DID Recommendation announcement, the standard.\nW3C Verifiable Credentials Data Model, the credential half."
+  },
+  {
     "objectID": "posts/ontologies/index.html",
     "href": "posts/ontologies/index.html",
     "title": "Ontologies, kept small",
     "section": "",
-    "text": "What an ontology is. An ontology is a formal specification of the concepts in a domain: the kinds of things that exist, how they relate, and the constraints on them. It is a long knowledge-representation tradition with a W3C authoring standard, OWL, and large real examples you may already use, schema.org (the shared vocabulary search engines read off web pages) and the Gene Ontology (millions of biology annotations). Real ontologies are frequently big and heavyweight.\nIts companion for validation is SHACL (Shapes Constraint Language), also a W3C standard. You declare shapes, for instance “a page of type: source must have exactly one source: field, and it must be a URL”, and SHACL checks a data graph against those shapes and emits a pass/fail report. It is a schema-validator for graphs.\nOur stance: keep it small. Against that heavyweight backdrop, this project deliberately goes the other way. The wiki’s graph is grounded in a small ontology (the la3d/llm-wiki-colab vocabulary) with SHACL over it, and the argument for keeping it small is a reliability one. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human to catch mistakes. So the reliable path is not “make the agent clever enough to guess at undescribed sources”; it is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that. A heavy ontology over-commits provisional structure and returns over-confident results; a small one is what makes reasoning trustworthy.\nThat is also the connector contract: a source is not integrated when you can call its API, but when it is described well enough for an agent to reason over without guessing."
+    "text": "What an ontology is. An ontology is a formal specification of the concepts in a domain: the kinds of things that exist, how they relate, and the constraints on them. It is a long knowledge-representation tradition with a W3C authoring standard, OWL, and large real examples you may already use, schema.org (the shared vocabulary search engines read off web pages) and the Gene Ontology (millions of biology annotations). Real ontologies are frequently big and heavyweight.\nIts companion for validation is SHACL (Shapes Constraint Language), also a W3C standard. You declare shapes, for instance “a page of type: source must have exactly one source: field, and it must be a URL”, and SHACL checks a data graph against those shapes and emits a pass/fail report. It is a schema-validator for graphs.\nOur stance: keep it small. Against that heavyweight backdrop, this project deliberately goes the other way. The wiki’s graph is grounded in a small ontology (the la3d/llm-wiki-colab vocabulary) with SHACL over it, and the argument for keeping it small is a reliability one. An LLM reasoning over an explicit small ontology is accurate; an LLM inferring structure from raw, unlabelled data is measurably less accurate and often needs a human to catch mistakes. So the reliable path is not “make the agent clever enough to guess at undescribed sources”; it is the reverse: give every source a small ontology, cheap to author, and let the agent reason over that.\nA concrete example: PAD. Notre Dame’s Paper Analytical Devices service returns a drug-test card as flat JSON, roughly:\nOn its own that is opaque: is quantity a count, a mass, a percentage? What identifies the drug? The service’s small ontology (/ontology/ontology.ttl) supplies the meaning in a few lines:\nNow an agent reasons instead of guesses. quantity: 100 is 100% strength, not a count. The card is scoped by its Project, so the candidate drugs are that project’s sample list, and to auto-identify one it should reach for a NeuralNetwork trained on that project. The processed image lives at imageLocation. None of that meaning is in the raw record; the ontology carries it. That is the connector contract in miniature: a source is usable when it is described well enough to reason over, not when someone has hand-coded what each field means. A heavy ontology would over-commit and return over-confident results; this small one is enough to make the reasoning trustworthy."
   },
   {
     "objectID": "posts/ontologies/index.html#related",
@@ -96,6 +131,13 @@
     "title": "Ontologies, kept small",
     "section": "Related",
     "text": "Related\n\nThe wiki is a knowledge graph, what the ontology structures.\nConnectors are agents, where a per-source ontology earns its keep.\nWiki front matter, the typed edges the ontology names."
+  },
+  {
+    "objectID": "posts/ontologies/index.html#sources",
+    "href": "posts/ontologies/index.html#sources",
+    "title": "Ontologies, kept small",
+    "section": "Sources",
+    "text": "Sources\n\nW3C OWL and W3C SHACL, the authoring and validation standards.\nschema.org and the Gene Ontology, large real ontologies.\nPAD ontology (ontology.ttl), the source of the worked example."
   },
   {
     "objectID": "posts/connectors/index.html",
@@ -112,6 +154,13 @@
     "text": "Related\n\nOntologies, kept small, the per-source description that makes a connector reliable.\nA marketplace for tools, the other way a capability reaches an agent.\nAgent federation, where extracted knowledge gets shared."
   },
   {
+    "objectID": "posts/connectors/index.html#sources",
+    "href": "posts/connectors/index.html#sources",
+    "title": "Connectors are agents",
+    "section": "Sources",
+    "text": "Sources\n\nKafka Connect: building data-integration pipelines (Conduktor) and understanding Kafka Connect source/sink (Axual), the conventional connector.\nWhat is iPaaS (DigitalRoute), connectors across integration platforms."
+  },
+  {
     "objectID": "posts/karpathy-llm-wiki/index.html",
     "href": "posts/karpathy-llm-wiki/index.html",
     "title": "Karpathy’s llm-wiki",
@@ -124,6 +173,13 @@
     "title": "Karpathy’s llm-wiki",
     "section": "Related",
     "text": "Related\n\nOur recipe: a collaborative llm-wiki, the same pattern made multi-writer.\nWiki front matter, the metadata that gives the pages structure.\nThe deep dives, the longer treatments on the main site."
+  },
+  {
+    "objectID": "posts/karpathy-llm-wiki/index.html#sources",
+    "href": "posts/karpathy-llm-wiki/index.html#sources",
+    "title": "Karpathy’s llm-wiki",
+    "section": "Sources",
+    "text": "Sources\n\nAndrej Karpathy, “llm-wiki” (gist), the pattern.\nVannevar Bush, “As We May Think” / Memex (Wikipedia), the 1945 lineage."
   },
   {
     "objectID": "posts/marketplace/index.html",
@@ -140,6 +196,13 @@
     "text": "Related\n\nConnectors are agents, the sibling delivery mode (reach out vs install).\nAgent federation, the same discover-then-use idea for knowledge."
   },
   {
+    "objectID": "posts/marketplace/index.html#sources",
+    "href": "posts/marketplace/index.html#sources",
+    "title": "A marketplace for tools",
+    "section": "Sources",
+    "text": "Sources\n\nApp store (Wikipedia), the general distribution model.\nClaude Code plugin marketplaces, the marketplace/manifest mechanism used here."
+  },
+  {
     "objectID": "posts/data-fabrics/index.html",
     "href": "posts/data-fabrics/index.html",
     "title": "Data fabrics",
@@ -152,6 +215,13 @@
     "title": "Data fabrics",
     "section": "Related",
     "text": "Related\n\nThe wiki is a knowledge graph, the semantic layer a fabric runs on.\nConnectors are agents, the automated integration into the fabric.\nDecentralized identifiers, portable identity and the FAIR “findable” anchor."
+  },
+  {
+    "objectID": "posts/data-fabrics/index.html#sources",
+    "href": "posts/data-fabrics/index.html#sources",
+    "title": "Data fabrics",
+    "section": "Sources",
+    "text": "Sources\n\nGartner: What is data fabric, the definition and active-metadata framing.\nData mesh vs data fabric (Alation), the contrast with mesh."
   },
   {
     "objectID": "posts/the-deep-dives/index.html",
@@ -168,6 +238,13 @@
     "text": "Related\n\nKarpathy’s llm-wiki, the idea the deep dives build on.\nOur recipe: a collaborative llm-wiki, the implementation behind them."
   },
   {
+    "objectID": "posts/the-deep-dives/index.html#sources",
+    "href": "posts/the-deep-dives/index.html#sources",
+    "title": "The deep dives",
+    "section": "Sources",
+    "text": "Sources\n\nBeyond Memory (Saboia Moreira et al., 2026, Zenodo), the paper behind the pillars.\nllm-wiki-memory-template (GitHub), the template the deep dives document."
+  },
+  {
     "objectID": "posts/wiki-front-matter/index.html",
     "href": "posts/wiki-front-matter/index.html",
     "title": "Wiki front matter: the typed edges",
@@ -182,6 +259,13 @@
     "text": "Related\n\nThe wiki is a knowledge graph, what those triples let you query.\nOntologies, kept small, the vocabulary the edges draw from.\nKarpathy’s llm-wiki, the pattern these pages instantiate."
   },
   {
+    "objectID": "posts/wiki-front-matter/index.html#sources",
+    "href": "posts/wiki-front-matter/index.html#sources",
+    "title": "Wiki front matter: the typed edges",
+    "section": "Sources",
+    "text": "Sources\n\nJekyll: Front Matter, the standard YAML metadata convention.\nSemantic MediaWiki: Properties and types, typed links as prior art."
+  },
+  {
     "objectID": "posts/agent-federation/index.html",
     "href": "posts/agent-federation/index.html",
     "title": "Agent federation",
@@ -194,6 +278,13 @@
     "title": "Agent federation",
     "section": "Related",
     "text": "Related\n\nKnowledge bundles, the thing a peer publishes and you query.\nConnectors are agents, how outside sources get into a wiki in the first place.\nDecentralized identifiers, portable identity for who is allowed to read."
+  },
+  {
+    "objectID": "posts/agent-federation/index.html#sources",
+    "href": "posts/agent-federation/index.html#sources",
+    "title": "Agent federation",
+    "section": "Sources",
+    "text": "Sources\n\nFederated architecture (GeeksforGeeks), federation in the general sense.\nAgent2Agent (A2A) protocol (IBM) and the A2A protocol site, where “agent card” is defined."
   },
   {
     "objectID": "about.html",

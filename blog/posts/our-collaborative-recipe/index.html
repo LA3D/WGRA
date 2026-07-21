@@ -8,9 +8,9 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-05-29">
-<meta name="description" content="The llm-wiki-memory-template turns Karpathy’s single-user pattern into shared, attributed, multi-writer memory for a research group.">
+<meta name="description" content="Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.">
 
-<title>Our recipe: a collaborative llm-wiki – WGRA Nuggets</title>
+<title>Our recipe: the pattern made concrete – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -132,6 +132,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
     </div>
@@ -140,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Our recipe: a collaborative llm-wiki</h1>
+<h1 class="title">Our recipe: the pattern made concrete</h1>
   <div class="quarto-categories">
     <div class="quarto-category">foundations</div>
   </div>
@@ -148,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    The llm-wiki-memory-template turns Karpathy’s single-user pattern into shared, attributed, multi-writer memory for a research group.
+    Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.
   </div>
 </div>
 
@@ -177,19 +178,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Karpathy’s pattern is written for one person and their agent. Our recipe, the <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a>, is what it takes to make it work for a group, and the group case is a well-worn problem. Any shared knowledge base with multiple concurrent writers, from Wikipedia to Google Docs to a plain git repository, faces the same three challenges: <strong>provenance</strong> (who claimed what), <strong>conflict resolution</strong> (two people editing at once), and <strong>quality control</strong> (keeping bad edits out). Decades of collaborative-editing work, revision histories, operational transforms, CRDTs, git merge, exist to handle them. Our recipe is one instantiation, tuned for the case where an LLM does the writing.</p>
-<p>The core is the same as Karpathy’s: an LLM-authored wiki of cross-linked markdown, front matter carrying typed edges, the agent doing all the maintenance. What we add maps onto those three challenges.</p>
-<p><strong>Provenance.</strong> Every entry carries a <code>by: &lt;human&gt; via &lt;agent&gt;</code> line, so who claimed what, with which tool, stays legible, and git preserves the full amendment history.</p>
-<p><strong>Conflict resolution.</strong> When two collaborators write at once, mechanical conflicts resolve automatically (a git merge) and semantic ones route through an LLM-assisted merge, so both contributions land and neither overwrites the other.</p>
-<p><strong>Quality control.</strong> A verification gate blocks numerical claims not backed by real output, and named discipline gates catch the rationalizations that produce bad writes. The discipline lives in the repo, not in whoever happened to prompt well.</p>
-<p>It is also model-neutral. The wiki is the durable memory; the model doing the work today (Claude Code, Cursor, whatever comes next) is disposable. Different assistants read the wiki through their own commands and skills while sharing the same policy files, gates, and schema, so one student can use Claude Code and another Cursor on the same project, and adopting a better model next year is a new overlay, not a migration.</p>
-<p>The recipe is a template, not a platform. You fork it, you own it, and you take your memory with you.</p>
+<p>Karpathy’s note is deliberately abstract. It says so outright: <em>“This document is intentionally abstract. It describes the idea, not a specific implementation… share it with your LLM agent and work together to instantiate a version that fits your needs.”</em> That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.</p>
+<p><strong>A schema, not a suggestion.</strong> A <code>SCHEMA_&lt;repo&gt;.md</code> file is the authoritative conventions the agent follows: the page <code>type:</code> vocabulary, the required frontmatter (<code>type:</code>, <code>up:</code>), the typed-edge set (<code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>requires:</code>, <code>related:</code>), naming and cross-reference rules, and the special files, <code>index_&lt;repo&gt;.md</code> (the catalog of every page), <code>log_&lt;repo&gt;.md</code> (an append-only chronological record), and <code>Home_&lt;repo&gt;.md</code>. Karpathy leaves all of this to you; the template ships it and keeps it consistent.</p>
+<p><strong>Instance and wiki are separated.</strong> The project repo (the <em>instance</em>, where tools install) is distinct from the <em>wiki</em> itself, a nested, separately git-versioned directory that carries a subtype and is what gets published as a bundle. Tools install into the instance; subtype and sharing are properties of the wiki.</p>
+<p><strong>A reified knowledge graph, built in.</strong> A pipeline under <code>scripts/kg/</code> extracts the frontmatter and body links into RDF, validates them with SHACL against the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> ontology, and produces a SPARQL-queryable <code>graph.ttl</code> with a shipped library of canned queries. One command (<code>build-graph.sh</code>) rebuilds it after edits.</p>
+<p><strong>Discipline in the artifact.</strong> A <strong>verification gate</strong> blocks the agent from filing numerical results that are not backed by real script output. Named <strong>discipline gates</strong> pair each common rationalization (“this is basically what the data would show”) with the check that defeats it. A <strong>SessionStart hook</strong> reminds every new agent session, before it does anything, that the wiki is project memory. These are hooks and commands the harness runs, not habits a user has to remember.</p>
+<p><strong>Four operations as single commands.</strong> Ingest a source, query the wiki, lint for staleness, and verify a change before commit, each is one command the agent reaches for when the context calls for it. Karpathy describes these as workflows you develop yourself; the template makes them concrete and repeatable.</p>
+<p><strong>Multi-writer collision handling.</strong> A push protocol (<code>wiki_push</code>) pushes optimistically, and on a collision it fetches, union-merges the index and log automatically, routes genuine content conflicts to an LLM-assisted resolver, and retries, so two collaborators writing at once both land and neither overwrites the other. Every entry carries a <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution line, and git keeps the full amendment history.</p>
+<p><strong>Model-neutral overlays.</strong> Claude Code, Cursor, and whatever comes next each read the same wiki through their own commands and skills while sharing the policy files, gates, and schema. Swapping the model is a new overlay, not a migration; the wiki is the durable part, the model is disposable.</p>
+<p>Karpathy gives you the idea and says “your LLM can figure out the rest.” The recipe is the rest, figured out once, tested, and forkable. It is a template, not a platform: you own it, and you take your memory with you.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>
-<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the single-user pattern this extends.</li>
+<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the abstract idea this implements.</li>
+<li><a href="../wiki-front-matter/">Wiki front matter</a> and <a href="../knowledge-graphs/">the knowledge graph</a>, two of the things the schema pins down.</li>
 <li><a href="../agent-federation/">Agent federation</a>, how one group’s wiki reaches another’s.</li>
-<li><a href="../the-deep-dives/">The deep dives</a>, team scale and agent capability in full.</li>
+</ul>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li><a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template (GitHub)</a>, the implementation described here.</li>
+<li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy, “llm-wiki” (gist)</a>, the abstract idea it instantiates.</li>
+<li><a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026, Zenodo)</a> and the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab ontology</a>.</li>
 </ul>
 
 

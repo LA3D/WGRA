@@ -1,26 +1,36 @@
 ---
-title: "Our recipe: a collaborative llm-wiki"
-description: "The llm-wiki-memory-template turns Karpathy's single-user pattern into shared, attributed, multi-writer memory for a research group."
+title: "Our recipe: the pattern made concrete"
+description: "Karpathy's note is deliberately 'the idea, not a specific implementation.' The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped."
 date: "2026-05-29"
 categories: [foundations]
 ---
 
-Karpathy's pattern is written for one person and their agent. Our recipe, the [llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template), is what it takes to make it work for a group, and the group case is a well-worn problem. Any shared knowledge base with multiple concurrent writers, from Wikipedia to Google Docs to a plain git repository, faces the same three challenges: **provenance** (who claimed what), **conflict resolution** (two people editing at once), and **quality control** (keeping bad edits out). Decades of collaborative-editing work, revision histories, operational transforms, CRDTs, git merge, exist to handle them. Our recipe is one instantiation, tuned for the case where an LLM does the writing.
+Karpathy's note is deliberately abstract. It says so outright: *"This document is intentionally abstract. It describes the idea, not a specific implementation... share it with your LLM agent and work together to instantiate a version that fits your needs."* That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The [llm-wiki-memory-template](https://github.com/crcresearch/llm-wiki-memory-template) makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.
 
-The core is the same as Karpathy's: an LLM-authored wiki of cross-linked markdown, front matter carrying typed edges, the agent doing all the maintenance. What we add maps onto those three challenges.
+**A schema, not a suggestion.** A `SCHEMA_<repo>.md` file is the authoritative conventions the agent follows: the page `type:` vocabulary, the required frontmatter (`type:`, `up:`), the typed-edge set (`extends:`, `supports:`, `criticizes:`, `requires:`, `related:`), naming and cross-reference rules, and the special files, `index_<repo>.md` (the catalog of every page), `log_<repo>.md` (an append-only chronological record), and `Home_<repo>.md`. Karpathy leaves all of this to you; the template ships it and keeps it consistent.
 
-**Provenance.** Every entry carries a `by: <human> via <agent>` line, so who claimed what, with which tool, stays legible, and git preserves the full amendment history.
+**Instance and wiki are separated.** The project repo (the *instance*, where tools install) is distinct from the *wiki* itself, a nested, separately git-versioned directory that carries a subtype and is what gets published as a bundle. Tools install into the instance; subtype and sharing are properties of the wiki.
 
-**Conflict resolution.** When two collaborators write at once, mechanical conflicts resolve automatically (a git merge) and semantic ones route through an LLM-assisted merge, so both contributions land and neither overwrites the other.
+**A reified knowledge graph, built in.** A pipeline under `scripts/kg/` extracts the frontmatter and body links into RDF, validates them with SHACL against the [la3d/llm-wiki-colab](https://la3d.github.io/llm-wiki-colab/) ontology, and produces a SPARQL-queryable `graph.ttl` with a shipped library of canned queries. One command (`build-graph.sh`) rebuilds it after edits.
 
-**Quality control.** A verification gate blocks numerical claims not backed by real output, and named discipline gates catch the rationalizations that produce bad writes. The discipline lives in the repo, not in whoever happened to prompt well.
+**Discipline in the artifact.** A **verification gate** blocks the agent from filing numerical results that are not backed by real script output. Named **discipline gates** pair each common rationalization ("this is basically what the data would show") with the check that defeats it. A **SessionStart hook** reminds every new agent session, before it does anything, that the wiki is project memory. These are hooks and commands the harness runs, not habits a user has to remember.
 
-It is also model-neutral. The wiki is the durable memory; the model doing the work today (Claude Code, Cursor, whatever comes next) is disposable. Different assistants read the wiki through their own commands and skills while sharing the same policy files, gates, and schema, so one student can use Claude Code and another Cursor on the same project, and adopting a better model next year is a new overlay, not a migration.
+**Four operations as single commands.** Ingest a source, query the wiki, lint for staleness, and verify a change before commit, each is one command the agent reaches for when the context calls for it. Karpathy describes these as workflows you develop yourself; the template makes them concrete and repeatable.
 
-The recipe is a template, not a platform. You fork it, you own it, and you take your memory with you.
+**Multi-writer collision handling.** A push protocol (`wiki_push`) pushes optimistically, and on a collision it fetches, union-merges the index and log automatically, routes genuine content conflicts to an LLM-assisted resolver, and retries, so two collaborators writing at once both land and neither overwrites the other. Every entry carries a `by: <human> via <agent>` attribution line, and git keeps the full amendment history.
+
+**Model-neutral overlays.** Claude Code, Cursor, and whatever comes next each read the same wiki through their own commands and skills while sharing the policy files, gates, and schema. Swapping the model is a new overlay, not a migration; the wiki is the durable part, the model is disposable.
+
+Karpathy gives you the idea and says "your LLM can figure out the rest." The recipe is the rest, figured out once, tested, and forkable. It is a template, not a platform: you own it, and you take your memory with you.
 
 ## Related
 
-- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the single-user pattern this extends.
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the abstract idea this implements.
+- [Wiki front matter](../wiki-front-matter/) and [the knowledge graph](../knowledge-graphs/), two of the things the schema pins down.
 - [Agent federation](../agent-federation/), how one group's wiki reaches another's.
-- [The deep dives](../the-deep-dives/), team scale and agent capability in full.
+
+## Sources
+
+- [llm-wiki-memory-template (GitHub)](https://github.com/crcresearch/llm-wiki-memory-template), the implementation described here.
+- [Andrej Karpathy, "llm-wiki" (gist)](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), the abstract idea it instantiates.
+- [Beyond Memory (Saboia Moreira et al., 2026, Zenodo)](https://doi.org/10.5281/zenodo.21213175) and the [la3d/llm-wiki-colab ontology](https://la3d.github.io/llm-wiki-colab/).

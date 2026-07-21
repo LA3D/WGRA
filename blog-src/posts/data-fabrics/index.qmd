@@ -18,3 +18,8 @@ That is what separates a fabric from the things it gets confused with. A **data 
 - [The wiki is a knowledge graph](../knowledge-graphs/), the semantic layer a fabric runs on.
 - [Connectors are agents](../connectors/), the automated integration into the fabric.
 - [Decentralized identifiers](../decentralized-identifiers/), portable identity and the FAIR "findable" anchor.
+
+## Sources
+
+- [Gartner: What is data fabric](https://www.gartner.com/en/data-analytics/topics/data-fabric), the definition and active-metadata framing.
+- [Data mesh vs data fabric (Alation)](https://www.alation.com/blog/data-mesh-vs-data-fabric/), the contrast with mesh.

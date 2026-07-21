@@ -18,3 +18,8 @@ DIDs travel with **verifiable credentials**. A verifiable credential is a crypto
 - [Data fabrics](../data-fabrics/), where FAIR and portable identity meet.
 - [Agent federation](../agent-federation/), the discovery layer DIDs would open up.
 - [ControlMaster](../controlmaster-ssh/), the credential seam a DID would slot into.
+
+## Sources
+
+- [W3C Decentralized Identifiers (DIDs) v1.1](https://www.w3.org/TR/did-1.1/) and the [2022 DID Recommendation announcement](https://www.w3.org/press-releases/2022/did-rec/), the standard.
+- [W3C Verifiable Credentials Data Model](https://www.w3.org/TR/vc-data-model-2.0/), the credential half.

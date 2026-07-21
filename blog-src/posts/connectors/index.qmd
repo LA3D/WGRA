@@ -16,3 +16,8 @@ The reliability mechanism is a small ontology per source (see [Ontologies, kept 
 - [Ontologies, kept small](../ontologies/), the per-source description that makes a connector reliable.
 - [A marketplace for tools](../marketplace/), the other way a capability reaches an agent.
 - [Agent federation](../agent-federation/), where extracted knowledge gets shared.
+
+## Sources
+
+- [Kafka Connect: building data-integration pipelines (Conduktor)](https://www.conduktor.io/glossary/kafka-connect-building-data-integration-pipelines) and [understanding Kafka Connect source/sink (Axual)](https://axual.com/blog/understanding-kafka-connect), the conventional connector.
+- [What is iPaaS (DigitalRoute)](https://www.digitalroute.com/resources/glossary/ipaas/), connectors across integration platforms.

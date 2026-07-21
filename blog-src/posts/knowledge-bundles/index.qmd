@@ -18,3 +18,8 @@ Because a bundle is just a git repo of markdown plus its graph, it is portable, 
 - [Agent federation](../agent-federation/), how a bundle gets discovered and queried across groups.
 - [Our recipe: a collaborative llm-wiki](../our-collaborative-recipe/), what a bundle is made of.
 - [A marketplace for tools](../marketplace/), the sibling distribution channel for tools.
+
+## Sources
+
+- [Google Cloud: the Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing/), the OKF spec announcement (June 2026).
+- [Google Cloud announces the Open Knowledge Format (Search Engine Journal)](https://www.searchenginejournal.com/google-cloud-announces-the-open-knowledge-format/579253/), independent coverage.
