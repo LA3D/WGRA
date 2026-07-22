@@ -13,7 +13,7 @@ website:
     right:
       - text: "WGRA"
         href: https://la3d.github.io/WGRA/
-      - text: "The pitch"
+      - text: "The ecosystem"
         href: https://la3d.github.io/WGRA/research-agents-revolution/
       - jargon.qmd
       - about.qmd
