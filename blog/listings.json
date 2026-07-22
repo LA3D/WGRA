@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/llm-wiki-vs-rag/index.html",
+      "/posts/standing-up-a-research-wiki/index.html",
       "/posts/talking-to-a-research-agent/index.html",
       "/posts/decentralized-identifiers/index.html",
       "/posts/data-fabrics/index.html",

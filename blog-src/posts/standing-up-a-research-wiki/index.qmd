@@ -1,0 +1,67 @@
+---
+title: "Standing up a research wiki"
+description: "The template hands you an empty wiki. What goes in first decides whether it is useful. A concrete recipe, worked on a real chemistry codebase: ingest what already exists, let the runs deposit the rest, and the payoff arrives when the next person does."
+date: "2026-07-21"
+categories: [practice]
+---
+
+**The empty wiki is the easy part.** Forking the template, cloning, running the init script: that is a few minutes of mechanics. The real question is what you put in the wiki first, because a research wiki is only worth maintaining if it starts out denser than a blank page and gets denser from there. This post is a concrete recipe for the *content* setup, worked end to end on a real project: **YARP**, an automated reaction-prediction package from a computational chemistry group (the Savoie group), which an agent was tasked to drive on a university cluster in place of a graduate student.
+
+The short version: do not start by writing pages from scratch. Ingest what the project already has, then let real work deposit the rest.
+
+## Ingest what already exists, in this order
+
+### 1. Auto-generate the code docs, then ingest a synthesis of them
+
+Most research codebases can already produce API documentation. YARP builds Sphinx docs with AutoAPI, and AutoAPI parses the source *statically*, so the docs build ran in a minimal environment without YARP's heavy runtime dependencies. That gave architecture pages for free on day one. Two things made this worth doing beyond speed:
+
+- The wiki got a hand-written *synthesis* of the docs (an overview page, a package-architecture page), not a dump of the 95 generated HTML pages. A wiki is compiled understanding, not a mirror.
+- A clean docs build immediately surfaced the repo's own defects: a version string that disagreed with the package version, a stale table of contents, dangling references. Standing up the wiki audited the code as a side effect.
+
+### 2. Ingest the group's papers as source summaries, with lineage
+
+A research group's published papers are its densest existing knowledge. YARP's eight core papers each became one source-summary page: contribution, method, key results *as stated in the paper*, relevance to the codebase, and one short quote with a page number. DOIs were verified rather than trusted, and the papers were wired to each other with typed lineage edges (the v2 paper `extends:` the original, later application papers extend v2). The literature became the wiki's foundation layer, not a reading list stapled to the side.
+
+### 3. Correlate the papers to the code
+
+This is the step most people skip, and it turned out to be the highest-value artifact of the whole setup. A single page mapped each paper to the module or model it actually underpins, and the finding was sharper than expected: **several of the papers *are* the code**. A machine-learning barrier model from one paper is the thing a specific module loads and runs; a conformational-sampling model from another ships as a serialized scikit-learn object, which means that paper silently dictates which library versions the cluster environment has to pin. Once that table exists, the literature stops being background and becomes a map of the codebase, and a dependency you would otherwise debug the hard way is written down.
+
+### 4. Get the domain expert to add the tutorial and the roadmap
+
+Auto-docs and papers give you knowledge and structure. They do not give you *experience*: how the software is actually meant to be used, what the near-term goals are, which test cases matter. On YARP that came from the group's postdoc and dev lead, who contributed a v3 tutorial draft and a short list of proposed test cases. Ingested honestly (the tutorial was flagged as an early skeleton, editorial notes and all), it seeded the terminology the rest of the wiki would use and the roadmap the experiments would follow. The expert does not have to write wiki pages; they have to hand over the material, and the agent turns it into pages.
+
+### 5. Let real runs deposit the operational knowledge
+
+Everything above is ingest. The other half of a research wiki is the hard-won operational knowledge that exists nowhere until someone hits the wall, and this is where an agent driving real jobs pays for itself. Running YARP on the cluster produced the two highest-reuse pages in the wiki, and neither could have been written in advance:
+
+- **Storage.** The working directory belongs on the fast flash tier, never on the NFS home. On metadata-heavy work (walking thousands of output files) the flash tier ran roughly **eight times faster**, about 340 ms versus 2,800 ms to walk 3,000 files, and it eliminated the process stalls that the NFS path caused. That single fact is now rule number one in the first-time guide.
+- **Access.** One authenticated login (password plus two-factor) opens a persistent connection that automated calls reuse for a day, so the agent drives the cluster over a single hop and every job survives the laptop going to sleep. The pattern is written down once so no one derives it again.
+
+The retrospective page names the shape of cluster bring-up honestly: a whack-a-mole where each layer (connection, then storage, then containers, then scheduler, then config, then the science) hides the next problem until the previous one clears. It even keeps a blame table, and the honest verdict was that the large majority of failures were environmental and first-time inexperience, not the software being broken. Writing that down is what stops the next person from re-suffering it.
+
+## Keep the capture honest
+
+The setup only compounds if what goes in is true. On YARP that discipline shows up as a claim that was **retracted** after a code read contradicted it, a latent bug that was **flagged rather than silently fixed**, and a paper PDF that was **marked as a single-page abstract capture** rather than presented as the full text. A wiki that quietly rounds things up is worse than no wiki, because a colleague's agent will build on the rounding.
+
+## What a freshly stood-up research wiki looks like
+
+After a couple of weeks, the YARP wiki settled into a balance that seems typical: roughly **one-third literature** (papers, the tutorial, a couple of concept break-outs), **one-third operational and infrastructure** (storage, access, config traps, run-monitoring, a first-time guide), and **one-third project work-product** (the experiment result pages and the project's objective). Literature is the largest single ingest and forms the floor; the operational pages accrete from real runs and become the most-reused content.
+
+## The payoff is the next person
+
+The point of all this is not tidiness. It showed up the moment a new team member joined: she was handed a one-page onboarding guide generated from the wiki, and her own agent could come up to speed on the cluster access, the storage rule, and the config traps without re-deriving any of it. The wiki's value is realized at onboarding, human or AI. "Do not relearn the bring-up, it is filed" is the whole return on the setup work.
+
+So the recipe, compressed: **ingest what exists (docs, papers, and the coupling between them), have the expert hand over the tutorial and the roadmap, let real runs deposit the operational knowledge, and keep every entry honest.** The empty wiki takes minutes. The useful one takes a first real project, and pays for itself on the second.
+
+## Related
+
+- [How to talk to a research agent](../talking-to-a-research-agent/), the researcher's side of driving the work that fills the wiki.
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the template and conventions the pages sit in.
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), the shared-memory idea underneath.
+- [Knowledge bundles](../knowledge-bundles/), what a stood-up wiki becomes when it is packaged for others.
+
+## Sources
+
+- [Zhao and Savoie, "Simultaneously improving reaction coverage and computational cost in automated reaction prediction" (Nat. Comput. Sci. 2021)](https://doi.org/10.1038/s43588-021-00101-3), the original YARP paper, one of the eight ingested here.
+- [Sphinx AutoAPI](https://sphinx-autoapi.readthedocs.io/), the static-analysis doc generator that made step 1 cheap.
+- [Notre Dame Center for Research Computing docs](https://docs.crc.nd.edu/), the cluster documentation the operational pages were built against and, in places, corrected.
