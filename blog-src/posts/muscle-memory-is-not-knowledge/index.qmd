@@ -5,6 +5,8 @@ date: "2026-07-21"
 categories: [foundations]
 ---
 
+![A red camera lens. An original illustration, not a still from the film.](red-eye.svg)
+
 **HAL's last lesson.** Near the end of *2001: A Space Odyssey*, David Bowman shuts HAL down by hand. He floats into the processor core and pulls the memory modules out of their slots, one at a time, disabling the higher functions first. HAL degrades as the modules come free, pleads, and finally regresses to the earliest thing he was ever taught: he sings "Daisy Bell," the voice slurring flat and slow as the last module slides out.
 
 That detail is not invented. In 1961, an IBM 704 at Bell Labs became the first computer to sing, and the song was "Daisy Bell (Bicycle Built for Two)." Arthur C. Clarke happened to hear the eerie performance while visiting, and years later he gave it to HAL as the floor of his mind, the one lesson left when everything above it has been removed.

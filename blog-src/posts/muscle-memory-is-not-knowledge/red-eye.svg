@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 476" role="img" aria-label="A glowing red camera lens on a dark panel.">
+  <defs>
+    <radialGradient id="panel" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#1c1d20"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <radialGradient id="bezel" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#3a3b3f"/>
+      <stop offset="55%" stop-color="#191a1c"/>
+      <stop offset="100%" stop-color="#050506"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff5a4d"/>
+      <stop offset="45%" stop-color="#e31414"/>
+      <stop offset="78%" stop-color="#6e0505"/>
+      <stop offset="100%" stop-color="#160000"/>
+    </radialGradient>
+    <radialGradient id="core" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#ffd0a0"/>
+      <stop offset="14%" stop-color="#ff6a52"/>
+      <stop offset="45%" stop-color="#ff1e10"/>
+      <stop offset="100%" stop-color="#7c0202"/>
+    </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="haze" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="476" rx="18" fill="url(#panel)"/>
+
+  <!-- ambient red haze -->
+  <circle cx="450" cy="238" r="180" fill="#ff2a1a" opacity="0.22" filter="url(#haze)"/>
+
+  <!-- metallic bezel / housing -->
+  <circle cx="450" cy="238" r="168" fill="url(#bezel)"/>
+  <circle cx="450" cy="238" r="168" fill="none" stroke="#000" stroke-width="2" opacity="0.7"/>
+  <circle cx="450" cy="238" r="150" fill="#0b0b0c"/>
+
+  <!-- red lens glow -->
+  <circle cx="450" cy="238" r="118" fill="url(#glow)" filter="url(#soft)"/>
+  <circle cx="450" cy="238" r="112" fill="url(#glow)"/>
+
+  <!-- dark pupil surround -->
+  <circle cx="450" cy="238" r="66" fill="#1a0202"/>
+
+  <!-- bright core -->
+  <circle cx="450" cy="238" r="50" fill="url(#core)"/>
+
+  <!-- catchlight reflections -->
+  <ellipse cx="424" cy="212" rx="15" ry="10" fill="#fff6ef" opacity="0.92"/>
+  <ellipse cx="486" cy="272" rx="7" ry="5" fill="#ffb59d" opacity="0.55"/>
+</svg>
