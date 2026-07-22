@@ -1,11 +1,11 @@
 ---
-title: "Catalog, structural, content"
-description: "A knowledge graph is not one graph. Three different graphs answer three different questions about a corpus: where things are, how a document is laid out, and what it actually says. Using the wrong one is why tasks like extraction quietly fail."
+title: "Catalog, structural, and content graphs"
+description: "A knowledge graph is rarely one graph, and these are not the only kinds you can build. But three recur, answering three different questions about a corpus: where things are, how a document is laid out, and what it actually says. Using the wrong one is why tasks like extraction quietly fail."
 date: "2026-07-22"
 categories: [graph]
 ---
 
-**"The knowledge graph" is usually three graphs wearing one name.** When people build a graph over a document collection they tend to mean one thing by it, and then they are surprised when it is good at navigation but useless for extraction, or rich in extracted facts but impossible to browse. The confusion clears up once you separate the three graphs that are actually in play. They answer different questions, they are built from different signals, and the classic mistake is to reach for the wrong one. Call them the **catalog**, the **structural**, and the **content** graph. They can live in one graph, in subgraphs, or as three separate graphs; what matters is having the right one for the job.
+**"The knowledge graph" is usually several graphs wearing one name.** When people build a graph over a document collection they tend to mean one thing by it, and then they are surprised when it is good at navigation but useless for extraction, or rich in extracted facts but impossible to browse. You can build many graphs over a corpus, similarity graphs, citation graphs, temporal graphs, and more; this post is about three that recur whenever the task is to read *inside* documents. They answer different questions, they are built from different signals, and the classic mistake is to reach for the wrong one. Call them the **catalog**, the **structural**, and the **content** graph. They can live in one graph, in subgraphs, or as three separate graphs; what matters is having the right one for the job.
 
 ## Catalog: navigate like a library
 
