@@ -1,0 +1,52 @@
+---
+title: "Knowledge, expertise, experience"
+description: "A good research wiki holds three different things: the facts, the judgment about the facts, and the grounded cases behind the judgment. Retrieval over your files reaches only the first. The other two are what make a wiki worth more than a search box."
+date: "2026-07-19"
+categories: [foundations]
+---
+
+**Three different things live in a good research wiki, and only one of them is facts.** It is easy to think of a knowledge base as a pile of information, and to measure it by how much it contains. That misses what actually makes a research memory valuable. Pulling apart the layers gives a language for what a wiki should capture, and it explains, precisely, where a wiki beats plain retrieval and where it does not.
+
+## The three layers
+
+**Knowledge** is the facts. What a thing is, how it relates to other things, the domain vocabulary, the numbers in a results table. This is the layer everyone captures, and it is genuinely useful. In the classic frameworks it is *declarative knowledge* (Anderson), the *K* in the data-information-knowledge-wisdom pyramid (Ackoff), and *explicit knowledge* in the tacit-versus-explicit division (Polanyi, Nonaka).
+
+**Expertise** is the judgment about the facts. Which tradeoffs matter. Which approach to prefer under which conditions. Which claims to weight more heavily, and which criticisms are load-bearing rather than cosmetic. It is closest to *procedural knowledge* (Anderson), the schema-based pattern recognition the expert-performance literature studies (Ericsson and Charness), and the *professional judgment* of a practitioner thinking in action (Schon).
+
+**Experience** is the grounded cases behind the judgment. What was actually tried. What worked, what failed, the edge conditions someone hit, the dead ends that will save the next person a week. This maps to *tacit knowledge* (Polanyi), to *case-based reasoning* (Schank, Kolodner), and to reflection on concrete encounters (Schon).
+
+The three are separable but not hierarchical. You can capture experience without expertise (a raw observation log). You can assert expertise without experience (a review of others' work). What is rare, and valuable, is a single memory with all three deeply recorded.
+
+## Why the distinction is the whole game
+
+Retrieval-augmented generation over your documents operates almost entirely at the knowledge layer. Files in, chunks out, the model synthesizes an answer. Its promise is "your files are searchable," which is real, and enough for fact lookup. For an expert domain it is thin, because the hard questions are not lookups.
+
+The cleanest analogy is graduate training. A course reading list carries knowledge. A good advisor carries expertise on top of it (which papers matter, why, and how they connect) and experience on top of that (what the field has actually tried, what worked, what broke down at scale). The reading list is not a substitute for the advisor, and the difference is exactly the second and third layers. A wiki that records only facts is a reference work. A wiki that records the author's reasoning and the author's grounded encounters is closer to a mentor, and it is the only version that compounds into something worth more than a search over the same files.
+
+This is not just a framing. In [a first measurement](../llm-wiki-vs-rag/) comparing a wiki-grounded agent against retrieval over the same raw files, the two were even on factoid lookup, exactly the knowledge layer. The wiki pulled far ahead on judgment questions ("which design was preferred, and on what evidence") and on cross-source questions that are usually a resolved contradiction, exactly the expertise and experience layers. The layers predict where the advantage lives.
+
+## What each layer looks like on the page
+
+- **Knowledge**: concept and entity pages, definitions, containment structure, citations to sources.
+- **Expertise**: synthesis pages, decision records ("we chose X over Y because..."), typed judgment edges (this page *supports* / *criticizes* / *extends* that one), "considered and rejected" sections, and prose that shows the reasoning rather than only the conclusion.
+- **Experience**: dated log entries with the reasoning attached, experiment results reported honestly including the ones that failed, edge-case and failure notes, and the "as of March this seemed to work; in April we found..." pattern that records the trajectory, not just the endpoint.
+
+## The authoring lens, and the gap
+
+Read the three layers as a checklist and a pattern appears. Almost everyone runs the **knowledge** check by habit: are the facts captured, are the definitions clear, is the source cited. The **expertise** check runs when someone is deliberately doing synthesis, but it gets skipped on routine ingest, so judgment stays in people's heads. The **experience** check often does not run at all: the failed method, the surprising result, the dead end, none of it gets written down while the context is fresh, and within a week it is gone.
+
+So the honest self-assessment for any research memory is not "how much does it contain" but "does it capture my judgment and my failures, or only my facts." The first layer is table stakes. The other two are the reason to keep a wiki at all.
+
+## Related
+
+- [llm-wiki vs RAG: a first measurement](../llm-wiki-vs-rag/), where the wiki's advantage lands exactly on the expertise and experience questions.
+- [Keep what you got wrong](../keep-what-you-got-wrong/), how to actually capture the experience layer, dead ends and all.
+- [Knowledge bundles](../knowledge-bundles/), what a wiki becomes when it ships compiled competence rather than searchable content.
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the conventions that make room for all three layers.
+
+## Sources
+
+- [Polanyi, *The Tacit Dimension* (1966)](https://press.uchicago.edu/ucp/books/book/chicago/T/bo6035368.html), tacit knowledge as the ground of expert judgment.
+- [Schon, *The Reflective Practitioner* (1983)](https://www.taylorfrancis.com/books/mono/10.4324/9781315237473/reflective-practitioner-donald-schon), professional judgment and reflection-in-action.
+- [Ericsson and Charness, "Expert Performance" (American Psychologist, 1994)](https://doi.org/10.1037/0003-066X.49.8.725), what expertise actually consists of.
+- [Ackoff, "From Data to Wisdom" (1989)](https://faculty.ung.edu/kmelton/documents/datawisdom.pdf), the DIKW hierarchy that the knowledge layer sits in.

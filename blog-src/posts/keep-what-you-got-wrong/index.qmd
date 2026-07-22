@@ -1,0 +1,48 @@
+---
+title: "Keep what you got wrong"
+description: "Journals publish the win and quietly lose the walked-back claim, the abandoned method, the metric bug. A research wiki should do the opposite: file the correction next to the original, annotate the discrepancy, and let the wrong turn stay on the record. The trajectory is knowledge too."
+date: "2026-07-20"
+categories: [practice]
+---
+
+**The published record is a highlight reel, and the outtakes are the useful part.** The scientific literature keeps the result that worked. The method that was tried and abandoned, the claim that was later walked back, the metric bug that inflated an early number: all of it drops out of the record. Psychologists have a name for the general phenomenon, the "file drawer problem," where null and negative results sit unpublished in drawers while only the positive ones appear (Rosenthal, 1979). The cost is concrete and recurring: someone re-runs a dead end because nobody wrote down that it was a dead end.
+
+A research wiki is a chance to do the opposite, and it is one of the most valuable habits the format enables. The rule is simple: **when something turns out wrong, do not overwrite it. File the correction alongside the original, annotate the discrepancy, and keep both.**
+
+## Why keep the wrong version
+
+**The trajectory is knowledge.** "We believed X; it turned out to be an artifact of Y; here is what replaced it" is worth more than a clean statement of the final answer, because it tells the next reader *why* the obvious thing is wrong. That is the experience layer of a research memory (see [knowledge, expertise, experience](../knowledge-expertise-experience/)), and it exists nowhere unless someone records the walk, not just the destination.
+
+**It stops the dead end from costing twice.** The whole point of writing down a failed approach is that no one on the team, human or agent, has to rediscover it. A wiki that silently deletes its wrong turns quietly re-arms every one of them.
+
+**Silent correction does not scale.** In a shared memory, a colleague's agent reads your pages and builds on them. If you quietly change a claim, whoever already acted on the old version cannot un-learn it, and there is no visible seam where the correction happened. Filing the correction *beside* the original, with a cross-reference, means anyone arriving later meets the correction and the reason for it, instead of a fact that changed under them without explanation.
+
+## Two real corrections, kept
+
+**A newcomer's first act.** When a new team member took over a group's wiki that an agent had populated, her first move was not to consume it but to correct it: she caught assumptions the setup agent had gotten wrong and had her agent fix them. Following the append-only rule, each correction was filed alongside the original assumption, with the discrepancy annotated, rather than written over the top. So the wrong assumption and the reason it was wrong both survive, and the next reader inherits the fix and the lesson.
+
+**A finding that was falsified, then revived, then confirmed.** A retrieval project once reported a trade-off, a method that gained coverage but lost ranking strength. A later analysis diagnosed the trade-off as an artifact of a normalization choice rather than a real property of the method, and weeks after that a further result confirmed the underlying mechanism after all. Because each stage was filed rather than overwritten, the page reads as the actual history: believed, falsified, revived, confirmed. A reader gets the reasoning and the swings, not a tidy sentence that hides both.
+
+## How to do it
+
+- **Append, do not replace.** Add the superseding claim as new content and cross-reference it to the original, in both directions, so each points at the other.
+- **Annotate the discrepancy.** State plainly what changed and why. The delta is the part with teeth.
+- **Attribute every entry.** Record who or what wrote each version (a person, and the agent that did the writing), so provenance is always traceable.
+- **Keep a "considered and rejected" habit.** A short section on a synthesis page that names what was tried and why it was dropped is the cheapest experience capture there is.
+- **Gate against dressing a guess as a fact.** If a number is a projection, label it as one; the wrong thing you keep should at least be honestly marked. Let version control hold the full amendment history underneath.
+
+## The mindset
+
+This runs against a strong instinct to tidy up, to present the clean final answer and quietly discard the mess that produced it. For a shared research memory that instinct is exactly backwards. Bad results, contradicted claims, and abandoned methods get filed truthfully, not polished away. The related open-science move is to record what you predicted before you knew the outcome (Nosek et al., 2018), so the record cannot be quietly rewritten to match the result. A wiki that rounds its own history up is worse than no wiki, because a plausible, confident, silently-corrected page is precisely the kind of thing a colleague's agent will build on. Keep what you got wrong, and say why.
+
+## Related
+
+- [Knowledge, expertise, experience](../knowledge-expertise-experience/), the experience layer that walked-back claims and dead ends belong to.
+- [Standing up a research wiki](../standing-up-a-research-wiki/), where the newcomer-correction example comes from.
+- [llm-wiki vs RAG: a first measurement](../llm-wiki-vs-rag/), where the questions the wiki won were often resolved contradictions of exactly this kind.
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the verification gate and attribution that make honest capture the default.
+
+## Sources
+
+- [Rosenthal, "The file drawer problem and tolerance for null results" (Psychological Bulletin, 1979)](https://doi.org/10.1037/0033-2909.86.3.638), the classic statement of publication bias.
+- [Nosek et al., "The preregistration revolution" (PNAS, 2018)](https://doi.org/10.1073/pnas.1708274114), recording predictions before the result so the record cannot be quietly rewritten.
