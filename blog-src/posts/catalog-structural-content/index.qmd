@@ -1,0 +1,56 @@
+---
+title: "Catalog, structural, content"
+description: "A knowledge graph is not one graph. Three different graphs answer three different questions about a corpus: where things are, how a document is laid out, and what it actually says. Using the wrong one is why tasks like extraction quietly fail."
+date: "2026-07-22"
+categories: [graph]
+---
+
+**"The knowledge graph" is usually three graphs wearing one name.** When people build a graph over a document collection they tend to mean one thing by it, and then they are surprised when it is good at navigation but useless for extraction, or rich in extracted facts but impossible to browse. The confusion clears up once you separate the three graphs that are actually in play. They answer different questions, they are built from different signals, and the classic mistake is to reach for the wrong one. Call them the **catalog**, the **structural**, and the **content** graph. They can live in one graph, in subgraphs, or as three separate graphs; what matters is having the right one for the job.
+
+## Catalog: navigate like a library
+
+A catalog graph is the library index. It tells you what exists and where it sits, and it lets you move around by classification: this dataset belongs to this collection, this page hangs under this parent, this record is filed under this subject. You can find things and browse the neighborhood, and that is genuinely valuable, federated search across many catalogs runs on exactly this.
+
+What a catalog cannot do is compare or contrast the contents, because it never opened them. Two leaves on the same branch are "similar" only in the sense that a librarian shelved them near each other; the catalog sees the spine and the call number, not the text. Ask it *how* two items differ and it has nothing, because that answer lives inside the covers it never looked past.
+
+This is the layer the [W3C Data Catalog Vocabulary (DCAT)](https://www.w3.org/TR/vocab-dcat-3/) standardizes: a model for describing datasets and services so they are discoverable and can be aggregated across sites. DCAT classifies its resources with concepts from [knowledge organization systems (SKOS)](https://www.w3.org/TR/skos-reference/), the taxonomies and thesauri that give a catalog its branches. A catalog is a map of where things are, not of what they say.
+
+## Structural: how humans laid it out
+
+A structural graph captures a document's components and how they relate: this heading owns this section, this caption belongs to *that* plot, these paragraphs are siblings under one subsection, this figure sits in the body rather than the appendix, this comes before that in reading order. None of that is the meaning of the document. It is the arrangement a human author imposed on the page, and that arrangement is a strong, free prior about what the pieces are.
+
+The standard here is the [Document Components Ontology (DoCO)](https://sparontologies.github.io/doco/), part of the SPAR suite of publishing ontologies. DoCO models both *structural* components (block, paragraph, section, chapter) and *rhetorical* ones (introduction, discussion, figure, reference list), in RDF. The graph-retrieval literature has rediscovered the same idea under a different name: GraphRAG systems build a "[lexical graph](https://arxiv.org/abs/2501.00309)" of chunks connected by sequence and by shared section, distinct from the semantic graph of entities. The structural graph does not tell you what the document means. It tells you how its pieces fit together, which is exactly the cue an extractor needs to know what it is looking at.
+
+## Content: what it actually says
+
+A content graph is the extracted knowledge itself: the entities and their typed relationships, the concepts, the numbers pulled off a table or a plot, and the provenance that ties every claim back to where it came from. This is the graph most people mean by "knowledge graph", RDF triples of subject, predicate, object, entities carrying type assertions, relations connecting them. It gains a provenance layer from [PROV-O](https://www.w3.org/TR/prov-o/), the W3C ontology whose three classes (entity, activity, agent) record who or what produced each assertion. GraphRAG calls the equivalent the "domain" or "entity" graph.
+
+The content graph is the only one of the three that can compare and contrast, because it is the only one that looked inside. It is also the most expensive and the most fragile to build, which is precisely why you do not want to build it blindly.
+
+## They compose, and you choose by task
+
+All three can coexist. They can be one graph with different edge types, they can be subgraphs (RDF *named graphs* are the standard way to keep content and its provenance separate but linked), or they can be three independent graphs stitched at the seams. The design question is never "which graph" in the abstract. It is "which graph does this task need."
+
+For navigation, the catalog is enough, and reaching for a content graph is wasted effort. For reasoning and comparison you need the content graph, and a content graph with no provenance is a liability the moment anyone asks where a number came from.
+
+The sharpest case is **extraction**, and it is where using the wrong graph fails silently. To pull the values off a figure you first have to know *which caption belongs to that figure* and *which section the figure sits under*, that is the structural graph doing its job, handing the extractor the human layout cues that tell it what the thing is. Only then does the content graph store the extracted values, each with a provenance link back to the exact region it came from. Try to extract with only a catalog and you get nothing, the contents were never in view. Extract without keeping the structure and you lose the cues that made the extraction correct. Extract into a content graph with no provenance and you cannot defend a single number later.
+
+## One document, three graphs
+
+Take a scientific paper. Its **catalog** entry says where it lives, what subject it is filed under, and how to find it among a million others. Its **structural** graph is the front matter, body, and back matter; the sections and subsections; each figure grouped with its caption; each table under its heading; every element carrying a page and a bounding region. Its **content** graph is the claims and measurements the paper actually makes, each traceable back to the pixel region it was read from. Same document, three graphs, three jobs, and an extraction pipeline that ignores the middle one will keep reading the wrong caption onto the wrong plot.
+
+The three-way split is a working lens, not a new standard, but each layer is a standard, and naming them separately is what stops "build a knowledge graph" from meaning three incompatible things at once. Pick the graph the task needs. For anything that reads inside a document, you almost always need two of them working together.
+
+## Related
+
+- [The wiki is a knowledge graph](../knowledge-graphs/), the reified graph a wiki's frontmatter and links produce.
+- [Ontologies](../ontologies/), the schemas (DCAT, DoCO, PROV-O) that give each graph its vocabulary.
+- [Connectors are agents](../connectors/), where document extraction turns structure and content into graph data.
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the lightweight structural graph a wiki already carries.
+
+## Sources
+
+- [W3C Data Catalog Vocabulary (DCAT), Version 3](https://www.w3.org/TR/vocab-dcat-3/) and [SKOS](https://www.w3.org/TR/skos-reference/), the catalog layer.
+- [Constantin, Peroni, Pettifer, Shotton, Vitali, "The Document Components Ontology (DoCO)" (Semantic Web Journal, 2016)](https://doi.org/10.3233/SW-150177), the structural layer.
+- [W3C PROV-O: The PROV Ontology](https://www.w3.org/TR/prov-o/), the provenance half of the content layer.
+- [Han et al., "Retrieval-Augmented Generation with Graphs (GraphRAG)" (2025)](https://arxiv.org/abs/2501.00309), which separates the lexical (structural) graph from the entity (content) graph.

@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/catalog-structural-content/index.html",
       "/posts/llm-wiki-vs-rag/index.html",
       "/posts/muscle-memory-is-not-knowledge/index.html",
       "/posts/standing-up-a-research-wiki/index.html",
