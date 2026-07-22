@@ -59,6 +59,7 @@ So the recipe, compressed: **ingest what exists (docs, papers, and the coupling 
 
 ## Related
 
+- [Muscle memory is not knowledge](../muscle-memory-is-not-knowledge/), the motivation: the model brings the capability, standing up the wiki is how you supply the knowledge.
 - [How to talk to a research agent](../talking-to-a-research-agent/), the researcher's side of driving the work that fills the wiki.
 - [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the template and conventions the pages sit in.
 - [Karpathy's llm-wiki](../karpathy-llm-wiki/), the shared-memory idea underneath.
