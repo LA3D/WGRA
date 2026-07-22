@@ -5,7 +5,7 @@ date: "2026-07-22"
 categories: [graph]
 ---
 
-**"The knowledge graph" is usually several graphs wearing one name.** When people build a graph over a document collection they tend to mean one thing by it, and then they are surprised when it is good at navigation but useless for extraction, or rich in extracted facts but impossible to browse. You can build many graphs over a corpus, similarity graphs, citation graphs, temporal graphs, and more; this post is about three that recur whenever the task is to read *inside* documents. They answer different questions, they are built from different signals, and the classic mistake is to reach for the wrong one. Call them the **catalog**, the **structural**, and the **content** graph. They can live in one graph, in subgraphs, or as three separate graphs; what matters is having the right one for the job.
+**"The knowledge graph" is usually several graphs wearing one name.** When people build a graph over a document collection they tend to mean one thing by it, and then they are surprised when it is good at navigation but useless for extraction, or rich in extracted facts but impossible to browse. You can build many graphs over a corpus, similarity graphs, citation graphs, temporal graphs, and more; this post is about three that recur across most data-extraction and curation work. They answer different questions, they are built from different signals, and the classic mistake is to reach for the wrong one. Call them the **catalog**, the **structural**, and the **content** graph. They can live in one graph, in subgraphs, or as three separate graphs; what matters is having the right one for the job.
 
 ## Catalog: navigate like a library
 
@@ -39,7 +39,7 @@ The sharpest case is **extraction**, and it is where using the wrong graph fails
 
 Take a scientific paper. Its **catalog** entry says where it lives, what subject it is filed under, and how to find it among a million others. Its **structural** graph is the front matter, body, and back matter; the sections and subsections; each figure grouped with its caption; each table under its heading; every element carrying a page and a bounding region. Its **content** graph is the claims and measurements the paper actually makes, each traceable back to the pixel region it was read from. Same document, three graphs, three jobs, and an extraction pipeline that ignores the middle one will keep reading the wrong caption onto the wrong plot.
 
-The three-way split is a working lens, not a new standard, but each layer is a standard, and naming them separately is what stops "build a knowledge graph" from meaning three incompatible things at once. Pick the graph the task needs. For anything that reads inside a document, you almost always need two of them working together.
+The three-way split is a working lens, not a new standard, but each layer is a standard, and naming them separately is what stops "build a knowledge graph" from meaning three incompatible things at once. Pick the graph the task needs. For most extraction and curation work, anything that has to look inside the contents rather than just shelve them, you almost always need two of them working together.
 
 ## Related
 
