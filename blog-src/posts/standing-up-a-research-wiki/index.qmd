@@ -49,7 +49,11 @@ After a couple of weeks, the YARP wiki settled into a balance that seems typical
 
 ## The payoff is the next person
 
-The point of all this is not tidiness. It showed up the moment a new team member joined: she was handed a one-page onboarding guide generated from the wiki, and her own agent could come up to speed on the cluster access, the storage rule, and the config traps without re-deriving any of it. The wiki's value is realized at onboarding, human or AI. "Do not relearn the bring-up, it is filed" is the whole return on the setup work.
+The point of all this is not tidiness. It showed up the moment a new team member joined. She was handed a one-page onboarding guide generated from the wiki, and her own agent came up to speed on the cluster access, the storage rule, and the config traps without re-deriving any of it.
+
+Onboarding was not only consumption, though. Reading the wiki, she immediately caught assumptions the setup agent had gotten wrong, and had her agent correct them. Following the append-only discipline, each correction was filed *alongside* the original assumption, with the discrepancy annotated, not written over the top of it. So the wrong assumption and the reason it was wrong both survive, and the next reader meets the correction together with the trajectory that produced it. The expert's first act was not to consume the wiki but to improve it, and what she fixed, everyone downstream inherits.
+
+The wiki's value is realized at onboarding, human or AI, and it runs both ways. "Do not relearn the bring-up, it is filed" is the return for the newcomer; the corrections the newcomer files are the return for everyone else.
 
 So the recipe, compressed: **ingest what exists (docs, papers, and the coupling between them), have the expert hand over the tutorial and the roadmap, let real runs deposit the operational knowledge, and keep every entry honest.** The empty wiki takes minutes. The useful one takes a first real project, and pays for itself on the second.
 

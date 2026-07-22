@@ -8,9 +8,9 @@
 
 <meta name="author" content="Chris Sweet">
 <meta name="dcterms.date" content="2026-07-21">
-<meta name="description" content="The template hands you an empty wiki. What goes in first decides whether it is useful. A concrete recipe, worked on a real chemistry codebase: ingest what already exists, let the runs deposit the rest, and the payoff arrives when the next person does.">
+<meta name="description" content="Disconnect HAL and he regresses to the first song he was taught. Strip a modern LLM down and it keeps language, reasoning, a whole host of capabilities. That is muscle memory, not knowledge of your work, and the gap is measurable: 2% of a group’s questions answered bare, 90% with its wiki.">
 
-<title>Standing up a research wiki – WGRA Nuggets</title>
+<title>Muscle memory is not knowledge – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -135,11 +135,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#ingest-what-already-exists-in-this-order" id="toc-ingest-what-already-exists-in-this-order" class="nav-link active" data-scroll-target="#ingest-what-already-exists-in-this-order">Ingest what already exists, in this order</a></li>
-  <li><a href="#keep-the-capture-honest" id="toc-keep-the-capture-honest" class="nav-link" data-scroll-target="#keep-the-capture-honest">Keep the capture honest</a></li>
-  <li><a href="#what-a-freshly-stood-up-research-wiki-looks-like" id="toc-what-a-freshly-stood-up-research-wiki-looks-like" class="nav-link" data-scroll-target="#what-a-freshly-stood-up-research-wiki-looks-like">What a freshly stood-up research wiki looks like</a></li>
-  <li><a href="#the-payoff-is-the-next-person" id="toc-the-payoff-is-the-next-person" class="nav-link" data-scroll-target="#the-payoff-is-the-next-person">The payoff is the next person</a></li>
-  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related">Related</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -149,15 +145,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Standing up a research wiki</h1>
+<h1 class="title">Muscle memory is not knowledge</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">practice</div>
+    <div class="quarto-category">foundations</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    The template hands you an empty wiki. What goes in first decides whether it is useful. A concrete recipe, worked on a real chemistry codebase: ingest what already exists, let the runs deposit the rest, and the payoff arrives when the next person does.
+    Disconnect HAL and he regresses to the first song he was taught. Strip a modern LLM down and it keeps language, reasoning, a whole host of capabilities. That is muscle memory, not knowledge of your work, and the gap is measurable: 2% of a group’s questions answered bare, 90% with its wiki.
   </div>
 </div>
 
@@ -186,70 +182,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>The empty wiki is the easy part.</strong> Forking the template, cloning, running the init script: that is a few minutes of mechanics. The real question is what you put in the wiki first, because a research wiki is only worth maintaining if it starts out denser than a blank page and gets denser from there. This post is a concrete recipe for the <em>content</em> setup, worked end to end on a real project: <strong>YARP</strong>, an automated reaction-prediction package from a computational chemistry group (the Savoie group), which an agent was tasked to drive on a university cluster in place of a graduate student.</p>
-<p>The short version: do not start by writing pages from scratch. Ingest what the project already has, then let real work deposit the rest.</p>
-<section id="ingest-what-already-exists-in-this-order" class="level2">
-<h2 class="anchored" data-anchor-id="ingest-what-already-exists-in-this-order">Ingest what already exists, in this order</h2>
-<section id="auto-generate-the-code-docs-then-ingest-a-synthesis-of-them" class="level3">
-<h3 class="anchored" data-anchor-id="auto-generate-the-code-docs-then-ingest-a-synthesis-of-them">1. Auto-generate the code docs, then ingest a synthesis of them</h3>
-<p>Most research codebases can already produce API documentation. YARP builds Sphinx docs with AutoAPI, and AutoAPI parses the source <em>statically</em>, so the docs build ran in a minimal environment without YARP’s heavy runtime dependencies. That gave architecture pages for free on day one. Two things made this worth doing beyond speed:</p>
-<ul>
-<li>The wiki got a hand-written <em>synthesis</em> of the docs (an overview page, a package-architecture page), not a dump of the 95 generated HTML pages. A wiki is compiled understanding, not a mirror.</li>
-<li>A clean docs build immediately surfaced the repo’s own defects: a version string that disagreed with the package version, a stale table of contents, dangling references. Standing up the wiki audited the code as a side effect.</li>
-</ul>
-</section>
-<section id="ingest-the-groups-papers-as-source-summaries-with-lineage" class="level3">
-<h3 class="anchored" data-anchor-id="ingest-the-groups-papers-as-source-summaries-with-lineage">2. Ingest the group’s papers as source summaries, with lineage</h3>
-<p>A research group’s published papers are its densest existing knowledge. YARP’s eight core papers each became one source-summary page: contribution, method, key results <em>as stated in the paper</em>, relevance to the codebase, and one short quote with a page number. DOIs were verified rather than trusted, and the papers were wired to each other with typed lineage edges (the v2 paper <code>extends:</code> the original, later application papers extend v2). The literature became the wiki’s foundation layer, not a reading list stapled to the side.</p>
-</section>
-<section id="correlate-the-papers-to-the-code" class="level3">
-<h3 class="anchored" data-anchor-id="correlate-the-papers-to-the-code">3. Correlate the papers to the code</h3>
-<p>This is the step most people skip, and it turned out to be the highest-value artifact of the whole setup. A single page mapped each paper to the module or model it actually underpins, and the finding was sharper than expected: <strong>several of the papers <em>are</em> the code</strong>. A machine-learning barrier model from one paper is the thing a specific module loads and runs; a conformational-sampling model from another ships as a serialized scikit-learn object, which means that paper silently dictates which library versions the cluster environment has to pin. Once that table exists, the literature stops being background and becomes a map of the codebase, and a dependency you would otherwise debug the hard way is written down.</p>
-</section>
-<section id="get-the-domain-expert-to-add-the-tutorial-and-the-roadmap" class="level3">
-<h3 class="anchored" data-anchor-id="get-the-domain-expert-to-add-the-tutorial-and-the-roadmap">4. Get the domain expert to add the tutorial and the roadmap</h3>
-<p>Auto-docs and papers give you knowledge and structure. They do not give you <em>experience</em>: how the software is actually meant to be used, what the near-term goals are, which test cases matter. On YARP that came from the group’s postdoc, who contributed a v3 tutorial draft and a short list of proposed test cases. Ingested honestly (the tutorial was flagged as an early skeleton, editorial notes and all), it seeded the terminology the rest of the wiki would use and the roadmap the experiments would follow. The expert does not have to write wiki pages; they have to hand over the material, and the agent turns it into pages.</p>
-</section>
-<section id="let-real-runs-deposit-the-operational-knowledge" class="level3">
-<h3 class="anchored" data-anchor-id="let-real-runs-deposit-the-operational-knowledge">5. Let real runs deposit the operational knowledge</h3>
-<p>Everything above is ingest. The other half of a research wiki is the hard-won operational knowledge that exists nowhere until someone hits the wall, and this is where an agent driving real jobs pays for itself. Running YARP on the cluster produced the two highest-reuse pages in the wiki, and neither could have been written in advance:</p>
-<ul>
-<li><strong>Storage.</strong> The working directory belongs on the fast flash tier, never on the NFS home. On metadata-heavy work (walking thousands of output files) the flash tier ran roughly <strong>eight times faster</strong>, about 340 ms versus 2,800 ms to walk 3,000 files, and it eliminated the process stalls that the NFS path caused. That single fact is now rule number one in the first-time guide.</li>
-<li><strong>Access.</strong> One authenticated login (password plus two-factor) opens a persistent connection that automated calls reuse for a day, so the agent drives the cluster over a single hop and every job survives the laptop going to sleep. The pattern is written down once so no one derives it again.</li>
-</ul>
-<p>The retrospective page names the shape of cluster bring-up honestly: a whack-a-mole where each layer (connection, then storage, then containers, then scheduler, then config, then the science) hides the next problem until the previous one clears. It even keeps a blame table, and the honest verdict was that the large majority of failures were environmental and first-time inexperience, not the software being broken. Writing that down is what stops the next person from re-suffering it.</p>
-</section>
-</section>
-<section id="keep-the-capture-honest" class="level2">
-<h2 class="anchored" data-anchor-id="keep-the-capture-honest">Keep the capture honest</h2>
-<p>The setup only compounds if what goes in is true. On YARP that discipline shows up as a claim that was <strong>retracted</strong> after a code read contradicted it, a latent bug that was <strong>flagged rather than silently fixed</strong>, and a paper PDF that was <strong>marked as a single-page abstract capture</strong> rather than presented as the full text. A wiki that quietly rounds things up is worse than no wiki, because a colleague’s agent will build on the rounding.</p>
-</section>
-<section id="what-a-freshly-stood-up-research-wiki-looks-like" class="level2">
-<h2 class="anchored" data-anchor-id="what-a-freshly-stood-up-research-wiki-looks-like">What a freshly stood-up research wiki looks like</h2>
-<p>After a couple of weeks, the YARP wiki settled into a balance that seems typical: roughly <strong>one-third literature</strong> (papers, the tutorial, a couple of concept break-outs), <strong>one-third operational and infrastructure</strong> (storage, access, config traps, run-monitoring, a first-time guide), and <strong>one-third project work-product</strong> (the experiment result pages and the project’s objective). Literature is the largest single ingest and forms the floor; the operational pages accrete from real runs and become the most-reused content.</p>
-</section>
-<section id="the-payoff-is-the-next-person" class="level2">
-<h2 class="anchored" data-anchor-id="the-payoff-is-the-next-person">The payoff is the next person</h2>
-<p>The point of all this is not tidiness. It showed up the moment a new team member joined. She was handed a one-page onboarding guide generated from the wiki, and her own agent came up to speed on the cluster access, the storage rule, and the config traps without re-deriving any of it.</p>
-<p>Onboarding was not only consumption, though. Reading the wiki, she immediately caught assumptions the setup agent had gotten wrong, and had her agent correct them. Following the append-only discipline, each correction was filed <em>alongside</em> the original assumption, with the discrepancy annotated, not written over the top of it. So the wrong assumption and the reason it was wrong both survive, and the next reader meets the correction together with the trajectory that produced it. The expert’s first act was not to consume the wiki but to improve it, and what she fixed, everyone downstream inherits.</p>
-<p>The wiki’s value is realized at onboarding, human or AI, and it runs both ways. “Do not relearn the bring-up, it is filed” is the return for the newcomer; the corrections the newcomer files are the return for everyone else.</p>
-<p>So the recipe, compressed: <strong>ingest what exists (docs, papers, and the coupling between them), have the expert hand over the tutorial and the roadmap, let real runs deposit the operational knowledge, and keep every entry honest.</strong> The empty wiki takes minutes. The useful one takes a first real project, and pays for itself on the second.</p>
-</section>
+<p><strong>HAL’s last lesson.</strong> Near the end of <em>2001: A Space Odyssey</em>, David Bowman shuts HAL down by hand. He floats into the processor core and pulls the memory modules out of their slots, one at a time, disabling the higher functions first. HAL degrades as the modules come free, pleads, and finally regresses to the earliest thing he was ever taught: he sings “Daisy Bell,” the voice slurring flat and slow as the last module slides out.</p>
+<p>That detail is not invented. In 1961, an IBM 704 at Bell Labs became the first computer to sing, and the song was “Daisy Bell (Bicycle Built for Two).” Arthur C. Clarke happened to hear the eerie performance while visiting, and years later he gave it to HAL as the floor of his mind, the one lesson left when everything above it has been removed.</p>
+<p><strong>Now run the scene in reverse.</strong> Strip a modern language model down to what it arrives with, and you do not get silence and a nursery song. You get fluent language in dozens of tongues, working code, arithmetic, the ability to follow an instruction and hold a plan across many steps, a vast host of capabilities baked in before you ever type a word to it. That is the muscle memory a current LLM ships with. HAL had to be taught to sing Daisy. The model already knows the song, and the harmony, and how to write you a new one.</p>
+<p><strong>But muscle memory is not knowledge.</strong> It is capability without content: a brilliant new postdoc on day one who can reason about anything and knows nothing about your lab. The one thing the model does not have is the only thing that makes it useful to <em>you</em>, your group’s methods, your actual results, the approach you tried and abandoned, the reason a cluster job hangs when it sits on the wrong storage tier. None of that was in its training, because none of it was ever public. The capability is general. The knowledge you need is specific, and it is yours alone.</p>
+<p><strong>And the gap is measurable.</strong> <a href="../llm-wiki-vs-rag/">In a recent test</a> we asked a capable model questions about one real research group’s project. On its own training alone it answered about <strong>2%</strong> of them, correctly declining almost all the rest, it simply did not know. The same model, handed that group’s llm-wiki to read and navigate, answered <strong>90%</strong>. The model was identical in both runs. The only thing that changed was whether it had been educated.</p>
+<p><strong>That is the whole case for the wiki.</strong> The model brings the muscle memory. You supply the education, and you supply it once, as a durable shared artifact, rather than re-explaining your project in every fresh chat. <a href="../standing-up-a-research-wiki/">Standing up that wiki</a> is mostly a matter of ingesting what you already have (your papers, your code, your runs) and letting real work deposit the rest. Skip it, and you have HAL with every module seated and nothing to say about your problem. Do it, and the same model, unchanged, goes from 2% to 90%.</p>
+<p>Bowman regressed HAL by pulling knowledge out. Standing up a research wiki is the same operation run forward: you put the knowledge in, and the capability that was always there finally has something of yours to work on.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>
-<li><a href="../talking-to-a-research-agent/">How to talk to a research agent</a>, the researcher’s side of driving the work that fills the wiki.</li>
-<li><a href="../our-collaborative-recipe/">Our recipe: the pattern made concrete</a>, the template and conventions the pages sit in.</li>
-<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the shared-memory idea underneath.</li>
-<li><a href="../knowledge-bundles/">Knowledge bundles</a>, what a stood-up wiki becomes when it is packaged for others.</li>
+<li><a href="../llm-wiki-vs-rag/">llm-wiki vs RAG: a first measurement</a>, where the 2% and the 90% come from.</li>
+<li><a href="../standing-up-a-research-wiki/">Standing up a research wiki</a>, how to supply the education.</li>
+<li><a href="../our-collaborative-recipe/">Our recipe: the pattern made concrete</a>, the artifact the education lives in.</li>
 </ul>
 </section>
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <ul>
-<li><a href="https://doi.org/10.1038/s43588-021-00101-3">Zhao and Savoie, “Simultaneously improving reaction coverage and computational cost in automated reaction prediction” (Nat. Comput. Sci. 2021)</a>, the original YARP paper, one of the eight ingested here.</li>
-<li><a href="https://sphinx-autoapi.readthedocs.io/">Sphinx AutoAPI</a>, the static-analysis doc generator that made step 1 cheap.</li>
-<li><a href="https://docs.crc.nd.edu/">Notre Dame Center for Research Computing docs</a>, the cluster documentation the operational pages were built against and, in places, corrected.</li>
+<li><em>2001: A Space Odyssey</em> (Kubrick, 1968), the HAL disconnection scene.</li>
+<li><a href="https://www.historyofinformation.com/detail.php?entryid=4445">The first computer to sing: “Daisy Bell” on an IBM 704, 1961</a>, and <a href="https://www.guinnessworldrecords.com/world-records/454935-first-song-performed-using-computer-speech-synthesis">Guinness World Records: first song performed using computer speech synthesis</a>.</li>
 </ul>
 
 
