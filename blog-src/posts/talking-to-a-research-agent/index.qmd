@@ -1,0 +1,120 @@
+---
+title: "How to talk to a research agent"
+description: "The agent ships with its own discipline. What actually moved a year of retrieval research was how the researcher talked to it. Nine communication patterns, pulled from real session transcripts."
+date: "2026-07-21"
+categories: [practice]
+---
+
+**The agent's discipline is not the point.** A wiki-grounded research agent already knows to read the log before it starts, to file its reasoning, to refuse a projected number as fact. That is the agent's half of the contract, and it runs whether or not you think about it. The half that actually decides whether a project moves is the other one: how *you* talk to it. The patterns below are not advice invented for a blog post. They are lifted from the real session transcripts of one long research effort, a year of graph-based retrieval work, and lightly cleaned up. What follows is the researcher's side of the keyboard, when it worked.
+
+## Open with the question, not the order
+
+The strongest sessions did not begin with "build X." They began with a question and let the agent explore the space first.
+
+> "I want to think about how what we've learned in this project overlaps, and the advantages of using these techniques with an agent."
+
+> "I want to consider how this new space works, especially for entity resolution."
+
+You are not asking for code yet. You are asking the agent to lay out the terrain so you can decide where to dig. An agent handed "build X" builds X, whether or not X was the right thing; an agent handed a question will often surface the better X before a line is written.
+
+## Say what to ignore
+
+Just as important as what you want is what you do not.
+
+> "To be clear, I have no interest in the Django ORM. The project just happened to be based on that technology."
+
+> "Let's not concentrate on the database unless it's helpful."
+
+An agent has no way to know which details of a situation are load-bearing and which are incidental. Left unguided, it will earnestly chase the incidental one. Naming the thing to drop is one sentence and it saves a detour.
+
+## Write it down, price it, then run it
+
+The experiments that compounded followed the same three beats, in order.
+
+> "File it as a wiki page and sketch the experiment."
+
+> "What is the cost of this experiment?"
+
+> "Run H1 on the 281 gold chunks."
+
+Filing the plan first means the hypothesis is on record before the result can bias how you read it. Asking the cost before the run is how you avoid discovering, after the fact, that a curiosity just spent an afternoon of compute. Only then does the run happen, and it happens as one small named step ("run the co-occurrence rescue probe," "now do the same table at restart 0.1"), not one giant instruction.
+
+## Never nod along; pin the vocabulary
+
+Over a long project the shared vocabulary drifts, and pretending to follow is how two people end up meaning different things by the same word.
+
+> "Remind me what v5c2 was?"
+
+> "Can you define canonical?"
+
+There is no cost to asking, and the agent will not think less of you. What it buys is that "canonical entity" means the same thing to both of you for the next hour of work. The researcher who asks for the definition is the one who catches the misunderstanding early.
+
+## Confirm what it is actually doing
+
+Agents drift from the instruction, especially across a long session, and a result built on the wrong procedure is worse than no result.
+
+> "You also said no LLM calls. We were testing whether we could answer the question by giving the model the top 10 or 20 chunks. Please confirm what you are actually doing."
+
+This is not distrust; it is a checksum. One sentence forces the agent to state its actual procedure, and if it has quietly substituted something else, you find out now rather than three results later. Pair it with the mechanical checks that are just as easy to skip:
+
+> "Did you re-calculate the embeddings?"
+
+> "Generative models are stochastic, so run the tutorial again and see if it matches the first result."
+
+> "Is everything committed and pushed?"
+
+## Cut it off when it over-engineers
+
+This one recurs more than any other in the transcripts, and it is the single biggest time-saver.
+
+> "You are making this way too complex. If you want to check the baseline, just run it at our best restart value."
+
+> "This should not be this complicated."
+
+A capable agent will happily build the elaborate version of whatever you asked, because it can. Your job is to notice when the elaborate version is not the point and say so plainly. The correction that works is blunt: name the over-build, then state the simple thing you actually wanted.
+
+## Bring the knowledge it cannot have
+
+The agent has read a great deal, but it has not run your experiments. Your hard-won empirical knowledge is the steering it does not have.
+
+> "One of the key things I found is that using the similarity as the edge weight did not work on the larger datasets. I had to softmax it, effectively normalizing over the log-similarities."
+
+A single sentence like that, dropped in at the right moment, redirects the agent past a dead end it would otherwise have to rediscover. You are not there to type; you are there to supply the facts that live only in your lab notebook and your memory.
+
+## Ask whether the work is even worth doing
+
+The most valuable interventions were often the ones that stopped work rather than started it.
+
+> "Let me state this clearly: none of these models are significantly better than RAG. What is the point of comparing them in detail?"
+
+> "Why do you keep proposing the full 21k set? Why not 1000, which is around four times as much?"
+
+An agent optimizes the task in front of it; it will not spontaneously ask whether the task deserves the effort, or whether its default scale is the sensible one. That judgment is yours, and voicing it out loud, killing a low-value thread, right-sizing an experiment, is where a lot of the real leverage is.
+
+## Reframe when it is measuring the wrong thing
+
+The highest-value move of all is catching that the agent has set up the wrong comparison, and saying so. From a more recent experiment comparing a wiki against plain retrieval:
+
+> "We are missing a key method, which is asking the model attached to the wiki, the way it is actually used, not extracting data from it as if it were a plain document store."
+
+And when a result looked too clean:
+
+> "Since we synthesized the corpus ourselves, I don't understand how those facts can't be in the wiki. Check what is happening."
+
+Both of those turned a run around. The first added the arm that changed the conclusion; the second caught an overclaim the agent had filed and forced an honest correction. An agent will confidently measure exactly what you set it up to measure. Noticing that the setup is wrong, or that a surprising result deserves scrutiny rather than applause, is the part no gate can do for you.
+
+## The pattern behind the patterns
+
+Read back to back, these are all the same move: you supply judgment, framing, and ground truth, and you let the agent supply breadth, speed, and mechanics. The agent is genuinely good at the parts it is good at. The failures come when the researcher goes quiet, accepts the elaborate answer, nods at the undefined term, and lets a clean-looking result stand. Talking to a research agent well is mostly the discipline of not doing those things.
+
+## Related
+
+- [Our recipe: the pattern made concrete](../our-collaborative-recipe/), the wiki and gates that make up the agent's half of the contract.
+- [Karpathy's llm-wiki](../karpathy-llm-wiki/), where the shared-memory idea starts.
+- [llm-wiki vs RAG: a first measurement](../llm-wiki-vs-rag/), the experiment two of these quotes come from.
+
+## Sources
+
+- [Claude Code documentation](https://code.claude.com/docs/), the agent environment these sessions ran in.
+- [Anthropic, "Building effective agents" (2024)](https://www.anthropic.com/research/building-effective-agents), on the division of labor between human and agent.
+- Examples are drawn, lightly edited, from this project's own Claude Code session transcripts.
