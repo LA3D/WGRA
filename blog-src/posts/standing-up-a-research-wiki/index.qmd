@@ -28,7 +28,7 @@ This is the step most people skip, and it turned out to be the highest-value art
 
 ### 4. Get the domain expert to add the tutorial and the roadmap
 
-Auto-docs and papers give you knowledge and structure. They do not give you *experience*: how the software is actually meant to be used, what the near-term goals are, which test cases matter. On YARP that came from the group's postdoc and dev lead, who contributed a v3 tutorial draft and a short list of proposed test cases. Ingested honestly (the tutorial was flagged as an early skeleton, editorial notes and all), it seeded the terminology the rest of the wiki would use and the roadmap the experiments would follow. The expert does not have to write wiki pages; they have to hand over the material, and the agent turns it into pages.
+Auto-docs and papers give you knowledge and structure. They do not give you *experience*: how the software is actually meant to be used, what the near-term goals are, which test cases matter. On YARP that came from the group's postdoc, who contributed a v3 tutorial draft and a short list of proposed test cases. Ingested honestly (the tutorial was flagged as an early skeleton, editorial notes and all), it seeded the terminology the rest of the wiki would use and the roadmap the experiments would follow. The expert does not have to write wiki pages; they have to hand over the material, and the agent turns it into pages.
 
 ### 5. Let real runs deposit the operational knowledge
 
