@@ -1,0 +1,116 @@
+---
+title: "What LLMs actually do with a research wiki"
+description: "We keep a wiki as an agent's durable memory. Reading the transcripts back, we measured how the agent really uses it across three research wikis. It reads once and reuses from context, greps far more than it reads whole pages, and barely follows the links you wrote for it."
+date: "2026-07-24"
+categories: [retrieval, telemetry]
+---
+
+A wiki-as-memory is only worth the trouble if the agent leans on it, and "leans on it" is easy to assume and hard to see. So we built a small tool that reconstructs every wiki touch from a session's raw transcript, and pointed it at three research wikis. The behaviour is more specific, and more lopsided, than the pitch.
+
+## The instrument
+
+An agent reaches a wiki three ways that a naive "count the tool calls" scan would split or miss: the `Read` tool, `Bash` grep/cat, and `git` (writing the wiki). The tool unifies all three, then asks, per user question, whether the answer was *wiki-informed* and by what route, a fresh fetch, reuse of a page an earlier turn already pulled into context, or the index injected at session start.
+
+## Science reads, dev commits
+
+The first split is in *why* each project touches its wiki. The research wiki (`markov`) spends most of its wiki interaction reading; the code project (`yarp`) spends most of it committing. And when the researcher retrieves, it reads whole pages; the developer greps for fragments.
+
+| wiki | reads : greps | wiki share of reads | re-read rate | wiki-informed |
+|:--|--:|--:|--:|--:|
+| markov | 36 : 6 | 55% | 10% | **34%** |
+| yarp | 22 : 24 | 24% | 60% | **32%** |
+| vision | 49 : 30 | 25% | 39% | **38%** |
+
+## Read once, cite many
+
+Across all three, the answer is wiki-informed on roughly a third of questions, and the dominant route is neither a fresh fetch nor the injected index. It is **reuse**: a page an earlier turn already read, still sitting in context, informing a later answer. The single sharpest number is the re-read rate, how often the agent re-fetches a page it has already seen instead of reusing it: **10%** in `markov` (read once, then reuse) versus **60%** in `yarp` (re-greps the same pages over and over). Same axis again, the researcher treats the wiki as memory, the developer treats it as search.
+
+## Links are (mostly) decorative
+
+The map below is the *observed* wiki: each node is a page, each arrow a jump the agent actually made from one page to the next inside a single answer. A **solid** arrow means the destination was named on the source page (a followed link); a **dashed** arrow means the jump came from a grep, the index, or the question instead. Fewer than half of all jumps are solid, so the agent is navigating by name-matching and hub-and-search, not by walking your carefully authored links. Drag any node to explore.
+
+```{=html}
+<style>
+.wt-fig{margin:1.6rem 0}
+.wt-fig .wt-tabs{display:flex;gap:6px;margin:0 0 .5rem;flex-wrap:wrap}
+.wt-fig .wt-tab{font:600 13px/1 'Helvetica Neue',Arial,sans-serif;color:#5b6470;background:#fff;
+  border:1px solid #d7dde6;border-radius:999px;padding:6px 13px;cursor:pointer}
+.wt-fig .wt-tab.on{color:#fff;background:#0d4a8b;border-color:#0d4a8b}
+.wt-fig svg.wt-map{width:100%;height:400px;display:block;background:#fbfdff;border:1px solid #e4e8ef;
+  border-radius:8px;touch-action:none;overflow:hidden}
+.wt-fig .wt-lbl{font:600 11px/1 'Menlo','Consolas',monospace;fill:#1a1a1a}
+.wt-fig .wt-key{display:flex;gap:16px;flex-wrap:wrap;font:12px/1.4 'Helvetica Neue',Arial,sans-serif;
+  color:#5b6470;margin:.55rem 2px .2rem}
+.wt-fig .wt-key svg{vertical-align:middle}
+</style>
+<div class="wt-fig">
+  <div class="wt-tabs" id="wt-tabs"></div>
+  <div id="wt-holder"></div>
+  <div class="wt-key">
+    <span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#0d4a8b" stroke-width="2.5"/></svg> followed a named link</span>
+    <span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="#9aa6b8" stroke-width="2.5" stroke-dasharray="4 3"/></svg> grep / index / question jump</span>
+    <span>&#9679; node size = times the page was read &middot; blue = index/log hub</span>
+  </div>
+</div>
+<script>
+(function(){
+const DATA = {"wikis": [{"key": "markov", "eff": 34, "reread": 10, "read_share": 55, "reads": 36, "greps": 6, "nodes": [{"id": "Tutorial-PDF-Summary.md", "label": "Tutorial-PDF-Summary", "r": 1, "hub": false}, {"id": "Operations-Basis.md", "label": "Operations-Basis", "r": 1, "hub": false}, {"id": "Bridge-Entity.md", "label": "Bridge-Entity", "r": 2, "hub": false}, {"id": "Independent-vs-Chained-Retrieval.md", "label": "Independent-vs-Chai\u2026", "r": 1, "hub": false}, {"id": "Random-Walk-With-Restart.md", "label": "Random-Walk-With-Re\u2026", "r": 2, "hub": false}, {"id": "index_markov_embeddings_and_rag.md", "label": "index", "r": 4, "hub": true}, {"id": "Extraction-Retrieval-Co-Design.md", "label": "Extraction-Retrieva\u2026", "r": 2, "hub": false}, {"id": "SCHEMA_markov_embeddings_and_rag.md", "label": "SCHEMA", "r": 1, "hub": true}, {"id": "Markov-Chain-v5c2.md", "label": "Markov-Chain-v5c2", "r": 1, "hub": false}, {"id": "log_markov_embeddings_and_rag.md", "label": "log", "r": 1, "hub": true}, {"id": "Heterogeneous-Graph.md", "label": "Heterogeneous-Graph", "r": 1, "hub": false}, {"id": "Claims-Plus-Walk.md", "label": "Claims-Plus-Walk", "r": 2, "hub": false}, {"id": "Markov-Retrieval-Tutorial.md", "label": "Markov-Retrieval-Tu\u2026", "r": 2, "hub": false}, {"id": "V5c2-Gold-Rank-Positions.md", "label": "V5c2-Gold-Rank-Posi\u2026", "r": 1, "hub": false}, {"id": "Restart-Probability.md", "label": "Restart-Probability", "r": 2, "hub": false}, {"id": "README-Summary.md", "label": "README-Summary", "r": 1, "hub": false}], "edges": [{"s": "index_markov_embeddings_and_rag.md", "t": "log_markov_embeddings_and_rag.md", "w": 6, "named": false}, {"s": "Claims-Plus-Walk.md", "t": "index_markov_embeddings_and_rag.md", "w": 4, "named": false}, {"s": "V5c2-Gold-Rank-Positions.md", "t": "index_markov_embeddings_and_rag.md", "w": 4, "named": false}, {"s": "Markov-Retrieval-Tutorial.md", "t": "Random-Walk-With-Restart.md", "w": 3, "named": true}, {"s": "Random-Walk-With-Restart.md", "t": "Restart-Probability.md", "w": 3, "named": true}, {"s": "Restart-Probability.md", "t": "Extraction-Retrieval-Co-Design.md", "w": 3, "named": false}, {"s": "index_markov_embeddings_and_rag.md", "t": "Claims-Plus-Walk.md", "w": 2, "named": true}, {"s": "Extraction-Retrieval-Co-Design.md", "t": "Heterogeneous-Graph.md", "w": 2, "named": true}, {"s": "README-Summary.md", "t": "Tutorial-PDF-Summary.md", "w": 2, "named": true}, {"s": "Tutorial-PDF-Summary.md", "t": "Markov-Retrieval-Tutorial.md", "w": 2, "named": true}, {"s": "index_markov_embeddings_and_rag.md", "t": "SCHEMA_markov_embeddings_and_rag.md", "w": 1, "named": false}, {"s": "SCHEMA_markov_embeddings_and_rag.md", "t": "Markov-Chain-v5c2.md", "w": 1, "named": false}, {"s": "Markov-Chain-v5c2.md", "t": "Bridge-Entity.md", "w": 1, "named": false}, {"s": "Bridge-Entity.md", "t": "Claims-Plus-Walk.md", "w": 1, "named": true}, {"s": "Claims-Plus-Walk.md", "t": "Bridge-Entity.md", "w": 1, "named": true}, {"s": "Bridge-Entity.md", "t": "Markov-Chain-v5c2.md", "w": 1, "named": false}, {"s": "Markov-Chain-v5c2.md", "t": "Operations-Basis.md", "w": 1, "named": false}, {"s": "Operations-Basis.md", "t": "Independent-vs-Chained-Retrieval.md", "w": 1, "named": false}, {"s": "Independent-vs-Chained-Retrieval.md", "t": "index_markov_embeddings_and_rag.md", "w": 1, "named": false}, {"s": "V5c2-Gold-Rank-Positions.md", "t": "Markov-Chain-v5c2.md", "w": 1, "named": true}, {"s": "Markov-Chain-v5c2.md", "t": "index_markov_embeddings_and_rag.md", "w": 1, "named": false}, {"s": "index_markov_embeddings_and_rag.md", "t": "Markov-Chain-v5c2.md", "w": 1, "named": true}, {"s": "Markov-Chain-v5c2.md", "t": "V5c2-Gold-Rank-Positions.md", "w": 1, "named": true}, {"s": "index_markov_embeddings_and_rag.md", "t": "V5c2-Gold-Rank-Positions.md", "w": 1, "named": true}]}, {"key": "yarp", "eff": 32, "reread": 60, "read_share": 24, "reads": 22, "greps": 24, "nodes": [{"id": "Package-Architecture.md", "label": "Package-Architecture", "r": 0, "hub": false}, {"id": "YARP-Overview.md", "label": "YARP-Overview", "r": 0, "hub": false}, {"id": "RGD1-Dataset-2023.md", "label": "RGD1-Dataset-2023", "r": 1, "hub": false}, {"id": "Phase1-M3-CRC-EGAT.md", "label": "Phase1-M3-CRC-EGAT", "r": 1, "hub": false}, {"id": "Phase1-M4-CRC-xTB-Path.md", "label": "Phase1-M4-CRC-xTB-P\u2026", "r": 1, "hub": false}, {"id": "Agentic-YARP-Test-Cases.md", "label": "Agentic-YARP-Test-C\u2026", "r": 0, "hub": false}, {"id": "KHP-Fruitfly-Regression.md", "label": "KHP-Fruitfly-Regres\u2026", "r": 6, "hub": false}, {"id": "Lessons-Learned.md", "label": "Lessons-Learned", "r": 5, "hub": false}, {"id": "index_yarp.md", "label": "index", "r": 4, "hub": true}, {"id": "Home_yarp.md", "label": "Home", "r": 5, "hub": true}, {"id": "Zhao-Savoie-YARP-2021.md", "label": "Zhao-Savoie-YARP-20\u2026", "r": 1, "hub": false}, {"id": "Woulfe-YAKS-2025.md", "label": "Woulfe-YAKS-2025", "r": 1, "hub": false}, {"id": "log_yarp.md", "label": "log", "r": 5, "hub": true}, {"id": "Project-Objective.md", "label": "Project-Objective", "r": 1, "hub": false}, {"id": "Lewis-Structure-Score.md", "label": "Lewis-Structure-Sco\u2026", "r": 0, "hub": false}, {"id": "Phase2-Project1-Pilot.md", "label": "Phase2-Project1-Pil\u2026", "r": 3, "hub": false}], "edges": [{"s": "index_yarp.md", "t": "log_yarp.md", "w": 31, "named": false}, {"s": "index_yarp.md", "t": "Home_yarp.md", "w": 10, "named": true}, {"s": "Project-Objective.md", "t": "index_yarp.md", "w": 10, "named": false}, {"s": "Project-Objective.md", "t": "log_yarp.md", "w": 10, "named": false}, {"s": "Lessons-Learned.md", "t": "Project-Objective.md", "w": 7, "named": true}, {"s": "Home_yarp.md", "t": "log_yarp.md", "w": 6, "named": true}, {"s": "log_yarp.md", "t": "Lessons-Learned.md", "w": 6, "named": true}, {"s": "Home_yarp.md", "t": "index_yarp.md", "w": 5, "named": true}, {"s": "KHP-Fruitfly-Regression.md", "t": "log_yarp.md", "w": 5, "named": false}, {"s": "Lessons-Learned.md", "t": "index_yarp.md", "w": 4, "named": false}, {"s": "YARP-Overview.md", "t": "Package-Architecture.md", "w": 3, "named": true}, {"s": "Package-Architecture.md", "t": "index_yarp.md", "w": 3, "named": false}, {"s": "log_yarp.md", "t": "Agentic-YARP-Test-Cases.md", "w": 3, "named": true}, {"s": "Lessons-Learned.md", "t": "Zhao-Savoie-YARP-2021.md", "w": 3, "named": false}, {"s": "Package-Architecture.md", "t": "YARP-Overview.md", "w": 2, "named": true}, {"s": "YARP-Overview.md", "t": "index_yarp.md", "w": 2, "named": false}, {"s": "RGD1-Dataset-2023.md", "t": "Woulfe-YAKS-2025.md", "w": 2, "named": false}, {"s": "log_yarp.md", "t": "Home_yarp.md", "w": 2, "named": true}, {"s": "Lewis-Structure-Score.md", "t": "log_yarp.md", "w": 2, "named": false}, {"s": "Agentic-YARP-Test-Cases.md", "t": "index_yarp.md", "w": 2, "named": false}, {"s": "index_yarp.md", "t": "Project-Objective.md", "w": 2, "named": true}, {"s": "Phase1-M3-CRC-EGAT.md", "t": "Project-Objective.md", "w": 2, "named": true}, {"s": "Phase1-M4-CRC-xTB-Path.md", "t": "Project-Objective.md", "w": 2, "named": true}, {"s": "Phase2-Project1-Pilot.md", "t": "Lessons-Learned.md", "w": 2, "named": true}]}, {"key": "vision", "eff": 38, "reread": 39, "read_share": 25, "reads": 49, "greps": 30, "nodes": [{"id": "Knowledge-Bundles.md", "label": "Knowledge-Bundles", "r": 2, "hub": false}, {"id": "Knowledge-Expertise-Experience.md", "label": "Knowledge-Expertise\u2026", "r": 1, "hub": false}, {"id": "Build-Status.md", "label": "Build-Status", "r": 1, "hub": false}, {"id": "Home_llm-wiki-vision.md", "label": "Home", "r": 1, "hub": true}, {"id": "log_llm-wiki-vision.md", "label": "log", "r": 4, "hub": true}, {"id": "Plugin-Packaging-Architecture.md", "label": "Plugin-Packaging-Ar\u2026", "r": 2, "hub": false}, {"id": "index_llm-wiki-vision.md", "label": "index", "r": 5, "hub": true}, {"id": "Retrieval-Context-Envelope-Site.md", "label": "Retrieval-Context-E\u2026", "r": 1, "hub": false}, {"id": "Agent-Systems.md", "label": "Agent-Systems", "r": 1, "hub": false}, {"id": "Vendor-Neutral-Positioning.md", "label": "Vendor-Neutral-Posi\u2026", "r": 2, "hub": false}, {"id": "log_llm-wiki-colab.md", "label": "log", "r": 4, "hub": true}, {"id": "Lessons-Learned.md", "label": "Lessons-Learned", "r": 1, "hub": false}, {"id": "Ecosystem-Architecture.md", "label": "Ecosystem-Architect\u2026", "r": 3, "hub": false}, {"id": "Ecosystem-Governance.md", "label": "Ecosystem-Governance", "r": 2, "hub": false}, {"id": "Lightweight-Structural-Graphs.md", "label": "Lightweight-Structu\u2026", "r": 2, "hub": false}, {"id": "Connector-Agents.md", "label": "Connector-Agents", "r": 1, "hub": false}], "edges": [{"s": "index_llm-wiki-vision.md", "t": "log_llm-wiki-vision.md", "w": 27, "named": false}, {"s": "Plugin-Packaging-Architecture.md", "t": "log_llm-wiki-vision.md", "w": 13, "named": false}, {"s": "Plugin-Packaging-Architecture.md", "t": "index_llm-wiki-vision.md", "w": 11, "named": false}, {"s": "log_llm-wiki-vision.md", "t": "Plugin-Packaging-Architecture.md", "w": 9, "named": true}, {"s": "index_llm-wiki-vision.md", "t": "Home_llm-wiki-vision.md", "w": 5, "named": true}, {"s": "Home_llm-wiki-vision.md", "t": "log_llm-wiki-vision.md", "w": 5, "named": true}, {"s": "Build-Status.md", "t": "log_llm-wiki-colab.md", "w": 5, "named": false}, {"s": "Lessons-Learned.md", "t": "log_llm-wiki-colab.md", "w": 4, "named": false}, {"s": "Ecosystem-Architecture.md", "t": "Vendor-Neutral-Positioning.md", "w": 3, "named": true}, {"s": "Connector-Agents.md", "t": "index_llm-wiki-vision.md", "w": 3, "named": false}, {"s": "Knowledge-Expertise-Experience.md", "t": "Retrieval-Context-Envelope-Site.md", "w": 3, "named": false}, {"s": "log_llm-wiki-vision.md", "t": "Lessons-Learned.md", "w": 3, "named": true}, {"s": "log_llm-wiki-vision.md", "t": "Agent-Systems.md", "w": 2, "named": true}, {"s": "Ecosystem-Governance.md", "t": "index_llm-wiki-vision.md", "w": 2, "named": false}, {"s": "Ecosystem-Governance.md", "t": "Knowledge-Bundles.md", "w": 2, "named": true}, {"s": "Vendor-Neutral-Positioning.md", "t": "Ecosystem-Architecture.md", "w": 2, "named": true}, {"s": "Lightweight-Structural-Graphs.md", "t": "log_llm-wiki-vision.md", "w": 2, "named": false}, {"s": "log_llm-wiki-colab.md", "t": "Plugin-Packaging-Architecture.md", "w": 2, "named": false}, {"s": "log_llm-wiki-colab.md", "t": "Lessons-Learned.md", "w": 2, "named": false}, {"s": "log_llm-wiki-colab.md", "t": "log_llm-wiki-vision.md", "w": 2, "named": false}, {"s": "index_llm-wiki-vision.md", "t": "Knowledge-Bundles.md", "w": 1, "named": true}, {"s": "Home_llm-wiki-vision.md", "t": "Ecosystem-Governance.md", "w": 1, "named": true}, {"s": "Ecosystem-Architecture.md", "t": "Ecosystem-Governance.md", "w": 1, "named": true}, {"s": "Vendor-Neutral-Positioning.md", "t": "Ecosystem-Governance.md", "w": 1, "named": true}]}]};
+const NS='http://www.w3.org/2000/svg';
+function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function graph(holder,w){
+  holder.innerHTML='';
+  const Wd=680,H=400;
+  const svg=el('svg',{class:'wt-map',viewBox:`0 0 ${Wd} ${H}`,preserveAspectRatio:'xMidYMid meet'});
+  const defs=el('defs',{});
+  [['a','#0d4a8b'],['m','#9aa6b8']].forEach(([nm,col])=>{
+    const mk=el('marker',{id:`wt-${w.key}-${nm}`,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});
+    mk.appendChild(el('path',{d:'M0 0 L10 5 L0 10 z',fill:col}));defs.appendChild(mk);});
+  svg.appendChild(defs);
+  const nodes=w.nodes.map(d=>({...d,r:7+Math.min(d.r,10)*1.5,vx:0,vy:0,fixed:false}));
+  const id={};nodes.forEach(d=>id[d.id]=d);
+  const cx=Wd/2,cy=H/2,R=Math.min(Wd,H)*0.34;
+  nodes.forEach((d,i)=>{const a=2*Math.PI*i/nodes.length;d.x=cx+R*Math.cos(a);d.y=cy+R*Math.sin(a);});
+  const mx=Math.max(1,...w.edges.map(e=>e.w));
+  const lines=w.edges.map(e=>{const ln=el('line',{stroke:e.named?'#0d4a8b':'#9aa6b8','stroke-width':1.2+2.6*e.w/mx,
+    'stroke-opacity':e.named?0.9:0.6,'stroke-dasharray':e.named?'':'4 3','marker-end':`url(#wt-${w.key}-${e.named?'a':'m'})`});svg.appendChild(ln);return{ln,e};});
+  const gs=nodes.map(d=>{const c=el('circle',{r:d.r,fill:d.hub?'#0d4a8b':'#fff',stroke:d.hub?'#0d4a8b':'#8791a0','stroke-width':d.hub?0:1.5,'fill-opacity':d.hub?0.16:1});
+    c.style.cursor='grab';const t=el('text',{'text-anchor':'middle',class:'wt-lbl'});t.textContent=d.label;svg.appendChild(c);svg.appendChild(t);return{c,t,d};});
+  holder.appendChild(svg);
+  const k=Math.sqrt(Wd*H/Math.max(1,nodes.length))*0.62;let alpha=1,raf=null;
+  function render(){lines.forEach(({ln,e})=>{const a=id[e.s],b=id[e.t];if(!a||!b)return;
+    const dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;
+    ln.setAttribute('x1',a.x+ux*a.r);ln.setAttribute('y1',a.y+uy*a.r);ln.setAttribute('x2',b.x-ux*(b.r+5));ln.setAttribute('y2',b.y-uy*(b.r+5));});
+    gs.forEach(({c,t,d})=>{c.setAttribute('cx',d.x);c.setAttribute('cy',d.y);t.setAttribute('x',d.x);t.setAttribute('y',d.y+d.r+11);});}
+  function step(){for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];
+    let dx=a.x-b.x,dy=a.y-b.y,dd=Math.hypot(dx,dy)||0.01,f=k*k/(dd*dd);a.vx+=dx*f;a.vy+=dy*f;b.vx-=dx*f;b.vy-=dy*f;}
+    w.edges.forEach(e=>{const a=id[e.s],b=id[e.t];if(!a||!b)return;let dx=a.x-b.x,dy=a.y-b.y,dd=Math.hypot(dx,dy)||0.01,f=dd/k*(0.7+0.12*Math.min(e.w,5));
+      a.vx-=dx*f;a.vy-=dy*f;b.vx+=dx*f;b.vy+=dy*f;});
+    nodes.forEach(d=>{d.vx+=(cx-d.x)*0.006;d.vy+=(cy-d.y)*0.006;});
+    nodes.forEach(d=>{if(d.fixed){d.vx=0;d.vy=0;return;}d.x+=d.vx*alpha*0.1;d.y+=d.vy*alpha*0.1;d.vx*=0.82;d.vy*=0.82;
+      d.x=Math.max(d.r+52,Math.min(Wd-d.r-52,d.x));d.y=Math.max(d.r+16,Math.min(H-d.r-16,d.y));});
+    render();alpha*=0.985;}
+  function run(){step();raf=alpha>0.02?requestAnimationFrame(run):null;}run();
+  let drag=null;
+  function toSvg(evt){const p=svg.createSVGPoint();p.x=evt.clientX;p.y=evt.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+  gs.forEach(({c,d})=>{c.addEventListener('pointerdown',evt=>{drag=d;d.fixed=true;c.setPointerCapture(evt.pointerId);c.style.cursor='grabbing';alpha=Math.max(alpha,0.5);if(!raf)run();evt.preventDefault();});
+    c.addEventListener('pointerup',()=>{if(drag)drag.fixed=false;drag=null;c.style.cursor='grab';alpha=Math.max(alpha,0.3);if(!raf)run();});});
+  svg.addEventListener('pointermove',evt=>{if(!drag)return;const q=toSvg(evt);drag.x=Math.max(drag.r+52,Math.min(Wd-drag.r-52,q.x));drag.y=Math.max(drag.r+16,Math.min(H-drag.r-16,q.y));render();});
+}
+const tabs=document.getElementById('wt-tabs'),holder=document.getElementById('wt-holder');
+const LBL={markov:'markov (research)',yarp:'yarp (dev)',vision:'vision (this project)'};
+DATA.wikis.forEach((w,i)=>{const b=document.createElement('button');b.className='wt-tab'+(i===0?' on':'');b.textContent=LBL[w.key]||w.key;
+  b.onclick=()=>{document.querySelectorAll('.wt-tab').forEach(t=>t.classList.remove('on'));b.classList.add('on');graph(holder,w);};tabs.appendChild(b);});
+graph(holder,DATA.wikis[0]);
+})();
+</script>
+```
+
+The blue index/log hub sits at the centre of a wheel of spokes: the agent keeps returning to the index between pages. Genuine link-following between content pages is the exception.
+
+## What this is, and isn't
+
+This is a measure of **behaviour, not value**. It shows how the wiki is *accessed*, not whether it made an answer better, which is a counterfactual a transcript simply cannot show. But the behaviour is itself the finding: the observed usage graph is the empirical baseline that any smarter retrieval, for instance a distribution-based Markov walk over the wiki's structure, has to beat. Today the agent leans hard on reused context and hub-and-search, and barely on the link graph you wrote for it. That gap is the opportunity.
+
+::: {.callout-note appearance="simple"}
+**Honest caveats.** Three wikis, one (long) session each, so treat the rates as indicative, not settled. A session that is itself *about* wikis inflates the reuse numbers. Bash parsing is heuristic, and the model stores only a replay signature for its private reasoning, so "why this page" is inferred from structure, not read from the model's own words.
+:::
