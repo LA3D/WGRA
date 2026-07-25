@@ -293,9 +293,9 @@ footer a { color: var(--muted); }
 
 <p class="punch">Don't merge the content. Connect the participants.</p>
 
-<p>The fabric adds a thin, structural layer that records what each participant <em>is</em>, what it can answer, who made it, and whether you can trust it, and leaves the meaning inside each source where its own small ontology already lives. Shape now; meaning stays with the source.</p>
+<p>The fabric adds a thin, structural layer that records what each participant <em>is</em>, what it can answer, who made it, and whether you can trust it, and leaves the meaning inside each source where its own small ontology already lives.</p>
 
-<h2>A thin structural spine, composed not invented</h2>
+<h2>A thin structural spine, assembled from standards</h2>
 
 <p>Every plane of the fabric already has a W3C standard. Reusing them buys interoperability and federation for free. The only new vocabulary is a small <code>eco:</code> glue layer for what the standards leave out, and it stays <strong>structural</strong>: it describes the <em>shape</em> of the ecosystem (participants, capabilities, provenance, trust), never the <em>meaning</em> of any domain.</p>
 
@@ -310,7 +310,7 @@ footer a { color: var(--muted); }
   <div class="plane"><div class="std">A2A Card</div><div class="role"><strong>Capability advertisement.</strong> An agent card's skills become <code>eco:Capability</code>. Read as a descriptor now; a live-invoke binding later.</div></div>
   <div class="plane"><div class="std">SKOS / OWL</div><div class="role"><strong>Vocabulary &amp; per-source structure.</strong> Controlled terms (maturity, reason codes) and the small ontology each source already emits.</div></div>
 </div>
-<p class="arch-cap">Each plane maps to an adopted standard; the persuasion diagram becomes a build spec. Ledger-free by design, no blockchain.</p>
+<p class="arch-cap">Each plane maps to an adopted standard, which turns the persuasion diagram into a build spec. It is ledger-free by design, with no blockchain.</p>
 </div>
 
 <p>The whole of it is <strong>19 classes and 17 properties</strong>, every term earned by a competency question. A trimmed excerpt of the real <code>eco.ttl</code>, the shape an agent's discovery tools traverse:</p>
@@ -333,7 +333,7 @@ footer a { color: var(--muted); }
 <span class="c"># The trust rule, as controlled vocabulary (SKOS), not code</span>
 <span class="p">eco:</span>Production <span class="k">a</span> <span class="p">eco:</span>Maturity ; <span class="k">skos:prefLabel</span> <span class="s">"production"</span> .
 <span class="p">eco:</span>Beta       <span class="k">a</span> <span class="p">eco:</span>Maturity ; <span class="k">skos:prefLabel</span> <span class="s">"beta"</span> .</pre>
-<p class="arch-cap">The full ontology dereferences at <code>la3d-llm-agents.github.io/ns/eco.ttl</code>. Structural, not semantic: it types the participants and their trust, never the meaning inside any source.</p>
+<p class="arch-cap">The full ontology dereferences at <code>la3d-llm-agents.github.io/ns/eco.ttl</code>. It types the participants and their trust, and leaves the meaning inside each source with the source.</p>
 </div>
 
 <div class="pair eco">
@@ -343,9 +343,9 @@ footer a { color: var(--muted); }
 
 <h2>Identity you can verify</h2>
 
-<p>What carries identity is decided, not hand-waved. The <strong>published bundle</strong> gets one DID; the <strong>agent</strong> that reads it is deferred to a provenance label for now; a <strong>runtime</strong> gets none. Federation is <strong>clone-and-invoke</strong>: resolve a bundle's DID, git-clone it, run a local agent over the clone. Distributed knowledge, local compute. No always-on server, no relay.</p>
+<p>The fabric decides what carries identity rather than leaving it vague. The <strong>published bundle</strong> gets one DID; the <strong>agent</strong> that reads it is deferred to a provenance label for now; a <strong>runtime</strong> gets none. Federation is <strong>clone-and-invoke</strong>: resolve a bundle's DID, git-clone it, and run a local agent over the clone, so the knowledge stays distributed while the compute runs locally, with no always-on server and no relay.</p>
 
-<p>And the DIDs are <strong>cryptographically verifiable</strong>, not merely resolvable: each participant carries an Ed25519 key published as a <code>verificationMethod</code>, and its self-description is signed as a JWS the harvester checks. A forged descriptor fails verification instead of quietly entering the graph. A <code>did:web</code> with no key is a naming convention, not an identity.</p>
+<p>And the DIDs are <strong>cryptographically verifiable</strong> rather than merely resolvable: each participant carries an Ed25519 key published as a <code>verificationMethod</code>, and its self-description is signed as a JWS the harvester checks. A forged descriptor fails verification instead of quietly entering the graph. A <code>did:web</code> with no key is a naming convention, not an identity.</p>
 
 <h2>It runs: three participants in one graph</h2>
 
@@ -371,7 +371,7 @@ footer a { color: var(--muted); }
 
 <p class="punch" style="font-size:1.05em; font-family:'Menlo','Consolas',monospace; letter-spacing:0;">enroll &rarr; find &rarr; identify &rarr; understand &rarr; trust &rarr; reach &rarr; file&#8209;back</p>
 
-<p>Turning those into a running graph is a four-step pipeline over static, published artifacts, an "active metadata graph," never a crawl:</p>
+<p>Turning those into a running graph is a four-step pipeline over static, published artifacts, an "active metadata graph" rather than a crawl:</p>
 
 <div class="arch">
 <div class="pipe">
@@ -393,7 +393,7 @@ footer a { color: var(--muted); }
 
 <h2>How an agent reaches it: a read-only MCP server</h2>
 
-<p>The graph is SPARQL-queryable, but an agent shouldn't hand-write SPARQL. A small <strong>MCP server</strong> (<code>fabric_mcp.py</code>) exposes the fabric to any MCP host, Claude Code, Claude Desktop, Cursor, as five read-only tools, so discovery becomes a conversation. Each tool is one competency stage made callable, and <code>fabric_authority</code> is the payoff query above:</p>
+<p>The graph is SPARQL-queryable, but an agent shouldn't hand-write SPARQL. A small <strong>MCP server</strong> (<code>fabric_mcp.py</code>) exposes the fabric to any MCP host, Claude Code, Claude Desktop, Cursor, as five read-only tools, so an agent can discover resources by asking in plain language. Each tool is one competency stage made callable, and <code>fabric_authority</code> is the payoff query above:</p>
 
 <div class="arch">
 <div class="toolwrap">
@@ -408,7 +408,7 @@ footer a { color: var(--muted); }
   </tbody>
 </table>
 </div>
-<p class="arch-cap">Registered with one command (<code>claude mcp add fabric</code>). The server queries the live published graph by default, falls back offline, and refuses every write. So <em>"what clinical-trial capabilities exist, and is anything they produce authoritative?"</em> is a two-tool traversal, not a human judgement.</p>
+<p class="arch-cap">Registered with one command (<code>claude mcp add fabric</code>). The server queries the live published graph by default, falls back offline, and refuses every write. So <em>"what clinical-trial capabilities exist, and is anything they produce authoritative?"</em> is a two-tool traversal the agent runs itself.</p>
 </div>
 
 <h2>What's real, what's next</h2>
