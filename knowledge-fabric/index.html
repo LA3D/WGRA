@@ -157,6 +157,9 @@ li strong { color: var(--accent); }
 
 /* figures shared idiom with companion pages */
 .arch { margin: 1.4em 0 0.4em; }
+.arch img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
+.arch a.zoom { display: block; }
+.arch a.zoom:hover img { border-color: var(--accent); }
 .arch-cap { font-size: 0.9em; color: var(--muted); font-style: italic; margin: 0.4em 0 0; text-align: center; }
 .arch-lbl {
   font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
@@ -436,6 +439,13 @@ footer a { color: var(--muted); }
 </div>
 
 <h2>Where it sits</h2>
+
+<p>The prototype is not an alternative to the data-fabric vision; it is a concrete instance of it. Every layer of the canonical diagram maps to something running, deliberately swapped for our own substrate, or still open:</p>
+
+<div class="arch">
+<a class="zoom" href="data-fabric-mapping.png" title="Open full size"><img src="data-fabric-mapping.png" alt="The Knowledge-Driven Data Fabric infographic with eleven numbered markers, each mapping a component to our eco-subgraph prototype. Green markers are running today (self-aware ingestion via harvest.py, ontology updates via eco:, semantic query via SPARQL and the MCP server, provenance via PROV-O commit pins, the triples store in Fuseki, the DB and PAD sources, and published artifacts). Amber markers are deliberately swapped for our substrate (AI entity alignment retired by DIDs; zero-trust and blockchain replaced by ledger-free did:web plus verifiable credentials). The red marker, recommendations, is not built."></a>
+<p class="arch-cap">Our build against the canonical data-fabric diagram. Green: running today. Amber: swapped for our substrate (entity alignment retired by DIDs; zero-trust and the blockchain audit log replaced by ledger-free <code>did:web</code> + VC). Red: not built. Click to enlarge.</p>
+</div>
 
 <p>The fabric is the <strong>discovery, identity, and trust</strong> layer, the topology questions, roughly one in twenty of what an agent asks. It is not the content-retrieval engine: reading <em>within</em> a source is the job of the distribution-based walk. The two compose, the walk answers "what did we find about X," the fabric answers "which participant can answer this, is it trustworthy, and how do I reach it." SPARQL earns its keep here precisely because everything it binds is DID-resolved and structurally typed, never a fuzzy concept.</p>
 
