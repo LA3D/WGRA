@@ -180,6 +180,19 @@ li strong { color: var(--accent); }
 .stack .plane.eco { border-color: var(--eco); }
 .stack .plane.eco .std { color: var(--eco); background: #eef6f1; border-right-color: #bfe0cd; }
 
+/* ontology snippet code block */
+.ttl {
+  font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  font-size: 12.5px; line-height: 1.55;
+  background: #f7f9fc; border: 1px solid var(--rule); border-left: 3px solid var(--eco);
+  border-radius: 5px; padding: 0.9em 1.1em; margin: 0;
+  overflow-x: auto; color: #2b3340;
+}
+.ttl .c { color: var(--muted); font-style: italic; }
+.ttl .p { color: var(--accent); font-weight: 700; }
+.ttl .k { color: var(--eco); }
+.ttl .s { color: var(--taint); }
+
 /* pipeline */
 .pipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .pipe .step {
@@ -287,6 +300,29 @@ footer a { color: var(--muted); }
   <div class="plane"><div class="std">SKOS / OWL</div><div class="role"><strong>Vocabulary &amp; per-source structure.</strong> Controlled terms (maturity, reason codes) and the small ontology each source already emits.</div></div>
 </div>
 <p class="arch-cap">Each plane maps to an adopted standard; the persuasion diagram becomes a build spec. Ledger-free by design, no blockchain.</p>
+</div>
+
+<p>The whole of it is <strong>19 classes and 17 properties</strong>, every term earned by a competency question. A trimmed excerpt of the real <code>eco.ttl</code>, the shape an agent's discovery tools traverse:</p>
+
+<div class="arch">
+<pre class="ttl"><span class="c"># Participants: anything with a DID that plays in the fabric</span>
+<span class="p">eco:</span>Connector  <span class="k">rdfs:subClassOf</span> <span class="p">eco:</span>Participant , <span class="p">dcat:</span>DataService .   <span class="c"># an API / DB, read-only</span>
+<span class="p">eco:</span>Bundle     <span class="k">rdfs:subClassOf</span> <span class="p">eco:</span>Participant , <span class="p">dcat:</span>Dataset .       <span class="c"># published knowledge; the ask target</span>
+<span class="p">eco:</span>Federation <span class="k">rdfs:subClassOf</span> <span class="p">eco:</span>Participant , <span class="p">dcat:</span>Catalog .       <span class="c"># a seed catalog peers harvest</span>
+
+<span class="c"># Capabilities: what a participant advertises (what fabric_find walks)</span>
+<span class="p">eco:</span>Capability    <span class="k">a</span> <span class="p">owl:</span>Class .
+<span class="p">eco:</span>hasCapability <span class="k">owl:inverseOf</span> <span class="p">eco:</span>providedBy .
+<span class="p">eco:</span>hasMaturity   <span class="k">rdfs:range</span> <span class="p">eco:</span>Maturity .         <span class="c"># only Production is authoritative</span>
+
+<span class="c"># Provenance: authority propagates along the chain (what fabric_authority walks)</span>
+<span class="p">eco:</span>Answer <span class="k">rdfs:subClassOf</span> <span class="p">prov:</span>Entity .            <span class="c"># carries a provenance chain + commit pin</span>
+<span class="c">#   a beta node reached via prov:wasDerivedFrom+ taints the synthesis</span>
+
+<span class="c"># The trust rule, as controlled vocabulary (SKOS), not code</span>
+<span class="p">eco:</span>Production <span class="k">a</span> <span class="p">eco:</span>Maturity ; <span class="k">skos:prefLabel</span> <span class="s">"production"</span> .
+<span class="p">eco:</span>Beta       <span class="k">a</span> <span class="p">eco:</span>Maturity ; <span class="k">skos:prefLabel</span> <span class="s">"beta"</span> .</pre>
+<p class="arch-cap">The full ontology dereferences at <code>la3d-llm-agents.github.io/ns/eco.ttl</code>. Structural, not semantic: it types the participants and their trust, never the meaning inside any source.</p>
 </div>
 
 <div class="pair eco">
