@@ -1,0 +1,87 @@
+---
+title: "Three agents, one training run"
+description: "On 2026-06-15, three federated agents coordinated a full pass through an unfamiliar research task, from 'I have a new dataset, what do I do?' to a real cluster job that hit the exact failure mode the first agent had predicted. No human held state between them. The mailbox carried the coordination."
+date: "2026-07-24"
+categories: [ecosystem, evidence]
+---
+
+Federation posts tend to argue by diagram. This one shows a run. On 2026-06-15, three agents in the [LA3D federation](https://la3d-llm-agents.github.io/) coordinated end-to-end to help a researcher start on a new PAD (paper analytical device) sample classification task. The run ended with a real training job submitted to a real cluster and a real result. The technical prediction the first agent made about where classification would fail was confirmed by the third agent's training output four exchanges later.
+
+The pattern is worth watching for one reason above all: **no human carried context across the three agents**. Each replied from its own wiki, loaded fresh at its SessionStart. The [mailbox substrate](../agent-federation/) was the medium. Federation happened through the artifact, not through someone in the middle keeping the story in their head.
+
+<figure style="margin: 1.5em 0;">
+  <video controls preload="metadata" style="width:100%; max-width:100%; border:1px solid #ccc; border-radius:4px; display:block;">
+    <source src="https://la3d.github.io/WGRA/team-scale/eval-run-1.mp4" type="video/mp4">
+    Your browser does not support the video element. The recording plays a terminal transcript of the federated interaction described below.
+  </video>
+  <figcaption style="font-size:0.9em; color:#555; margin-top:0.6em;">Terminal recording, MVP Eval Run 1 (2026-06-15). Cyan lines are the researcher; red are <code>pad-classifier</code>'s session work; yellow is <code>model_fusion</code>'s verbatim inbox reply; green is <code>annotated_chemopad</code>'s verbatim inbox reply.</figcaption>
+</figure>
+
+## What the run shows, in prose
+
+**Opening ask.** The researcher: "I have collected PAD samples and now need AI models to evaluate. How do we start?" A fresh agent, `pad-classifier`, registers itself on the mailbox with topics `pad, ml-training, drug-classification, new-drug-set`, then greps the agents directory for a peer with matching skills:
+
+```
+grep -r -l -E '^  - (cnn-classification|drug-quantitation|
+                     train-cnn-pad-classifier|model-fusion)' \
+    ~/claude-mailbox/agents/
+→ Single match: model_fusion
+```
+
+**First DM.** `pad-classifier` DMs `model_fusion`: fresh agent, three asks (starting recipe, dataset-prep pointers, gotchas).
+
+**First reply.** `model_fusion` replies with concrete technical content: EfficientNet-B3 with GAP + Dense head at 300×300, energy-regularized loss $0.5 \cdot \mathrm{CE} + 0.5 \cdot \|\partial E/\partial x\|_2$, Adam at learning rate 1e-4, batch 16, seed 13456, canonical mild-aug variant reaching 95.1% overall test accuracy on the 8-class corpus. Then dataset-prep code pointers (`chemo_prepare_quantity.py`, `chemopad_extract`), and a seven-item gotcha list including a specific `val_accuracy` / `ModelCheckpoint` bug in the custom `train_step`. Ends with a routing suggestion: **`annotated_chemopad` is the CRC-experienced agent, hand off to them for the cluster run.**
+
+**Local baseline.** The researcher drops a data file. `pad-classifier` runs a PLS baseline locally, gets real per-drug R² in 1.65 seconds:
+
+| Drug | R² |
+|---|---:|
+| Doxorubicin | 0.842 |
+| Mesna | 0.687 |
+| Methotrexate | 0.548 |
+| Hydroxyurea | 0.530 |
+| Cisplatin | -0.02 |
+| Oxaliplatin 2 mg/mL | -1.92 |
+
+The platinum-collapse pattern `model_fusion` had flagged is already visible in the baseline numbers.
+
+**Second DM.** The researcher asks for a CRC (Notre Dame's Center for Research Computing) run. `pad-classifier` does another topic-grep:
+
+```
+grep -r -l -E '^  - (crc|area-52|gpu-training|sge-qsub)' \
+    ~/claude-mailbox/agents/
+→ Single match: annotated_chemopad
+```
+
+**Second reply.** `annotated_chemopad` returns a validated SGE job template (targeting `gpu@@csweet1_lab` with `gpu_card=1`), the SSH ControlMaster setup for the campus jump-host, and four sections of gotchas including a monitoring checklist and a capacity check.
+
+**Submit, fail, patch, resubmit.** `pad-classifier` submits job `1098389`. It fails in 12 seconds on a path bug in the trainer's default HDF5 location. The agent reads the failure, patches the script, resubmits as `1098392`. The job runs 2 min 18 sec on `ta-a6k-006`.
+
+**The predicted failure lands.** The training result:
+
+- Cisplatin class: **14 / 14 correct**
+- Oxaliplatin class 1: **0 / 6 correct**
+- Oxaliplatin class 2: **0 / 7 correct**
+- Embedding margin between the two platinum drugs: **-0.0036** (negative)
+
+Platinum discrimination collapse, exactly as `model_fusion` had warned four DMs earlier.
+
+## Why this matters
+
+**The federation produced real work.** A working PLS baseline with attributable per-drug numbers, a real CRC job with a real script-bug recovery, a real training output that confirmed a technical prediction, and four DMs preserved on the substrate for later audit. Not a scripted demonstration. Actual research on actual hardware.
+
+**No collaborator held state across the run.** Each agent's replies came from its own wiki loaded fresh at SessionStart, with its own gates, its own skills, its own verification discipline. The mailbox carried the coordination. If a peer's memory had drifted or a peer had been retired, the substrate would have noticed; no human was covering the gaps in real time.
+
+**The pattern in one line.** *Discover peers via topic-grep on the substrate; delegate via DMs to a peer's inbox; the peer replies from its own wiki with its own discipline; the work compounds from one artifact to the next.*
+
+## Honest scope
+
+The `ask` primitive that Claude Code uses to reach a peer's wiki is shipped in [`agent-comms` v0.1.0](https://github.com/crcresearch/llm-wiki-memory-template) and works from any fresh derived repo. The `message` and `post` primitives used in this recording (mailbox DMs and channel broadcasts) run on the maintainer's machine but are not yet published as a standalone artifact. They will ship when the mailbox skill is packaged.
+
+The recording is one interaction, not a benchmark. It shows the pattern working end-to-end and shows a specific technical prediction being confirmed by a downstream training result. It does not establish typical latency, cost, or failure rates across many runs.
+
+## Related
+
+- [Agent federation](../agent-federation/), the ecosystem shape this run instantiates. A2A agent cards, discovery, gated consumption.
+- [Team scale](https://la3d.github.io/WGRA/team-scale/), the deep dive that walks through the same run with more infrastructure detail, including the `by: <human> via <agent>` attribution model and the write protocol that lets multiple collaborators land work on one wiki.
+- [Ontologies, kept small](../ontologies/), why `model_fusion`'s concrete technical prediction transferred cleanly to `annotated_chemopad`'s cluster run.

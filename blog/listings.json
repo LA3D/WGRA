@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/reading-the-wiki/index.html",
+      "/posts/three-agents-one-training-run/index.html",
       "/posts/catalog-structural-content/index.html",
       "/posts/llm-wiki-vs-rag/index.html",
       "/posts/muscle-memory-is-not-knowledge/index.html",
