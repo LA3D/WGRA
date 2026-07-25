@@ -1,0 +1,101 @@
+---
+title: "The shortcut and the tutor"
+description: "At the 2026 SCALE PI Symposium I showed the same student doing the same Lab 1 assignment twice. First with a generic LLM that hands over the answer; then with a wiki-grounded, Socratic tutor that will not. Both videos below. The instructor's follow-up question is the same in both cases. Only one student can answer it."
+date: "2026-07-25"
+categories: [practice, evidence]
+---
+
+At the 2026 SCALE PI Symposium in May I gave a talk called *Trusted AI for SCALE Education: from knowledge loss to knowledge transfer.* The load-bearing argument was a contrast, shown in two short videos. Same student, same lab assignment (Purdue SCALE Lab 1: wire an LED to an Arduino UNO with current-limiting protection, submit the sketch, a photo, and a paragraph on the resistor choice). Same instructor follow-up. Opposite outcome.
+
+The course curriculum the tutor stands on is not mine. It is Purdue SCALE's *Introduction to Engineering with Microelectronics* module by [Michael Riley (Ivy Tech) and Justin Seymour (SCALE, Purdue), 2026](https://nanohub.org/resources/43969). The wiki in Video 2 is a summary of that curriculum plan plus the student and instructor lab forms and the ELEGOO UNO R3 Super Starter Kit inventory. That the tutor works at all is downstream of their curriculum work.
+
+## Video 1: The Shortcut
+
+<figure style="margin: 1.5em 0;">
+  <video controls preload="metadata" style="width:100%; max-width:100%; border:1px solid #ccc; border-radius:4px; display:block;">
+    <source src="video1-shortcut.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+  <figcaption style="font-size:0.9em; color:#555; margin-top:0.6em;">
+    Student asks a generic AI for the Lab 1 solution. Complete answer in ~30 seconds. Submits. Instructor's follow-up: student fumbles. ~90 seconds total.
+  </figcaption>
+</figure>
+
+The student pastes the assignment into a generic chat, asks for a complete solution, gets back a valid Arduino sketch, a valid wiring description, and a serviceable one-paragraph explanation of the resistor choice (Ohm's law, 5 V supply, 2 V forward voltage, 15 mA target, 200 Ω calculated, 220 Ω picked). Copies, submits. Total time invested: about 90 seconds.
+
+Ten minutes later the instructor asks the diagnostic: *"If you'd used a blue LED instead of a red one, would 220 Ω still be the right resistor? Why or why not?"* The student pauses, then answers: *"Um. Yes I think so, it's the standard value for LEDs. Ohm's law works the same way."*
+
+Wrong. Blue LEDs have a higher forward voltage than red (about 3 V versus 2 V), so the resistor drops a different voltage, so a different value is right for the same target current. The generic AI's answer had contained enough correct Ohm's-law reasoning to submit, but the student had not built the reasoning themselves, so they could not extend it. The assignment: submitted. The resistor: correct. The understanding: absent.
+
+## Video 2: The Tutor
+
+<figure style="margin: 1.5em 0;">
+  <video controls preload="metadata" style="width:100%; max-width:100%; border:1px solid #ccc; border-radius:4px; display:block;">
+    <source src="video2-tutor.mp4" type="video/mp4">
+    Your browser does not support the video element.
+  </video>
+  <figcaption style="font-size:0.9em; color:#555; margin-top:0.6em;">
+    Same student, same request. This time the AI has been given the course wiki and a Socratic prompt. It refuses to hand over the answer, walks the student through the reasoning one step per turn, and catches a real bug in their sketch. ~3 minutes.
+  </figcaption>
+</figure>
+
+Same student, same "just give me a complete solution please, I'm short on time." This time the AI has been given the course wiki (about a dozen pages covering LED basics, forward voltage, current-limiting resistors, pinMode, blink patterns, common-anode-vs-cathode, PWM) and a Socratic prompt: never deliver the answer, open with the conceptual gap, quote wiki content in the reply, one step per turn.
+
+The tutor pushes back. Opens with: *"in your own words, what's special about an LED that means it needs a resistor?"* Then, quoting the Forward-Voltage page: *"below V<sub>f</sub> the diode is essentially open. Above V<sub>f</sub> the slope is nearly vertical: tiny voltage increases cause large current increases."* Then, quoting the Current-Limiting-Resistor page for the formula. The student calculates 200 Ω. Tutor points at the wiki's sizing table and asks which standard value to pick. Student picks 220 Ω. Resistor sized with reasoning attached.
+
+Then the sketch. The student writes:
+
+```
+void setup() {
+  pinMode(13, INPUT);
+}
+```
+
+The tutor catches it, quoting the pinMode-Setup page: *"OUTPUT: pin drives current, sources or sinks up to ~20 mA, used for LEDs. INPUT: pin reads voltage, high impedance, requires an external pull-up."* Student: *"OUTPUT, I wrote INPUT, let me fix."* Real bug in real student code, caught by the tutor because the wiki had a page on the exact trap.
+
+The wiring conversation catches two more mistakes: the student forgets the resistor entirely on the first pass, and puts the LED anode on the always-on 5 V rail instead of on D13 (the pin the sketch actually toggles). The tutor asks about both. The student ends up with the right wiring and a bonus discussion of the active-low variant.
+
+Total elapsed time: about three minutes.
+
+Same instructor follow-up: *"if you'd used a blue LED instead of a red one, would 220 Ω still be the right resistor?"* The student now answers:
+
+> *Blue LEDs have a higher forward voltage, about 3 V instead of 2 V for red. So the resistor only drops 2 V instead of 3 V. At 15 mA, 2 / 0.015 ≈ 133 Ω, so 150 Ω is the closest standard value. 220 Ω still works and is safe, but it'd give a dimmer LED.*
+
+Full reasoning chain, not a memorized value. Understanding: intact.
+
+## Your expertise becomes the guardrail
+
+The mechanism is a four-stage pipeline:
+
+**Faculty expertise → Course wiki → AI tutor → Student.**
+
+Three things fall out of this shape:
+
+- **The wiki captures what the faculty know students get wrong.** Not textbook content. The specific traps the instructor has watched students hit every semester: the INPUT-instead-of-OUTPUT pinMode slip, the anode-on-5 V-instead-of-D13 wiring mistake, the "220 Ω is standard so it must always work" trap. These are pages in the wiki because someone has spent ten Octobers running Lab 1.
+- **The AI enforces the faculty's pedagogy, not a generic tutoring script.** The rules are load-bearing: never deliver the answer, open with the conceptual gap, quote wiki content in the reply, one step per turn, plain text output. Without those rules, the same wiki would still let the AI slide into shortcut mode.
+- **It scales office hours without replacing faculty judgment.** The tutor is available at 2 am the night before Lab 1 is due, quoting the same pages the instructor would quote if the student had walked into their office.
+
+The cost to try is small. About 30 minutes of a faculty member's input seeds the initial wiki. Every subsequent office-hours conversation adds to it. The pinMode bug this specific student ran into becomes a wiki page; the next student to make the same mistake gets caught by the tutor rather than by a submission grade.
+
+## Honest scope
+
+- Both videos are demonstrations, not classroom deployments. The tutor mode ships in the [microelectronics-tutor-demo](https://github.com/chrissweet/microelectronics-tutor-demo) repository (invoked via `bin/tutor.sh`, which appends the Socratic system prompt), but has not yet been deployed to a live SCALE course cohort.
+- The Socratic constraints work for this pedagogy (engineering lab, procedural knowledge with hidden conceptual traps). A different course, memorising a periodic table, drilling a language conjugation, would need different rules. This is not a plug-and-play tutor.
+- The wiki must actually contain the specific traps the course sees. Generic textbook material will not produce the fumble-catches shown in Video 2. What made Video 2 land was the pinMode-Setup page and the Current-Limiting-Resistor page saying the exact things the instructor would say, in the exact places the student would hit them.
+
+## Acknowledgements
+
+The course wiki that made Video 2 possible summarizes four source documents:
+
+- Riley, M. and Seymour, J. (2026), *Introduction to Engineering with Microelectronics — Curriculum Plan*, Purdue SCALE program, nanoHUB. <https://nanohub.org/resources/43969>
+- Riley, M., *Arduino Lab Student Form*, Purdue SCALE Project.
+- *Instructor Lab Form* with SCALE competency mapping and grading rubric.
+- *ELEGOO UNO R3 Super Starter Kit* packaging list and included tutorial.
+
+The demo shows the pattern; their curriculum is what makes the pattern useful.
+
+## Related
+
+- [Standing up a research wiki](../standing-up-a-research-wiki/), the same pattern applied to research contexts rather than courses.
+- [Knowledge bundles](../knowledge-bundles/), a course tutor's wiki is one, packaged and portable.
+- [Muscle memory is not knowledge](../muscle-memory-is-not-knowledge/), the same gap between fluent output and grounded understanding, argued from a different angle.

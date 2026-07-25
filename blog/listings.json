@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/the-shortcut-and-the-tutor/index.html",
       "/posts/reading-the-wiki/index.html",
       "/posts/three-agents-one-training-run/index.html",
       "/posts/catalog-structural-content/index.html",
