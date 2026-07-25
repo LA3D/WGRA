@@ -193,6 +193,17 @@ li strong { color: var(--accent); }
 .ttl .k { color: var(--eco); }
 .ttl .s { color: var(--taint); }
 
+/* MCP tool table */
+.tools { width: 100%; border-collapse: collapse; font-size: 0.92em; margin: 0.4em 0; }
+.tools th, .tools td { text-align: left; padding: 0.55em 0.7em; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.tools th { font-family: 'Helvetica Neue','Arial',sans-serif; font-size: 0.82em; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.tools tr:last-child td { border-bottom: none; }
+.tools code { background: none; color: var(--accent); font-weight: 700; padding: 0; white-space: nowrap; }
+.tools .stage { font-family: 'Helvetica Neue','Arial',sans-serif; font-size: 0.78em; color: var(--eco); font-weight: 700; white-space: nowrap; }
+.toolwrap { border: 1px solid var(--rule); border-radius: 6px; overflow-x: auto; }
+.toolwrap table { min-width: 520px; }
+.toolwrap th, .toolwrap td { padding-left: 0.9em; padding-right: 0.9em; }
+
 /* pipeline */
 .pipe { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .pipe .step {
@@ -380,6 +391,26 @@ footer a { color: var(--muted); }
 <p class="arch-cap">Authority propagates transitively. The synthesis is flagged because one of its inputs traces to a beta recipe, computed, not asserted. A sibling check catches an institutional-source answer filed into a public bundle: a visibility leak.</p>
 </div>
 
+<h2>How an agent reaches it: a read-only MCP server</h2>
+
+<p>The graph is SPARQL-queryable, but an agent shouldn't hand-write SPARQL. A small <strong>MCP server</strong> (<code>fabric_mcp.py</code>) exposes the fabric to any MCP host, Claude Code, Claude Desktop, Cursor, as five read-only tools, so discovery becomes a conversation. Each tool is one competency stage made callable, and <code>fabric_authority</code> is the payoff query above:</p>
+
+<div class="arch">
+<div class="toolwrap">
+<table class="tools">
+  <thead><tr><th>Tool</th><th>What an agent discovers</th><th>Stage</th></tr></thead>
+  <tbody>
+    <tr><td><code>fabric_find</code></td><td>capabilities matching a need, each with its maturity, provider, and whether it is gated</td><td class="stage">find</td></tr>
+    <tr><td><code>fabric_identify</code></td><td>a participant's service endpoints (clone / card / OpenAPI) and whether its signed self-description verified</td><td class="stage">identify</td></tr>
+    <tr><td><code>fabric_authority</code></td><td>whether a filed answer is authoritative, by walking its provenance chain and naming the beta source that taints it</td><td class="stage">trust</td></tr>
+    <tr><td><code>fabric_gate</code></td><td>which capabilities are credential-gated: the scope a VC must grant and the issuer trusted to grant it</td><td class="stage">gate</td></tr>
+    <tr><td><code>fabric_sparql</code></td><td>anything: a read-only SPARQL escape hatch, with update verbs refused</td><td class="stage">escape hatch</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="arch-cap">Registered with one command (<code>claude mcp add fabric</code>). The server queries the live published graph by default, falls back offline, and refuses every write. So <em>"what clinical-trial capabilities exist, and is anything they produce authoritative?"</em> is a two-tool traversal, not a human judgement.</p>
+</div>
+
 <h2>What's real, what's next</h2>
 
 <div class="rp">
@@ -390,6 +421,7 @@ footer a { color: var(--muted); }
       <li>Two GitHub-hosted participants' <span>DIDs, keys, and signed cards, verified live over the wire.</span></li>
       <li>The assembled graph, <span>published and <code>LOAD</code>ed into a live Fuseki store.</span></li>
       <li>All 7 competency queries plus SHACL, <span>green; authority propagation and visibility-leak detection working.</span></li>
+      <li>The read-only <strong>MCP server</strong>, <span>five tools over the graph, all verified against it.</span></li>
     </ul>
   </div>
   <div class="col">
