@@ -15,6 +15,8 @@ website:
         href: https://la3d.github.io/WGRA/
       - text: "The ecosystem"
         href: https://la3d.github.io/WGRA/research-agents-revolution/
+      - text: "Knowledge fabric"
+        href: https://la3d.github.io/WGRA/knowledge-fabric/
       - jargon.qmd
       - about.qmd
       - icon: github
