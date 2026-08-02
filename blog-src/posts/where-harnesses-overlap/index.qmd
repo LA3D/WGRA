@@ -94,6 +94,8 @@ The mechanism is navigation efficiency, not raw accuracy. Neither model was ofte
 
 Two honest caveats, because a single run should not be over-read. First, this is our own synthetic wiki, so it measures the harness effect relatively, not an absolute "you need the wiki." Second, the effect is suggestive, not yet significant: the two models agreed on 34 of 40 questions and disagreed on 6, and a paired test on so few discordant answers does not clear significance. What is solid is the *direction and size* of the orientation lever, and that it is model-specific: the naive reader needed the harness's help; the strong self-orienter did not.
 
+That "not yet significant" is not a throwaway. Two companion posts pick up exactly this thread: [*One run is one sample*](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/) on why a single measurement like this one misleads and how to characterise the noise it sits in, and [*0.988 is not a win*](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/) on the Bayesian layer that turns noisy measurements into honest decisions.
+
 One thing this experiment is **not**: it is GPT-5 inside our own minimal harness, chosen to isolate the orientation lever. That is not Codex. Codex is a full agentic harness with its own navigation, its own `AGENTS.md` orientation, and no artificial step ceiling, so it should do meaningfully better than our stripped GPT-5 arm.
 
 ## The clean test (pending)
