@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chris Sweet">
+<meta name="author" content="James Sweet">
 <meta name="dcterms.date" content="2026-08-02">
 <meta name="description" content="Claude Code, Codex, Cursor, and Antigravity ship one architecture and eight primitives. The surfaces have largely converged, but the wiring has not, and the difference is measurable: holding the model fixed and changing only what the harness hands the reader moved wiki-reading accuracy by twenty to thirty points.">
 
@@ -174,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Chris Sweet </p>
+             <p>James Sweet </p>
           </div>
   </div>
     
@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The architecture map in this post is drawn from James Sweet’s internal talk <em>Where Harnesses Overlap</em>. The measurements are from the WGRA read-path experiments. Putting the two together answers a practical question our team keeps hitting: <strong>if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?</strong></p>
+<p>This post pairs the architecture map from my talk <em>Where Harnesses Overlap</em> with the WGRA read-path measurements. Together they answer a practical question our team keeps hitting: <strong>if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?</strong></p>
 <p>Some claims here are pinned to a tool version and will rot; those are dated. One experiment that would close the loop has not been run yet and is marked <em>pending</em> rather than guessed.</p>
 <section id="the-api-is-a-stateless-function" class="level2">
 <h2 class="anchored" data-anchor-id="the-api-is-a-stateless-function">The API is a stateless function</h2>
@@ -376,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Name the layer before naming the divergence.</strong> Configuring your own harness, use the best native feature and portability be damned. Shipping to other people, you are at the plugin layer, and plugins carry far less than harnesses support.</li>
 </ul>
 <p>And the caveat the whole thing rests on: these facts rot fast. Every claim here names a version, and yours should too. This post is a 2026-08-02 snapshot with one experiment still pending; treat it as a dated measurement, not a standing truth.</p>
-<p><em>Architecture map: James Sweet, “Where Harnesses Overlap.” Measurements: the WGRA read-path experiments, common GPT-4.1 judge, on a synthetic 40-question wiki.</em></p>
+<p><em>Architecture map from the talk “Where Harnesses Overlap.” Measurements from the WGRA read-path experiments, common GPT-4.1 judge, on a synthetic 40-question wiki.</em></p>
 
 
 </section>
