@@ -6,6 +6,12 @@ date: "2026-08-02"
 categories: [ecosystem, evidence]
 ---
 
+::: {.callout-note title="The three-post arc"}
+1. **Where harnesses overlap** *(this post)*. One architecture, four harnesses; the surfaces converged, the wiring did not.
+2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
+3. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). The Bayesian layer that turns noisy measurements into honest decisions.
+:::
+
 This post pairs the architecture map from my talk *Where Harnesses Overlap* with the WGRA read-path measurements. Together they answer a practical question our team keeps hitting: **if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?**
 
 Some claims here are pinned to a tool version and will rot; those are dated. One experiment that would close the loop has not been run yet and is marked *pending* rather than guessed.
@@ -117,11 +123,5 @@ Same questions, same wiki, same judge as above. V0 tells us whether a naive harn
 - **Name the layer before naming the divergence.** Configuring your own harness, use the best native feature and portability be damned. Shipping to other people, you are at the plugin layer, and plugins carry far less than harnesses support.
 
 And the caveat the whole thing rests on: these facts rot fast. Every claim here names a version, and yours should too. This post is a 2026-08-02 snapshot with one experiment still pending; treat it as a dated measurement, not a standing truth.
-
-## The three-post arc
-
-1. **Where harnesses overlap** *(this post)*. One architecture, four harnesses; the surfaces converged, the wiring did not.
-2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
-3. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). The Bayesian layer that turns noisy measurements into honest decisions.
 
 *Architecture map from the talk "Where Harnesses Overlap." Measurements from the WGRA read-path experiments, common GPT-4.1 judge, on a synthetic 40-question wiki.*

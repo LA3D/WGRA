@@ -146,7 +146,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#confounds-wear-the-costume-of-effects" id="toc-confounds-wear-the-costume-of-effects" class="nav-link" data-scroll-target="#confounds-wear-the-costume-of-effects">Confounds wear the costume of effects</a></li>
   <li><a href="#instrument-versus-statistics" id="toc-instrument-versus-statistics" class="nav-link" data-scroll-target="#instrument-versus-statistics">Instrument versus statistics</a></li>
   <li><a href="#where-this-connects" id="toc-where-this-connects" class="nav-link" data-scroll-target="#where-this-connects">Where this connects</a></li>
-  <li><a href="#the-three-post-arc" id="toc-the-three-post-arc" class="nav-link" data-scroll-target="#the-three-post-arc">The three-post arc</a></li>
   </ul>
 </nav>
     </div>
@@ -193,6 +192,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="The three-post arc">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The three-post arc
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
+<li><strong>One run is one sample</strong> <em>(this post)</em>. Why a single measurement of that difference misleads, and the noise beneath it.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. The Bayesian layer that turns noisy measurements into honest decisions.</li>
+</ol>
+</div>
+</div>
 <p>This harness was built in response to <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">Paul Brenner’s issue on landscape llm-wikis</a>. The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.</p>
 <section id="a-week-chasing-a-plugin-bug-that-was-not-there" class="level2">
 <h2 class="anchored" data-anchor-id="a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</h2>
@@ -304,14 +320,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="where-this-connects">Where this connects</h2>
 <p>This is the methodological floor under two other WGRA pieces. James Sweet’s <a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/"><em>Where harnesses overlap</em></a> argues that the same model gives different results because the harness authors most of the request; the related-flood is that argument with teeth, because the thing that moved the output was not even the harness surface but the serving path underneath it, and it was invisible enough to cost a week. And the <a href="https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/">read-path measurement</a> carried a “not yet significant” caveat on a single run; this post is why that caveat is load-bearing and not a hedge.</p>
 <p>The transferable rule, for anyone measuring agents: <strong>one run is an anecdote.</strong> Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.</p>
-</section>
-<section id="the-three-post-arc" class="level2">
-<h2 class="anchored" data-anchor-id="the-three-post-arc">The three-post arc</h2>
-<ol type="1">
-<li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
-<li><strong>One run is one sample</strong> <em>(this post)</em>. Why a single measurement of that difference misleads, and the noise beneath it.</li>
-<li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. The Bayesian layer that turns noisy measurements into honest decisions.</li>
-</ol>
 <p><em>Harness and investigation: Chris Sweet. Built in response to Paul Brenner’s <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">landscape-wiki issue</a>. The outer Bayesian layer is James Sweet’s.</em></p>
 
 

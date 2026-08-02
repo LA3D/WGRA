@@ -6,7 +6,13 @@ date: "2026-08-02"
 categories: [practice, evidence]
 ---
 
-This is the third of three connected posts. The first, [*Where harnesses overlap*](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/), showed that the same model gives different results because the harness authors most of the request. The second, [*One run is one sample*](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/), showed that a single measurement of that difference lies, and asked for an outer statistical layer. This post is that layer.
+::: {.callout-note title="The three-post arc"}
+1. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
+2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
+3. **0.988 is not a win** *(this post)*. The Bayesian layer that turns noisy measurements into honest decisions.
+:::
+
+The first two posts established that harnesses differ, and that a single measurement of that difference lies and needs an outer statistical layer. This post is that layer.
 
 ## The moment the harness says "not yet"
 
@@ -101,11 +107,5 @@ Evidence from prior runs is not thrown away, but it is not treated as if the pip
 Three posts, one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement lies. And the fix is not a better single number, it is a posterior with a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.
 
 The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.
-
-## The three-post arc
-
-1. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
-2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
-3. **0.988 is not a win** *(this post)*. The Bayesian layer that turns noisy measurements into honest decisions.
 
 *Status and provenance: the harness lives on an unmerged branch (`origin/mcp-server`) plus the external engine dependency (`Omegaice/blackbox-evaluation`), not on `main` as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine's own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.*

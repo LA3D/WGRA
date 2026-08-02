@@ -147,7 +147,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#we-measured-the-harness-effect" id="toc-we-measured-the-harness-effect" class="nav-link" data-scroll-target="#we-measured-the-harness-effect">We measured the harness effect</a></li>
   <li><a href="#the-clean-test-pending" id="toc-the-clean-test-pending" class="nav-link" data-scroll-target="#the-clean-test-pending">The clean test (pending)</a></li>
   <li><a href="#what-to-take-away" id="toc-what-to-take-away" class="nav-link" data-scroll-target="#what-to-take-away">What to take away</a></li>
-  <li><a href="#the-three-post-arc" id="toc-the-three-post-arc" class="nav-link" data-scroll-target="#the-three-post-arc">The three-post arc</a></li>
   </ul>
 </nav>
     </div>
@@ -194,6 +193,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="The three-post arc">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The three-post arc
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Where harnesses overlap</strong> <em>(this post)</em>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Why a single measurement of that difference misleads, and the noise beneath it.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. The Bayesian layer that turns noisy measurements into honest decisions.</li>
+</ol>
+</div>
+</div>
 <p>This post pairs the architecture map from my talk <em>Where Harnesses Overlap</em> with the WGRA read-path measurements. Together they answer a practical question our team keeps hitting: <strong>if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?</strong></p>
 <p>Some claims here are pinned to a tool version and will rot; those are dated. One experiment that would close the loop has not been run yet and is marked <em>pending</em> rather than guessed.</p>
 <section id="the-api-is-a-stateless-function" class="level2">
@@ -378,14 +394,6 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Name the layer before naming the divergence.</strong> Configuring your own harness, use the best native feature and portability be damned. Shipping to other people, you are at the plugin layer, and plugins carry far less than harnesses support.</li>
 </ul>
 <p>And the caveat the whole thing rests on: these facts rot fast. Every claim here names a version, and yours should too. This post is a 2026-08-02 snapshot with one experiment still pending; treat it as a dated measurement, not a standing truth.</p>
-</section>
-<section id="the-three-post-arc" class="level2">
-<h2 class="anchored" data-anchor-id="the-three-post-arc">The three-post arc</h2>
-<ol type="1">
-<li><strong>Where harnesses overlap</strong> <em>(this post)</em>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
-<li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Why a single measurement of that difference misleads, and the noise beneath it.</li>
-<li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. The Bayesian layer that turns noisy measurements into honest decisions.</li>
-</ol>
 <p><em>Architecture map from the talk “Where Harnesses Overlap.” Measurements from the WGRA read-path experiments, common GPT-4.1 judge, on a synthetic 40-question wiki.</em></p>
 
 
