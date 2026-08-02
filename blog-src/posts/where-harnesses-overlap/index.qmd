@@ -1,0 +1,118 @@
+---
+title: "Where harnesses overlap, and what the difference costs"
+description: "Claude Code, Codex, Cursor, and Antigravity ship one architecture and eight primitives. The surfaces have largely converged, but the wiring has not, and the difference is measurable: holding the model fixed and changing only what the harness hands the reader moved wiki-reading accuracy by twenty to thirty points."
+date: "2026-08-02"
+categories: [ecosystem, evidence]
+---
+
+The architecture map in this post is drawn from James Sweet's internal talk *Where Harnesses Overlap*. The measurements are from the WGRA read-path experiments. Putting the two together answers a practical question our team keeps hitting: **if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?**
+
+Some claims here are pinned to a tool version and will rot; those are dated. One experiment that would close the loop has not been run yet and is marked *pending* rather than guessed.
+
+## The API is a stateless function
+
+Start from the thing that does not change. A language model API is a stateless function: a full request goes in, one next action comes out, either text or a request to call a tool. The model never executes anything. It does not remember the last call. "Memory" is just the entire conversation re-sent on top of every single request.
+
+Everything else is the **harness**: the roughly twenty lines of loop that call the model, run the tool it asked for, append the result, and call again; plus the far larger job of assembling the context (which instruction files, which prior turns, which tool schemas) and compacting it when the window fills. The real work of an agent is context assembly and tooling, and none of it lives in the model.
+
+That gives a ladder: **prompt sits inside context, context sits inside the harness, the harness runs the loop**, each level capping the ones below it. If the agent lives in the harness, then comparing harnesses is comparing who authors the request. That is what this post is about.
+
+## Four harnesses, one architecture
+
+Four harnesses this team touches day to day (Antigravity is included because it is what every student here has, so anything we ship to students lands on it):
+
+| Harness | Frontend | Version the claims were checked against |
+|---|---|---|
+| Claude Code | `claude` CLI | 2.1.220 |
+| Codex | `codex` CLI | codex-cli 0.145.0 |
+| Cursor | GUI and `cursor-agent` CLI | 3.12.30 / 2026.07.23 |
+| Antigravity | `agy` CLI | 1.1.8 |
+
+Those versions are a late-July-2026 snapshot. Facts rot fast: by the time of writing (2026-08-02) Codex's default model has already moved to `gpt-5.6-sol` and its `--full-auto` flag is deprecated in favor of `--sandbox workspace-write`. Read every version-specific claim below as "as of that snapshot."
+
+Before you configure anything, all four are already running the same machine: a `while` loop over a stateless completion endpoint, a file-edit / read / search / shell tool surface, permission gating in front of the dangerous tools, context assembled from instruction files walked up the directory tree, compaction when the window fills, subagent spawning for context isolation, and MCP as the escape hatch to external tools. Nobody coordinated that. Four vendors, four codebases, one design.
+
+Under the hood it resolves to **eight primitives**, and none of the four has a category the others lack:
+
+| Primitive | What it is | What it changes |
+|---|---|---|
+| Instruction files | Markdown injected into every request | Context, always |
+| Slash commands | A canned prompt the user fires by name | Context, on demand |
+| Skills | Instructions the model loads only when relevant | Context, on demand |
+| Subagents | A prompt run in a fresh context window | Isolation |
+| Hooks | A command run when a lifecycle event fires | The loop |
+| MCP | External tool servers over one shared protocol | Tools |
+| Plugins | An installable bundle of the rows above | Distribution |
+| Permissions | Rules gating which tool calls may run | The boundary |
+
+The differences between vendors are spelling and wiring, never the concept.
+
+## Why one architecture
+
+Two forces produced the single shape. Part is **forced by the API**: the endpoint is stateless and billed per token, so the loop, the stable-prefix context assembly, and compaction are what anyone builds once prompt-caching prices out the alternatives. Part is **adopted on purpose**: compatibility beat invention, and the shipped binaries show it. Codex ships `CLAUDE_PLUGIN_ROOT` compatibility aliases into its hook environment; Cursor hardcodes `~/.claude` discovery paths; Antigravity adopted Claude's PascalCase hook-event names.
+
+The motive is that harness competition has decoupled from model competition. Cursor runs every vendor's models; even Google's Antigravity offers Claude models. When the model is no longer the moat, interoperability with the incumbent's config is. The counterweight is that a single-model harness builds against its own API's affordances, which is why Claude Code's surface is the largest (output styles, 29 hook events, many plugin component types): vertical integration showing.
+
+## The divergences that bite
+
+Convergence is real but not total, and the gaps are exactly where a naive harness swap breaks.
+
+**Instruction files: no single filename is read by all four.** This is the one that catches people first.
+
+| Frontend | Reads |
+|---|---|
+| `claude` CLI | `CLAUDE.md`, `.claude/CLAUDE.md`, `CLAUDE.local.md`, `.claude/rules/` |
+| `codex` CLI | `AGENTS.override.md`, then `AGENTS.md` |
+| Cursor | `AGENTS.md`, `.cursor/rules/*.mdc`, `.cursorrules`, imports `CLAUDE.md` |
+| `agy` CLI | `~/.gemini/GEMINI.md`, `GEMINI.md` + `AGENTS.md` walked to repo root |
+
+`AGENTS.md` is almost the standard: Codex, Cursor, and Antigravity all read it. Claude Code is the holdout. Cursor hedges by also ingesting `CLAUDE.md` by default (import-gated, but the gate defaults on). So the same repo hands different instructions to each harness unless you deliberately mirror them.
+
+**Hooks: same concept, no shared contract.** The event vocabularies run from 5 (Antigravity) to 29 (Claude Code). The shared core across Claude, Codex, and Cursor is eight events (`PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `Stop`, `SubagentStop`, `SessionStart`, `SessionEnd`, `PreCompact`); add Antigravity and it shrinks to three. Each blocking mechanism is different too: Claude uses exit code 2 or a JSON decision, Cursor uses `failClosed`, Antigravity uses a JSON `decision` of allow / deny / ask / force_ask.
+
+**Permissions: the verdict converges, the target does not.** Everyone lands on allow / ask / deny, but the notation for *what* a rule applies to differs per harness, and what a "trust" grant covers differs: only Codex gates plugin hooks behind a separate trust grant.
+
+The rule of thumb James draws from the full map: **content travels, wiring does not.** Skill bodies and prompts move between harnesses nearly free; hooks, permissions, and version schemes are per-harness work. And one sharp correctness note: identical skill or command names across catalogs cause silent shadowing and double-fired hooks. Those are bugs, not preferences.
+
+## Same model does not mean same results
+
+Several of these harnesses can run the same model. Cursor will happily run the model Claude Code runs. Same weights do not mean same behavior, because the model computes exactly one function (full request in, next action out) and the harness authors most of that request: the system prompt, the tool names and schemas, which instruction files got assembled, and how the prior conversation was compacted. Same model, different arguments, different results.
+
+That is a claim you can measure, so we did.
+
+## We measured the harness effect
+
+In a separate read-path experiment ([the first measurement is here](https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/)) an agent answers a fixed bank of questions by navigating an llm-wiki: opening whole pages, following links, reasoning across several pages. We held the wiki, the questions, and the blind judge fixed, and varied only the reading model and **the orientation the harness provides at the start of a session**, then scored correctness (0 to 3) blindly. Numbers below are on the 40-question frame, judged by a common non-Claude grader.
+
+The orientation that matters most is trivially small: whether the harness hands the agent the wiki's index page up front (the job a `SessionStart` hook or an instruction file does) or leaves it to discover the structure itself.
+
+- **Claude self-orients.** It found and used the index on its own, navigated in about 3.5 steps, never exhausted its step budget, and scored **90%** whether or not we seeded the index. Seeding changed almost nothing for it.
+- **The same lever was worth twenty points to GPT-5.** In a deliberately minimal harness, GPT-5 without the index wandered: 7 to 9 navigation steps, and 12 to 19 of 44 questions ran into the step ceiling and were cut off, which forced an abstention, which scored zero. It landed at **60%**. Handing it the index up front (nothing else changed) cut the wandering and lifted it to **80%**.
+
+The mechanism is navigation efficiency, not raw accuracy. Neither model was often wrong when it answered; GPT-5's deficit was getting lost and running out of budget before it found the page. The gap concentrates in the hardest, multi-page synthesis questions, exactly the ones that matter for discovery, and closes on plain lookups.
+
+Two honest caveats, because a single run should not be over-read. First, this is our own synthetic wiki, so it measures the harness effect relatively, not an absolute "you need the wiki." Second, the effect is suggestive, not yet significant: the two models agreed on 34 of 40 questions and disagreed on 6, and a paired test on so few discordant answers does not clear significance. What is solid is the *direction and size* of the orientation lever, and that it is model-specific: the naive reader needed the harness's help; the strong self-orienter did not.
+
+One thing this experiment is **not**: it is GPT-5 inside our own minimal harness, chosen to isolate the orientation lever. That is not Codex. Codex is a full agentic harness with its own navigation, its own `AGENTS.md` orientation, and no artificial step ceiling, so it should do meaningfully better than our stripped GPT-5 arm.
+
+## The clean test (pending)
+
+The direct version of "content travels, wiring does not" is a Codex-versus-Claude-Code harness swap on the same wiki, with two Codex configurations that isolate the orientation adapter:
+
+- **V0**: Codex in a plain wiki directory, no wiki-specific instructions (the naive switch).
+- **V1**: the same directory plus an `AGENTS.md` that points Codex at the index, tells it to read whole pages and follow links, and nudges it to attempt synthesis rather than over-abstain.
+
+Same questions, same wiki, same judge as above. V0 tells us whether a naive harness swap degrades synthesis; V1 tells us whether a small, portable orientation file (content, which travels) recovers it.
+
+**This run has not been completed yet.** We will update this post with the V0 and V1 numbers rather than estimate them. The prediction, from the measured GPT-5 lever above, is that V0 shows some degradation and V1 recovers most of it, but that is a hypothesis until the harness actually reports it.
+
+## What to take away
+
+- **Picking a harness is picking a permission model and a distribution story, not a model.** The model is the least differentiated part; the harness authors most of the request.
+- **Content travels; wiring does not.** Skills, prompts, and orientation files port across harnesses cheaply. Hooks, permission syntax, and version schemes are per-harness work.
+- **Ship the orientation with the wiki, per harness.** Because a reader's performance depends on harness-specific orientation, an llm-wiki should carry a thin per-vendor adapter (the index seed, the step budget, the tool wiring) rather than assume every harness reads it the same way. That is the concrete form of vendor-neutrality: one neutral memory, a thin adapter each vendor consumes.
+- **Name the layer before naming the divergence.** Configuring your own harness, use the best native feature and portability be damned. Shipping to other people, you are at the plugin layer, and plugins carry far less than harnesses support.
+
+And the caveat the whole thing rests on: these facts rot fast. Every claim here names a version, and yours should too. This post is a 2026-08-02 snapshot with one experiment still pending; treat it as a dated measurement, not a standing truth.
+
+*Architecture map: James Sweet, "Where Harnesses Overlap." Measurements: the WGRA read-path experiments, common GPT-4.1 judge, on a synthetic 40-question wiki.*
