@@ -90,4 +90,10 @@ This is the methodological floor under two other WGRA pieces. James Sweet's [*Wh
 
 The transferable rule, for anyone measuring agents: **one run is an anecdote.** Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.
 
-*Harness and investigation: Chris Sweet. Built in response to Paul Brenner's [landscape-wiki issue](https://github.com/crcresearch/llm-wiki-memory-template/issues/79). The outer Bayesian layer, forthcoming, is James Sweet's.*
+## The three-post arc
+
+1. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
+2. **One run is one sample** *(this post)*. Why a single measurement of that difference misleads, and the noise beneath it.
+3. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). The Bayesian layer that turns noisy measurements into honest decisions.
+
+*Harness and investigation: Chris Sweet. Built in response to Paul Brenner's [landscape-wiki issue](https://github.com/crcresearch/llm-wiki-memory-template/issues/79). The outer Bayesian layer is James Sweet's.*

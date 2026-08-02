@@ -102,4 +102,10 @@ Three posts, one argument. Harnesses differ, so the same model gives different r
 
 The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.
 
+## The three-post arc
+
+1. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
+2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
+3. **0.988 is not a win** *(this post)*. The Bayesian layer that turns noisy measurements into honest decisions.
+
 *Status and provenance: the harness lives on an unmerged branch (`origin/mcp-server`) plus the external engine dependency (`Omegaice/blackbox-evaluation`), not on `main` as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine's own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.*

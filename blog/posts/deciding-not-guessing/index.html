@@ -149,6 +149,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-worked-example-end-to-end" id="toc-the-worked-example-end-to-end" class="nav-link" data-scroll-target="#the-worked-example-end-to-end">The worked example, end to end</a></li>
   <li><a href="#old-runs-without-lying-about-drift" id="toc-old-runs-without-lying-about-drift" class="nav-link" data-scroll-target="#old-runs-without-lying-about-drift">Old runs, without lying about drift</a></li>
   <li><a href="#where-this-lands" id="toc-where-this-lands" class="nav-link" data-scroll-target="#where-this-lands">Where this lands</a></li>
+  <li><a href="#the-three-post-arc" id="toc-the-three-post-arc" class="nav-link" data-scroll-target="#the-three-post-arc">The three-post arc</a></li>
   </ul>
 </nav>
     </div>
@@ -314,6 +315,14 @@ compare(sonnet, haiku):  P(sonnet &gt; haiku) = 0.988   mean difference 0.180   
 <h2 class="anchored" data-anchor-id="where-this-lands">Where this lands</h2>
 <p>Three posts, one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement lies. And the fix is not a better single number, it is a posterior with a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.</p>
 <p>The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.</p>
+</section>
+<section id="the-three-post-arc" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-post-arc">The three-post arc</h2>
+<ol type="1">
+<li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Why a single measurement of that difference misleads, and the noise beneath it.</li>
+<li><strong>0.988 is not a win</strong> <em>(this post)</em>. The Bayesian layer that turns noisy measurements into honest decisions.</li>
+</ol>
 <p><em>Status and provenance: the harness lives on an unmerged branch (<code>origin/mcp-server</code>) plus the external engine dependency (<code>Omegaice/blackbox-evaluation</code>), not on <code>main</code> as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine’s own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.</em></p>
 
 
