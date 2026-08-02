@@ -1,0 +1,93 @@
+---
+title: "One run is one sample: the related-flood and the case for a Bayesian harness"
+description: "We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer."
+author: "Chris Sweet"
+date: "2026-08-02"
+categories: [practice, evidence]
+---
+
+This harness was built in response to [Paul Brenner's issue on landscape llm-wikis](https://github.com/crcresearch/llm-wiki-memory-template/issues/79). The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.
+
+## A week chasing a plugin bug that was not there
+
+Two builds of the same wiki, from the same twelve papers, under byte-identical instructions. One came out with 52 `related:` frontmatter edges. The other came out with **434**. The high one was the [llm-wiki plugin](https://la3d.github.io/WGRA/blog/posts/marketplace/); the low one was the template it was supposed to replicate. An eight-fold difference in how densely the wiki cross-linked itself is exactly the kind of number that looks like a defect, so for the better part of a week the plugin wore the blame. There were theories: its `SessionStart` hook, its rule files, the way it assembled context.
+
+Then someone rebuilt the plugin arm changing exactly one thing: the **serving path**. The first build ran on an Anthropic API key; the rebuild ran on a Claude Max login. Same model id (`opus-4-8`), same plugin code, same corpus, same instructions. The 434 collapsed to **52**, matching the template.
+
+It was never the plugin. It was the auth path, and it had been hiding in plain sight because nobody varies the thing they assume is inert. That is the whole post in one anecdote: **a single run is one sample from a noisy process, and the noise has structure that will fool you.**
+
+## The instrument
+
+What we built is an inner measurement loop. Hold a corpus fixed (twelve papers), have Claude Code build a wiki from them, query that wiki, and measure the result on three metric families:
+
+```
+fixed 12-paper corpus
+      │  INGEST   Claude Code builds a wiki   (system under test = plugin or template)
+      ▼
+    a wiki
+      │  QUERY    40 questions via one fixed, read-only consultation mechanic
+      ▼
+   answers + full tool-call traces
+      │  MEASURE  1. ingestion stats (what got built)
+      ▼           2. answer stats (what it can answer)
+                  3. trajectory stats (how the agent read to answer)
+```
+
+The protocol is deterministic. The **outcome is not.** Run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample. That is the fact everything else follows from.
+
+An **arm** is one system built and queried this way. A comparison is only meaningful when two arms differ in exactly one variable, which is precisely the discipline the related-flood violated.
+
+## The noise is not jitter, it is regime choices
+
+The tempting mental model is that repeated runs scatter gaussian-ly around a true value, so a big enough single run is close enough. That model is wrong here, and the `related:` count shows why.
+
+| build | pages | lateral (concept) pages | `related:` edges |
+|---|---|---|---|
+| template, Max login | 78 | 58 | 67 |
+| plugin, Max login | 71 | 49 | 52 |
+| plugin, **API key** | 75 | 46 | **434** |
+
+The `related:` count is not a noisy measurement of one underlying quantity. Each build adopts a **uniform per-page policy** early and applies it throughout: one build settles on roughly one `related:` edge per page, another on roughly six, and then holds that convention for all seventy-odd pages. That is a discrete, run-level latent choice, closer to a coin landing on a face than to a thermometer wobbling. A single run does not average that away; it just shows you one face of the coin and lets you mistake it for the value.
+
+There is a punchline that makes the flood even more clearly a measurement artifact: **100% of `related:` edges duplicate a link the page body already makes.** The edge adds no graph connectivity the wiki did not already have. So the terrifying 434-versus-52 swing changed a *count* and changed nothing about what the wiki could actually answer. The scariest number in the investigation was inert.
+
+## The scores are saturated, and noisier than the differences
+
+If the structure is a red herring, surely the answer scores separate the arms. They do not. Graded CORRECT-only on 24 screened-answerable questions (plus 5 unanswerable controls, all passed), on the twelve-paper synthetic corpus:
+
+| arm | answer score |
+|---|---|
+| template (Max) | 21/24 |
+| plugin (Max) | 19/24 |
+| plugin (API) | 19/24 |
+| synopsis floor (broken ingest) | 5/24 |
+
+Every full-text arm lands in a narrow 19–21 band. A paired **McNemar exact test** on every pair of full-text arms is **non-significant** (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the *same, unchanged* wiki and about **10% of question verdicts flip** anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.
+
+Two guards keep this from being circular. The **synopsis floor** (an ingest that scans rather than reads the papers) scores 5/24, so the metric is not simply insensitive: it detects a genuinely broken build with room to spare. And the controls (facts absent from all twelve papers) are all answered "not in the corpus," so the arms are not bluffing.
+
+There is a second noise source layered on top: **grading is subjective and was shown to be error-prone here.** One answer was scored WRONG and only corrected to CORRECT after re-reading the source paper. The rule we enforce (grade blind, verify against the paper, never against the ground-truth label) is a mitigation, not a cure. Grader variance is real and has to live in the model of the noise, not be wished away.
+
+## Confounds wear the costume of effects
+
+The deepest lesson is not "run it more times." It is that some of the variation is **not run noise at all**, it is a fixed effect that shifts the whole distribution, and if you average over it you average two different distributions together. The related-flood was exactly this: an auth/serving-path effect wearing a plugin-defect costume. The factors that have to be held constant or modelled, never averaged over:
+
+- **Serving path.** API key versus Max login moved the `related:` policy from 6-per-page to 1-per-page at a fixed model id. This is our single largest error to date and our top replication target. One honest caveat: it is currently **one build per path**, so read it as "the leading confound we have isolated once," not as a settled claim that the API and the subscription differ in general. It is the first thing the outer harness should run repeatedly.
+- **Model version.** Answer scores, trajectories, and especially the prior-contamination screen drift as the model absorbs more of the literature. The screen has to be re-run whenever the model changes.
+- **Tool-and-model entanglement.** Cursor and Codex run their own models, so "assistant A versus assistant B" is unavoidably "A-plus-its-model versus B-plus-its-model." That is a thing to state, not to launder into a pure tool comparison.
+
+## Instrument versus statistics
+
+Put together, the honest description of this repo is: it is an **instrument.** It produces one fully-captured, honestly-measured sample of llm-wiki behaviour under Claude Code. It is also, on its own, underpowered: every strong single-run conclusion in the investigation was wrong until it was replicated, and the related-flood is only the loudest example.
+
+What the instrument cannot do is decide. "Is arm X different from the baseline beyond run and grading noise?" is a question about distributions, and it wants a posterior, a credible interval, or a Bayes factor, not a raw score delta (which McNemar already shows is noise). That is the job of an **outer statistical layer** that runs the instrument many times, **stratified** on the systematic factors above, and reasons about the spread. The measured noise floor (the ~10% verdict-flip rate, the run-to-run structural spread) even gives it empirical priors to start from.
+
+That outer layer is a Bayesian test harness, and it is the subject of a **forthcoming post**. This one is deliberately about the instrument and its noise, because you cannot design the statistics until you have characterised what you are averaging over.
+
+## Where this connects
+
+This is the methodological floor under two other WGRA pieces. James Sweet's [*Where harnesses overlap*](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/) argues that the same model gives different results because the harness authors most of the request; the related-flood is that argument with teeth, because the thing that moved the output was not even the harness surface but the serving path underneath it, and it was invisible enough to cost a week. And the [read-path measurement](https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/) carried a "not yet significant" caveat on a single run; this post is why that caveat is load-bearing and not a hedge.
+
+The transferable rule, for anyone measuring agents: **one run is an anecdote.** Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.
+
+*Harness and investigation: Chris Sweet. Built in response to Paul Brenner's [landscape-wiki issue](https://github.com/crcresearch/llm-wiki-memory-template/issues/79). The outer Bayesian layer, forthcoming, is James Sweet's.*

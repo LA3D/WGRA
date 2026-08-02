@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chris Sweet">
+<meta name="dcterms.date" content="2026-08-02">
+<meta name="description" content="We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.">
+
+<title>One run is one sample: the related-flood and the case for a Bayesian harness – WGRA Nuggets</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f6e93ea9ccd94950dbbd0705d6507235.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="https://la3d.github.io/" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/la3d-logo.png" alt="Laboratory for Assured AI Applications Development (LA3D)" class="navbar-logo light-content">
+    <img src="../../assets/la3d-logo.png" alt="Laboratory for Assured AI Applications Development (LA3D)" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="https://la3d.github.io/">
+    <span class="navbar-title">WGRA Nuggets</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://la3d.github.io/WGRA/"> 
+<span class="menu-text">WGRA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://la3d.github.io/WGRA/research-agents-revolution/"> 
+<span class="menu-text">The ecosystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://la3d.github.io/WGRA/knowledge-fabric/"> 
+<span class="menu-text">Knowledge fabric</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../jargon.html"> 
+<span class="menu-text">Jargon lookup</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About WGRA Nuggets</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/LA3D/WGRA"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#a-week-chasing-a-plugin-bug-that-was-not-there" id="toc-a-week-chasing-a-plugin-bug-that-was-not-there" class="nav-link active" data-scroll-target="#a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</a></li>
+  <li><a href="#the-instrument" id="toc-the-instrument" class="nav-link" data-scroll-target="#the-instrument">The instrument</a></li>
+  <li><a href="#the-noise-is-not-jitter-it-is-regime-choices" id="toc-the-noise-is-not-jitter-it-is-regime-choices" class="nav-link" data-scroll-target="#the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</a></li>
+  <li><a href="#the-scores-are-saturated-and-noisier-than-the-differences" id="toc-the-scores-are-saturated-and-noisier-than-the-differences" class="nav-link" data-scroll-target="#the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</a></li>
+  <li><a href="#confounds-wear-the-costume-of-effects" id="toc-confounds-wear-the-costume-of-effects" class="nav-link" data-scroll-target="#confounds-wear-the-costume-of-effects">Confounds wear the costume of effects</a></li>
+  <li><a href="#instrument-versus-statistics" id="toc-instrument-versus-statistics" class="nav-link" data-scroll-target="#instrument-versus-statistics">Instrument versus statistics</a></li>
+  <li><a href="#where-this-connects" id="toc-where-this-connects" class="nav-link" data-scroll-target="#where-this-connects">Where this connects</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">One run is one sample: the related-flood and the case for a Bayesian harness</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">practice</div>
+    <div class="quarto-category">evidence</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chris Sweet </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 2, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This harness was built in response to <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">Paul Brenner’s issue on landscape llm-wikis</a>. The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.</p>
+<section id="a-week-chasing-a-plugin-bug-that-was-not-there" class="level2">
+<h2 class="anchored" data-anchor-id="a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</h2>
+<p>Two builds of the same wiki, from the same twelve papers, under byte-identical instructions. One came out with 52 <code>related:</code> frontmatter edges. The other came out with <strong>434</strong>. The high one was the <a href="https://la3d.github.io/WGRA/blog/posts/marketplace/">llm-wiki plugin</a>; the low one was the template it was supposed to replicate. An eight-fold difference in how densely the wiki cross-linked itself is exactly the kind of number that looks like a defect, so for the better part of a week the plugin wore the blame. There were theories: its <code>SessionStart</code> hook, its rule files, the way it assembled context.</p>
+<p>Then someone rebuilt the plugin arm changing exactly one thing: the <strong>serving path</strong>. The first build ran on an Anthropic API key; the rebuild ran on a Claude Max login. Same model id (<code>opus-4-8</code>), same plugin code, same corpus, same instructions. The 434 collapsed to <strong>52</strong>, matching the template.</p>
+<p>It was never the plugin. It was the auth path, and it had been hiding in plain sight because nobody varies the thing they assume is inert. That is the whole post in one anecdote: <strong>a single run is one sample from a noisy process, and the noise has structure that will fool you.</strong></p>
+</section>
+<section id="the-instrument" class="level2">
+<h2 class="anchored" data-anchor-id="the-instrument">The instrument</h2>
+<p>What we built is an inner measurement loop. Hold a corpus fixed (twelve papers), have Claude Code build a wiki from them, query that wiki, and measure the result on three metric families:</p>
+<pre><code>fixed 12-paper corpus
+      │  INGEST   Claude Code builds a wiki   (system under test = plugin or template)
+      ▼
+    a wiki
+      │  QUERY    40 questions via one fixed, read-only consultation mechanic
+      ▼
+   answers + full tool-call traces
+      │  MEASURE  1. ingestion stats (what got built)
+      ▼           2. answer stats (what it can answer)
+                  3. trajectory stats (how the agent read to answer)</code></pre>
+<p>The protocol is deterministic. The <strong>outcome is not.</strong> Run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample. That is the fact everything else follows from.</p>
+<p>An <strong>arm</strong> is one system built and queried this way. A comparison is only meaningful when two arms differ in exactly one variable, which is precisely the discipline the related-flood violated.</p>
+</section>
+<section id="the-noise-is-not-jitter-it-is-regime-choices" class="level2">
+<h2 class="anchored" data-anchor-id="the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</h2>
+<p>The tempting mental model is that repeated runs scatter gaussian-ly around a true value, so a big enough single run is close enough. That model is wrong here, and the <code>related:</code> count shows why.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>build</th>
+<th>pages</th>
+<th>lateral (concept) pages</th>
+<th><code>related:</code> edges</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>template, Max login</td>
+<td>78</td>
+<td>58</td>
+<td>67</td>
+</tr>
+<tr class="even">
+<td>plugin, Max login</td>
+<td>71</td>
+<td>49</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td>plugin, <strong>API key</strong></td>
+<td>75</td>
+<td>46</td>
+<td><strong>434</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>related:</code> count is not a noisy measurement of one underlying quantity. Each build adopts a <strong>uniform per-page policy</strong> early and applies it throughout: one build settles on roughly one <code>related:</code> edge per page, another on roughly six, and then holds that convention for all seventy-odd pages. That is a discrete, run-level latent choice, closer to a coin landing on a face than to a thermometer wobbling. A single run does not average that away; it just shows you one face of the coin and lets you mistake it for the value.</p>
+<p>There is a punchline that makes the flood even more clearly a measurement artifact: <strong>100% of <code>related:</code> edges duplicate a link the page body already makes.</strong> The edge adds no graph connectivity the wiki did not already have. So the terrifying 434-versus-52 swing changed a <em>count</em> and changed nothing about what the wiki could actually answer. The scariest number in the investigation was inert.</p>
+</section>
+<section id="the-scores-are-saturated-and-noisier-than-the-differences" class="level2">
+<h2 class="anchored" data-anchor-id="the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</h2>
+<p>If the structure is a red herring, surely the answer scores separate the arms. They do not. Graded CORRECT-only on 24 screened-answerable questions (plus 5 unanswerable controls, all passed), on the twelve-paper synthetic corpus:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>answer score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>template (Max)</td>
+<td>21/24</td>
+</tr>
+<tr class="even">
+<td>plugin (Max)</td>
+<td>19/24</td>
+</tr>
+<tr class="odd">
+<td>plugin (API)</td>
+<td>19/24</td>
+</tr>
+<tr class="even">
+<td>synopsis floor (broken ingest)</td>
+<td>5/24</td>
+</tr>
+</tbody>
+</table>
+<p>Every full-text arm lands in a narrow 19–21 band. A paired <strong>McNemar exact test</strong> on every pair of full-text arms is <strong>non-significant</strong> (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the <em>same, unchanged</em> wiki and about <strong>10% of question verdicts flip</strong> anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.</p>
+<p>Two guards keep this from being circular. The <strong>synopsis floor</strong> (an ingest that scans rather than reads the papers) scores 5/24, so the metric is not simply insensitive: it detects a genuinely broken build with room to spare. And the controls (facts absent from all twelve papers) are all answered “not in the corpus,” so the arms are not bluffing.</p>
+<p>There is a second noise source layered on top: <strong>grading is subjective and was shown to be error-prone here.</strong> One answer was scored WRONG and only corrected to CORRECT after re-reading the source paper. The rule we enforce (grade blind, verify against the paper, never against the ground-truth label) is a mitigation, not a cure. Grader variance is real and has to live in the model of the noise, not be wished away.</p>
+</section>
+<section id="confounds-wear-the-costume-of-effects" class="level2">
+<h2 class="anchored" data-anchor-id="confounds-wear-the-costume-of-effects">Confounds wear the costume of effects</h2>
+<p>The deepest lesson is not “run it more times.” It is that some of the variation is <strong>not run noise at all</strong>, it is a fixed effect that shifts the whole distribution, and if you average over it you average two different distributions together. The related-flood was exactly this: an auth/serving-path effect wearing a plugin-defect costume. The factors that have to be held constant or modelled, never averaged over:</p>
+<ul>
+<li><strong>Serving path.</strong> API key versus Max login moved the <code>related:</code> policy from 6-per-page to 1-per-page at a fixed model id. This is our single largest error to date and our top replication target. One honest caveat: it is currently <strong>one build per path</strong>, so read it as “the leading confound we have isolated once,” not as a settled claim that the API and the subscription differ in general. It is the first thing the outer harness should run repeatedly.</li>
+<li><strong>Model version.</strong> Answer scores, trajectories, and especially the prior-contamination screen drift as the model absorbs more of the literature. The screen has to be re-run whenever the model changes.</li>
+<li><strong>Tool-and-model entanglement.</strong> Cursor and Codex run their own models, so “assistant A versus assistant B” is unavoidably “A-plus-its-model versus B-plus-its-model.” That is a thing to state, not to launder into a pure tool comparison.</li>
+</ul>
+</section>
+<section id="instrument-versus-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="instrument-versus-statistics">Instrument versus statistics</h2>
+<p>Put together, the honest description of this repo is: it is an <strong>instrument.</strong> It produces one fully-captured, honestly-measured sample of llm-wiki behaviour under Claude Code. It is also, on its own, underpowered: every strong single-run conclusion in the investigation was wrong until it was replicated, and the related-flood is only the loudest example.</p>
+<p>What the instrument cannot do is decide. “Is arm X different from the baseline beyond run and grading noise?” is a question about distributions, and it wants a posterior, a credible interval, or a Bayes factor, not a raw score delta (which McNemar already shows is noise). That is the job of an <strong>outer statistical layer</strong> that runs the instrument many times, <strong>stratified</strong> on the systematic factors above, and reasons about the spread. The measured noise floor (the ~10% verdict-flip rate, the run-to-run structural spread) even gives it empirical priors to start from.</p>
+<p>That outer layer is a Bayesian test harness, and it is the subject of a <strong>forthcoming post</strong>. This one is deliberately about the instrument and its noise, because you cannot design the statistics until you have characterised what you are averaging over.</p>
+</section>
+<section id="where-this-connects" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-connects">Where this connects</h2>
+<p>This is the methodological floor under two other WGRA pieces. James Sweet’s <a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/"><em>Where harnesses overlap</em></a> argues that the same model gives different results because the harness authors most of the request; the related-flood is that argument with teeth, because the thing that moved the output was not even the harness surface but the serving path underneath it, and it was invisible enough to cost a week. And the <a href="https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/">read-path measurement</a> carried a “not yet significant” caveat on a single run; this post is why that caveat is load-bearing and not a hedge.</p>
+<p>The transferable rule, for anyone measuring agents: <strong>one run is an anecdote.</strong> Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.</p>
+<p><em>Harness and investigation: Chris Sweet. Built in response to Paul Brenner’s <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">landscape-wiki issue</a>. The outer Bayesian layer, forthcoming, is James Sweet’s.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+  // Quarto applies navbar `logo-href` to both the logo and the title anchors.
+  // We want the LA3D logo to link to the org home but the "WGRA Nuggets" title
+  // to link to the blog, so repoint just the title anchor here.
+  document.addEventListener("DOMContentLoaded", function () {
+    var title = document.querySelector("a.navbar-brand:not(.navbar-brand-logo)");
+    if (title) { title.setAttribute("href", "https://la3d.github.io/WGRA/blog/"); }
+  });
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/la3d\.github\.io\/WGRA\/blog\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Wiki-Grounded Research Agent · Center for Research Computing, University of Notre Dame</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
