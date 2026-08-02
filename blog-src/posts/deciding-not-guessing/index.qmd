@@ -1,0 +1,105 @@
+---
+title: "0.988 is not a win: a Bayesian harness for agent evaluations"
+description: "A single answer count cannot tell a real improvement from run-to-run noise. This harness turns each trial into a (k,n) count, builds a posterior over the population success rate, stops sampling per input once the interval is tight, and only calls a winner when the evidence clears a deliberately high bar. In the worked example it refuses to: 0.988 is strong, and still not 0.99."
+author: "James Sweet"
+date: "2026-08-02"
+categories: [practice, evidence]
+---
+
+This is the third of three connected posts. The first, [*Where harnesses overlap*](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/), showed that the same model gives different results because the harness authors most of the request. The second, [*One run is one sample*](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/), showed that a single measurement of that difference lies, and asked for an outer statistical layer. This post is that layer.
+
+## The moment the harness says "not yet"
+
+Two scenarios on the web_forager extraction pipeline, Claude Sonnet against Claude Haiku, scored on how many answerable questions each actually answers (coverage). The harness pools the evidence, builds a posterior for each, and compares them over their posterior draws. The verdict:
+
+```
+P(sonnet > haiku) = 0.988    mean difference = 0.180    95% interval on the difference = [0.026, 0.343]
+```
+
+The entire 95% interval on the difference sits above zero. Sonnet is almost certainly better. And the harness reports the pair as **undecided.**
+
+That is not a bug, it is the whole design. The per-input decision layer only certifies a winner when the probability crosses **0.99**, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to "Sonnet wins" and moved on. This one says: strong, but not yet; spend on more inputs before you call it. The refusal is the feature.
+
+## The problem it inherits
+
+The companion post measured, on the llm-wiki instrument, that rerunning the *same* wiki flips about 10% of question verdicts. The forager pipeline has its own version of this: a roughly **16% run-to-run flicker floor** on single-run answer counts. When the thing you are measuring wobbles by 16% on a rerun, a raw score delta of a few points is not evidence of anything. You need an estimate that carries its own uncertainty, so that "how sure are we?" has an actual answer instead of a shrug.
+
+That is the harness's one-line job: replace single-run answer counts with a posterior over the population success rate, and turn "A scored higher than B" into "here is the probability A is genuinely better, and by how much."
+
+## What it is
+
+Each trial produces a small `(k, n)` count per criterion, k verdicts passed of n attempted. A hierarchical Bayesian model turns a handful of those counts into a posterior over the population rate, reports a credible interval instead of a point, adds trials per input until that interval is tight enough, and compares two scenarios over their posterior draws.
+
+It is split into a general engine and a per-pipeline adapter, which is what lets one statistics layer serve many pipelines:
+
+| Layer | What it is |
+|---|---|
+| **Bayesian engine** (`Omegaice/blackbox-evaluation`) | Pipeline-agnostic: hierarchical models, MCMC sampling, credible intervals, sequential stopping, scenario comparison, per-input decisions, evidence banking. |
+| **Pipeline adapter** (in-repo) | Pipeline-specific: the frozen fixtures and ground truth, the scenario definitions, the runner, and the scoring matrix that emits `(k, n)`. |
+
+web_forager is one adapter (extraction quality on frozen screenshots). The llm-wiki instrument from the previous post is another adapter waiting to be written: the engine does not care what produced the counts, only that they are counts.
+
+## The data contract
+
+Everything downstream is one atomic type: `Observation(k, n)`, the passed and attempted counts for a criterion on a trial. Observations add. A criterion with no applicable items on a trial returns `(0, 0)`, an **abstain**, which is dropped so it neither helps nor hurts that criterion's posterior. Keys stay stable across trials; only the counts move.
+
+The web_forager adapter scores each question into one of five cells (`correct`, `facts_miss`, `miss`, `true_negative`, `inflated`) and rolls them into four `(k, n)` criteria:
+
+| Criterion | What it is | Reads |
+|---|---|---|
+| `coverage` | answered / answerable | willingness to commit |
+| `precision` | correct / answered | accuracy when it commits |
+| `hedge` | declined / unanswerable | discipline on the unanswerable |
+| `extraction` | any-page-correct / answerable | capability ceiling before the fold |
+
+`coverage` and `hedge` pull in opposite directions on purpose (both are willingness to answer), so a scenario cannot look good on one without paying on the other. The point is that "quality" is several tensioned axes, not one number.
+
+## The model, in plain language
+
+The estimand is `mu`, the population success rate for a criterion. The two-level model reads:
+
+```
+mu      ~ Beta(...)                       # population rate (what we report and compare)
+kappa   ~ Gamma(...)                      # concentration: how alike the inputs are
+theta_i ~ Beta(mu, kappa)                 # each input's own rate
+y_i     ~ Binomial(n_i, theta_i)          # each input's observed successes
+```
+
+The load-bearing idea is **partial pooling** through `kappa`: an input with only a few questions is shrunk toward the population estimate rather than trusted at face value, so one thin fixture cannot swing the result. When an input has several trials of its own, a three-level version adds a per-trial layer that models run-to-run spread *within* an input, which is exactly the flicker the whole exercise exists to handle. For fewer than three inputs the engine skips sampling entirely and uses the exact conjugate posterior, `Beta(1 + successes, 1 + failures)`, which is the path the worked example below runs, so its numbers are exact rather than sampled.
+
+## Stop when you are sure, not at a fixed N
+
+Rather than a fixed number of trials, the engine adds trials **per input** until that input's credible interval is narrow enough, then stops spending on it. A convergence policy governs multi-criterion runs (by default *every* criterion has to be tight, so a pair never stops on one lucky-narrow axis), and an abstention policy keeps a criterion that can never apply from holding the whole run hostage. You demand a tight estimate where it matters and accept a rough one where it does not, and you stop paying for trials the moment the answer is in hand.
+
+## Decision, not point estimate
+
+The comparison works over the two posterior sample arrays: the difference of draws gives `P(A > B)` and a real (often skewed) interval on the size of the difference. Then a per-input decision layer classifies each input exactly, from persisted streams, into `decided`, `equivalent` (the two rates are within a small margin with high confidence), `undecided`, or `no_evidence`, so a resumed run only spends on the inputs still in doubt.
+
+The 0.99 certification bar is not arbitrary. A simulation under the null (no real difference) found that a 0.95 stop rule **falsely confirms a winner 30 to 35% of the time** within the default budget; moving to 0.99 brings that down to single-look territory. That is the number that makes 0.988 read as "not yet" rather than "yes."
+
+## The worked example, end to end
+
+Two inputs, `itamco-com` and `schaferindustries-com`, one criterion (`coverage`), two scenarios, one trial each. Sonnet answers 16 of 17 answerable questions on the first and 19 of 20 on the second; Haiku answers 13 of 17 and 15 of 20. Two inputs triggers the exact pooled path, so these numbers are reproduced by running the harness's own formulas (verified output):
+
+```
+SONNET coverage: 35/37 -> Beta(36, 3)   mean 0.923   95% HDI [0.823, 0.983]   width 0.161
+HAIKU  coverage: 28/37 -> Beta(29, 10)  mean 0.744   95% HDI [0.598, 0.866]   width 0.268
+
+compare(sonnet, haiku):  P(sonnet > haiku) = 0.988   mean difference 0.180   95% diff interval [0.026, 0.343]
+```
+
+Sonnet's coverage posterior is centered at 0.92 and reasonably tight; Haiku's is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness's own conservative rule it is still not a called result. The honest next move is more inputs or more trials, not a headline. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.
+
+At three or more inputs the exact shortcut gives way to the full sampled hierarchical model, `kappa` shrinks the thin fixtures toward the population, per-input stopping trims the trials once each interval is tight, and the decision layer marks which specific entities are already settled so a resumed comparison spends only on the rest.
+
+## Old runs, without lying about drift
+
+Evidence from prior runs is not thrown away, but it is not treated as if the pipeline never changed either. Banked observations enter inference as **drift-shifted** terms: the old per-input rate is nudged by a random offset whose scale is calibrated to how far apart the two eras are. An old run informs a new one, discounted by how much has changed underneath it. That is how the harness accumulates confidence across a moving codebase instead of restarting from zero every time.
+
+## Where this lands
+
+Three posts, one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement lies. And the fix is not a better single number, it is a posterior with a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.
+
+The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.
+
+*Status and provenance: the harness lives on an unmerged branch (`origin/mcp-server`) plus the external engine dependency (`Omegaice/blackbox-evaluation`), not on `main` as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine's own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.*
