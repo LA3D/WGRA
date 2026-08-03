@@ -68,7 +68,7 @@ If the structure is a red herring, surely the answer scores separate the arms. T
 | plugin (API) | 19/24 |
 | synopsis floor (broken ingest) | 5/24 |
 
-Every full-text arm lands in a narrow 19–21 band. A paired **McNemar exact test** on every pair of full-text arms is **non-significant** (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the *same, unchanged* wiki and about **10% of question verdicts flip** anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.
+Every full-text arm lands in a narrow 19 to 21 band. A paired **McNemar exact test** on every pair of full-text arms is **non-significant** (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the *same, unchanged* wiki and about **10% of question verdicts flip** anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.
 
 Two guards keep this from being circular. The **synopsis floor** (an ingest that scans rather than reads the papers) scores 5/24, so the metric is not simply insensitive: it detects a genuinely broken build with room to spare. And the controls (facts absent from all twelve papers) are all answered "not in the corpus," so the arms are not bluffing.
 
