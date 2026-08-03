@@ -24,7 +24,7 @@ P(sonnet > haiku) = 0.988    mean difference = 0.180    95% interval on the diff
 
 The entire 95% interval on the difference sits above zero. Sonnet is almost certainly better. And the harness reports the pair as **undecided.**
 
-That is not a bug, it is the whole design. The per-input decision layer only certifies a winner when the probability crosses **0.99**, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to "Sonnet wins" and moved on. This one says: strong, but not yet; spend on more inputs before you call it. The refusal is the feature.
+The refusal is deliberate. The per-input decision layer only certifies a winner when the probability crosses **0.99**, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to "Sonnet wins" and moved on; this one holds back and asks for more inputs before calling it.
 
 ## The problem it inherits
 
@@ -94,7 +94,7 @@ HAIKU  coverage: 28/37 -> Beta(29, 10)  mean 0.744   95% HDI [0.598, 0.866]   wi
 compare(sonnet, haiku):  P(sonnet > haiku) = 0.988   mean difference 0.180   95% diff interval [0.026, 0.343]
 ```
 
-Sonnet's coverage posterior is centered at 0.92 and reasonably tight; Haiku's is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness's own conservative rule it is still not a called result. The honest next move is more inputs or more trials, not a headline. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.
+Sonnet's coverage posterior is centered at 0.92 and reasonably tight; Haiku's is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness's own conservative rule it is still not a called result. The honest next move is more inputs or more trials before reporting a result. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.
 
 At three or more inputs the exact shortcut gives way to the full sampled hierarchical model, `kappa` shrinks the thin fixtures toward the population, per-input stopping trims the trials once each interval is tight, and the decision layer marks which specific entities are already settled so a resumed comparison spends only on the rest.
 
@@ -104,8 +104,8 @@ Evidence from prior runs is not thrown away, but it is not treated as if the pip
 
 ## Where this lands
 
-Three posts, one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement lies. And the fix is not a better single number, it is a posterior with a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.
+The three posts make one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement can mislead. The fix replaces the single number with a posterior, a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.
 
-The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.
+The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces the measurements; this layer decides what they mean.
 
 *Status and provenance: the harness lives on an unmerged branch (`origin/mcp-server`) plus the external engine dependency (`Omegaice/blackbox-evaluation`), not on `main` as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine's own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.*

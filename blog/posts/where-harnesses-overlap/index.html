@@ -216,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="the-api-is-a-stateless-function">The API is a stateless function</h2>
 <p>Start from the thing that does not change. A language model API is a stateless function: a full request goes in, one next action comes out, either text or a request to call a tool. The model never executes anything. It does not remember the last call. “Memory” is just the entire conversation re-sent on top of every single request.</p>
 <p>Everything else is the <strong>harness</strong>: the roughly twenty lines of loop that call the model, run the tool it asked for, append the result, and call again; plus the far larger job of assembling the context (which instruction files, which prior turns, which tool schemas) and compacting it when the window fills. The real work of an agent is context assembly and tooling, and none of it lives in the model.</p>
-<p>That gives a ladder: <strong>prompt sits inside context, context sits inside the harness, the harness runs the loop</strong>, each level capping the ones below it. If the agent lives in the harness, then comparing harnesses is comparing who authors the request. That is what this post is about.</p>
+<p>That gives a ladder: <strong>prompt sits inside context, context sits inside the harness, the harness runs the loop</strong>, each level capping the ones below it. If the agent lives in the harness, then comparing harnesses means comparing who authors the request.</p>
 </section>
 <section id="four-harnesses-one-architecture" class="level2">
 <h2 class="anchored" data-anchor-id="four-harnesses-one-architecture">Four harnesses, one architecture</h2>
@@ -253,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Those versions are a late-July-2026 snapshot. Facts rot fast: by the time of writing (2026-08-02) Codex’s default model has already moved to <code>gpt-5.6-sol</code> and its <code>--full-auto</code> flag is deprecated in favor of <code>--sandbox workspace-write</code>. Read every version-specific claim below as “as of that snapshot.”</p>
-<p>Before you configure anything, all four are already running the same machine: a <code>while</code> loop over a stateless completion endpoint, a file-edit / read / search / shell tool surface, permission gating in front of the dangerous tools, context assembled from instruction files walked up the directory tree, compaction when the window fills, subagent spawning for context isolation, and MCP as the escape hatch to external tools. Nobody coordinated that. Four vendors, four codebases, one design.</p>
+<p>Before you configure anything, all four are already running the same machine: a <code>while</code> loop over a stateless completion endpoint, a file-edit / read / search / shell tool surface, permission gating in front of the dangerous tools, context assembled from instruction files walked up the directory tree, compaction when the window fills, subagent spawning for context isolation, and MCP as the escape hatch to external tools. No vendor coordinated this with the others; four separate codebases arrived at the same design.</p>
 <p>Under the hood it resolves to <strong>eight primitives</strong>, and none of the four has a category the others lack:</p>
 <table class="caption-top table">
 <colgroup>
@@ -316,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="why-one-architecture" class="level2">
 <h2 class="anchored" data-anchor-id="why-one-architecture">Why one architecture</h2>
 <p>Two forces produced the single shape. Part is <strong>forced by the API</strong>: the endpoint is stateless and billed per token, so the loop, the stable-prefix context assembly, and compaction are what anyone builds once prompt-caching prices out the alternatives. Part is <strong>adopted on purpose</strong>: compatibility beat invention, and the shipped binaries show it. Codex ships <code>CLAUDE_PLUGIN_ROOT</code> compatibility aliases into its hook environment; Cursor hardcodes <code>~/.claude</code> discovery paths; Antigravity adopted Claude’s PascalCase hook-event names.</p>
-<p>The motive is that harness competition has decoupled from model competition. Cursor runs every vendor’s models; even Google’s Antigravity offers Claude models. When the model is no longer the moat, interoperability with the incumbent’s config is. The counterweight is that a single-model harness builds against its own API’s affordances, which is why Claude Code’s surface is the largest (output styles, 29 hook events, many plugin component types): vertical integration showing.</p>
+<p>The motive is that harness competition has decoupled from model competition. Cursor runs every vendor’s models; even Google’s Antigravity offers Claude models. When the model is no longer the moat, interoperability with the incumbent’s config is. The counterweight is that a single-model harness builds against its own API’s affordances, which is why Claude Code’s surface is the largest (output styles, 29 hook events, many plugin component types), which is what building against a single model’s API tends to produce.</p>
 </section>
 <section id="the-divergences-that-bite" class="level2">
 <h2 class="anchored" data-anchor-id="the-divergences-that-bite">The divergences that bite</h2>
@@ -359,8 +359,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="same-model-does-not-mean-same-results" class="level2">
 <h2 class="anchored" data-anchor-id="same-model-does-not-mean-same-results">Same model does not mean same results</h2>
-<p>Several of these harnesses can run the same model. Cursor will happily run the model Claude Code runs. Same weights do not mean same behavior, because the model computes exactly one function (full request in, next action out) and the harness authors most of that request: the system prompt, the tool names and schemas, which instruction files got assembled, and how the prior conversation was compacted. Same model, different arguments, different results.</p>
-<p>That is a claim you can measure, so we did.</p>
+<p>Several of these harnesses can run the same model. Cursor will happily run the model Claude Code runs. Same weights do not mean same behavior, because the model computes exactly one function (full request in, next action out) and the harness authors most of that request: the system prompt, the tool names and schemas, which instruction files got assembled, and how the prior conversation was compacted. The same model can behave differently under different harnesses because the request it receives is different.</p>
+<p>We ran a measurement to see how much difference that makes in practice.</p>
 </section>
 <section id="we-measured-the-harness-effect" class="level2">
 <h2 class="anchored" data-anchor-id="we-measured-the-harness-effect">We measured the harness effect</h2>

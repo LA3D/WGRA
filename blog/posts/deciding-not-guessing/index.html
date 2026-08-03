@@ -218,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Two scenarios on the web_forager extraction pipeline, Claude Sonnet against Claude Haiku, scored on how many answerable questions each actually answers (coverage). The harness pools the evidence, builds a posterior for each, and compares them over their posterior draws. The verdict:</p>
 <pre><code>P(sonnet &gt; haiku) = 0.988    mean difference = 0.180    95% interval on the difference = [0.026, 0.343]</code></pre>
 <p>The entire 95% interval on the difference sits above zero. Sonnet is almost certainly better. And the harness reports the pair as <strong>undecided.</strong></p>
-<p>That is not a bug, it is the whole design. The per-input decision layer only certifies a winner when the probability crosses <strong>0.99</strong>, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to “Sonnet wins” and moved on. This one says: strong, but not yet; spend on more inputs before you call it. The refusal is the feature.</p>
+<p>The refusal is deliberate. The per-input decision layer only certifies a winner when the probability crosses <strong>0.99</strong>, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to “Sonnet wins” and moved on; this one holds back and asks for more inputs before calling it.</p>
 </section>
 <section id="the-problem-it-inherits" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-it-inherits">The problem it inherits</h2>
@@ -320,7 +320,7 @@ y_i     ~ Binomial(n_i, theta_i)          # each input's observed successes</cod
 HAIKU  coverage: 28/37 -&gt; Beta(29, 10)  mean 0.744   95% HDI [0.598, 0.866]   width 0.268
 
 compare(sonnet, haiku):  P(sonnet &gt; haiku) = 0.988   mean difference 0.180   95% diff interval [0.026, 0.343]</code></pre>
-<p>Sonnet’s coverage posterior is centered at 0.92 and reasonably tight; Haiku’s is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness’s own conservative rule it is still not a called result. The honest next move is more inputs or more trials, not a headline. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.</p>
+<p>Sonnet’s coverage posterior is centered at 0.92 and reasonably tight; Haiku’s is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness’s own conservative rule it is still not a called result. The honest next move is more inputs or more trials before reporting a result. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.</p>
 <p>At three or more inputs the exact shortcut gives way to the full sampled hierarchical model, <code>kappa</code> shrinks the thin fixtures toward the population, per-input stopping trims the trials once each interval is tight, and the decision layer marks which specific entities are already settled so a resumed comparison spends only on the rest.</p>
 </section>
 <section id="old-runs-without-lying-about-drift" class="level2">
@@ -329,8 +329,8 @@ compare(sonnet, haiku):  P(sonnet &gt; haiku) = 0.988   mean difference 0.180   
 </section>
 <section id="where-this-lands" class="level2">
 <h2 class="anchored" data-anchor-id="where-this-lands">Where this lands</h2>
-<p>Three posts, one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement lies. And the fix is not a better single number, it is a posterior with a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.</p>
-<p>The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces honest samples; this decides what they mean.</p>
+<p>The three posts make one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement can mislead. The fix replaces the single number with a posterior, a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.</p>
+<p>The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces the measurements; this layer decides what they mean.</p>
 <p><em>Status and provenance: the harness lives on an unmerged branch (<code>origin/mcp-server</code>) plus the external engine dependency (<code>Omegaice/blackbox-evaluation</code>), not on <code>main</code> as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine’s own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.</em></p>
 
 

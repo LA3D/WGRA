@@ -20,7 +20,7 @@ Two builds of the same wiki, from the same twelve papers, under byte-identical i
 
 Then someone rebuilt the plugin arm changing exactly one thing: the **serving path**. The first build ran on an Anthropic API key; the rebuild ran on a Claude Max login. Same model id (`opus-4-8`), same plugin code, same corpus, same instructions. The 434 collapsed to **52**, matching the template.
 
-It was never the plugin. It was the auth path, and it had been hiding in plain sight because nobody varies the thing they assume is inert. That is the whole post in one anecdote: **a single run is one sample from a noisy process, and the noise has structure that will fool you.**
+The cause was the auth path, not the plugin, and it had stayed hidden because nobody varies the thing they assume is inert. The lesson generalises: **a single run is one sample from a noisy process, and the noise has structure that will fool you.**
 
 ## The instrument
 
@@ -39,7 +39,7 @@ fixed 12-paper corpus
                   3. trajectory stats (how the agent read to answer)
 ```
 
-The protocol is deterministic. The **outcome is not.** Run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample. That is the fact everything else follows from.
+The protocol is deterministic but the outcome is not: run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample, and everything else here follows from that.
 
 An **arm** is one system built and queried this way. A comparison is only meaningful when two arms differ in exactly one variable, which is precisely the discipline the related-flood violated.
 
@@ -55,7 +55,7 @@ The tempting mental model is that repeated runs scatter gaussian-ly around a tru
 
 The `related:` count is not a noisy measurement of one underlying quantity. Each build adopts a **uniform per-page policy** early and applies it throughout: one build settles on roughly one `related:` edge per page, another on roughly six, and then holds that convention for all seventy-odd pages. That is a discrete, run-level latent choice, closer to a coin landing on a face than to a thermometer wobbling. A single run does not average that away; it just shows you one face of the coin and lets you mistake it for the value.
 
-There is a punchline that makes the flood even more clearly a measurement artifact: **100% of `related:` edges duplicate a link the page body already makes.** The edge adds no graph connectivity the wiki did not already have. So the terrifying 434-versus-52 swing changed a *count* and changed nothing about what the wiki could actually answer. The scariest number in the investigation was inert.
+One more detail makes the flood clearly a measurement artifact: **100% of `related:` edges duplicate a link the page body already makes.** The edge adds no graph connectivity the wiki did not already have, so the 434-versus-52 swing changed a *count* and nothing about what the wiki could actually answer. The number that looked alarming was inert.
 
 ## The scores are saturated, and noisier than the differences
 
@@ -74,7 +74,7 @@ Two guards keep this from being circular. The **synopsis floor** (an ingest that
 
 There is a second noise source layered on top: **grading is subjective and was shown to be error-prone here.** One answer was scored WRONG and only corrected to CORRECT after re-reading the source paper. The rule we enforce (grade blind, verify against the paper, never against the ground-truth label) is a mitigation, not a cure. Grader variance is real and has to live in the model of the noise, not be wished away.
 
-## Confounds wear the costume of effects
+## Confounds can look like real effects
 
 The deepest lesson is not "run it more times." It is that some of the variation is **not run noise at all**, it is a fixed effect that shifts the whole distribution, and if you average over it you average two different distributions together. The related-flood was exactly this: an auth/serving-path effect wearing a plugin-defect costume. The factors that have to be held constant or modelled, never averaged over:
 

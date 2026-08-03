@@ -22,7 +22,7 @@ Start from the thing that does not change. A language model API is a stateless f
 
 Everything else is the **harness**: the roughly twenty lines of loop that call the model, run the tool it asked for, append the result, and call again; plus the far larger job of assembling the context (which instruction files, which prior turns, which tool schemas) and compacting it when the window fills. The real work of an agent is context assembly and tooling, and none of it lives in the model.
 
-That gives a ladder: **prompt sits inside context, context sits inside the harness, the harness runs the loop**, each level capping the ones below it. If the agent lives in the harness, then comparing harnesses is comparing who authors the request. That is what this post is about.
+That gives a ladder: **prompt sits inside context, context sits inside the harness, the harness runs the loop**, each level capping the ones below it. If the agent lives in the harness, then comparing harnesses means comparing who authors the request.
 
 ## Four harnesses, one architecture
 
@@ -37,7 +37,7 @@ Four harnesses this team touches day to day (Antigravity is included because it 
 
 Those versions are a late-July-2026 snapshot. Facts rot fast: by the time of writing (2026-08-02) Codex's default model has already moved to `gpt-5.6-sol` and its `--full-auto` flag is deprecated in favor of `--sandbox workspace-write`. Read every version-specific claim below as "as of that snapshot."
 
-Before you configure anything, all four are already running the same machine: a `while` loop over a stateless completion endpoint, a file-edit / read / search / shell tool surface, permission gating in front of the dangerous tools, context assembled from instruction files walked up the directory tree, compaction when the window fills, subagent spawning for context isolation, and MCP as the escape hatch to external tools. Nobody coordinated that. Four vendors, four codebases, one design.
+Before you configure anything, all four are already running the same machine: a `while` loop over a stateless completion endpoint, a file-edit / read / search / shell tool surface, permission gating in front of the dangerous tools, context assembled from instruction files walked up the directory tree, compaction when the window fills, subagent spawning for context isolation, and MCP as the escape hatch to external tools. No vendor coordinated this with the others; four separate codebases arrived at the same design.
 
 Under the hood it resolves to **eight primitives**, and none of the four has a category the others lack:
 
@@ -58,7 +58,7 @@ The differences between vendors are spelling and wiring, never the concept.
 
 Two forces produced the single shape. Part is **forced by the API**: the endpoint is stateless and billed per token, so the loop, the stable-prefix context assembly, and compaction are what anyone builds once prompt-caching prices out the alternatives. Part is **adopted on purpose**: compatibility beat invention, and the shipped binaries show it. Codex ships `CLAUDE_PLUGIN_ROOT` compatibility aliases into its hook environment; Cursor hardcodes `~/.claude` discovery paths; Antigravity adopted Claude's PascalCase hook-event names.
 
-The motive is that harness competition has decoupled from model competition. Cursor runs every vendor's models; even Google's Antigravity offers Claude models. When the model is no longer the moat, interoperability with the incumbent's config is. The counterweight is that a single-model harness builds against its own API's affordances, which is why Claude Code's surface is the largest (output styles, 29 hook events, many plugin component types): vertical integration showing.
+The motive is that harness competition has decoupled from model competition. Cursor runs every vendor's models; even Google's Antigravity offers Claude models. When the model is no longer the moat, interoperability with the incumbent's config is. The counterweight is that a single-model harness builds against its own API's affordances, which is why Claude Code's surface is the largest (output styles, 29 hook events, many plugin component types), which is what building against a single model's API tends to produce.
 
 ## The divergences that bite
 
@@ -83,9 +83,9 @@ The rule of thumb James draws from the full map: **content travels, wiring does 
 
 ## Same model does not mean same results
 
-Several of these harnesses can run the same model. Cursor will happily run the model Claude Code runs. Same weights do not mean same behavior, because the model computes exactly one function (full request in, next action out) and the harness authors most of that request: the system prompt, the tool names and schemas, which instruction files got assembled, and how the prior conversation was compacted. Same model, different arguments, different results.
+Several of these harnesses can run the same model. Cursor will happily run the model Claude Code runs. Same weights do not mean same behavior, because the model computes exactly one function (full request in, next action out) and the harness authors most of that request: the system prompt, the tool names and schemas, which instruction files got assembled, and how the prior conversation was compacted. The same model can behave differently under different harnesses because the request it receives is different.
 
-That is a claim you can measure, so we did.
+We ran a measurement to see how much difference that makes in practice.
 
 ## We measured the harness effect
 
