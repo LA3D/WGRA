@@ -199,7 +199,7 @@ supports: "[[Working-Hypothesis]]"
 
 <h3>The bug the wiki review revealed</h3>
 
-<p>Chris Frederick ran his demo branch against a three-entity ground-truth set on 2026-05-22 and filed the results in the same wiki page. The numbers looked good at first pass:</p>
+<p>Chris Frederick ran his demo branch against a three-entity ground-truth set on 2026-05-22 and filed the results in the same wiki page, the disciplined write-up that would shortly make the whole catch possible. The pipeline's reported counts looked strong at first pass:</p>
 
 <table>
   <thead>
@@ -212,7 +212,7 @@ supports: "[[Working-Hypothesis]]"
   </tbody>
 </table>
 
-<p>Chris Sweet reviewed the entity files that Chris Frederick's pipeline had produced and cross-referenced them against the "reported" counts on the wiki page. <strong>The reported count included any model response as an answer, including honest "not visible on this page" hedges.</strong> The real evidence-based counts were substantially lower:</p>
+<p>Chris Sweet reviewed the entity files the shared extraction pipeline had produced and cross-referenced them against the "reported" counts on the wiki page. <strong>The reported count included any model response as an answer, including honest "not visible on this page" hedges.</strong> This was not a demo-branch mistake: the same counting behavior lived in the shared pipeline and had been quietly inflating earlier experiments too. The real evidence-based counts were substantially lower:</p>
 
 <table>
   <thead>
@@ -245,6 +245,8 @@ supports: "[[Working-Hypothesis]]"
   <li><strong>Experiment 7 (ITAMCO 20/20 reported)</strong>: real evidence-based was 14/20. Six of those answers were "not visible on this page" hedges counted as successes.</li>
   <li><strong>Experiment 8 (Schafer 20/20 reported)</strong>: real evidence-based was 12/20. Eight of those answers were the same category of hedge.</li>
 </ul>
+
+<p>That the same inflation appears in Experiments 7 and 8, both of which predate the demo branch, is the proof that the counting bug was systemic and pre-existing: the branch did not introduce it, it <em>revealed</em> it. Chris Frederick's contribution was the disciplined demo run and the typed wiki write-up that made a latent, project-wide problem visible and fixable, exactly the kind of thing that would otherwise sit undetected for months.</p>
 
 <p>The Working Hypothesis of the entire project — "questions replace ontologies for LLM extraction; ontology is the failure point, not the expert knowledge" — was resting on numbers that were partly artifacts of the counting bug. If the same fix that recovered ITAMCO also recovered Experiments 7 and 8 to their claimed numbers, the hypothesis stood. If not, the project's central architectural bet needed revision.</p>
 
@@ -287,7 +289,7 @@ supports: "[[Working-Hypothesis]]"
 
 <p><strong>And the cascade back into Experiments 7 and 8</strong>: both experiments were re-run under the fix. Both landed at exactly <strong>18/20 real evidence-based answers</strong>. ITAMCO recovered 4 of 6 lost answers. Schafer recovered 6 of 8 lost answers. The exact parity across two different entities on the same 20-question generic set confirmed the cross-entity transfer claim that was the whole point of Experiment 8, at corrected coverage. <strong>The Working Hypothesis survived the audit</strong> because the wiki structure surfaced the audit in the first place.</p>
 
-<p>Chris Frederick's demo branch was recorded on the page as still "valid work." The wiki page's log entries record both parties' contributions in sequence: Frederick filed the branch, Sweet reviewed and found the bug, the fix shipped, both experiments got re-run with attribution to whoever ran them. <strong>No single contributor gets displaced</strong>; the wiki records the whole arc.</p>
+<p>This is a collaboration win, not a bug report. Chris Frederick's disciplined practice surfaced the problem and Chris Sweet's review followed it home, and neither would have caught it alone: the finding lived in the space <em>between</em> their two sessions, which is exactly where the shared wiki operates. Chris Frederick's demo branch was recorded on the page as still "valid work." The wiki page's log entries record both parties' contributions in sequence: Frederick filed the branch, Sweet reviewed and found the bug, the fix shipped, both experiments got re-run with attribution to whoever ran them. <strong>No single contributor gets displaced</strong>; the wiki records the whole arc.</p>
 
 <h2>Why the wiki structure made this catch possible</h2>
 
