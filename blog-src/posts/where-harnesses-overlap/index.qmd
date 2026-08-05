@@ -6,10 +6,12 @@ date: "2026-08-02"
 categories: [ecosystem, evidence]
 ---
 
-::: {.callout-note title="The three-post arc"}
-1. **Where harnesses overlap** *(this post)*. One architecture, four harnesses; the surfaces converged, the wiring did not.
-2. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Why a single measurement of that difference misleads, and the noise beneath it.
-3. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). The Bayesian layer that turns noisy measurements into honest decisions.
+::: {.callout-note title="Developing with stochastic models: a series"}
+1. [Software 2.5](https://la3d.github.io/WGRA/blog/posts/software-2-5/). The shift from deterministic to stochastic development, and the three problems it creates.
+2. **Where harnesses overlap** *(this post)*. One architecture, four harnesses; the surfaces converged, the wiring did not.
+3. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Measuring stability: why a single measurement misleads.
+4. [The variance cascade](https://la3d.github.io/WGRA/blog/posts/variance-cascade/). How uncertainty compounds through a chain of agents.
+5. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). Deciding under noise: the Bayesian layer.
 :::
 
 This post pairs the architecture map from my talk *Where Harnesses Overlap* with the WGRA read-path measurements. Together they answer a practical question our team keeps hitting: **if you switch the agent harness, say from Claude Code to Codex, do you lose anything, and can you get it back?**

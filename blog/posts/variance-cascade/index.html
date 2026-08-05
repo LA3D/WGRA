@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Sweet">
-<meta name="dcterms.date" content="2026-08-02">
-<meta name="description" content="We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.">
+<meta name="dcterms.date" content="2026-08-05">
+<meta name="description" content="When one agent’s output feeds the next, the uncertainty does not add up the way intuition says. It compounds, and the correlations between stages can amplify it or cancel it. A pipeline can be three times noisier than its first agent, and also less variable than its worst one. You cannot reason this out from the parts; you have to simulate it.">
 
-<title>One run is one sample: the related-flood and the case for a Bayesian harness – WGRA Nuggets</title>
+<title>The variance cascade: how uncertainty compounds through agent chains – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -139,13 +139,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#a-week-chasing-a-plugin-bug-that-was-not-there" id="toc-a-week-chasing-a-plugin-bug-that-was-not-there" class="nav-link active" data-scroll-target="#a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</a></li>
-  <li><a href="#the-instrument" id="toc-the-instrument" class="nav-link" data-scroll-target="#the-instrument">The instrument</a></li>
-  <li><a href="#the-noise-is-not-jitter-it-is-regime-choices" id="toc-the-noise-is-not-jitter-it-is-regime-choices" class="nav-link" data-scroll-target="#the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</a></li>
-  <li><a href="#the-scores-are-saturated-and-noisier-than-the-differences" id="toc-the-scores-are-saturated-and-noisier-than-the-differences" class="nav-link" data-scroll-target="#the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</a></li>
-  <li><a href="#confounds-can-look-like-real-effects" id="toc-confounds-can-look-like-real-effects" class="nav-link" data-scroll-target="#confounds-can-look-like-real-effects">Confounds can look like real effects</a></li>
-  <li><a href="#instrument-versus-statistics" id="toc-instrument-versus-statistics" class="nav-link" data-scroll-target="#instrument-versus-statistics">Instrument versus statistics</a></li>
-  <li><a href="#where-this-connects" id="toc-where-this-connects" class="nav-link" data-scroll-target="#where-this-connects">Where this connects</a></li>
+  <li><a href="#reliability-multiplies-it-does-not-average" id="toc-reliability-multiplies-it-does-not-average" class="nav-link active" data-scroll-target="#reliability-multiplies-it-does-not-average">Reliability multiplies, it does not average</a></li>
+  <li><a href="#the-cross-term-intuition-drops" id="toc-the-cross-term-intuition-drops" class="nav-link" data-scroll-target="#the-cross-term-intuition-drops">The cross-term intuition drops</a></li>
+  <li><a href="#a-three-agent-chain-simulated" id="toc-a-three-agent-chain-simulated" class="nav-link" data-scroll-target="#a-three-agent-chain-simulated">A three-agent chain, simulated</a></li>
+  <li><a href="#the-tool-is-monte-carlo-not-algebra" id="toc-the-tool-is-monte-carlo-not-algebra" class="nav-link" data-scroll-target="#the-tool-is-monte-carlo-not-algebra">The tool is Monte Carlo, not algebra</a></li>
+  <li><a href="#where-this-sits-in-the-series" id="toc-where-this-sits-in-the-series" class="nav-link" data-scroll-target="#where-this-sits-in-the-series">Where this sits in the series</a></li>
   </ul>
 </nav>
     </div>
@@ -154,16 +152,16 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">One run is one sample: the related-flood and the case for a Bayesian harness</h1>
+<h1 class="title">The variance cascade: how uncertainty compounds through agent chains</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">practice</div>
+    <div class="quarto-category">foundations</div>
     <div class="quarto-category">evidence</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.
+    When one agent’s output feeds the next, the uncertainty does not add up the way intuition says. It compounds, and the correlations between stages can amplify it or cancel it. A pipeline can be three times noisier than its first agent, and also less variable than its worst one. You cannot reason this out from the parts; you have to simulate it.
   </div>
 </div>
 
@@ -180,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 2, 2026</p>
+      <p class="date">August 5, 2026</p>
     </div>
   </div>
   
@@ -205,124 +203,86 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><a href="https://la3d.github.io/WGRA/blog/posts/software-2-5/">Software 2.5</a>. The shift from deterministic to stochastic development, and the three problems it creates.</li>
 <li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
-<li><strong>One run is one sample</strong> <em>(this post)</em>. Measuring stability: why a single measurement misleads.</li>
-<li><a href="https://la3d.github.io/WGRA/blog/posts/variance-cascade/">The variance cascade</a>. How uncertainty compounds through a chain of agents.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Measuring stability: why a single measurement misleads.</li>
+<li><strong>The variance cascade</strong> <em>(this post)</em>. How uncertainty compounds through a chain of agents.</li>
 <li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. Deciding under noise: the Bayesian layer.</li>
 </ol>
 </div>
 </div>
-<p>This harness was built in response to <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">Paul Brenner’s issue on landscape llm-wikis</a>. The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.</p>
-<section id="a-week-chasing-a-plugin-bug-that-was-not-there" class="level2">
-<h2 class="anchored" data-anchor-id="a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</h2>
-<p>Two builds of the same wiki, from the same twelve papers, under byte-identical instructions. One came out with 52 <code>related:</code> frontmatter edges. The other came out with <strong>434</strong>. The high one was the <a href="https://la3d.github.io/WGRA/blog/posts/marketplace/">llm-wiki plugin</a>; the low one was the template it was supposed to replicate. An eight-fold difference in how densely the wiki cross-linked itself is exactly the kind of number that looks like a defect, so for the better part of a week the plugin wore the blame. There were theories: its <code>SessionStart</code> hook, its rule files, the way it assembled context.</p>
-<p>Then someone rebuilt the plugin arm changing exactly one thing: the <strong>serving path</strong>. The first build ran on an Anthropic API key; the rebuild ran on a Claude Max login. Same model id (<code>opus-4-8</code>), same plugin code, same corpus, same instructions. The 434 collapsed to <strong>52</strong>, matching the template.</p>
-<p>The cause was the auth path, not the plugin, and it had stayed hidden because nobody varies the thing they assume is inert. The lesson generalises: <strong>a single run is one sample from a noisy process, and the noise has structure that will fool you.</strong></p>
-</section>
-<section id="the-instrument" class="level2">
-<h2 class="anchored" data-anchor-id="the-instrument">The instrument</h2>
-<p>What we built is an inner measurement loop. Hold a corpus fixed (twelve papers), have Claude Code build a wiki from them, query that wiki, and measure the result on three metric families:</p>
-<pre><code>fixed 12-paper corpus
-      │  INGEST   Claude Code builds a wiki   (system under test = plugin or template)
-      ▼
-    a wiki
-      │  QUERY    40 questions via one fixed, read-only consultation mechanic
-      ▼
-   answers + full tool-call traces
-      │  MEASURE  1. ingestion stats (what got built)
-      ▼           2. answer stats (what it can answer)
-                  3. trajectory stats (how the agent read to answer)</code></pre>
-<p>The protocol is deterministic but the outcome is not: run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample, and everything else here follows from that.</p>
-<p>An <strong>arm</strong> is one system built and queried this way. A comparison is only meaningful when two arms differ in exactly one variable, which is precisely the discipline the related-flood violated.</p>
-</section>
-<section id="the-noise-is-not-jitter-it-is-regime-choices" class="level2">
-<h2 class="anchored" data-anchor-id="the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</h2>
-<p>The tempting mental model is that repeated runs scatter gaussian-ly around a true value, so a big enough single run is close enough. That model is wrong here, and the <code>related:</code> count shows why.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>build</th>
-<th>pages</th>
-<th>lateral (concept) pages</th>
-<th><code>related:</code> edges</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>template, Max login</td>
-<td>78</td>
-<td>58</td>
-<td>67</td>
-</tr>
-<tr class="even">
-<td>plugin, Max login</td>
-<td>71</td>
-<td>49</td>
-<td>52</td>
-</tr>
-<tr class="odd">
-<td>plugin, <strong>API key</strong></td>
-<td>75</td>
-<td>46</td>
-<td><strong>434</strong></td>
-</tr>
-</tbody>
-</table>
-<p>The <code>related:</code> count is not a noisy measurement of one underlying quantity. Each build adopts a <strong>uniform per-page policy</strong> early and applies it throughout: one build settles on roughly one <code>related:</code> edge per page, another on roughly six, and then holds that convention for all seventy-odd pages. That is a discrete, run-level latent choice, closer to a coin landing on a face than to a thermometer wobbling. A single run does not average that away; it just shows you one face of the coin and lets you mistake it for the value.</p>
-<p>One more detail makes the flood clearly a measurement artifact: <strong>100% of <code>related:</code> edges duplicate a link the page body already makes.</strong> The edge adds no graph connectivity the wiki did not already have, so the 434-versus-52 swing changed a <em>count</em> and nothing about what the wiki could actually answer. The number that looked alarming was inert.</p>
-</section>
-<section id="the-scores-are-saturated-and-noisier-than-the-differences" class="level2">
-<h2 class="anchored" data-anchor-id="the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</h2>
-<p>If the structure is a red herring, surely the answer scores separate the arms. They do not. Graded CORRECT-only on 24 screened-answerable questions (plus 5 unanswerable controls, all passed), on the twelve-paper synthetic corpus:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>arm</th>
-<th>answer score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>template (Max)</td>
-<td>21/24</td>
-</tr>
-<tr class="even">
-<td>plugin (Max)</td>
-<td>19/24</td>
-</tr>
-<tr class="odd">
-<td>plugin (API)</td>
-<td>19/24</td>
-</tr>
-<tr class="even">
-<td>synopsis floor (broken ingest)</td>
-<td>5/24</td>
-</tr>
-</tbody>
-</table>
-<p>Every full-text arm lands in a narrow 19 to 21 band. A paired <strong>McNemar exact test</strong> on every pair of full-text arms is <strong>non-significant</strong> (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the <em>same, unchanged</em> wiki and about <strong>10% of question verdicts flip</strong> anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.</p>
-<p>Two guards keep this from being circular. The <strong>synopsis floor</strong> (an ingest that scans rather than reads the papers) scores 5/24, so the metric is not simply insensitive: it detects a genuinely broken build with room to spare. And the controls (facts absent from all twelve papers) are all answered “not in the corpus,” so the arms are not bluffing.</p>
-<p>There is a second noise source layered on top: <strong>grading is subjective and was shown to be error-prone here.</strong> One answer was scored WRONG and only corrected to CORRECT after re-reading the source paper. The rule we enforce (grade blind, verify against the paper, never against the ground-truth label) is a mitigation, not a cure. Grader variance is real and has to live in the model of the noise, not be wished away.</p>
-</section>
-<section id="confounds-can-look-like-real-effects" class="level2">
-<h2 class="anchored" data-anchor-id="confounds-can-look-like-real-effects">Confounds can look like real effects</h2>
-<p>The deepest lesson is not “run it more times.” It is that some of the variation is <strong>not run noise at all</strong>, it is a fixed effect that shifts the whole distribution, and if you average over it you average two different distributions together. The related-flood was exactly this: an auth/serving-path effect wearing a plugin-defect costume. The factors that have to be held constant or modelled, never averaged over:</p>
+<p>The previous post was about a single stochastic step and how much its output wobbles from run to run. Real systems are rarely a single step. They are chains: a parser feeds an extractor, which feeds a validator; a query generator feeds a query executor. The question this post is about is what happens to the uncertainty as it moves down the chain, and the short answer is that it does not behave the way most engineers expect.</p>
+<section id="reliability-multiplies-it-does-not-average" class="level2">
+<h2 class="anchored" data-anchor-id="reliability-multiplies-it-does-not-average">Reliability multiplies, it does not average</h2>
+<p>Start with a real pipeline. Priscila Moreira measured a two-stage SPARQL system that turns a natural-language question into a query and then runs it. Over 35 questions:</p>
 <ul>
-<li><strong>Serving path.</strong> API key versus Max login moved the <code>related:</code> policy from 6-per-page to 1-per-page at a fixed model id. This is our single largest error to date and our top replication target. One honest caveat: it is currently <strong>one build per path</strong>, so read it as “the leading confound we have isolated once,” not as a settled claim that the API and the subscription differ in general. It is the first thing the outer harness should run repeatedly.</li>
-<li><strong>Model version.</strong> Answer scores, trajectories, and especially the prior-contamination screen drift as the model absorbs more of the literature. The screen has to be re-run whenever the model changes.</li>
-<li><strong>Tool-and-model entanglement.</strong> Cursor and Codex run their own models, so “assistant A versus assistant B” is unavoidably “A-plus-its-model versus B-plus-its-model.” That is a thing to state, not to launder into a pure tool comparison.</li>
+<li><strong>Stage 1, query generation:</strong> a query was produced for 28 of 35 questions, an 80% success rate.</li>
+<li><strong>Stage 2, execution given a query:</strong> of those 28, only 5 returned results, a 17.9% success rate.</li>
+<li><strong>End to end:</strong> 5 of 35, or 14.3%.</li>
+</ul>
+<p>The end-to-end number is not the average of 80% and 17.9%, and it is not the smaller of the two. It is close to their product (0.80 times 0.179 is 0.143). Success in a chain multiplies, so each additional stage can only hold or lower the reliability of the ones before it. A programmer looking at either stage alone would form a much rosier picture than the pipeline actually delivers, and a single end-to-end run, landing on a yes or a no, tells you even less than a single run of one stage does.</p>
+<p>That is the failure-rate version. The variance version is subtler, and more surprising.</p>
+</section>
+<section id="the-cross-term-intuition-drops" class="level2">
+<h2 class="anchored" data-anchor-id="the-cross-term-intuition-drops">The cross-term intuition drops</h2>
+<p>For a chain whose stages carry noise, the variance of the combined output is not the sum of the stages’ variances. For two stages it is</p>
+<pre><code>Var(a + b) = Var(a) + Var(b) + 2 Cov(a, b)</code></pre>
+<p>The first two terms are what people add up in their heads. The third, the covariance, is the one that gets dropped, and it is often the one that dominates. If two stages fail in correlated ways, it makes the total worse than the sum. If a later stage is anti-correlated with an earlier one, because it is built to catch that stage’s mistakes, it can make the total better than either stage alone. Intuition has no reliable sign for that term, which is why chains surprise people.</p>
+</section>
+<section id="a-three-agent-chain-simulated" class="level2">
+<h2 class="anchored" data-anchor-id="a-three-agent-chain-simulated">A three-agent chain, simulated</h2>
+<p>Here is a small chain that makes the effect concrete: a parser (95% accurate, some noise), an extractor whose errors are mildly correlated with the parser’s, and a validator that is anti-correlated with the extractor because its job is to catch extraction mistakes. Running the chain 1000 times gives a distribution at each stage (numbers are from a reproducible simulation, seed fixed):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="variance-cascade.png" class="img-fluid figure-img"></p>
+<figcaption>Output distributions at each stage of the three-agent chain, over 1000 runs. The extractor is much wider than the parser; the validator pulls the final distribution back in.</figcaption>
+</figure>
+</div>
+<p>The variances tell the story the histograms only hint at:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>stage</th>
+<th>variance</th>
+<th>std</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>parser (agent 1)</td>
+<td>0.0024</td>
+<td>~5%</td>
+</tr>
+<tr class="even">
+<td>extractor (agent 2)</td>
+<td>0.0100</td>
+<td>~10%</td>
+</tr>
+<tr class="odd">
+<td>final (after validator)</td>
+<td>0.0073</td>
+<td>~8.5%</td>
+</tr>
+</tbody>
+</table>
+<p>Three things fall out of this, and none of them is the naive answer:</p>
+<ol type="1">
+<li><strong>The chain is about three times noisier than its first agent</strong> (final variance 0.0073 versus the parser’s 0.0024). Uncertainty amplified as it flowed downstream.</li>
+<li><strong>The chain is also less variable than its worst agent.</strong> The final variance (0.0073) is about 28% below the extractor’s (0.0100), because the validator is anti-correlated with it and cancels some of its noise. A well-placed stage can <em>reduce</em> downstream variance, not just pass it along.</li>
+<li><strong>The naive estimate is badly wrong in the other direction.</strong> Adding the stage variances (0.0134) overestimates the real final variance by about 46%, because it ignores every correlation. Someone reasoning “5% plus 10% plus 3%” would be confidently off.</li>
+</ol>
+<p>So the same chain is both an amplifier (3x the first stage) and a dampener (below the worst stage), depending on which comparison you make, and the plain sum of variances matches none of it. The sign and size of the effect live entirely in the correlations between stages, which you cannot read off the individual agents.</p>
+</section>
+<section id="the-tool-is-monte-carlo-not-algebra" class="level2">
+<h2 class="anchored" data-anchor-id="the-tool-is-monte-carlo-not-algebra">The tool is Monte Carlo, not algebra</h2>
+<p>The practical consequence is that you do not compute a chain’s reliability, you measure it. Run the whole pipeline many times on the same inputs and look at the distribution of the end-to-end result. That is the only way the correlations, which are where the action is, actually show up. Two things follow once you do:</p>
+<ul>
+<li><strong>Where you spend to reduce variance is not obvious.</strong> In the example above, tightening the extractor helps, but adding a stage that is anti-correlated with the extractor helped more, and cost less. A variance decomposition (which stage contributes most to the end-to-end spread) tells you where to spend; the per-stage error rates do not.</li>
+<li><strong>You have to measure end to end.</strong> Per-stage numbers, however good, do not compose into the pipeline’s behavior. The 80% and the 17.9% were both real, and neither predicted the 14.3%.</li>
 </ul>
 </section>
-<section id="instrument-versus-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="instrument-versus-statistics">Instrument versus statistics</h2>
-<p>Put together, the honest description of this repo is: it is an <strong>instrument.</strong> It produces one fully-captured, honestly-measured sample of llm-wiki behaviour under Claude Code. It is also, on its own, underpowered: every strong single-run conclusion in the investigation was wrong until it was replicated, and the related-flood is only the loudest example.</p>
-<p>What the instrument cannot do is decide. “Is arm X different from the baseline beyond run and grading noise?” is a question about distributions, and it wants a posterior, a credible interval, or a Bayes factor, not a raw score delta (which McNemar already shows is noise). That is the job of an <strong>outer statistical layer</strong> that runs the instrument many times, <strong>stratified</strong> on the systematic factors above, and reasons about the spread. The measured noise floor (the ~10% verdict-flip rate, the run-to-run structural spread) even gives it empirical priors to start from.</p>
-<p>That outer layer is a Bayesian test harness, and it is the subject of a <a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">companion post, <em>0.988 is not a win</em></a>. This one is deliberately about the instrument and its noise, because you cannot design the statistics until you have characterised what you are averaging over.</p>
-</section>
-<section id="where-this-connects" class="level2">
-<h2 class="anchored" data-anchor-id="where-this-connects">Where this connects</h2>
-<p>This is the methodological floor under two other WGRA pieces. James Sweet’s <a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/"><em>Where harnesses overlap</em></a> argues that the same model gives different results because the harness authors most of the request; the related-flood is that argument with teeth, because the thing that moved the output was not even the harness surface but the serving path underneath it, and it was invisible enough to cost a week. And the <a href="https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/">read-path measurement</a> carried a “not yet significant” caveat on a single run; this post is why that caveat is load-bearing and not a hedge.</p>
-<p>The transferable rule, for anyone measuring agents: <strong>one run is an anecdote.</strong> Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.</p>
-<p><em>Harness and investigation: Chris Sweet. Built in response to Paul Brenner’s <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">landscape-wiki issue</a>. The outer Bayesian layer is James Sweet’s.</em></p>
+<section id="where-this-sits-in-the-series" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-sits-in-the-series">Where this sits in the series</h2>
+<p>This is the second of the three problems the <a href="https://la3d.github.io/WGRA/blog/posts/software-2-5/">opener</a> named. The <a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">first</a> was measuring stability in a single step; this one is what happens when steps are chained; the <a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">third</a> is deciding, under all this noise, whether a change actually helped. The common thread is the same as the rest of the series: the output is a distribution, a single run is one draw, and the questions worth asking are statistical.</p>
+<p><em>The SPARQL pipeline measurements are Priscila Moreira’s. The three-agent chain is a reproducible simulation.</em></p>
 
 
 </section>

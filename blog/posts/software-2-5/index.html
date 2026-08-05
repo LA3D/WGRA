@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Software 2.5</strong> <em>(this post)</em>. The shift from deterministic to stochastic development, and the three problems it creates.</li>
 <li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
 <li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Measuring stability: why a single measurement misleads.</li>
-<li>Variance cascade <em>(forthcoming)</em>. How uncertainty compounds through a chain of agents.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/variance-cascade/">The variance cascade</a>. How uncertainty compounds through a chain of agents.</li>
 <li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. Deciding under noise: the Bayesian layer.</li>
 </ol>
 </div>
@@ -276,6 +276,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="why-this-is-a-team-problem-not-a-reading-list" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-is-a-team-problem-not-a-reading-list">Why this is a team problem, not a reading list</h2>
+<p>The developer’s own role shifts along the same axis: from prompting an assistant inside an editor, to designing solutions with the model as a partner, to orchestrating autonomous components in production. By that last stage the work is closer to statistical engineering than to traditional coding.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="evolution.png" class="img-fluid figure-img"></p>
+<figcaption>The developer’s evolution from code-centric work (Software 1.0) to orchestrating agentic systems (Software 2.5), with example projects at each stage.</figcaption>
+</figure>
+</div>
 <p>It would be convenient if a programmer could pick up variance propagation and convergence diagnostics from a weekend of tutorials. They cannot, any more than a statistician picks up production systems that way. This is a staffing and training question, not something to expect people to self-teach while shipping. The practical version is to put statisticians and data scientists inside the engineering team as first-class members, pair them with the programmers, and change what counts as success from “features shipped” to “reliability under uncertainty.” The rest of the series is the concrete tools; this is the reason to invest in them.</p>
 
 

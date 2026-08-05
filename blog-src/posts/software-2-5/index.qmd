@@ -10,7 +10,7 @@ categories: [foundations]
 1. **Software 2.5** *(this post)*. The shift from deterministic to stochastic development, and the three problems it creates.
 2. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
 3. [One run is one sample](https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/). Measuring stability: why a single measurement misleads.
-4. Variance cascade *(forthcoming)*. How uncertainty compounds through a chain of agents.
+4. [The variance cascade](https://la3d.github.io/WGRA/blog/posts/variance-cascade/). How uncertainty compounds through a chain of agents.
 5. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). Deciding under noise: the Bayesian layer.
 :::
 
@@ -65,5 +65,9 @@ Once you accept that the output is a distribution, three specific problems show 
 There is one more piece underneath all three. Even the *same* model behaves differently depending on the harness wrapped around it, which is often where the variability starts. That is *[Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/)*.
 
 ## Why this is a team problem, not a reading list
+
+The developer's own role shifts along the same axis: from prompting an assistant inside an editor, to designing solutions with the model as a partner, to orchestrating autonomous components in production. By that last stage the work is closer to statistical engineering than to traditional coding.
+
+![The developer's evolution from code-centric work (Software 1.0) to orchestrating agentic systems (Software 2.5), with example projects at each stage.](evolution.png)
 
 It would be convenient if a programmer could pick up variance propagation and convergence diagnostics from a weekend of tutorials. They cannot, any more than a statistician picks up production systems that way. This is a staffing and training question, not something to expect people to self-teach while shipping. The practical version is to put statisticians and data scientists inside the engineering team as first-class members, pair them with the programmers, and change what counts as success from "features shipped" to "reliability under uncertainty." The rest of the series is the concrete tools; this is the reason to invest in them.

@@ -6,10 +6,12 @@ date: "2026-08-02"
 categories: [practice, evidence]
 ---
 
-::: {.callout-note title="The three-post arc"}
-1. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
-2. **One run is one sample** *(this post)*. Why a single measurement of that difference misleads, and the noise beneath it.
-3. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). The Bayesian layer that turns noisy measurements into honest decisions.
+::: {.callout-note title="Developing with stochastic models: a series"}
+1. [Software 2.5](https://la3d.github.io/WGRA/blog/posts/software-2-5/). The shift from deterministic to stochastic development, and the three problems it creates.
+2. [Where harnesses overlap](https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/). One architecture, four harnesses; the surfaces converged, the wiring did not.
+3. **One run is one sample** *(this post)*. Measuring stability: why a single measurement misleads.
+4. [The variance cascade](https://la3d.github.io/WGRA/blog/posts/variance-cascade/). How uncertainty compounds through a chain of agents.
+5. [0.988 is not a win](https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/). Deciding under noise: the Bayesian layer.
 :::
 
 This harness was built in response to [Paul Brenner's issue on landscape llm-wikis](https://github.com/crcresearch/llm-wiki-memory-template/issues/79). The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.
