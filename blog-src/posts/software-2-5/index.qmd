@@ -20,6 +20,8 @@ Most software advice rests on an assumption so basic that nobody states it: a pr
 
 It helps to name where the determinism went.
 
+![Software 1.0, 2.0, and 2.5 in program space. Software 2.5 is the hybrid case: deterministic code orchestrating probabilistic AI components.](program-space.png)
+
 **Software 1.0** is code you write. It executes the same way every time. An AI assistant can help you write it, and the shipped program still runs without the AI and behaves identically on every call. This is almost all software ever written.
 
 **Software 2.0**, in Andrej Karpathy's framing, is the case where the program *is* a neural network. You do not write the logic; you specify behavior with data, and the trained weights are the code. The artifact is probabilistic, but it usually sits behind a deterministic boundary (a classifier returns a label, a model returns a fixed embedding).
@@ -37,7 +39,7 @@ The skills that made someone good at Software 1.0 do not merely get harder in 2.
 - "Write a unit test with a fixed expected output" becomes "Check that the output distribution stays inside acceptable bounds."
 - "The output is correct" becomes "Correctness is a rate, not a boolean."
 
-None of that is philosophical. Here is a concrete case from a project I lead. We ran four versions of a knowledge-graph extraction pipeline over the same scanned documents and counted the relationships each produced, five runs per version:
+None of that is philosophical. In one experiment, Priscila Moreira ran four versions of a knowledge-graph extraction pipeline over the same scanned documents, five runs per version, and counted the relationships each produced:
 
 | version | avg relationships | std dev |
 |---|---|---|
@@ -65,5 +67,3 @@ There is one more piece underneath all three. Even the *same* model behaves diff
 ## Why this is a team problem, not a reading list
 
 It would be convenient if a programmer could pick up variance propagation and convergence diagnostics from a weekend of tutorials. They cannot, any more than a statistician picks up production systems that way. This is a staffing and training question, not something to expect people to self-teach while shipping. The practical version is to put statisticians and data scientists inside the engineering team as first-class members, pair them with the programmers, and change what counts as success from "features shipped" to "reliability under uncertainty." The rest of the series is the concrete tools; this is the reason to invest in them.
-
-*I wrote this, and I am the PI on the project it draws from; the examples come from work with Priscila Moreira, Andrey Kuehlkamp, and James Sweet. The Software 2.0 framing is Andrej Karpathy's; Software 2.5 is our extension of it.*

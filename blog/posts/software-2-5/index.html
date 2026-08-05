@@ -211,6 +211,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="three-kinds-of-software" class="level2">
 <h2 class="anchored" data-anchor-id="three-kinds-of-software">Three kinds of software</h2>
 <p>It helps to name where the determinism went.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="program-space.png" class="img-fluid figure-img"></p>
+<figcaption>Software 1.0, 2.0, and 2.5 in program space. Software 2.5 is the hybrid case: deterministic code orchestrating probabilistic AI components.</figcaption>
+</figure>
+</div>
 <p><strong>Software 1.0</strong> is code you write. It executes the same way every time. An AI assistant can help you write it, and the shipped program still runs without the AI and behaves identically on every call. This is almost all software ever written.</p>
 <p><strong>Software 2.0</strong>, in Andrej Karpathy’s framing, is the case where the program <em>is</em> a neural network. You do not write the logic; you specify behavior with data, and the trained weights are the code. The artifact is probabilistic, but it usually sits behind a deterministic boundary (a classifier returns a label, a model returns a fixed embedding).</p>
 <p><strong>Software 2.5</strong> is the one most teams building with LLMs actually inhabit, and the one this series is about: deterministic code orchestrating probabilistic components. The loop, the tool wiring, the pipeline structure are all ordinary code. The pieces that code calls, the model, the agent, the chain of agents, are not. The scaffolding is deterministic; what runs inside it is a distribution.</p>
@@ -225,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 <li>“Write a unit test with a fixed expected output” becomes “Check that the output distribution stays inside acceptable bounds.”</li>
 <li>“The output is correct” becomes “Correctness is a rate, not a boolean.”</li>
 </ul>
-<p>None of that is philosophical. Here is a concrete case from a project I lead. We ran four versions of a knowledge-graph extraction pipeline over the same scanned documents and counted the relationships each produced, five runs per version:</p>
+<p>None of that is philosophical. In one experiment, Priscila Moreira ran four versions of a knowledge-graph extraction pipeline over the same scanned documents, five runs per version, and counted the relationships each produced:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -271,7 +277,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="why-this-is-a-team-problem-not-a-reading-list" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-is-a-team-problem-not-a-reading-list">Why this is a team problem, not a reading list</h2>
 <p>It would be convenient if a programmer could pick up variance propagation and convergence diagnostics from a weekend of tutorials. They cannot, any more than a statistician picks up production systems that way. This is a staffing and training question, not something to expect people to self-teach while shipping. The practical version is to put statisticians and data scientists inside the engineering team as first-class members, pair them with the programmers, and change what counts as success from “features shipped” to “reliability under uncertainty.” The rest of the series is the concrete tools; this is the reason to invest in them.</p>
-<p><em>I wrote this, and I am the PI on the project it draws from; the examples come from work with Priscila Moreira, Andrey Kuehlkamp, and James Sweet. The Software 2.0 framing is Andrej Karpathy’s; Software 2.5 is our extension of it.</em></p>
 
 
 </section>
