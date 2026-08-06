@@ -205,14 +205,14 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>One PAD card (sample 85990) developing over five minutes. The horizontal band is the wetting front rising by capillary action; individual lanes gain color at visibly different times.</figcaption>
 </figure>
 </div>
-<p>Some lanes are colored almost immediately; others are still deepening minutes later. The interesting variable is the <strong>reagent</strong>: each lane’s chemistry has its own rate.</p>
+<p>Those are four frozen moments; the development reads more clearly in motion, in the <a href="https://claude.ai/code/artifact/ba5f3730-0dbb-4f74-b083-ad4b3807caa2">interactive time-lapse viewer</a> an agent generated for the full runs. Some lanes are colored almost immediately; others are still deepening minutes later. The interesting variable is the <strong>reagent</strong>: each lane’s chemistry has its own rate.</p>
 </section>
 <section id="the-part-that-made-this-quick-an-mcp-interface" class="level2">
 <h2 class="anchored" data-anchor-id="the-part-that-made-this-quick-an-mcp-interface">The part that made this quick: an MCP interface</h2>
 <p>None of this required building a data pipeline first. The Notre Dame PAD project exposes its card database through an <strong>MCP interface</strong>, so an agent can query it directly: list projects, get a card layout (the pixel geometry of all twelve lanes and which reagent is in each), pull every frame of a given card, and fetch the processed images. That is what turned a research question into something you could look at the same afternoon.</p>
 <p>Two things came out of the same interface, with no custom code written ahead of time:</p>
 <ol type="1">
-<li><strong>A viewer.</strong> Given access to the frames, an agent generated an interactive time-lapse viewer: pick a card, then play or scrub its run. That is the qualitative tool, useful for <em>seeing</em> that lanes develop unevenly. The dataset behind it is 381 frames across 11 cards.</li>
+<li><strong>A viewer, generated on demand.</strong> Given access to the frames, an agent produced a complete <a href="https://claude.ai/code/artifact/ba5f3730-0dbb-4f74-b083-ad4b3807caa2">interactive time-lapse viewer</a> with no hand-written frontend: pick a card, then play or scrub its run as the barcode forms. The interface itself was auto-generated from the shape of the data, not coded in advance. The dataset behind it is 381 frames across 11 cards.</li>
 <li><strong>A measurement.</strong> The same MCP interface hands back the card layout, so the lane boxes are known exactly. An agent used them to measure each lane’s development directly, turning “they look different” into a number.</li>
 </ol>
 </section>
