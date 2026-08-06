@@ -16,6 +16,8 @@ That single end-of-run photo throws away everything that happened on the way the
 
 The reaction is not instantaneous, and it is not uniform across lanes. So instead of one photo at the end, take a series: photograph the same card on a roughly ten-second cadence and watch the barcode form. One card becomes a short movie of its own chemistry.
 
+![The capture rig: a phone on a small tripod runs the PAD app and re-photographs the card every few seconds while it develops upright in a 3D-printed holder. Photo: Ekezie Okorigwe.](setup.jpg){width=62%}
+
 Here is a single card sampled at four times across five minutes. You can see the wetting front climb and the lanes color up, but not all together:
 
 ![One PAD card (sample 85990) developing over five minutes. The horizontal band is the wetting front rising by capillary action; individual lanes gain color at visibly different times.](filmstrip.jpg)
