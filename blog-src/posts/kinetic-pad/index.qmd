@@ -28,14 +28,14 @@ Access is not memory. What the project learns is kept in an LLM-wiki, a knowledg
 
 ## What the measurement shows
 
-For one card (sample 85990, an azithromycin card, 25 frames over five minutes), each lane's color change from the dry first frame was measured across the run, using the layout's lane boxes.
+Measuring the lanes over the run makes the transient visible. On a chloroquine card, part of the Basic Cobalt Thiocyanate lane develops a blue that rises to a peak partway through the run and then washes out, falling back toward its starting value by the end, while a region just above it keeps its color.
 
-![Per-lane color change over the run for one card. Each curve is one reagent lane. A lane that rose and then washed out would appear here as a curve that peaks and declines.](kinetics.png)
+![Blueness in two regions of the Basic Cobalt Thiocyanate lane on a chloroquine card (sample 87444). The lower region's blue rises to a peak near the middle of the run and then washes out; the region just above it rises and holds.](washout.png)
 
-On this card the lanes develop and then level off, at different times. The point is not the ordering of those times but that the full shape of each lane's change is now on record, which is where a wash-out or any other mid-run change would appear. This azithromycin card does not itself show a strong wash-out; the clearer cases are in the cobalt-thiocyanate lanes on chloroquine and procaine cards, and are being measured in the fuller analysis.
+A single end-of-run photo would record only the faded lower region and the held upper one, with no sign that the lower blue had ever formed. Because the measurement is taken per lane and per region, from the layout's lane boxes on every frame, a rise-and-fade like this is captured as a shape rather than a single endpoint number.
 
 ## Scope
 
-This is one card and a proof of concept. The lane boxes come from a fixed layout, and each card sits slightly differently under the camera, so the per-lane numbers are approximate. The color that forms depends on the drug present as much as on the reagent. Whether the time course helps tell one drug from another is a separate question, and careful cross-session tests on this dataset have so far come out near chance. What the work does show is a method: a way to capture a card's whole run and measure it lane by lane, put together quickly from tools that already existed.
+This is a proof of concept on a handful of cards. The lane boxes come from a fixed layout, and each card sits slightly differently under the camera, so the per-lane and per-region positions are approximate. The color that forms depends on the drug present as much as on the reagent, and the wash-out shown above is one card, not yet a characterized, repeated effect. Whether these time courses help tell one drug from another is a separate question, and careful cross-session tests on this dataset have so far come out near chance. What the work does show is a method: a way to capture a card's whole run and measure it lane by lane, including transients like the wash-out above, put together quickly from tools that already existed.
 
 *Ekezie Okorigwe is a graduate student in the Marya Lieberman lab at the University of Notre Dame, which runs the [Paper Analytical Device (PAD) project](https://padproject.nd.edu). The card images and database come from the PAD project. An agent reached that data through the project's MCP interface and kept its analysis in the project's LLM-wiki.*
