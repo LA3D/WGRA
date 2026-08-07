@@ -1,6 +1,6 @@
 ---
-title: "Kinetic PAD: measuring how a card changes over a run"
-description: "A paper drug test is normally read once, from a final photo. Photographing it every ten seconds records the whole reaction, so a change that happens during the run, such as a color that develops and then washes out, becomes visible. The capture and analysis tools were assembled quickly by reusing an existing color-sampling pipeline through the lab's data interface."
+title: "Kinetic PAD: measuring how a drug card develops over a run"
+description: "A paper drug test is normally read once, from a photo taken at the end. Photograph it every ten seconds instead and you record the whole reaction, and each lane turns out to develop on its own clock. The capture and analysis were put together quickly by reaching the lab's card data through an MCP interface and reusing color-sampling code kept in a project wiki."
 author: "Ekezie Okorigwe"
 date: "2026-08-05"
 categories: [ecosystem, evidence]
@@ -8,34 +8,46 @@ categories: [ecosystem, evidence]
 
 ## What a paper drug test does
 
-A paper analytical device (PAD) is a low-cost card for checking whether a pill contains the drug it should, at roughly the right amount. Twelve narrow lanes each hold a different chemical reagent. You swipe the crushed sample across the card, stand its lower edge in water, and the water rises through the paper by capillary action, carrying the sample up each lane to react with that lane's reagent and produce a color. The set of twelve colors is a barcode that a model reads to identify the drug and estimate the dose. The standard readout is one photograph, taken after the card has finished developing.
+A paper analytical device (PAD) is a cheap way to check whether a pill is the drug it claims to be, at roughly the right dose. The card has twelve vertical lanes, each holding a different chemical reagent. You swipe the crushed sample across the card, stand its lower edge in water, and the water climbs the paper by capillary action. As it rises it carries the sample up each lane to react with that lane's reagent and produce a color. The twelve colors form a barcode that a machine-learning model reads to identify the drug and estimate the dose. The standard readout is one photograph, taken once the card has finished developing.
 
-## What a single photo misses
+That single end-of-run photo throws away everything that happened on the way there.
 
-The colors are not fixed once they appear. A reaction can keep changing while the water is still moving, and some reagents, cobalt thiocyanate among them, can produce a blue that partly washes out before the run ends. A single end-of-run photo cannot tell a color that rose and held from one that rose and then faded. Photographing the same card at a fixed interval, about every ten seconds, records the whole time course, so a change that happens partway through is no longer invisible.
+## The kinetic idea
 
-![One card (sample 85990, azithromycin) at four times over five minutes. The band across the middle is the water front; the lanes gain color as it passes.](filmstrip.jpg)
+The reaction is neither instant nor uniform across lanes, so instead of one photo at the end, take a series. Photographing the same card about every ten seconds turns one card into a short record of its own chemistry.
+
+![The capture rig: a phone on a small tripod runs the PAD app and re-photographs the card every few seconds while it develops upright in a 3D-printed holder. Photo: Ekezie Okorigwe.](setup.jpg){width=62%}
+
+Here is one card sampled at four times across five minutes. The wetting front climbs and the lanes color up, but not together.
+
+![One PAD card (sample 85990, an azithromycin card) developing over five minutes. The horizontal band is the wetting front rising by capillary action; the lanes gain color at different times.](filmstrip.jpg)
+
+The change reads more clearly in motion, in the [interactive time-lapse viewer](https://claude.ai/code/artifact/ba5f3730-0dbb-4f74-b083-ad4b3807caa2) an agent generated for the full runs. Some lanes color almost at once; others are still deepening minutes later.
 
 ## Building the capture and the analysis quickly
 
-The capture side is a phone app that re-photographs the card on the ten-second cadence while it develops upright in a 3D-printed holder.
+Two parts made this quick to put together, and they do different jobs.
 
-![The capture setup: a phone on a tripod re-photographs the card every ten seconds while it develops in a printed holder.](setup.jpg){width=62%}
+The lab's PAD data, the card database, the images, the project records, and each lane's reagent and where it is deposited, is reachable through an MCP server. (MCP, the Model Context Protocol, is an open standard that lets an AI agent connect to outside tools and data.) That is the access layer. An agent used it to find the right cards, read the lane geometry and reagents, download the frames, generate the time-lapse viewer, and measure each lane over the run, with no data-handling code written in advance.
 
-Two parts made the analysis quick to put together, and they do different jobs. The lab's PAD data (the card database, the images, the project records, and each lane's reagent and where it is deposited) is reachable through an MCP server. (MCP, the Model Context Protocol, is an open standard that lets an AI agent connect to outside tools and data.) That is the access layer: an agent used it to find the right cards, read the lane geometry and reagents, and download the frames, then build the interactive [time-lapse viewer](https://claude.ai/code/artifact/ba5f3730-0dbb-4f74-b083-ad4b3807caa2) and measure each lane over time, with no data-handling code written ahead of time.
+Access is not memory. What the project learns is kept in an LLM-wiki, a knowledge base the agent writes to and reads back, so findings and caveats build up across sessions instead of resetting each time: which lanes carry a clean signal, where lighting drift confounds it, what the cross-session tests actually showed. The wiki is also how the work reached past this one project. The first color measurements came out depending on the lighting, and to fix them the agent pulled in an earlier drug-concentration project from the same group and reused its color-sampling and white-balance code. Access came through the MCP interface; the memory, and the link to the other project's methods, came through the wikis.
 
-Access is not memory. What the project learns is kept in an LLM-wiki, a knowledge base the agent writes to and reads back, so findings and caveats (which lanes carry a clean signal, where lighting drift confounds it, what the cross-session tests actually showed) build up across sessions instead of resetting each time. The wiki is also how the work reached beyond this project: when the first color measurements depended on the lighting, the agent drew on an earlier drug-concentration project in the same group and reused its color-sampling and white-balance code. Access came through MCP; the memory, and the link to another project's methods, came through the wikis.
+## Measuring the rates
 
-## What the measurement shows
+For one card (sample 85990, an azithromycin card, 25 frames over five minutes), an agent measured each lane's color change from the dry first frame across the run, using the layout's lane boxes. Normalizing each lane to its own final color shows the shapes; the summary is the time each lane takes to reach half of its final development.
 
-The colored product only forms in the bar above the swipe line, where the rising water carries each reagent up to meet the swiped drug. That band is the readout, and it is where any mid-run change matters. Measured there, lane by lane, across the run, each lane's color builds at its own pace.
+![Left: per-lane development over five minutes, each lane normalized to its own final value. Right: time to half-development by reagent. The Timer lane (grey) barely develops and is shown for reference.](kinetics.png)
 
-![Color developing in the bar above the swipe line for one card (sample 85990, azithromycin), one curve per lane. The lanes reach their color at visibly different times, and the Timer lane barely develops at all.](propagation.png)
+The spread is large. On this card, time-to-half-development runs from about 9 seconds to 82 seconds, and it tracks which reagent is in each lane. The two cobalt-thiocyanate lanes, D and E, sit at opposite ends: the acidic one reaches half-development in about 9 seconds, the basic one in about 82. Biuret and Basic Cobalt Thiocyanate are the slow pair; Acidic Cobalt Thiocyanate, Triiodide, and Phenols are among the fast ones.
 
-On this card the lanes reach their color at different times, the propagation that Ekezie first noticed by eye. The full shape of each lane is now on record, which is where a mid-run change would show. A wash-out, a color that rose in the bar and then faded back, would appear here as a curve that peaks and declines. On the cards measured so far the bar develops and holds; the fading that does appear sits lower down, below the swipe line, in reagent the water has not yet carried up to the drug, so it is not part of the readout.
+The exact ordering belongs to this azithromycin card. The color forms where the drug meets the reagent, so the rates reflect the drug as much as the reagent, and another drug would reorder them. What holds regardless is the shape of the finding: the lanes run on very different clocks, which a single end-of-run photo cannot show. Two lanes can finish at the same color while getting there on different schedules.
 
-## Scope
+## Why it matters, and what is next
 
-This is a proof of concept on a handful of cards. The lane boxes come from a fixed layout, and each card sits slightly differently under the camera, so the positions are approximate. The color that forms depends on the drug present as much as on the reagent. Whether these time courses help tell one drug from another is a separate question, and careful cross-session tests on this dataset have so far come out near chance. What the work does show is a method: a way to capture a card's whole run and measure the color bar lane by lane, so a mid-run change would be caught if it happened, put together quickly from tools that already existed.
+If lanes develop on different clocks, then when you take the reading changes the barcode, and a fixed wait is a compromise, too early for the slow lanes and needlessly late for the fast ones. A kinetic readout could in principle use each lane's rate as extra signal, or pick a sampling time per lane, which a static image does not carry. Whether that helps tell drugs apart is a separate and harder question, and so far an open one: on this dataset, careful cross-session tests of kinetic features for drug classification have come back close to chance. The descriptive fact is solid; its diagnostic value is not yet shown.
 
-*Ekezie Okorigwe is a graduate student in the Marya Lieberman lab at the University of Notre Dame, which runs the [Paper Analytical Device (PAD) project](https://padproject.nd.edu). The card images and database come from the PAD project. An agent reached that data through the project's MCP interface and kept its analysis in the project's LLM-wiki.*
+The scope is one card and a proof of concept, and the caveats are real. The numbers quantify a single run. The metric is color change from the dry first frame, a development proxy rather than a literal capillary-front height. The lane windows come from a fixed layout, and per-card alignment varies by up to about a lane's width, so treat the exact per-lane numbers as approximate. Some lanes rise and then fade rather than climbing to a plateau, which a single time-to-half number does not capture. The next steps are to measure across many cards and drugs, correct the per-card alignment, and separate the wetting front from the color reaction.
+
+The workflow point generalizes past PADs. The card data sat behind an MCP interface and the project's know-how sat in a wiki, so an agent could find the data, build a viewer, and run a fresh analysis on demand, reusing methods from a sister project, without anyone writing the plumbing first. Access made the archive reachable; the wiki made it usable as a live instrument rather than a static store.
+
+*Ekezie Okorigwe is a graduate student in the Marya Lieberman lab at the University of Notre Dame, which runs the [Paper Analytical Device (PAD) project](https://padproject.nd.edu). The kinetic idea and the time-lapse capture are his; the card images and database come from the PAD project. An agent generated the viewer and the per-lane rate analysis by reaching the data through the project's MCP interface and keeping its methods and caveats in the project's LLM-wiki.*
