@@ -1,6 +1,6 @@
 ---
-title: "Kinetic PAD: measuring how a drug card develops over a run"
-description: "A paper drug test is normally read once, from a photo taken at the end. Photograph it every ten seconds instead and you record the whole reaction, and each lane turns out to develop on its own clock. The capture and analysis were put together quickly by reaching the lab's card data through an MCP interface and reusing color-sampling code kept in a project wiki."
+title: "Kinetic PAD: Watching a drug test card develop"
+description: "A paper drug test is normally read once, from a photo taken at the end. Photograph it every ten seconds instead and you record the whole reaction, and each lane turns out to develop on its own clock. The measurement came together quickly not from one tool but from an ecosystem: the PAD data reachable through an MCP server, a method reused from a sister project, and an llm-wiki that remembers across sessions and links them."
 author: "Ekezie Okorigwe"
 date: "2026-08-05"
 categories: [ecosystem, evidence]
@@ -24,11 +24,11 @@ Here is one card sampled at four times across five minutes. The wetting front cl
 
 The change reads more clearly in motion, in the [interactive time-lapse viewer](https://claude.ai/code/artifact/ba5f3730-0dbb-4f74-b083-ad4b3807caa2) an agent generated for the full runs. Some lanes color almost at once; others are still deepening minutes later.
 
-## Building the capture and the analysis quickly
+## What made it quick: a wiki and its ecosystem
 
-Two parts made this quick to put together, and they do different jobs. The first is getting at the data. The lab's PAD records, the card database, the images, the project details, and each lane's reagent and where it is deposited, are reachable through an MCP server. (MCP, the Model Context Protocol, is an open standard that lets an AI agent connect to outside tools and data.) An agent used that connection to find the right cards, read the lane geometry and reagents, download the frames, generate the time-lapse viewer, and measure each lane over the run, with no data-handling code written in advance.
+This came together quickly because several pieces were already in place. The PAD project's data sits behind an MCP server. (MCP, the Model Context Protocol, is an open standard that lets an AI agent connect to outside tools and data.) An agent used it to read the card database and images and each lane's reagent and deposition, and to pull every frame of a run, with no data-handling code written in advance. From those frames the agent also generated the interactive time-lapse viewer on demand, rather than anyone hand-building a frontend.
 
-The second part is keeping what the work learns, which the MCP connection does not do on its own. Those findings and caveats go into an LLM-wiki that the agent writes to and reads back, so they carry over between sessions rather than resetting each time. It holds the notes on which lanes give a clean signal and where lighting drift confounds them. The wiki also reached past this one project: when the first color measurements came out depending on the lighting, the agent pulled color-sampling and white-balance code from an earlier drug-concentration project in the same group to correct them.
+An llm-wiki is the memory that holds this together. The agent writes findings and caveats to it and reads them back, so they accumulate across sessions instead of resetting, which lanes give a clean signal and where lighting drift confounds them. The wiki is also what reached past this project. When the first color measurements came out depending on the lighting, the agent found an earlier drug-concentration project in the same group through its wiki and reused that project's color-sampling and white-balance code. The measurement came out of that combination.
 
 ## Measuring the rates
 
@@ -39,6 +39,14 @@ For one card (sample 85990, an azithromycin card, 25 frames over five minutes), 
 The spread is large. On this card, time-to-half-development runs from about 9 seconds to 82 seconds, and it tracks which reagent is in each lane. The two cobalt-thiocyanate lanes, D and E, sit at opposite ends: the acidic one reaches half-development in about 9 seconds, the basic one in about 82. Biuret and Basic Cobalt Thiocyanate are the slow pair; Acidic Cobalt Thiocyanate, Triiodide, and Phenols are among the fast ones.
 
 The exact ordering belongs to this azithromycin card. The color forms where the drug meets the reagent, so the rates reflect the drug as much as the reagent, and another drug would reorder them. What holds regardless is the shape of the finding: the lanes run on very different clocks, which a single end-of-run photo cannot show. Two lanes can finish at the same color while getting there on different schedules.
+
+## A wash-out below the barcode, and an open question
+
+The kinetic view also turned up something to follow up on. In one cobalt-thiocyanate lane, the blue behaves differently on the two sides of the swipe line. In the barcode, above the line, it develops and holds. Just below the line, in the reagent zone, it rises to a similar peak partway through the run and then washes out, dropping most of the way back to its start by the end.
+
+![Basic cobalt-thiocyanate blue in one lane of a chloroquine card, measured above and below the swipe line. In the barcode the blue rises and holds; just below the line, in the reagent zone, it rises to a similar peak partway through and then washes out.](below_washout.png)
+
+That lower zone is where the reagent sits before the water carries it up to the drug, so its blue fading is not itself a misread. But it may matter indirectly: the reagent below the line is the supply for the barcode above it, and if enough of it washes through before reaching the drug, the reading could come out weaker than the sample warrants. On these cards the barcode held, so nothing went wrong here. Whether a stronger wash-out can thin the reading is a question a single end-of-run photo cannot even ask, and one worth checking across more cards and drugs.
 
 ## Why it matters, and what is next
 
