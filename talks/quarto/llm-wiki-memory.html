@@ -599,6 +599,88 @@ CRC environment pinned to 1.3.0
           display:block!important;
       }</style></aside>
 </section>
+<section id="two-kinds-of-synthesis" class="slide level2 smaller">
+<h2>Two kinds of synthesis</h2>
+<p><span class="kicker">What synthesis is, and a real task that shows it</span></p>
+<p><strong>Synthesis is reaching a conclusion that no single source states, by joining new information against what the memory already holds.</strong> It takes two forms:</p>
+<ul>
+<li><strong>Retrieval synthesis</strong> (the sklearn pin you just saw): the conclusion already existed, latent in the links; the agent traverses the memory to surface it. Read-side.</li>
+<li><strong>Investigative synthesis</strong> (this one): the conclusion existed nowhere. The agent runs the experiments, reconciles the results against the literature and the wiki, and writes the new conclusions back. Write-side.</li>
+</ul>
+<p><strong>The task, honestly.</strong> Ericka, the YARP dev lead, handed the harness a small but real job to evaluate it: a pre-release 3.0.1 batch for a Monday release, a “KHP fruitfly” case failing and breaking the progress pipeline, no reference outcomes yet. Run it on the current code, check out the stable v3.0.0 tag, and triage.</p>
+<div class="callout-highlight">
+<p>A successful outcome, in one session: a correct, non-obvious verdict. <strong>The release is exonerated</strong> (the same failures reproduce on stable v3.0.0), <strong>15 of 22 “failures” are the pipeline working by design</strong>, and <strong>the real to-do list is 7 issues</strong> with the exact one-line fix location. Without the memory, each would have been a cold rediscovery or a wrong guess.</p>
+</div>
+<aside class="notes">
+<p>Source: yarp/docs/Vision-Handoff-KHP-Investigative-Synthesis.md and KHP-Fruitfly-Regression.md. Team-safe framing is required, the YARP dev team will see this: lead with the pro-team findings, never “your code is broken”; the job_manager.py:34 one-line guard is a gift, not a criticism. Investigative synthesis is the write-side, generative counterpart to the sklearn pin’s read-side, and it fuses the most source types on the project: the paper and SI, two code versions, live run outputs, the collaborator’s own diagnostic files, and four prior wiki pages. It then compounded into the discovery-vision page, the robustness issue drafts, and Lessons-Learned. The setup honesty: this was a capability evaluation from the dev lead, small scope, real stakes, not a large study.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="synthesis-is-a-set-of-joins" class="slide level2 smaller">
+<h2>Synthesis is a set of joins</h2>
+<p><span class="kicker">Each conclusion is one synthesis: a new observation, joined to memory the wiki already held</span></p>
+<style>
+.reveal .jn-tbl{display:flex;flex-direction:column;gap:0.3em;margin:0.35em 0 0.25em;font-family:"Helvetica Neue",Arial,sans-serif;}
+.reveal .jn-head{display:flex;gap:0.5em;font-size:0.55em;text-transform:uppercase;letter-spacing:0.03em;font-weight:700;color:#8a8a8a;}
+.reveal .jn-head span{flex:1;padding:0 0.55em;}
+.reveal .jn-row{display:flex;gap:0.5em;align-items:stretch;}
+.reveal .jn-cell{flex:1;font-size:0.75em;line-height:1.42;padding:0.5em 0.62em;border-radius:4px;}
+.reveal .jn-obs{background:#f4f1ea;border:1px solid #e0d8c4;}
+.reveal .jn-mem{background:#eef3f8;border:1px solid #cdd9e6;}
+.reveal .jn-con{background:#f3f7f1;border:1px solid #d3e2cd;}
+.reveal .jn-cell b{color:#14213d;}
+.reveal .jn-cell .pg{font-family:Menlo,Consolas,monospace;font-size:0.92em;color:#0d4a8b;}
+.reveal .jn-foot{font-size:0.6em;color:#444;text-align:center;margin-top:0.45em;line-height:1.4;}
+</style>
+<div class="jn-tbl">
+  <div class="jn-head"><span>Observation from the run</span><span>Prior memory it joined against</span><span>Conclusion (the synthesis)</span></div>
+  <div class="jn-row">
+    <div class="jn-cell jn-obs"><code>yarp-progress</code> stuck 15+ minutes in <code>D</code> state, <b>322,576</b> tiny files in scratch.</div>
+    <div class="jn-cell jn-mem">The <span class="pg">crc</span> skill and the ingested <span class="pg">CRC-Infrastructure</span> page (VAST flash is NFS-backed), plus <span class="pg">Lessons-Learned</span> and <span class="pg">M5</span>, which had root-caused a scratch re-walk stall.</div>
+    <div class="jn-cell jn-con">The known stall, reproduced at 36-reaction scale, hitting even VAST because it is NFS-backed. Not slow disk, not a bad setup: GSM writing an explosion of tiny files. Killing 4 runaway jobs dropped scratch to <b>23,756</b>, confirming it.</div>
+  </div>
+  <div class="jn-row">
+    <div class="jn-cell jn-obs">15 of 36 reactions in the failure bucket at <code>ll_refine.irc_validation</code>.</div>
+    <div class="jn-cell jn-mem">The <span class="pg">Phase2-Project1-Pilot</span> page: unintended reactions are retained by design in <span class="pg">failed_rxns.pkl</span>, correct routing, not a crash.</div>
+    <div class="jn-cell jn-con">Read <code>outcome_label</code>: <b>15 of 22</b> "failures" are the by-design IRC quality filter working, not bugs. The genuine error budget is only <b>7 of 36</b>.</div>
+  </div>
+  <div class="jn-row">
+    <div class="jn-cell jn-obs">13 to 14 intended reactions at the xTB level.</div>
+    <div class="jn-cell jn-mem">The ingested <span class="pg">Zhao-Savoie-2021</span> paper and SI: SI Table 6 references <b>16</b>, and 16 is the post-DFT survivor count.</div>
+    <div class="jn-cell jn-con">13 to 14 at xTB is expected below 16, not a shortfall. Some xTB-unintended reactions likely recover at DFT.</div>
+  </div>
+  <div class="jn-row">
+    <div class="jn-cell jn-obs">CREST crashes are hash-identical on 3.0.1 and stable v3.0.0 (Arm A's 6 are a strict subset of Arm B's 7).</div>
+    <div class="jn-cell jn-mem">The swap-the-package trick from <span class="pg">Lessons-Learned</span> (<code>pip install -e . --no-deps</code>) made running both versions a seconds-long op, not a 15-minute env clone.</div>
+    <div class="jn-cell jn-con">The crashes are version-independent and pre-existing: the 3.0.1 PRs are not the culprit. PR #44's one real effect is narrow (C=COCOO fails in both; it only moved where it dies).</div>
+  </div>
+</div>
+<div class="callout-highlight">
+<p>Fast and correct not because the model was clever in the moment, but because the memory already held the yardstick, the by-design behavior, and how the cluster fails. <strong>Ingestion is what put them there.</strong></p>
+</div>
+<aside class="notes">
+<p>Honest conditions to keep in the speaker’s voice, briefly: n = 1 per version, and GSM non-convergence is stochastic, so the 14 vs 13 intended difference is not attributable to the code version, both land at 13 to 14 at xTB. xTB level only, no DFT run yet; the unintended verdicts were confirmed classified-not-crashed, not inspected per reaction for chemical correctness. The CRC operational memory lives in two places, the crc skill and the ingested CRC-Infrastructure page; present them together as operational memory, the wiki page being the auditable twin of the skill. Full report: yarp/docs/Agentic-YARP-KHP-Regression-Final-Report.pdf.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="where-this-lands" class="slide level2 smaller">
 <h2>Where this lands</h2>
 <p><span class="kicker">Takeaway</span></p>
