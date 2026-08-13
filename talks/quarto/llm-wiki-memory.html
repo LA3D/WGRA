@@ -10,6 +10,9 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Chris Sweet">
+  <meta name="author" content="Charles Vardeman">
+  <meta name="author" content="Priscila Moreira">
+  <meta name="author" content="James Sweet">
   <meta name="dcterms.date" content="2026-08-20">
   <title>Research memory that compounds</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -153,6 +156,21 @@
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
 Chris Sweet 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Charles Vardeman 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Priscila Moreira 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+James Sweet 
 </div>
 </div>
 </div>
@@ -695,6 +713,72 @@ CRC environment pinned to 1.3.0
 </div>
 <aside class="notes">
 <p>Close on the arc: it works (90 vs 42, zero fabrication), it is honest by construction (control stack, verify not transcribe), it reads hub-indexed and ingests heterogeneous sources with discipline, and the payoff is the cross-source links (the sklearn pin). Honest framing to keep in your voice: the wiki-vs-RAG number is one controlled measurement on a real project, a strong signal rather than a benchmark verdict. Optional live demo: ingest a competitor paper and have the memory contrast approaches.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="also-handled-dense-bubble-scatter" class="slide level2 smaller">
+<h2>Also handled: dense bubble scatter</h2>
+<p><span class="kicker">Life expectancy vs GDP, OWID r6-1. The graph slide showed one hard chart; the same extractor handled other types too</span></p>
+<img src="slide-assets/type2_dense-bubble.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+<p><em>Left: the model’s detected centers, erosion strips the country labels and a distance transform splits touching bubbles. Right: its pixel-check, one center per bubble and none on the colored labels.</em></p>
+<div class="callout-highlight">
+<p>Density correlation 0.94, and 132 of 165 markers recovered.</p>
+</div>
+<aside class="notes">
+<p>Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/panels and its README, corpus owid-r6-1. Left is the model’s own detection artifact, right is its verification overlay. These three appendix slides show the free-rein extractor generalizes past the el-94 combo chart on the earlier graphs slide. Panel titles were cropped off, they duplicated the heading and carried em dashes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="also-handled-multi-series-time-series-lines" class="slide level2 smaller">
+<h2>Also handled: multi-series time-series lines</h2>
+<p><span class="kicker">Annual CO2 emissions, OWID r6-1</span></p>
+<img src="slide-assets/type3_multi-line.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+<p><em>Left: where the model looked, attention concentrated on the fused low-emission band. Right: its pixel-check, all seven country series re-traced onto their own curves.</em></p>
+<div class="callout-highlight">
+<p>All 7 series traced onto their lines, overlay-verified across the full record.</p>
+</div>
+<aside class="notes">
+<p>Honest note to voice: on this chart the current per-type scorer reports curve F1 0.34 despite the verified trace, a measurement-layer gap (out-of-range points plus a tight tolerance), so the panel and the slide report the overlay-verified trace, not a score. The left attention map is a post-hoc reconstruction from saved zoom crops, a lower bound on where it looked, not live eye-tracking. Source: panels README, owid-r6-1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="also-handled-grouped-bars-with-error-bars" class="slide level2 smaller">
+<h2>Also handled: grouped bars with error bars</h2>
+<p><span class="kicker">Synthetic throughput benchmark, synthetic-r4-1</span></p>
+<img src="slide-assets/type4_grouped-bar.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:360px;border:1px solid #d8cfb6;border-radius:4px;">
+<p><em>Left: a zoom on one error-bar cap, the model resolving the asymmetric error bars. Right: its pixel-check, every bar value and both caps on each bar recovered.</em></p>
+<div class="callout-highlight">
+<p>Bar-value F1 1.00: all 15 bars and 30 error-bar caps recovered.</p>
+</div>
+<aside class="notes">
+<p>Source: panels README, corpus synthetic-r4-1. A synthetic chart (Baseline, Tuned, Tuned+JIT throughput across Q1 to Q5) chosen to test asymmetric error-bar caps; the left panel is the T-cap zoom detail. The chart’s own title was cropped off because it carried an em dash.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

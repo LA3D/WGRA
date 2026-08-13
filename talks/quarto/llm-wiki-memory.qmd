@@ -3,6 +3,9 @@ title: "Research memory that compounds"
 subtitle: "Extracting sources into a persistent, durable and queryable<br>llm-wiki"
 author:
   - name: "Chris Sweet"
+  - name: "Charles Vardeman"
+  - name: "Priscila Moreira"
+  - name: "James Sweet"
 date: "2026-08-20"
 date-format: "MMMM D, YYYY"
 format:
@@ -511,4 +514,59 @@ Not "the AI knows your field." A persistent, auditable memory the group builds o
 
 ::: {.notes}
 Close on the arc: it works (90 vs 42, zero fabrication), it is honest by construction (control stack, verify not transcribe), it reads hub-indexed and ingests heterogeneous sources with discipline, and the payoff is the cross-source links (the sklearn pin). Honest framing to keep in your voice: the wiki-vs-RAG number is one controlled measurement on a real project, a strong signal rather than a benchmark verdict. Optional live demo: ingest a competitor paper and have the memory contrast approaches.
+:::
+
+
+## Also handled: dense bubble scatter {.smaller}
+
+[Life expectancy vs GDP, OWID r6-1. The graph slide showed one hard chart; the same extractor handled other types too]{.kicker}
+
+```{=html}
+<img src="slide-assets/type2_dense-bubble.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+```
+
+*Left: the model's detected centers, erosion strips the country labels and a distance transform splits touching bubbles. Right: its pixel-check, one center per bubble and none on the colored labels.*
+
+::: {.callout-highlight}
+Density correlation 0.94, and 132 of 165 markers recovered.
+:::
+
+::: {.notes}
+Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/panels and its README, corpus owid-r6-1. Left is the model's own detection artifact, right is its verification overlay. These three appendix slides show the free-rein extractor generalizes past the el-94 combo chart on the earlier graphs slide. Panel titles were cropped off, they duplicated the heading and carried em dashes.
+:::
+
+## Also handled: multi-series time-series lines {.smaller}
+
+[Annual CO2 emissions, OWID r6-1]{.kicker}
+
+```{=html}
+<img src="slide-assets/type3_multi-line.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+```
+
+*Left: where the model looked, attention concentrated on the fused low-emission band. Right: its pixel-check, all seven country series re-traced onto their own curves.*
+
+::: {.callout-highlight}
+All 7 series traced onto their lines, overlay-verified across the full record.
+:::
+
+::: {.notes}
+Honest note to voice: on this chart the current per-type scorer reports curve F1 0.34 despite the verified trace, a measurement-layer gap (out-of-range points plus a tight tolerance), so the panel and the slide report the overlay-verified trace, not a score. The left attention map is a post-hoc reconstruction from saved zoom crops, a lower bound on where it looked, not live eye-tracking. Source: panels README, owid-r6-1.
+:::
+
+## Also handled: grouped bars with error bars {.smaller}
+
+[Synthetic throughput benchmark, synthetic-r4-1]{.kicker}
+
+```{=html}
+<img src="slide-assets/type4_grouped-bar.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:360px;border:1px solid #d8cfb6;border-radius:4px;">
+```
+
+*Left: a zoom on one error-bar cap, the model resolving the asymmetric error bars. Right: its pixel-check, every bar value and both caps on each bar recovered.*
+
+::: {.callout-highlight}
+Bar-value F1 1.00: all 15 bars and 30 error-bar caps recovered.
+:::
+
+::: {.notes}
+Source: panels README, corpus synthetic-r4-1. A synthetic chart (Baseline, Tuned, Tuned+JIT throughput across Q1 to Q5) chosen to test asymmetric error-bar caps; the left panel is the T-cap zoom detail. The chart's own title was cropped off because it carried an em dash.
 :::
