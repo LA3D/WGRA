@@ -1,0 +1,444 @@
+---
+title: "Research memory that compounds"
+subtitle: "Extracting sources into a persistent, durable and queryable<br>llm-wiki"
+author:
+  - name: "Chris Sweet"
+date: "2026-08-20"
+date-format: "MMMM D, YYYY"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c
+    incremental: false
+    center: false
+    width: 1280
+    height: 720
+    embed-resources: false
+    footer: "la3d.github.io/WGRA"
+    title-slide-attributes:
+      data-background-color: "#14213d"
+    include-in-header:
+      - text: |
+          <script src="cytoscape.min.js"></script>
+          <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            function injectKicker() {
+              var ts = document.getElementById('title-slide');
+              if (!ts) { setTimeout(injectKicker, 100); return; }
+              if (ts.querySelector('.title-kicker')) return;
+              var k = document.createElement('div');
+              k.className = 'title-kicker';
+              k.textContent = 'Data Extraction Summer Group';
+              ts.insertBefore(k, ts.firstChild);
+            }
+            injectKicker();
+          });
+          </script>
+    resources:
+      - cytoscape.min.js
+      - rwr_animation.html
+      - reading-graph-slice.json
+      - slide-assets
+---
+
+## What an llm-wiki is {.smaller}
+
+[The setup, and the alternative]{.kicker}
+
+- **LLMs are trained on a vast array of human knowledge.** But science is a broad landscape, each domain its own deep dive; incorporating all of it into a model is challenging.
+- **The training data is stale by design.** Recent advances are simply not in it.
+- **Harnesses now add "project data",** files you upload as the basis for a project. Useful, but it is a RAG approach: nothing persists, and the context is re-extracted from scratch on every question.
+- **llm-wiki, proposed by Andrej Karpathy, is the alternative:** dense, connected wiki pages as a **persistent memory, authored and maintained by the LLM** itself.
+- **Visible and queryable by the human,** so the memory stays trusted and auditable, not a black box.
+
+::: {.callout-highlight}
+A persistent, compounding memory the LLM writes and the human can read, not retrieval re-run on every question.
+:::
+
+::: {.notes}
+Story arc: LLMs know a great deal, but science is broad, deep, and advancing, and training data is stale by design. Harness "project data" (uploaded files) is a RAG approach: nothing persists, context is re-extracted per query. llm-wiki (Andrej Karpathy) is the alternative: dense connected wiki pages as a persistent, LLM-authored and LLM-maintained memory, visible and queryable by the human for trusted, auditable operation. Framing from llm-wiki.md (persistent, compounding artifact; the LLM owns and writes the wiki, you read it).
+:::
+
+## Does the memory actually work? {.smaller}
+
+[A first controlled measurement, on a real research project]{.kicker}
+
+```{=html}
+<style>
+.reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
+.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.72em; margin-bottom:0.25em; }
+.reveal .ctl-box span { color:#cdd6e0; font-size:0.62em; line-height:1.32; }
+</style>
+```
+
+Forty questions on one real project. Reading the llm-wiki answered **90% correctly and fabricated nothing**, roughly double RAG's 42% (10 fabrications); the model with no context scored 2%.
+
+:::: {.columns}
+
+::: {.column width="55%"}
+| Approach | Correct | Overall (0-3) | Fabricated |
+|---|---|---|---|
+| Model alone, no context | 2% | 0.10 | 2 |
+| Plain RAG over the sources | 42% | 1.32 | 10 |
+| **llm-wiki read path** | **90%** | **2.65** | **0** |
+:::
+
+::: {.column width="45%" .rag-stats}
+<div class="stat-big">90%</div>
+<div class="stat-caption">correct, versus 42% for RAG. Roughly double.</div>
+<div class="stat-big">0</div>
+<div class="stat-caption">fabricated, versus 10 for RAG.</div>
+:::
+
+::::
+
+**The zero is by design, a layered control stack that keeps every claim honest:**
+
+:::: {.columns}
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>1 · Honest-reporting rules</strong><span>real outputs only; tag every number's corpus; file failures truthfully</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>2 · Verification gate</strong><span>blocks unsupported claims and untagged numbers before a commit</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>3 · Discipline gates</strong><span>name the always-wrong shortcuts so the agent self-catches</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>4 · Blocking hooks</strong><span>fire the checks and can halt a bad write, exit-code enforced</span></div>
+:::
+
+::::
+
+*Gates and hooks need an agentic harness that can run them, which is why we build in Claude Code and Codex, not the Claude or ChatGPT chat apps. Plain Markdown keeps every claim auditable.*
+
+::: {.notes}
+Source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG's 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.
+:::
+
+## llm-wiki operational architecture {.smaller}
+
+[How the agent writes, reads, and greps its memory, reconstructed from real transcripts]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Reconstructed from real transcripts, this is the YARP wiki as the agent actually used it. It works in three channels: it **writes** pages (red arrows: authoring, editing, committing), it **reads** a page into context (blue arrows), and it **greps** to check its own work (green self-loops).
+
+The mix is lopsided. By tool call it is **88% writes, 7% reads, 6% greps.** Reads are rare because of caching: once a page is loaded it stays in the context window, so the agent reuses it instead of re-reading. Its moves go into building and maintaining the memory, not re-fetching it.
+
+Everything routes through two hubs, **log (touched 58 times) and index (45)**. The agent rarely walks the typed edges it wrote: only **24 of 136 moves follow an authored frontmatter link** (solid). The rest, the dashed edges, are links it **discovers dynamically by search**, not ones it was handed.
+
+**The LLM builds the memory and reads it back, hub-organized.**
+:::
+
+::: {.column width="45%"}
+```{=html}
+<div id="read-graph" style="width:100%; height:440px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
+```
+*The full YARP wiki, 40 pages. Red = write, blue = read, green = grep or re-read; dark = index/log hubs; dashed = link found by search.*
+:::
+
+::::
+
+```{=html}
+<script>
+(function(){
+  const ELEMENTS = [{"data":{"id":"log_yarp.md","label":"log","name":"log","size":32.0,"hub":"yes","shown":"yes"}},{"data":{"id":"index_yarp.md","label":"index","name":"index","size":29.4,"hub":"yes","shown":"yes"}},{"data":{"id":"KHP-Fruitfly-Regression.md","label":"KHP Fruitfly","name":"KHP Fruitfly Regression","size":24.7,"hub":"no","shown":"yes"}},{"data":{"id":"Lessons-Learned.md","label":"Lessons Learned","name":"Lessons Learned","size":24.4,"hub":"no","shown":"yes"}},{"data":{"id":"Home_yarp.md","label":"Home","name":"Home","size":24.2,"hub":"yes","shown":"yes"}},{"data":{"id":"Project-Objective.md","label":"Project Objective","name":"Project Objective","size":23.9,"hub":"no","shown":"yes"}},{"data":{"id":"First-Time-Guide.md","label":"","name":"First Time Guide","size":19.6,"hub":"no","shown":"no"}},{"data":{"id":"Phase2-Project1-Pilot.md","label":"","name":"Phase2 Project1 Pilot","size":19.1,"hub":"no","shown":"no"}},{"data":{"id":"Package-Architecture.md","label":"","name":"Package Architecture","size":18.2,"hub":"no","shown":"no"}},{"data":{"id":"YARP-Overview.md","label":"","name":"YARP Overview","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Agentic-YARP-Test-Cases.md","label":"","name":"Agentic YARP Test Cases","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Onboarding-Claude-Code.md","label":"","name":"Onboarding Claude Code","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Savoie-YARP-2021.md","label":"","name":"Zhao Savoie YARP 2021","size":16.5,"hub":"no","shown":"no"}},{"data":{"id":"Lewis-Structure-Score.md","label":"","name":"Lewis Structure Score","size":16.5,"hub":"no","shown":"no"}},{"data":{"id":"Publications.md","label":"","name":"Publications","size":15.8,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Savoie-YARP-v2-2022.md","label":"","name":"Zhao Savoie YARP v2 2022","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M4-CRC-xTB-Path.md","label":"","name":"Phase1 M4 CRC xTB Path","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M5-CRC-DFT.md","label":"","name":"Phase1 M5 CRC DFT","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Ericka-Claude-Code-Onboarding.md","label":"","name":"Ericka Claude Code Onboarding","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"SCHEMA_yarp.md","label":"","name":"SCHEMA","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Documentation-Build.md","label":"","name":"Documentation Build","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Conformational-Sampling-2022.md","label":"","name":"Zhao Conformational Sampling 2022","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Heterogeneous-Catalysis-2022.md","label":"","name":"Zhao Heterogeneous Catalysis 2022","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Glucose-Pyrolysis-2023.md","label":"","name":"Zhao Glucose Pyrolysis 2023","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"RGD1-Dataset-2023.md","label":"","name":"RGD1 Dataset 2023","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Woulfe-YAKS-2025.md","label":"","name":"Woulfe YAKS 2025","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Model-Reactions-2025.md","label":"","name":"Model Reactions 2025","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Concerted-vs-Sequential-Enumeration.md","label":"","name":"Concerted vs Sequential Enumeration","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M1-Local-EGAT.md","label":"","name":"Phase1 M1 Local EGAT","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M3-CRC-EGAT.md","label":"","name":"Phase1 M3 CRC EGAT","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Papers-Code-Coupling.md","label":"","name":"Papers Code Coupling","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Timing-Profile.md","label":"","name":"Timing Profile","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Running-YARP-on-CRC-First-Time-Guide.md","label":"","name":"Running YARP on CRC First Time Guide","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"CRC-Infrastructure.md","label":"","name":"CRC Infrastructure","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Run-Monitoring-Workflow.md","label":"","name":"Run Monitoring Workflow","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"AI-Driven-Discovery-Vision.md","label":"","name":"AI Driven Discovery Vision","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"CLAUDE.md","label":"","name":"CLAUDE","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"YARP-3.0-Tutorial.md","label":"","name":"YARP 3.0 Tutorial","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"CRC-Bringup-Retrospective.md","label":"","name":"CRC Bringup Retrospective","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"Agentic-YARP-Phase2-Project1-Pilot.md","label":"","name":"Agentic YARP Phase2 Project1 Pilot","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"e0","source":"index_yarp.md","target":"log_yarp.md","w":2.5,"kind":"write","fm":"no"}},{"data":{"id":"e1","source":"index_yarp.md","target":"Home_yarp.md","w":1.78,"kind":"write","fm":"yes"}},{"data":{"id":"e2","source":"Project-Objective.md","target":"index_yarp.md","w":1.78,"kind":"write","fm":"no"}},{"data":{"id":"e3","source":"Project-Objective.md","target":"log_yarp.md","w":1.78,"kind":"write","fm":"no"}},{"data":{"id":"e4","source":"Lessons-Learned.md","target":"Project-Objective.md","w":1.6,"kind":"write","fm":"yes"}},{"data":{"id":"e5","source":"Home_yarp.md","target":"log_yarp.md","w":1.53,"kind":"write","fm":"no"}},{"data":{"id":"e6","source":"log_yarp.md","target":"Lessons-Learned.md","w":1.53,"kind":"write","fm":"no"}},{"data":{"id":"e7","source":"KHP-Fruitfly-Regression.md","target":"log_yarp.md","w":1.38,"kind":"write","fm":"no"}},{"data":{"id":"e8","source":"Home_yarp.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e9","source":"YARP-Overview.md","target":"Package-Architecture.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e10","source":"Package-Architecture.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e11","source":"log_yarp.md","target":"Agentic-YARP-Test-Cases.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e12","source":"Lessons-Learned.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e13","source":"Home_yarp.md","target":"index_yarp.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e14","source":"index_yarp.md","target":"log_yarp.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e15","source":"Package-Architecture.md","target":"YARP-Overview.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e16","source":"YARP-Overview.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e17","source":"RGD1-Dataset-2023.md","target":"Woulfe-YAKS-2025.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e18","source":"log_yarp.md","target":"Home_yarp.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e19","source":"Lewis-Structure-Score.md","target":"log_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e20","source":"Agentic-YARP-Test-Cases.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e21","source":"index_yarp.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e22","source":"Phase1-M3-CRC-EGAT.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e23","source":"Phase1-M4-CRC-xTB-Path.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e24","source":"Papers-Code-Coupling.md","target":"Publications.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e25","source":"Phase2-Project1-Pilot.md","target":"Lessons-Learned.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e26","source":"Lessons-Learned.md","target":"Phase2-Project1-Pilot.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e27","source":"Phase2-Project1-Pilot.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e28","source":"Phase1-M5-CRC-DFT.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e29","source":"Timing-Profile.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e30","source":"First-Time-Guide.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e31","source":"Running-YARP-on-CRC-First-Time-Guide.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e32","source":"CRC-Infrastructure.md","target":"First-Time-Guide.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e33","source":"KHP-Fruitfly-Regression.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e34","source":"Lessons-Learned.md","target":"Zhao-Savoie-YARP-2021.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e35","source":"Zhao-Savoie-YARP-2021.md","target":"KHP-Fruitfly-Regression.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e36","source":"Run-Monitoring-Workflow.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e37","source":"First-Time-Guide.md","target":"Lessons-Learned.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e38","source":"Lessons-Learned.md","target":"log_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e39","source":"Onboarding-Claude-Code.md","target":"Ericka-Claude-Code-Onboarding.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e40","source":"Ericka-Claude-Code-Onboarding.md","target":"Onboarding-Claude-Code.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e41","source":"SCHEMA_yarp.md","target":"Home_yarp.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e42","source":"log_yarp.md","target":"CLAUDE.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e43","source":"CLAUDE.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e44","source":"Package-Architecture.md","target":"Documentation-Build.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e45","source":"Documentation-Build.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e46","source":"log_yarp.md","target":"Documentation-Build.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e47","source":"Documentation-Build.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e48","source":"Home_yarp.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e49","source":"Publications.md","target":"Zhao-Savoie-YARP-2021.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e50","source":"Zhao-Savoie-YARP-2021.md","target":"Zhao-Conformational-Sampling-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e51","source":"Zhao-Conformational-Sampling-2022.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e52","source":"Zhao-Savoie-YARP-v2-2022.md","target":"Zhao-Heterogeneous-Catalysis-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e53","source":"Zhao-Heterogeneous-Catalysis-2022.md","target":"Zhao-Glucose-Pyrolysis-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e54","source":"Zhao-Glucose-Pyrolysis-2023.md","target":"RGD1-Dataset-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e55","source":"Woulfe-YAKS-2025.md","target":"Model-Reactions-2025.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e56","source":"Model-Reactions-2025.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e57","source":"Zhao-Savoie-YARP-v2-2022.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e58","source":"Home_yarp.md","target":"Model-Reactions-2025.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e59","source":"Model-Reactions-2025.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e60","source":"Package-Architecture.md","target":"Publications.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e61","source":"Publications.md","target":"RGD1-Dataset-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e62","source":"Woulfe-YAKS-2025.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e63","source":"YARP-Overview.md","target":"Zhao-Conformational-Sampling-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e64","source":"Zhao-Conformational-Sampling-2022.md","target":"Zhao-Glucose-Pyrolysis-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e65","source":"Zhao-Glucose-Pyrolysis-2023.md","target":"Zhao-Heterogeneous-Catalysis-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e66","source":"Zhao-Heterogeneous-Catalysis-2022.md","target":"Zhao-Savoie-YARP-2021.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e67","source":"Zhao-Savoie-YARP-2021.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e68","source":"Zhao-Savoie-YARP-v2-2022.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e69","source":"YARP-3.0-Tutorial.md","target":"Concerted-vs-Sequential-Enumeration.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e70","source":"Concerted-vs-Sequential-Enumeration.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e71","source":"Lewis-Structure-Score.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e72","source":"Agentic-YARP-Test-Cases.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e73","source":"Agentic-YARP-Test-Cases.md","target":"Concerted-vs-Sequential-Enumeration.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e74","source":"Concerted-vs-Sequential-Enumeration.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e75","source":"Home_yarp.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e76","source":"Lewis-Structure-Score.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e77","source":"log_yarp.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e78","source":"Project-Objective.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e79","source":"Agentic-YARP-Test-Cases.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e80","source":"Home_yarp.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e81","source":"Phase1-M1-Local-EGAT.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e82","source":"log_yarp.md","target":"Phase1-M1-Local-EGAT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e83","source":"Phase1-M1-Local-EGAT.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e84","source":"log_yarp.md","target":"Phase1-M3-CRC-EGAT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e85","source":"log_yarp.md","target":"Phase1-M4-CRC-xTB-Path.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e86","source":"Publications.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e87","source":"log_yarp.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e88","source":"Package-Architecture.md","target":"Papers-Code-Coupling.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e89","source":"Publications.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e90","source":"Lessons-Learned.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e91","source":"Agentic-YARP-Test-Cases.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e92","source":"Phase2-Project1-Pilot.md","target":"log_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e93","source":"CRC-Bringup-Retrospective.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e94","source":"log_yarp.md","target":"Phase1-M5-CRC-DFT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e95","source":"log_yarp.md","target":"Timing-Profile.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e96","source":"log_yarp.md","target":"Agentic-YARP-Phase2-Project1-Pilot.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e97","source":"Agentic-YARP-Phase2-Project1-Pilot.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e98","source":"First-Time-Guide.md","target":"Home_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e99","source":"First-Time-Guide.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e100","source":"Home_yarp.md","target":"Running-YARP-on-CRC-First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e101","source":"index_yarp.md","target":"CRC-Infrastructure.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e102","source":"First-Time-Guide.md","target":"Running-YARP-on-CRC-First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e103","source":"SCHEMA_yarp.md","target":"Phase1-M4-CRC-xTB-Path.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e104","source":"Phase1-M4-CRC-xTB-Path.md","target":"Phase1-M5-CRC-DFT.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e105","source":"Phase1-M5-CRC-DFT.md","target":"Phase2-Project1-Pilot.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e106","source":"Phase2-Project1-Pilot.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e107","source":"log_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e108","source":"log_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e109","source":"KHP-Fruitfly-Regression.md","target":"Lessons-Learned.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e110","source":"KHP-Fruitfly-Regression.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e111","source":"Lessons-Learned.md","target":"Zhao-Savoie-YARP-2021.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e112","source":"KHP-Fruitfly-Regression.md","target":"log_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e113","source":"Zhao-Savoie-YARP-2021.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e114","source":"log_yarp.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e115","source":"index_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e116","source":"log_yarp.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e117","source":"Lessons-Learned.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e118","source":"Lessons-Learned.md","target":"Run-Monitoring-Workflow.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e119","source":"AI-Driven-Discovery-Vision.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e120","source":"Home_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e121","source":"Home_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e122","source":"KHP-Fruitfly-Regression.md","target":"Project-Objective.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e123","source":"KHP-Fruitfly-Regression.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e124","source":"Project-Objective.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e125","source":"KHP-Fruitfly-Regression.md","target":"AI-Driven-Discovery-Vision.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e126","source":"AI-Driven-Discovery-Vision.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e127","source":"First-Time-Guide.md","target":"Onboarding-Claude-Code.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e128","source":"Onboarding-Claude-Code.md","target":"index_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e129","source":"Onboarding-Claude-Code.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e130","source":"Home_yarp.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e131","source":"First-Time-Guide.md","target":"Ericka-Claude-Code-Onboarding.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e132","source":"Ericka-Claude-Code-Onboarding.md","target":"First-Time-Guide.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e133","source":"Home_yarp.md","target":"Onboarding-Claude-Code.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e134","source":"Onboarding-Claude-Code.md","target":"log_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e135","source":"log_yarp.md","target":"Onboarding-Claude-Code.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"lv1","source":"index_yarp.md","target":"index_yarp.md","loop":"verify"}},{"data":{"id":"lr2","source":"KHP-Fruitfly-Regression.md","target":"KHP-Fruitfly-Regression.md","loop":"reread"}},{"data":{"id":"lv2","source":"KHP-Fruitfly-Regression.md","target":"KHP-Fruitfly-Regression.md","loop":"verify"}},{"data":{"id":"lv4","source":"Home_yarp.md","target":"Home_yarp.md","loop":"verify"}},{"data":{"id":"lv6","source":"First-Time-Guide.md","target":"First-Time-Guide.md","loop":"verify"}},{"data":{"id":"lv11","source":"Onboarding-Claude-Code.md","target":"Onboarding-Claude-Code.md","loop":"verify"}}];
+  const STYLE = [{selector:'node',style:{'background-color':'#c9d2de','border-color':'#8a94a6','border-width':1,'width':'data(size)','height':'data(size)','label':'data(label)','color':'#1a1a1a','text-outline-color':'#fbfdff','text-outline-width':2.5,'font-size':9,'font-weight':'bold','font-family':'Menlo, Consolas, monospace','text-valign':'bottom','text-margin-y':2}},{selector:'node[hub = "yes"]',style:{'background-color':'#3f4b5e','border-color':'#3f4b5e'}},{selector:'node.sel',style:{'font-size':11,'color':'#111','text-background-color':'#ffffff','text-background-opacity':0.92,'text-background-padding':2,'text-background-shape':'roundrectangle','border-width':2,'border-color':'#0d4a8b','z-index':99}},{selector:'edge',style:{'width':'data(w)','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':0.7,'opacity':0.6}},{selector:'edge[kind = "read"]',style:{'line-color':'#2f6fb0','target-arrow-color':'#2f6fb0'}},{selector:'edge[kind = "write"]',style:{'line-color':'#cf4b52','target-arrow-color':'#cf4b52'}},{selector:'edge[fm = "no"]',style:{'line-style':'dashed'}},{selector:'edge[loop = "reread"]',style:{'line-color':'#2f9e5f','target-arrow-color':'#2f9e5f','width':2,'opacity':0.95}},{selector:'edge[loop = "verify"]',style:{'line-color':'#2f9e5f','target-arrow-color':'#2f9e5f','width':2,'line-style':'dashed','opacity':0.95}}];
+  const LAYOUT = {name:'cose',idealEdgeLength:70,nodeOverlap:16,animate:false,fit:true,padding:12};
+  let rwCy=null;
+  function tryInitRW(){
+    const c=document.getElementById('read-graph');
+    if(!c||!window.cytoscape||c.offsetWidth===0||c.offsetHeight===0) return false;
+    if(rwCy){rwCy.resize();rwCy.fit(undefined,12);return true;}
+    rwCy=cytoscape({container:c,elements:ELEMENTS,style:STYLE,layout:LAYOUT,minZoom:0.4,maxZoom:2.5,wheelSensitivity:0.2});
+    rwCy.on('tap','node',function(e){ e.target.data('label', e.target.data('name')); e.target.addClass('sel'); });
+    rwCy.on('tap',function(e){ if(e.target===rwCy){ rwCy.nodes().removeClass('sel'); rwCy.nodes('[shown = "no"]').forEach(function(n){ n.data('label',''); }); } });
+    rwCy.fit(undefined,12);
+    return true;
+  }
+  (function poll(){ if(!tryInitRW()) setTimeout(poll,200); })();
+  function hookRW(){ if(!window.Reveal){setTimeout(hookRW,150);return;} Reveal.on('slidechanged',function(){tryInitRW(); if(rwCy){rwCy.resize();rwCy.fit(undefined,12);}}); Reveal.on('resize',function(){if(rwCy){rwCy.resize();rwCy.fit(undefined,12);}}); }
+  hookRW();
+})();
+</script>
+```
+
+::: {.notes}
+From the Reading-the-wiki study; this is the full YARP graph (40 nodes, 136 moves), which we return to later. Channels: writes (red) 88% of tool calls, reads (blue) 7%, greps (green loops) 6%. Make the caching point out loud: reads are few because loaded pages stay cached in context, so the agent reuses rather than re-reads. Everything routes through the index and log hubs; only 24 of 136 moves follow a frontmatter link, the rest are search jumps. This is the llm-wiki architecture in action: the LLM authors the memory and reads it back, hub-organized.
+:::
+
+## Ingestion: fan out, then synthesize {.smaller}
+
+[The write path: one paper per agent, one synthesizer above]{.kicker}
+
+Ingesting a paper does not file the PDF. Each PDF is read natively by page range, so tables and figures come through, then the wiki keeps the **extracted, attributed knowledge and the links** plus a provenance pointer (the DOI and the local path). The source itself stays external.
+
+```{=html}
+<style>
+.reveal .fx-vflow{display:flex;flex-direction:column;align-items:center;gap:0.12em;font-family:"Helvetica Neue",Arial,sans-serif;margin:0.1em 0 0.2em;}
+.reveal .fx-box{background:#f4f1ea;border:1px solid #cfc7b5;border-radius:6px;padding:0.4em 0.6em;text-align:center;min-width:150px;}
+.reveal .fx-box b{display:block;color:#14213d;font-size:0.6em;}
+.reveal .fx-box i{font-style:normal;font-size:0.48em;color:#666;line-height:1.3;}
+.reveal .fx-stack{box-shadow:4px 4px 0 #e6dfcb, 8px 8px 0 #d9d0b7;}
+.reveal .fx-syn{background:#14213d;border-color:#14213d;}
+.reveal .fx-syn b{color:#fff;} .reveal .fx-syn i{color:#c9d2de;}
+.reveal .fx-wiki{background:#fbf3dc;border-color:#b8860b;}
+.reveal .fx-arrow{color:#b8860b;font-size:1.1em;font-weight:700;line-height:1;}
+.reveal .fx-proof{background:#f7f5ef;border-left:3px solid #b8860b;border-radius:4px;padding:0.45em 0.6em;margin-bottom:0.5em;}
+.reveal .fx-proof b{color:#14213d;font-size:0.66em;} .reveal .fx-proof span{display:block;font-size:0.56em;color:#444;line-height:1.4;margin-top:0.15em;}
+.reveal .fx-proof code{font-size:0.92em;color:#0d4a8b;}
+.reveal .fx-flag{color:#a13a30;font-weight:700;}
+</style>
+```
+
+:::: {.columns}
+
+::: {.column width="40%"}
+```{=html}
+<div class="fx-vflow">
+  <div class="fx-box"><b>8 papers</b><i>PDFs, external</i></div>
+  <span class="fx-arrow">&darr;</span>
+  <div class="fx-box fx-stack"><b>8 subagents &middot; parallel, ~60s</b><i>1 PDF &rarr; structured data<br>never writes the wiki</i></div>
+  <span class="fx-arrow">&darr;</span>
+  <div class="fx-box fx-syn"><b>1 orchestrator</b><i>sees all 8 at once</i></div>
+  <span class="fx-arrow">&darr;</span>
+  <div class="fx-box fx-wiki"><b>wiki pages</b><i>hub + typed edges</i></div>
+</div>
+```
+:::
+
+::: {.column width="60%"}
+**The extraction contract, the same 7 sections for every paper:**
+
+- **Citation**, confirmed or corrected against a pre-seeded reference
+- **Contribution**, in one sentence
+- **Method**, the specific techniques named
+- **Results**, exact numbers only, each attributed
+- **Code-relevance**, mapped to specific modules and files
+- **Key terms**, anchored to where they appear (Table 1, Section 2.2)
+- **Quotes**, one or two verbatim, with location
+:::
+
+::::
+
+::: {.callout-highlight}
+One paper per agent: bounded context, no cross-contamination. Each subagent returns data; the wiki's structure is decided one level up.
+:::
+
+::: {.notes}
+Source: yarp/docs/Wiki-Paper-Ingestion-Process.md sections 1 (fan-out, two-layer table), 2 (the contract), 3 (native page-range reading, gets tables/figures), 4 (concepts anchored to location). Say aloud: this process report was itself reconstructed by an agent from the run's own transcripts. The subagent contract: read one PDF, return the 7 sections as data, "Return ONLY this markdown extraction as your final message." It never writes the wiki.
+:::
+
+## Worked example: tables and figures {.smaller}
+
+[A table and a figure, captured straight off the rendered page]{.kicker}
+
+```{=html}
+<style>
+.reveal .wx-band{display:flex;gap:1.1em;align-items:flex-start;margin:0.4em 0 0.2em;}
+.reveal .wx-block{flex:1;display:flex;gap:0.6em;align-items:flex-start;}
+.reveal .wx-img{max-height:400px;width:auto;max-width:55%;flex:0 0 auto;border:1px solid #d8cfb6;border-radius:4px;background:#fff;}
+.reveal .wx-ext{flex:1;font-size:0.44em;color:#333;line-height:1.42;border-left:3px solid #d8cfb6;padding-left:0.6em;}
+.reveal .wx-ext p{margin:0 0 0.45em;}
+.reveal .wx-ext b{color:#14213d;}
+.reveal .wx-tag{display:block;font-size:0.95em;text-transform:uppercase;letter-spacing:0.03em;font-weight:700;color:#b8860b;margin-bottom:0.35em;}
+.reveal .wx-mono{font-family:Menlo,Consolas,monospace;font-size:0.95em;color:#0d4a8b;background:#eef1f5;padding:0.02em 0.25em;border-radius:3px;}
+.reveal .wx-foot{font-size:0.44em;color:#777;text-align:center;margin-top:0.35em;}
+</style>
+<div class="wx-band">
+  <div class="wx-block">
+    <img class="wx-img" src="slide-assets/example_table_rgd1.png" alt="RGD1 Tables 1 and 2">
+    <div class="wx-ext">
+      <span class="wx-tag">from a table</span>
+      <p>CSV <b>RGD1CHNO_smiles.csv</b>, Table 1 columns <span class="wx-mono">Rind, Rsmiles, Psmiles, DE_F, DE_B, DG_F, DG_B, DH</span>.</p>
+      <p>HDF5 <b>RGD1_CHNO.h5</b>, Table 2 keys <span class="wx-mono">R_E, R_H, R_F, P_E, P_H, P_F, TS_E, TS_H, TS_F</span> (Hartree), <span class="wx-mono">RG, PG, TSG</span> (&Aring;), iterated via <span class="wx-mono">parse_data.py</span>.</p>
+    </div>
+  </div>
+  <div class="wx-block">
+    <img class="wx-img" src="slide-assets/example_figure_hetcat.png" alt="Gallium olefin oligomerization network, Fig 2">
+    <div class="wx-ext">
+      <span class="wx-tag">from a figure</span>
+      <p>Network seeded at Ga-ethyl (node 0); all reactions with <b>&Delta;G&#8225; &lt; 80 kcal/mol</b> are presented in Fig. 2.</p>
+      <p>First-step from Ga-ethyl + ethylene: Ga-n-butyl <b>44.1</b>, Ga-vinyl <b>59.8</b>, Ga-hydride <b>93.5 kcal/mol</b> (excluded, high barrier). Second-step: <b>53.2</b>, <b>51.4</b>, <b>61.3</b>, <b>36.0</b>.</p>
+    </div>
+  </div>
+</div>
+```
+
+::: {.callout-highlight}
+Reading the rendered page, not its stripped text, is what captured the table's exact schema and the figure's network as attributed data. Tables or figures were read and cited in 6 of the 8 papers.
+:::
+
+::: {.notes}
+Source: yarp/docs/Slide-Handoff-Wiki-Ingestion.md (the "source page beside the extraction" version). Each right-hand block is the extractor subagent's returned text (subagent adf7292b for the RGD1 tables, ae4bd1a8 for the catalysis figure), copied from the ingest transcripts, lightly trimmed to fit. Images are 300 dpi crops of the actual source pages. Honest caveat to say aloud: for the figure, the barrier numbers are printed in the paper's body text, which Fig. 2 visualizes as edge colors; the line genuinely attributed to the figure is the structural reading, "all reactions with delta-G-double-dagger < 80 kcal/mol are presented in Fig. 2." This is reading printed labels and structure, not point-level digitization.
+:::
+
+## Worked example: graphs {.smaller}
+
+[Given only a chart, Claude Code writes its own OpenCV pipeline to digitize it]{.kicker}
+
+No recipe is handed to it. The agent writes code to calibrate off the axis ticks, detect every point and curve, zoom in on the ambiguous spots, and then redraw its data back on the source to check it.
+
+```{=html}
+<style>
+.reveal .gx-band{display:flex;gap:0.7em;align-items:flex-start;margin:0.35em 0 0.15em;}
+.reveal .gx-panel{flex:1;text-align:center;}
+.reveal .gx-img{width:100%;max-height:300px;object-fit:contain;border:1px solid #d8cfb6;border-radius:4px;background:#fff;}
+.reveal .gx-cap{font-size:0.46em;color:#444;line-height:1.35;margin-top:0.25em;text-align:left;}
+.reveal .gx-cap b{color:#14213d;}
+</style>
+<div class="gx-band">
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_boxes.png" alt="Generated OpenCV target regions"><div class="gx-cap"><b>1. Writes OpenCV targets.</b> Calibrate off the axes (blue), survey the points and curves (green), zoom on ambiguity (red).</div></div>
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_heatmap.png" alt="Attention heatmap of zoom regions"><div class="gx-cap"><b>2. Where it zoomed.</b> Effort concentrates on the day 28 to 40 band where the markers and curves fuse, not evenly.</div></div>
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_pixelcheck.png" alt="Extracted data redrawn on the source image"><div class="gx-cap"><b>3. Pixel-check.</b> Redraws its extracted points and curves on the source to verify against the pixels.</div></div>
+</div>
+```
+
+::: {.callout-highlight}
+The model writes and runs its own extractor, then verifies it against the image. F1 0.93 on this chart, the hardest in the set, and 0.94 on average across a 28-chart corpus, beating a hand-written recipe.
+:::
+
+::: {.notes}
+Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/HANDOFF.md and wiki pages Experiment-Free-Rein-Transcript-Review-2026-08-06 and Analysis-Attention-Map-Visualization-2026-08-12. el-94 = the aedes-aegypti-2014 survival combo chart. Real outputs: position F1 0.93 (recall 0.88, precision 0.99); this run wrote about 25 code executions and saved 21 zoom crops, 17 regions on the attention map; corpus-wide free-rein mean 0.940 vs a hand-written recipe's 0.891. This is the point-level digitization the tables-and-figures slide said it did not do; here the numbers are locked in the chart geometry, so the agent writes code to recover them. Honest caveats to say aloud: the heatmap is reconstructed post-hoc from saved crops (a lower bound on where it looked, not a live eye-tracker, no time order); scores use a per-type prototype scorer, not a hardened benchmark; a couple of dense multi-series line charts still expose a measurement-layer gap. Not from YARP; it shows the ingestion pattern generalizes.
+:::
+
+## Synthesis: where linking and trust happen {.smaller}
+
+[The layer that sees every paper at once]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+- **Reads the existing wiki first** (the schema, then the index), then **wires each new page into what is already there**: typed lineage edges (`extends:`) with reciprocal back-references.
+- **Numbers and citations:** exact, attributed, **verified not transcribed**; "not stated" when unclear.
+- **Reads and extracts from the real code:** for a paper that is a module, it opens the `.py` and maps each concept to its function.
+- **Flags degraded sources:** it caught an abstract-only PDF and surfaced it.
+- **The payoff:** cross-paper insight that no single page shows.
+:::
+
+::: {.column width="45%"}
+```{=html}
+<div class="fx-proof"><b>It caught a degraded source</b><span>The "YARP v2.0" PDF was a single-page abstract. The agent noticed, ran <code>pdfinfo</code> and <code>pdftotext</code> to confirm, and opened its extraction with a <span class="fx-flag">HONEST FLAG</span>. The page still carries the caveat.</span></div>
+<div class="fx-proof"><b>It checked itself against the code</b><span><code>indicator.py</code> computes the six Table 1 features; <code>select_pairs.py</code> runs the ML tournament. Each concept mapped to a function, verified against the real files.</span></div>
+```
+:::
+
+::::
+
+::: {.callout-highlight}
+The subagents extract attributed data; the structure, lineage, and cross-paper insight belong to the synthesizer, for example an sklearn 1.3.0 pickle that explains why the cluster environment is pinned.
+:::
+
+::: {.notes}
+Source: Wiki-Paper-Ingestion-Process.md section 8 (synthesis reads schema then index, wires up: to the Publications hub and extends: lineage with reciprocal back-references), 2 and 5 (numbers and citation verify), 6 (code cross-ref), 7 (degraded-source HONEST FLAG). The lead bullet is the key point: linking and trust are decided where the whole wiki and all eight extractions are visible. Keep the sklearn line a teaser; full paper-to-code-to-ops reveal on the final YARP demo.
+:::
+
+## YARP: many kinds of source {.smaller}
+
+[Not just papers: synthesis across source types, one the agent built itself]{.kicker}
+
+The YARP memory was not built from papers alone. Four kinds of source fed one wiki, and the agent generated one of them itself.
+
+:::: {.columns}
+
+::: {.column width="54%"}
+- **8 published papers** (DOIs), each filed as a source-summary page.
+- **Tutorials**, the group's onboarding guides.
+- **The code itself**: concepts pulled straight from the `.py` (for example `Lewis-Structure-Score`, sourced from `yarpecule/lewis/bem_score.py`).
+- **Sphinx API docs the agent built from the code**, then ingested as another source.
+:::
+
+::: {.column width="46%"}
+```{=html}
+<style>
+.reveal .yp-fan{display:flex;flex-direction:column;align-items:center;gap:0.3em;font-family:"Helvetica Neue",Arial,sans-serif;margin-top:0.3em;}
+.reveal .yp-row{display:flex;gap:0.4em;justify-content:center;flex-wrap:wrap;}
+.reveal .yp-box{background:#f4f1ea;border:1px solid #cfc7b5;border-radius:6px;padding:0.35em 0.55em;text-align:center;}
+.reveal .yp-box b{display:block;color:#14213d;font-size:0.56em;}
+.reveal .yp-box i{font-style:normal;font-size:0.44em;color:#666;}
+.reveal .yp-built{background:#14213d;border-color:#14213d;}
+.reveal .yp-built b{color:#fff;} .reveal .yp-built i{color:#d4a835;}
+.reveal .yp-wiki{background:#fbf3dc;border-color:#b8860b;}
+.reveal .yp-arrow{color:#b8860b;font-size:1.3em;font-weight:700;line-height:1;}
+</style>
+<div class="yp-fan">
+  <div class="yp-row">
+    <div class="yp-box"><b>8 papers</b><i>DOIs</i></div>
+    <div class="yp-box"><b>tutorials</b><i>onboarding</i></div>
+    <div class="yp-box"><b>the code</b><i>.py source</i></div>
+    <div class="yp-box yp-built"><b>Sphinx docs</b><i>agent-built</i></div>
+  </div>
+  <span class="yp-arrow">&darr;</span>
+  <div class="yp-box yp-wiki"><b>one YARP wiki</b><i>~40 pages, 9 source-summaries, 5 synthesis</i></div>
+</div>
+```
+:::
+
+::::
+
+::: {.callout-highlight}
+The agent generated a source, the API docs, from the code and then ingested it. The code is a first-class source, not just the papers.
+:::
+
+::: {.notes}
+Source: yarp.wiki YARP-Overview.md, Publications.md (the 8 papers), Documentation-Build.md (Sphinx docs built from the code via update_docs.sh, then ingested), the docs/references tutorials, and page source: frontmatter pointing at .py files (Lewis-Structure-Score source: bem_score.py). The wiki is about 40 pages, 9 source-summaries and 5 synthesis pages. The point for a data-extraction audience: ingestion is not paper-specific; heterogeneous sources, including ones the agent authored, synthesize into one memory.
+:::
+
+## YARP: the answer that lives in the links {.smaller}
+
+[Combining data: a question no single source can answer]{.kicker}
+
+**Why is our cluster pinned to scikit-learn 1.3.0?** No paper says it. No code comment says it. The answer exists only in the links between the sources.
+
+:::: {.columns}
+
+::: {.column width="52%"}
+::: {.extends-chain}
+<div class="chain-box">Conformational Sampling 2022 &middot; paper</div>
+<div class="chain-edge">is implemented as &darr;</div>
+<div class="chain-box">reaction/conf_sampling/ &middot; code</div>
+<div class="chain-edge">ships its model as &darr;</div>
+<div class="chain-box">a scikit-learn 1.3.0 pickle</div>
+<div class="chain-edge">forces &darr;</div>
+<div class="chain-box">CRC environment pinned to 1.3.0</div>
+:::
+:::
+
+::: {.column width="48%"}
+The memory follows **paper to code to artifact to operations**, a chain assembled from four different source pages.
+
+Dense RAG over the raw repo and the PDFs cannot produce this: the fact lives in the connections, not in any one document.
+:::
+
+::::
+
+::: {.callout-highlight}
+Not "the AI knows your field." The group's hard-won knowledge, paper to code to operations, now instant instead of tribal.
+:::
+
+::: {.notes}
+Papers-Code-Coupling synthesis page ("the three couplings that mattered", coupling #2). The chain is the payoff of the whole talk: it exists only in the cross-source links the synthesizer built. Chris's framing: acceleration of the researcher, not replacement. If time, a second coupling: RGD1 (176,992 DFT-characterized reactions) trains the egat_rgd1 barrier model. Optional live demo: ingest a competitor paper and have the memory contrast approaches.
+:::
+
+## Where this lands {.smaller}
+
+[Takeaway]{.kicker}
+
+- **Extraction into durable memory, not a one-shot data pull.** The wiki compounds: every source ingested and every answer filed means the next question starts from what is already known.
+- **It works, and it stays honest.** On a real project the wiki read path answered 90% correctly and fabricated nothing, roughly double plain RAG, and the zero is by design: honest-reporting rules, a verification gate, and blocking hooks in an agentic harness.
+- **Hub-indexed reading, disciplined ingestion.** The agent reads through the index and log hubs, and ingests papers, tables, figures, even charts it digitizes with its own code, and heterogeneous sources including ones it wrote itself.
+- **The payoff is the links.** Answers that live in no single document, paper to code to operations, become instant instead of tribal.
+
+::: {.callout-highlight}
+Not "the AI knows your field." A persistent, auditable memory the group builds once and keeps, so hard-won knowledge compounds instead of scattering.
+:::
+
+::: {.notes}
+Close on the arc: it works (90 vs 42, zero fabrication), it is honest by construction (control stack, verify not transcribe), it reads hub-indexed and ingests heterogeneous sources with discipline, and the payoff is the cross-source links (the sklearn pin). Honest framing to keep in your voice: the wiki-vs-RAG number is one controlled measurement on a real project, a strong signal rather than a benchmark verdict. Optional live demo: ingest a competitor paper and have the memory contrast approaches.
+:::

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="llm-wiki-memory_files/libs/clipboard/clipboard.min.js"></script>
+<script src="llm-wiki-memory_files/libs/quarto-html/tabby.min.js"></script>
+<script src="llm-wiki-memory_files/libs/quarto-html/popper.min.js"></script>
+<script src="llm-wiki-memory_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="llm-wiki-memory_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="llm-wiki-memory_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="llm-wiki-memory_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
+
+  <meta name="author" content="Chris Sweet">
+  <meta name="dcterms.date" content="2026-08-20">
+  <title>Research memory that compounds</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="llm-wiki-memory_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="llm-wiki-memory_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="llm-wiki-memory_files/libs/revealjs/dist/theme/quarto-00d918fe3ce335e2c1d542d2fc53de8b.css">
+  <link href="llm-wiki-memory_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="llm-wiki-memory_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="llm-wiki-memory_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="llm-wiki-memory_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="cytoscape.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function injectKicker() {
+      var ts = document.getElementById('title-slide');
+      if (!ts) { setTimeout(injectKicker, 100); return; }
+      if (ts.querySelector('.title-kicker')) return;
+      var k = document.createElement('div');
+      k.className = 'title-kicker';
+      k.textContent = 'Data Extraction Summer Group';
+      ts.insertBefore(k, ts.firstChild);
+    }
+    injectKicker();
+  });
+  </script>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#14213d" class="quarto-title-block center">
+  <h1 class="title">Research memory that compounds</h1>
+  <p class="subtitle">Extracting sources into a persistent, durable and queryable<br>llm-wiki</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Chris Sweet 
+</div>
+</div>
+</div>
+
+  <p class="date">August 20, 2026</p>
+</section>
+<section id="what-an-llm-wiki-is" class="slide level2 smaller">
+<h2>What an llm-wiki is</h2>
+<p><span class="kicker">The setup, and the alternative</span></p>
+<ul>
+<li><strong>LLMs are trained on a vast array of human knowledge.</strong> But science is a broad landscape, each domain its own deep dive; incorporating all of it into a model is challenging.</li>
+<li><strong>The training data is stale by design.</strong> Recent advances are simply not in it.</li>
+<li><strong>Harnesses now add “project data”,</strong> files you upload as the basis for a project. Useful, but it is a RAG approach: nothing persists, and the context is re-extracted from scratch on every question.</li>
+<li><strong>llm-wiki, proposed by Andrej Karpathy, is the alternative:</strong> dense, connected wiki pages as a <strong>persistent memory, authored and maintained by the LLM</strong> itself.</li>
+<li><strong>Visible and queryable by the human,</strong> so the memory stays trusted and auditable, not a black box.</li>
+</ul>
+<div class="callout-highlight">
+<p>A persistent, compounding memory the LLM writes and the human can read, not retrieval re-run on every question.</p>
+</div>
+<aside class="notes">
+<p>Story arc: LLMs know a great deal, but science is broad, deep, and advancing, and training data is stale by design. Harness “project data” (uploaded files) is a RAG approach: nothing persists, context is re-extracted per query. llm-wiki (Andrej Karpathy) is the alternative: dense connected wiki pages as a persistent, LLM-authored and LLM-maintained memory, visible and queryable by the human for trusted, auditable operation. Framing from llm-wiki.md (persistent, compounding artifact; the LLM owns and writes the wiki, you read it).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="does-the-memory-actually-work" class="slide level2 smaller">
+<h2>Does the memory actually work?</h2>
+<p><span class="kicker">A first controlled measurement, on a real research project</span></p>
+<style>
+.reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
+.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.72em; margin-bottom:0.25em; }
+.reveal .ctl-box span { color:#cdd6e0; font-size:0.62em; line-height:1.32; }
+</style>
+<p>Forty questions on one real project. Reading the llm-wiki answered <strong>90% correctly and fabricated nothing</strong>, roughly double RAG’s 42% (10 fabrications); the model with no context scored 2%.</p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Correct</th>
+<th>Overall (0-3)</th>
+<th>Fabricated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model alone, no context</td>
+<td>2%</td>
+<td>0.10</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Plain RAG over the sources</td>
+<td>42%</td>
+<td>1.32</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td><strong>llm-wiki read path</strong></td>
+<td><strong>90%</strong></td>
+<td><strong>2.65</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div><div class="column rag-stats" style="width:45%;">
+<div class="stat-big">
+90%
+</div>
+<div class="stat-caption">
+correct, versus 42% for RAG. Roughly double.
+</div>
+<div class="stat-big">
+0
+</div>
+<div class="stat-caption">
+fabricated, versus 10 for RAG.
+</div>
+</div></div>
+<p><strong>The zero is by design, a layered control stack that keeps every claim honest:</strong></p>
+<div class="columns">
+<div class="column" style="width:25%;">
+<div class="ctl-box">
+<strong>1 · Honest-reporting rules</strong><span>real outputs only; tag every number’s corpus; file failures truthfully</span>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="ctl-box">
+<strong>2 · Verification gate</strong><span>blocks unsupported claims and untagged numbers before a commit</span>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="ctl-box">
+<strong>3 · Discipline gates</strong><span>name the always-wrong shortcuts so the agent self-catches</span>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="ctl-box">
+<strong>4 · Blocking hooks</strong><span>fire the checks and can halt a bad write, exit-code enforced</span>
+</div>
+</div></div>
+<p><em>Gates and hooks need an agentic harness that can run them, which is why we build in Claude Code and Codex, not the Claude or ChatGPT chat apps. Plain Markdown keeps every claim auditable.</em></p>
+<aside class="notes">
+<p>Source: the WGRA post “llm-wiki vs RAG” and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG’s 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="llm-wiki-operational-architecture" class="slide level2 smaller">
+<h2>llm-wiki operational architecture</h2>
+<p><span class="kicker">How the agent writes, reads, and greps its memory, reconstructed from real transcripts</span></p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p>Reconstructed from real transcripts, this is the YARP wiki as the agent actually used it. It works in three channels: it <strong>writes</strong> pages (red arrows: authoring, editing, committing), it <strong>reads</strong> a page into context (blue arrows), and it <strong>greps</strong> to check its own work (green self-loops).</p>
+<p>The mix is lopsided. By tool call it is <strong>88% writes, 7% reads, 6% greps.</strong> Reads are rare because of caching: once a page is loaded it stays in the context window, so the agent reuses it instead of re-reading. Its moves go into building and maintaining the memory, not re-fetching it.</p>
+<p>Everything routes through two hubs, <strong>log (touched 58 times) and index (45)</strong>. The agent rarely walks the typed edges it wrote: only <strong>24 of 136 moves follow an authored frontmatter link</strong> (solid). The rest, the dashed edges, are links it <strong>discovers dynamically by search</strong>, not ones it was handed.</p>
+<p><strong>The LLM builds the memory and reads it back, hub-organized.</strong></p>
+</div><div class="column" style="width:45%;">
+<div id="read-graph" style="width:100%; height:440px; border:1px solid #ccc; background:#fff; border-radius:4px;"></div>
+<p><em>The full YARP wiki, 40 pages. Red = write, blue = read, green = grep or re-read; dark = index/log hubs; dashed = link found by search.</em></p>
+</div></div>
+<script>
+(function(){
+  const ELEMENTS = [{"data":{"id":"log_yarp.md","label":"log","name":"log","size":32.0,"hub":"yes","shown":"yes"}},{"data":{"id":"index_yarp.md","label":"index","name":"index","size":29.4,"hub":"yes","shown":"yes"}},{"data":{"id":"KHP-Fruitfly-Regression.md","label":"KHP Fruitfly","name":"KHP Fruitfly Regression","size":24.7,"hub":"no","shown":"yes"}},{"data":{"id":"Lessons-Learned.md","label":"Lessons Learned","name":"Lessons Learned","size":24.4,"hub":"no","shown":"yes"}},{"data":{"id":"Home_yarp.md","label":"Home","name":"Home","size":24.2,"hub":"yes","shown":"yes"}},{"data":{"id":"Project-Objective.md","label":"Project Objective","name":"Project Objective","size":23.9,"hub":"no","shown":"yes"}},{"data":{"id":"First-Time-Guide.md","label":"","name":"First Time Guide","size":19.6,"hub":"no","shown":"no"}},{"data":{"id":"Phase2-Project1-Pilot.md","label":"","name":"Phase2 Project1 Pilot","size":19.1,"hub":"no","shown":"no"}},{"data":{"id":"Package-Architecture.md","label":"","name":"Package Architecture","size":18.2,"hub":"no","shown":"no"}},{"data":{"id":"YARP-Overview.md","label":"","name":"YARP Overview","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Agentic-YARP-Test-Cases.md","label":"","name":"Agentic YARP Test Cases","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Onboarding-Claude-Code.md","label":"","name":"Onboarding Claude Code","size":17.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Savoie-YARP-2021.md","label":"","name":"Zhao Savoie YARP 2021","size":16.5,"hub":"no","shown":"no"}},{"data":{"id":"Lewis-Structure-Score.md","label":"","name":"Lewis Structure Score","size":16.5,"hub":"no","shown":"no"}},{"data":{"id":"Publications.md","label":"","name":"Publications","size":15.8,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Savoie-YARP-v2-2022.md","label":"","name":"Zhao Savoie YARP v2 2022","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M4-CRC-xTB-Path.md","label":"","name":"Phase1 M4 CRC xTB Path","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M5-CRC-DFT.md","label":"","name":"Phase1 M5 CRC DFT","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"Ericka-Claude-Code-Onboarding.md","label":"","name":"Ericka Claude Code Onboarding","size":15.0,"hub":"no","shown":"no"}},{"data":{"id":"SCHEMA_yarp.md","label":"","name":"SCHEMA","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Documentation-Build.md","label":"","name":"Documentation Build","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Conformational-Sampling-2022.md","label":"","name":"Zhao Conformational Sampling 2022","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Heterogeneous-Catalysis-2022.md","label":"","name":"Zhao Heterogeneous Catalysis 2022","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Zhao-Glucose-Pyrolysis-2023.md","label":"","name":"Zhao Glucose Pyrolysis 2023","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"RGD1-Dataset-2023.md","label":"","name":"RGD1 Dataset 2023","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Woulfe-YAKS-2025.md","label":"","name":"Woulfe YAKS 2025","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Model-Reactions-2025.md","label":"","name":"Model Reactions 2025","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Concerted-vs-Sequential-Enumeration.md","label":"","name":"Concerted vs Sequential Enumeration","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M1-Local-EGAT.md","label":"","name":"Phase1 M1 Local EGAT","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Phase1-M3-CRC-EGAT.md","label":"","name":"Phase1 M3 CRC EGAT","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Papers-Code-Coupling.md","label":"","name":"Papers Code Coupling","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Timing-Profile.md","label":"","name":"Timing Profile","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Running-YARP-on-CRC-First-Time-Guide.md","label":"","name":"Running YARP on CRC First Time Guide","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"CRC-Infrastructure.md","label":"","name":"CRC Infrastructure","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"Run-Monitoring-Workflow.md","label":"","name":"Run Monitoring Workflow","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"AI-Driven-Discovery-Vision.md","label":"","name":"AI Driven Discovery Vision","size":14.1,"hub":"no","shown":"no"}},{"data":{"id":"CLAUDE.md","label":"","name":"CLAUDE","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"YARP-3.0-Tutorial.md","label":"","name":"YARP 3.0 Tutorial","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"CRC-Bringup-Retrospective.md","label":"","name":"CRC Bringup Retrospective","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"Agentic-YARP-Phase2-Project1-Pilot.md","label":"","name":"Agentic YARP Phase2 Project1 Pilot","size":12.9,"hub":"no","shown":"no"}},{"data":{"id":"e0","source":"index_yarp.md","target":"log_yarp.md","w":2.5,"kind":"write","fm":"no"}},{"data":{"id":"e1","source":"index_yarp.md","target":"Home_yarp.md","w":1.78,"kind":"write","fm":"yes"}},{"data":{"id":"e2","source":"Project-Objective.md","target":"index_yarp.md","w":1.78,"kind":"write","fm":"no"}},{"data":{"id":"e3","source":"Project-Objective.md","target":"log_yarp.md","w":1.78,"kind":"write","fm":"no"}},{"data":{"id":"e4","source":"Lessons-Learned.md","target":"Project-Objective.md","w":1.6,"kind":"write","fm":"yes"}},{"data":{"id":"e5","source":"Home_yarp.md","target":"log_yarp.md","w":1.53,"kind":"write","fm":"no"}},{"data":{"id":"e6","source":"log_yarp.md","target":"Lessons-Learned.md","w":1.53,"kind":"write","fm":"no"}},{"data":{"id":"e7","source":"KHP-Fruitfly-Regression.md","target":"log_yarp.md","w":1.38,"kind":"write","fm":"no"}},{"data":{"id":"e8","source":"Home_yarp.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e9","source":"YARP-Overview.md","target":"Package-Architecture.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e10","source":"Package-Architecture.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e11","source":"log_yarp.md","target":"Agentic-YARP-Test-Cases.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e12","source":"Lessons-Learned.md","target":"index_yarp.md","w":1.29,"kind":"write","fm":"no"}},{"data":{"id":"e13","source":"Home_yarp.md","target":"index_yarp.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e14","source":"index_yarp.md","target":"log_yarp.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e15","source":"Package-Architecture.md","target":"YARP-Overview.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e16","source":"YARP-Overview.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e17","source":"RGD1-Dataset-2023.md","target":"Woulfe-YAKS-2025.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e18","source":"log_yarp.md","target":"Home_yarp.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e19","source":"Lewis-Structure-Score.md","target":"log_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e20","source":"Agentic-YARP-Test-Cases.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e21","source":"index_yarp.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e22","source":"Phase1-M3-CRC-EGAT.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e23","source":"Phase1-M4-CRC-xTB-Path.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e24","source":"Papers-Code-Coupling.md","target":"Publications.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e25","source":"Phase2-Project1-Pilot.md","target":"Lessons-Learned.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e26","source":"Lessons-Learned.md","target":"Phase2-Project1-Pilot.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e27","source":"Phase2-Project1-Pilot.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e28","source":"Phase1-M5-CRC-DFT.md","target":"Project-Objective.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e29","source":"Timing-Profile.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e30","source":"First-Time-Guide.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e31","source":"Running-YARP-on-CRC-First-Time-Guide.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e32","source":"CRC-Infrastructure.md","target":"First-Time-Guide.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e33","source":"KHP-Fruitfly-Regression.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e34","source":"Lessons-Learned.md","target":"Zhao-Savoie-YARP-2021.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e35","source":"Zhao-Savoie-YARP-2021.md","target":"KHP-Fruitfly-Regression.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e36","source":"Run-Monitoring-Workflow.md","target":"index_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e37","source":"First-Time-Guide.md","target":"Lessons-Learned.md","w":1.18,"kind":"write","fm":"yes"}},{"data":{"id":"e38","source":"Lessons-Learned.md","target":"log_yarp.md","w":1.18,"kind":"write","fm":"no"}},{"data":{"id":"e39","source":"Onboarding-Claude-Code.md","target":"Ericka-Claude-Code-Onboarding.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e40","source":"Ericka-Claude-Code-Onboarding.md","target":"Onboarding-Claude-Code.md","w":2.5,"kind":"read","fm":"no"}},{"data":{"id":"e41","source":"SCHEMA_yarp.md","target":"Home_yarp.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e42","source":"log_yarp.md","target":"CLAUDE.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e43","source":"CLAUDE.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e44","source":"Package-Architecture.md","target":"Documentation-Build.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e45","source":"Documentation-Build.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e46","source":"log_yarp.md","target":"Documentation-Build.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e47","source":"Documentation-Build.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e48","source":"Home_yarp.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e49","source":"Publications.md","target":"Zhao-Savoie-YARP-2021.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e50","source":"Zhao-Savoie-YARP-2021.md","target":"Zhao-Conformational-Sampling-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e51","source":"Zhao-Conformational-Sampling-2022.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e52","source":"Zhao-Savoie-YARP-v2-2022.md","target":"Zhao-Heterogeneous-Catalysis-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e53","source":"Zhao-Heterogeneous-Catalysis-2022.md","target":"Zhao-Glucose-Pyrolysis-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e54","source":"Zhao-Glucose-Pyrolysis-2023.md","target":"RGD1-Dataset-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e55","source":"Woulfe-YAKS-2025.md","target":"Model-Reactions-2025.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e56","source":"Model-Reactions-2025.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e57","source":"Zhao-Savoie-YARP-v2-2022.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e58","source":"Home_yarp.md","target":"Model-Reactions-2025.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e59","source":"Model-Reactions-2025.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e60","source":"Package-Architecture.md","target":"Publications.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e61","source":"Publications.md","target":"RGD1-Dataset-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e62","source":"Woulfe-YAKS-2025.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e63","source":"YARP-Overview.md","target":"Zhao-Conformational-Sampling-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e64","source":"Zhao-Conformational-Sampling-2022.md","target":"Zhao-Glucose-Pyrolysis-2023.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e65","source":"Zhao-Glucose-Pyrolysis-2023.md","target":"Zhao-Heterogeneous-Catalysis-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e66","source":"Zhao-Heterogeneous-Catalysis-2022.md","target":"Zhao-Savoie-YARP-2021.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e67","source":"Zhao-Savoie-YARP-2021.md","target":"Zhao-Savoie-YARP-v2-2022.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e68","source":"Zhao-Savoie-YARP-v2-2022.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e69","source":"YARP-3.0-Tutorial.md","target":"Concerted-vs-Sequential-Enumeration.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e70","source":"Concerted-vs-Sequential-Enumeration.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e71","source":"Lewis-Structure-Score.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e72","source":"Agentic-YARP-Test-Cases.md","target":"YARP-Overview.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e73","source":"Agentic-YARP-Test-Cases.md","target":"Concerted-vs-Sequential-Enumeration.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e74","source":"Concerted-vs-Sequential-Enumeration.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e75","source":"Home_yarp.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e76","source":"Lewis-Structure-Score.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e77","source":"log_yarp.md","target":"Lewis-Structure-Score.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e78","source":"Project-Objective.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e79","source":"Agentic-YARP-Test-Cases.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e80","source":"Home_yarp.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e81","source":"Phase1-M1-Local-EGAT.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e82","source":"log_yarp.md","target":"Phase1-M1-Local-EGAT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e83","source":"Phase1-M1-Local-EGAT.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e84","source":"log_yarp.md","target":"Phase1-M3-CRC-EGAT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e85","source":"log_yarp.md","target":"Phase1-M4-CRC-xTB-Path.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e86","source":"Publications.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e87","source":"log_yarp.md","target":"Package-Architecture.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e88","source":"Package-Architecture.md","target":"Papers-Code-Coupling.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e89","source":"Publications.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e90","source":"Lessons-Learned.md","target":"Agentic-YARP-Test-Cases.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e91","source":"Agentic-YARP-Test-Cases.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e92","source":"Phase2-Project1-Pilot.md","target":"log_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e93","source":"CRC-Bringup-Retrospective.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e94","source":"log_yarp.md","target":"Phase1-M5-CRC-DFT.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e95","source":"log_yarp.md","target":"Timing-Profile.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e96","source":"log_yarp.md","target":"Agentic-YARP-Phase2-Project1-Pilot.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e97","source":"Agentic-YARP-Phase2-Project1-Pilot.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e98","source":"First-Time-Guide.md","target":"Home_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e99","source":"First-Time-Guide.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e100","source":"Home_yarp.md","target":"Running-YARP-on-CRC-First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e101","source":"index_yarp.md","target":"CRC-Infrastructure.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e102","source":"First-Time-Guide.md","target":"Running-YARP-on-CRC-First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e103","source":"SCHEMA_yarp.md","target":"Phase1-M4-CRC-xTB-Path.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e104","source":"Phase1-M4-CRC-xTB-Path.md","target":"Phase1-M5-CRC-DFT.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e105","source":"Phase1-M5-CRC-DFT.md","target":"Phase2-Project1-Pilot.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e106","source":"Phase2-Project1-Pilot.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e107","source":"log_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e108","source":"log_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e109","source":"KHP-Fruitfly-Regression.md","target":"Lessons-Learned.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e110","source":"KHP-Fruitfly-Regression.md","target":"Lessons-Learned.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e111","source":"Lessons-Learned.md","target":"Zhao-Savoie-YARP-2021.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e112","source":"KHP-Fruitfly-Regression.md","target":"log_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e113","source":"Zhao-Savoie-YARP-2021.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e114","source":"log_yarp.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e115","source":"index_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e116","source":"log_yarp.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e117","source":"Lessons-Learned.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e118","source":"Lessons-Learned.md","target":"Run-Monitoring-Workflow.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e119","source":"AI-Driven-Discovery-Vision.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e120","source":"Home_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e121","source":"Home_yarp.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e122","source":"KHP-Fruitfly-Regression.md","target":"Project-Objective.md","w":1.97,"kind":"read","fm":"yes"}},{"data":{"id":"e123","source":"KHP-Fruitfly-Regression.md","target":"Project-Objective.md","w":1.04,"kind":"write","fm":"yes"}},{"data":{"id":"e124","source":"Project-Objective.md","target":"KHP-Fruitfly-Regression.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e125","source":"KHP-Fruitfly-Regression.md","target":"AI-Driven-Discovery-Vision.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e126","source":"AI-Driven-Discovery-Vision.md","target":"Home_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e127","source":"First-Time-Guide.md","target":"Onboarding-Claude-Code.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e128","source":"Onboarding-Claude-Code.md","target":"index_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e129","source":"Onboarding-Claude-Code.md","target":"index_yarp.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e130","source":"Home_yarp.md","target":"First-Time-Guide.md","w":1.04,"kind":"write","fm":"no"}},{"data":{"id":"e131","source":"First-Time-Guide.md","target":"Ericka-Claude-Code-Onboarding.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e132","source":"Ericka-Claude-Code-Onboarding.md","target":"First-Time-Guide.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e133","source":"Home_yarp.md","target":"Onboarding-Claude-Code.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e134","source":"Onboarding-Claude-Code.md","target":"log_yarp.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"e135","source":"log_yarp.md","target":"Onboarding-Claude-Code.md","w":1.97,"kind":"read","fm":"no"}},{"data":{"id":"lv1","source":"index_yarp.md","target":"index_yarp.md","loop":"verify"}},{"data":{"id":"lr2","source":"KHP-Fruitfly-Regression.md","target":"KHP-Fruitfly-Regression.md","loop":"reread"}},{"data":{"id":"lv2","source":"KHP-Fruitfly-Regression.md","target":"KHP-Fruitfly-Regression.md","loop":"verify"}},{"data":{"id":"lv4","source":"Home_yarp.md","target":"Home_yarp.md","loop":"verify"}},{"data":{"id":"lv6","source":"First-Time-Guide.md","target":"First-Time-Guide.md","loop":"verify"}},{"data":{"id":"lv11","source":"Onboarding-Claude-Code.md","target":"Onboarding-Claude-Code.md","loop":"verify"}}];
+  const STYLE = [{selector:'node',style:{'background-color':'#c9d2de','border-color':'#8a94a6','border-width':1,'width':'data(size)','height':'data(size)','label':'data(label)','color':'#1a1a1a','text-outline-color':'#fbfdff','text-outline-width':2.5,'font-size':9,'font-weight':'bold','font-family':'Menlo, Consolas, monospace','text-valign':'bottom','text-margin-y':2}},{selector:'node[hub = "yes"]',style:{'background-color':'#3f4b5e','border-color':'#3f4b5e'}},{selector:'node.sel',style:{'font-size':11,'color':'#111','text-background-color':'#ffffff','text-background-opacity':0.92,'text-background-padding':2,'text-background-shape':'roundrectangle','border-width':2,'border-color':'#0d4a8b','z-index':99}},{selector:'edge',style:{'width':'data(w)','curve-style':'bezier','target-arrow-shape':'triangle','arrow-scale':0.7,'opacity':0.6}},{selector:'edge[kind = "read"]',style:{'line-color':'#2f6fb0','target-arrow-color':'#2f6fb0'}},{selector:'edge[kind = "write"]',style:{'line-color':'#cf4b52','target-arrow-color':'#cf4b52'}},{selector:'edge[fm = "no"]',style:{'line-style':'dashed'}},{selector:'edge[loop = "reread"]',style:{'line-color':'#2f9e5f','target-arrow-color':'#2f9e5f','width':2,'opacity':0.95}},{selector:'edge[loop = "verify"]',style:{'line-color':'#2f9e5f','target-arrow-color':'#2f9e5f','width':2,'line-style':'dashed','opacity':0.95}}];
+  const LAYOUT = {name:'cose',idealEdgeLength:70,nodeOverlap:16,animate:false,fit:true,padding:12};
+  let rwCy=null;
+  function tryInitRW(){
+    const c=document.getElementById('read-graph');
+    if(!c||!window.cytoscape||c.offsetWidth===0||c.offsetHeight===0) return false;
+    if(rwCy){rwCy.resize();rwCy.fit(undefined,12);return true;}
+    rwCy=cytoscape({container:c,elements:ELEMENTS,style:STYLE,layout:LAYOUT,minZoom:0.4,maxZoom:2.5,wheelSensitivity:0.2});
+    rwCy.on('tap','node',function(e){ e.target.data('label', e.target.data('name')); e.target.addClass('sel'); });
+    rwCy.on('tap',function(e){ if(e.target===rwCy){ rwCy.nodes().removeClass('sel'); rwCy.nodes('[shown = "no"]').forEach(function(n){ n.data('label',''); }); } });
+    rwCy.fit(undefined,12);
+    return true;
+  }
+  (function poll(){ if(!tryInitRW()) setTimeout(poll,200); })();
+  function hookRW(){ if(!window.Reveal){setTimeout(hookRW,150);return;} Reveal.on('slidechanged',function(){tryInitRW(); if(rwCy){rwCy.resize();rwCy.fit(undefined,12);}}); Reveal.on('resize',function(){if(rwCy){rwCy.resize();rwCy.fit(undefined,12);}}); }
+  hookRW();
+})();
+</script>
+<aside class="notes">
+<p>From the Reading-the-wiki study; this is the full YARP graph (40 nodes, 136 moves), which we return to later. Channels: writes (red) 88% of tool calls, reads (blue) 7%, greps (green loops) 6%. Make the caching point out loud: reads are few because loaded pages stay cached in context, so the agent reuses rather than re-reads. Everything routes through the index and log hubs; only 24 of 136 moves follow a frontmatter link, the rest are search jumps. This is the llm-wiki architecture in action: the LLM authors the memory and reads it back, hub-organized.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ingestion-fan-out-then-synthesize" class="slide level2 smaller">
+<h2>Ingestion: fan out, then synthesize</h2>
+<p><span class="kicker">The write path: one paper per agent, one synthesizer above</span></p>
+<p>Ingesting a paper does not file the PDF. Each PDF is read natively by page range, so tables and figures come through, then the wiki keeps the <strong>extracted, attributed knowledge and the links</strong> plus a provenance pointer (the DOI and the local path). The source itself stays external.</p>
+<style>
+.reveal .fx-vflow{display:flex;flex-direction:column;align-items:center;gap:0.12em;font-family:"Helvetica Neue",Arial,sans-serif;margin:0.1em 0 0.2em;}
+.reveal .fx-box{background:#f4f1ea;border:1px solid #cfc7b5;border-radius:6px;padding:0.4em 0.6em;text-align:center;min-width:150px;}
+.reveal .fx-box b{display:block;color:#14213d;font-size:0.6em;}
+.reveal .fx-box i{font-style:normal;font-size:0.48em;color:#666;line-height:1.3;}
+.reveal .fx-stack{box-shadow:4px 4px 0 #e6dfcb, 8px 8px 0 #d9d0b7;}
+.reveal .fx-syn{background:#14213d;border-color:#14213d;}
+.reveal .fx-syn b{color:#fff;} .reveal .fx-syn i{color:#c9d2de;}
+.reveal .fx-wiki{background:#fbf3dc;border-color:#b8860b;}
+.reveal .fx-arrow{color:#b8860b;font-size:1.1em;font-weight:700;line-height:1;}
+.reveal .fx-proof{background:#f7f5ef;border-left:3px solid #b8860b;border-radius:4px;padding:0.45em 0.6em;margin-bottom:0.5em;}
+.reveal .fx-proof b{color:#14213d;font-size:0.66em;} .reveal .fx-proof span{display:block;font-size:0.56em;color:#444;line-height:1.4;margin-top:0.15em;}
+.reveal .fx-proof code{font-size:0.92em;color:#0d4a8b;}
+.reveal .fx-flag{color:#a13a30;font-weight:700;}
+</style>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="fx-vflow">
+  <div class="fx-box"><b>8 papers</b><i>PDFs, external</i></div>
+  <span class="fx-arrow">↓</span>
+  <div class="fx-box fx-stack"><b>8 subagents · parallel, ~60s</b><i>1 PDF → structured data<br>never writes the wiki</i></div>
+  <span class="fx-arrow">↓</span>
+  <div class="fx-box fx-syn"><b>1 orchestrator</b><i>sees all 8 at once</i></div>
+  <span class="fx-arrow">↓</span>
+  <div class="fx-box fx-wiki"><b>wiki pages</b><i>hub + typed edges</i></div>
+</div>
+</div><div class="column" style="width:60%;">
+<p><strong>The extraction contract, the same 7 sections for every paper:</strong></p>
+<ul>
+<li><strong>Citation</strong>, confirmed or corrected against a pre-seeded reference</li>
+<li><strong>Contribution</strong>, in one sentence</li>
+<li><strong>Method</strong>, the specific techniques named</li>
+<li><strong>Results</strong>, exact numbers only, each attributed</li>
+<li><strong>Code-relevance</strong>, mapped to specific modules and files</li>
+<li><strong>Key terms</strong>, anchored to where they appear (Table 1, Section 2.2)</li>
+<li><strong>Quotes</strong>, one or two verbatim, with location</li>
+</ul>
+</div></div>
+<div class="callout-highlight">
+<p>One paper per agent: bounded context, no cross-contamination. Each subagent returns data; the wiki’s structure is decided one level up.</p>
+</div>
+<aside class="notes">
+<p>Source: yarp/docs/Wiki-Paper-Ingestion-Process.md sections 1 (fan-out, two-layer table), 2 (the contract), 3 (native page-range reading, gets tables/figures), 4 (concepts anchored to location). Say aloud: this process report was itself reconstructed by an agent from the run’s own transcripts. The subagent contract: read one PDF, return the 7 sections as data, “Return ONLY this markdown extraction as your final message.” It never writes the wiki.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="worked-example-tables-and-figures" class="slide level2 smaller">
+<h2>Worked example: tables and figures</h2>
+<p><span class="kicker">A table and a figure, captured straight off the rendered page</span></p>
+<style>
+.reveal .wx-band{display:flex;gap:1.1em;align-items:flex-start;margin:0.4em 0 0.2em;}
+.reveal .wx-block{flex:1;display:flex;gap:0.6em;align-items:flex-start;}
+.reveal .wx-img{max-height:400px;width:auto;max-width:55%;flex:0 0 auto;border:1px solid #d8cfb6;border-radius:4px;background:#fff;}
+.reveal .wx-ext{flex:1;font-size:0.44em;color:#333;line-height:1.42;border-left:3px solid #d8cfb6;padding-left:0.6em;}
+.reveal .wx-ext p{margin:0 0 0.45em;}
+.reveal .wx-ext b{color:#14213d;}
+.reveal .wx-tag{display:block;font-size:0.95em;text-transform:uppercase;letter-spacing:0.03em;font-weight:700;color:#b8860b;margin-bottom:0.35em;}
+.reveal .wx-mono{font-family:Menlo,Consolas,monospace;font-size:0.95em;color:#0d4a8b;background:#eef1f5;padding:0.02em 0.25em;border-radius:3px;}
+.reveal .wx-foot{font-size:0.44em;color:#777;text-align:center;margin-top:0.35em;}
+</style>
+<div class="wx-band">
+  <div class="wx-block">
+    <img class="wx-img" src="slide-assets/example_table_rgd1.png" alt="RGD1 Tables 1 and 2">
+    <div class="wx-ext">
+      <span class="wx-tag">from a table</span>
+      <p>CSV <b>RGD1CHNO_smiles.csv</b>, Table 1 columns <span class="wx-mono">Rind, Rsmiles, Psmiles, DE_F, DE_B, DG_F, DG_B, DH</span>.</p>
+      <p>HDF5 <b>RGD1_CHNO.h5</b>, Table 2 keys <span class="wx-mono">R_E, R_H, R_F, P_E, P_H, P_F, TS_E, TS_H, TS_F</span> (Hartree), <span class="wx-mono">RG, PG, TSG</span> (Å), iterated via <span class="wx-mono">parse_data.py</span>.</p>
+    </div>
+  </div>
+  <div class="wx-block">
+    <img class="wx-img" src="slide-assets/example_figure_hetcat.png" alt="Gallium olefin oligomerization network, Fig 2">
+    <div class="wx-ext">
+      <span class="wx-tag">from a figure</span>
+      <p>Network seeded at Ga-ethyl (node 0); all reactions with <b>ΔG‡ &lt; 80 kcal/mol</b> are presented in Fig. 2.</p>
+      <p>First-step from Ga-ethyl + ethylene: Ga-n-butyl <b>44.1</b>, Ga-vinyl <b>59.8</b>, Ga-hydride <b>93.5 kcal/mol</b> (excluded, high barrier). Second-step: <b>53.2</b>, <b>51.4</b>, <b>61.3</b>, <b>36.0</b>.</p>
+    </div>
+  </div>
+</div>
+<div class="callout-highlight">
+<p>Reading the rendered page, not its stripped text, is what captured the table’s exact schema and the figure’s network as attributed data. Tables or figures were read and cited in 6 of the 8 papers.</p>
+</div>
+<aside class="notes">
+<p>Source: yarp/docs/Slide-Handoff-Wiki-Ingestion.md (the “source page beside the extraction” version). Each right-hand block is the extractor subagent’s returned text (subagent adf7292b for the RGD1 tables, ae4bd1a8 for the catalysis figure), copied from the ingest transcripts, lightly trimmed to fit. Images are 300 dpi crops of the actual source pages. Honest caveat to say aloud: for the figure, the barrier numbers are printed in the paper’s body text, which Fig. 2 visualizes as edge colors; the line genuinely attributed to the figure is the structural reading, “all reactions with delta-G-double-dagger &lt; 80 kcal/mol are presented in Fig. 2.” This is reading printed labels and structure, not point-level digitization.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="worked-example-graphs" class="slide level2 smaller">
+<h2>Worked example: graphs</h2>
+<p><span class="kicker">Given only a chart, Claude Code writes its own OpenCV pipeline to digitize it</span></p>
+<p>No recipe is handed to it. The agent writes code to calibrate off the axis ticks, detect every point and curve, zoom in on the ambiguous spots, and then redraw its data back on the source to check it.</p>
+<style>
+.reveal .gx-band{display:flex;gap:0.7em;align-items:flex-start;margin:0.35em 0 0.15em;}
+.reveal .gx-panel{flex:1;text-align:center;}
+.reveal .gx-img{width:100%;max-height:300px;object-fit:contain;border:1px solid #d8cfb6;border-radius:4px;background:#fff;}
+.reveal .gx-cap{font-size:0.46em;color:#444;line-height:1.35;margin-top:0.25em;text-align:left;}
+.reveal .gx-cap b{color:#14213d;}
+</style>
+<div class="gx-band">
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_boxes.png" alt="Generated OpenCV target regions"><div class="gx-cap"><b>1. Writes OpenCV targets.</b> Calibrate off the axes (blue), survey the points and curves (green), zoom on ambiguity (red).</div></div>
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_heatmap.png" alt="Attention heatmap of zoom regions"><div class="gx-cap"><b>2. Where it zoomed.</b> Effort concentrates on the day 28 to 40 band where the markers and curves fuse, not evenly.</div></div>
+  <div class="gx-panel"><img class="gx-img" src="slide-assets/el-94_pixelcheck.png" alt="Extracted data redrawn on the source image"><div class="gx-cap"><b>3. Pixel-check.</b> Redraws its extracted points and curves on the source to verify against the pixels.</div></div>
+</div>
+<div class="callout-highlight">
+<p>The model writes and runs its own extractor, then verifies it against the image. F1 0.93 on this chart, the hardest in the set, and 0.94 on average across a 28-chart corpus, beating a hand-written recipe.</p>
+</div>
+<aside class="notes">
+<p>Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/HANDOFF.md and wiki pages Experiment-Free-Rein-Transcript-Review-2026-08-06 and Analysis-Attention-Map-Visualization-2026-08-12. el-94 = the aedes-aegypti-2014 survival combo chart. Real outputs: position F1 0.93 (recall 0.88, precision 0.99); this run wrote about 25 code executions and saved 21 zoom crops, 17 regions on the attention map; corpus-wide free-rein mean 0.940 vs a hand-written recipe’s 0.891. This is the point-level digitization the tables-and-figures slide said it did not do; here the numbers are locked in the chart geometry, so the agent writes code to recover them. Honest caveats to say aloud: the heatmap is reconstructed post-hoc from saved crops (a lower bound on where it looked, not a live eye-tracker, no time order); scores use a per-type prototype scorer, not a hardened benchmark; a couple of dense multi-series line charts still expose a measurement-layer gap. Not from YARP; it shows the ingestion pattern generalizes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="synthesis-where-linking-and-trust-happen" class="slide level2 smaller">
+<h2>Synthesis: where linking and trust happen</h2>
+<p><span class="kicker">The layer that sees every paper at once</span></p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><strong>Reads the existing wiki first</strong> (the schema, then the index), then <strong>wires each new page into what is already there</strong>: typed lineage edges (<code>extends:</code>) with reciprocal back-references.</li>
+<li><strong>Numbers and citations:</strong> exact, attributed, <strong>verified not transcribed</strong>; “not stated” when unclear.</li>
+<li><strong>Reads and extracts from the real code:</strong> for a paper that is a module, it opens the <code>.py</code> and maps each concept to its function.</li>
+<li><strong>Flags degraded sources:</strong> it caught an abstract-only PDF and surfaced it.</li>
+<li><strong>The payoff:</strong> cross-paper insight that no single page shows.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<div class="fx-proof"><b>It caught a degraded source</b><span>The "YARP v2.0" PDF was a single-page abstract. The agent noticed, ran <code>pdfinfo</code> and <code>pdftotext</code> to confirm, and opened its extraction with a <span class="fx-flag">HONEST FLAG</span>. The page still carries the caveat.</span></div>
+<div class="fx-proof"><b>It checked itself against the code</b><span><code>indicator.py</code> computes the six Table 1 features; <code>select_pairs.py</code> runs the ML tournament. Each concept mapped to a function, verified against the real files.</span></div>
+</div></div>
+<div class="callout-highlight">
+<p>The subagents extract attributed data; the structure, lineage, and cross-paper insight belong to the synthesizer, for example an sklearn 1.3.0 pickle that explains why the cluster environment is pinned.</p>
+</div>
+<aside class="notes">
+<p>Source: Wiki-Paper-Ingestion-Process.md section 8 (synthesis reads schema then index, wires up: to the Publications hub and extends: lineage with reciprocal back-references), 2 and 5 (numbers and citation verify), 6 (code cross-ref), 7 (degraded-source HONEST FLAG). The lead bullet is the key point: linking and trust are decided where the whole wiki and all eight extractions are visible. Keep the sklearn line a teaser; full paper-to-code-to-ops reveal on the final YARP demo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="yarp-many-kinds-of-source" class="slide level2 smaller">
+<h2>YARP: many kinds of source</h2>
+<p><span class="kicker">Not just papers: synthesis across source types, one the agent built itself</span></p>
+<p>The YARP memory was not built from papers alone. Four kinds of source fed one wiki, and the agent generated one of them itself.</p>
+<div class="columns">
+<div class="column" style="width:54%;">
+<ul>
+<li><strong>8 published papers</strong> (DOIs), each filed as a source-summary page.</li>
+<li><strong>Tutorials</strong>, the group’s onboarding guides.</li>
+<li><strong>The code itself</strong>: concepts pulled straight from the <code>.py</code> (for example <code>Lewis-Structure-Score</code>, sourced from <code>yarpecule/lewis/bem_score.py</code>).</li>
+<li><strong>Sphinx API docs the agent built from the code</strong>, then ingested as another source.</li>
+</ul>
+</div><div class="column" style="width:46%;">
+<style>
+.reveal .yp-fan{display:flex;flex-direction:column;align-items:center;gap:0.3em;font-family:"Helvetica Neue",Arial,sans-serif;margin-top:0.3em;}
+.reveal .yp-row{display:flex;gap:0.4em;justify-content:center;flex-wrap:wrap;}
+.reveal .yp-box{background:#f4f1ea;border:1px solid #cfc7b5;border-radius:6px;padding:0.35em 0.55em;text-align:center;}
+.reveal .yp-box b{display:block;color:#14213d;font-size:0.56em;}
+.reveal .yp-box i{font-style:normal;font-size:0.44em;color:#666;}
+.reveal .yp-built{background:#14213d;border-color:#14213d;}
+.reveal .yp-built b{color:#fff;} .reveal .yp-built i{color:#d4a835;}
+.reveal .yp-wiki{background:#fbf3dc;border-color:#b8860b;}
+.reveal .yp-arrow{color:#b8860b;font-size:1.3em;font-weight:700;line-height:1;}
+</style>
+<div class="yp-fan">
+  <div class="yp-row">
+    <div class="yp-box"><b>8 papers</b><i>DOIs</i></div>
+    <div class="yp-box"><b>tutorials</b><i>onboarding</i></div>
+    <div class="yp-box"><b>the code</b><i>.py source</i></div>
+    <div class="yp-box yp-built"><b>Sphinx docs</b><i>agent-built</i></div>
+  </div>
+  <span class="yp-arrow">↓</span>
+  <div class="yp-box yp-wiki"><b>one YARP wiki</b><i>~40 pages, 9 source-summaries, 5 synthesis</i></div>
+</div>
+</div></div>
+<div class="callout-highlight">
+<p>The agent generated a source, the API docs, from the code and then ingested it. The code is a first-class source, not just the papers.</p>
+</div>
+<aside class="notes">
+<p>Source: yarp.wiki YARP-Overview.md, Publications.md (the 8 papers), Documentation-Build.md (Sphinx docs built from the code via update_docs.sh, then ingested), the docs/references tutorials, and page source: frontmatter pointing at .py files (Lewis-Structure-Score source: bem_score.py). The wiki is about 40 pages, 9 source-summaries and 5 synthesis pages. The point for a data-extraction audience: ingestion is not paper-specific; heterogeneous sources, including ones the agent authored, synthesize into one memory.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="yarp-the-answer-that-lives-in-the-links" class="slide level2 smaller">
+<h2>YARP: the answer that lives in the links</h2>
+<p><span class="kicker">Combining data: a question no single source can answer</span></p>
+<p><strong>Why is our cluster pinned to scikit-learn 1.3.0?</strong> No paper says it. No code comment says it. The answer exists only in the links between the sources.</p>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="extends-chain">
+<div class="chain-box">
+Conformational Sampling 2022 · paper
+</div>
+<div class="chain-edge">
+is implemented as ↓
+</div>
+<div class="chain-box">
+reaction/conf_sampling/ · code
+</div>
+<div class="chain-edge">
+ships its model as ↓
+</div>
+<div class="chain-box">
+a scikit-learn 1.3.0 pickle
+</div>
+<div class="chain-edge">
+forces ↓
+</div>
+<div class="chain-box">
+CRC environment pinned to 1.3.0
+</div>
+</div>
+</div><div class="column" style="width:48%;">
+<p>The memory follows <strong>paper to code to artifact to operations</strong>, a chain assembled from four different source pages.</p>
+<p>Dense RAG over the raw repo and the PDFs cannot produce this: the fact lives in the connections, not in any one document.</p>
+</div></div>
+<div class="callout-highlight">
+<p>Not “the AI knows your field.” The group’s hard-won knowledge, paper to code to operations, now instant instead of tribal.</p>
+</div>
+<aside class="notes">
+<p>Papers-Code-Coupling synthesis page (“the three couplings that mattered”, coupling #2). The chain is the payoff of the whole talk: it exists only in the cross-source links the synthesizer built. Chris’s framing: acceleration of the researcher, not replacement. If time, a second coupling: RGD1 (176,992 DFT-characterized reactions) trains the egat_rgd1 barrier model. Optional live demo: ingest a competitor paper and have the memory contrast approaches.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="where-this-lands" class="slide level2 smaller">
+<h2>Where this lands</h2>
+<p><span class="kicker">Takeaway</span></p>
+<ul>
+<li><strong>Extraction into durable memory, not a one-shot data pull.</strong> The wiki compounds: every source ingested and every answer filed means the next question starts from what is already known.</li>
+<li><strong>It works, and it stays honest.</strong> On a real project the wiki read path answered 90% correctly and fabricated nothing, roughly double plain RAG, and the zero is by design: honest-reporting rules, a verification gate, and blocking hooks in an agentic harness.</li>
+<li><strong>Hub-indexed reading, disciplined ingestion.</strong> The agent reads through the index and log hubs, and ingests papers, tables, figures, even charts it digitizes with its own code, and heterogeneous sources including ones it wrote itself.</li>
+<li><strong>The payoff is the links.</strong> Answers that live in no single document, paper to code to operations, become instant instead of tribal.</li>
+</ul>
+<div class="callout-highlight">
+<p>Not “the AI knows your field.” A persistent, auditable memory the group builds once and keeps, so hard-won knowledge compounds instead of scattering.</p>
+</div>
+<aside class="notes">
+<p>Close on the arc: it works (90 vs 42, zero fabrication), it is honest by construction (control stack, verify not transcribe), it reads hub-indexed and ingests heterogeneous sources with discipline, and the payoff is the cross-source links (the sklearn pin). Honest framing to keep in your voice: the wiki-vs-RAG number is one controlled measurement on a real project, a strong signal rather than a benchmark verdict. Optional live demo: ingest a competitor paper and have the memory contrast approaches.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>la3d.github.io/WGRA</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="llm-wiki-memory_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="llm-wiki-memory_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
