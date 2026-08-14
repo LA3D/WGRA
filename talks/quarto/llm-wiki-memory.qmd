@@ -517,45 +517,53 @@ Close on the arc: it works (90 vs 42, zero fabrication), it is honest by constru
 :::
 
 
+## Questions {.center}
+
+[Thank you]{.kicker}
+
+**Research memory that compounds.** Extraction into a durable, queryable llm-wiki: it beat plain RAG and fabricated nothing, it ingests and synthesizes across sources, and the payoff is the answers that live in the links.
+
+Chris Sweet, Charles Vardeman, Priscila Moreira, James Sweet
+
+::: {.notes}
+End of the talk. What follows is appendix material (more chart types the figure extractor handled), for Q&A or to skip.
+:::
+
 ## Also handled: dense bubble scatter {.smaller}
 
-[Life expectancy vs GDP, OWID r6-1. The graph slide showed one hard chart; the same extractor handled other types too]{.kicker}
+[Appendix &middot; Life expectancy vs GDP, OWID. The generated OpenCV pipeline, stage by stage]{.kicker}
 
 ```{=html}
-<img src="slide-assets/type2_dense-bubble.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+<img src="slide-assets/type2_dense-bubble.png" style="display:block;margin:0.25em auto 0.15em;max-width:100%;max-height:480px;border:1px solid #d8cfb6;border-radius:4px;">
 ```
 
-*Left: the model's detected centers, erosion strips the country labels and a distance transform splits touching bubbles. Right: its pixel-check, one center per bubble and none on the colored labels.*
-
 ::: {.callout-highlight}
-Density correlation 0.94, and 132 of 165 markers recovered.
+Density correlation 0.94, and 132 of 165 markers. Erosion removes the country-label text and a distance transform splits touching bubbles, so every detected center lands on a bubble, not a label.
 :::
 
 ::: {.notes}
-Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/panels and its README, corpus owid-r6-1. Left is the model's own detection artifact, right is its verification overlay. These three appendix slides show the free-rein extractor generalizes past the el-94 combo chart on the earlier graphs slide. Panel titles were cropped off, they duplicated the heading and carried em dashes.
+Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/panels and its README, corpus owid-r6-1. Now a 4-stage process grid: mask by saturation, erode away the label text, distance-transform peaks, then pixel-check. The four stages are the agent's own saved artifacts. These appendix slides show the free-rein extractor generalizes past the el-94 combo chart on the graphs slide. The composite title was cropped off, it carried an em dash.
 :::
 
 ## Also handled: multi-series time-series lines {.smaller}
 
-[Annual CO2 emissions, OWID r6-1]{.kicker}
+[Appendix &middot; Annual CO2 emissions, OWID. Seven same-family colors, separated stage by stage]{.kicker}
 
 ```{=html}
-<img src="slide-assets/type3_multi-line.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:415px;border:1px solid #d8cfb6;border-radius:4px;">
+<img src="slide-assets/type3_multi-line.png" style="display:block;margin:0.25em auto 0.15em;max-width:100%;max-height:480px;border:1px solid #d8cfb6;border-radius:4px;">
 ```
 
-*Left: where the model looked, attention concentrated on the fused low-emission band. Right: its pixel-check, all seven country series re-traced onto their own curves.*
-
 ::: {.callout-highlight}
-All 7 series traced onto their lines, overlay-verified across the full record.
+Calibrate the axes and sample each line's color, classify every pixel to its nearest series, resolve the near-identical China and UK colors, then pixel-check. All 7 lines traced and overlay-verified.
 :::
 
 ::: {.notes}
-Honest note to voice: on this chart the current per-type scorer reports curve F1 0.34 despite the verified trace, a measurement-layer gap (out-of-range points plus a tight tolerance), so the panel and the slide report the overlay-verified trace, not a score. The left attention map is a post-hoc reconstruction from saved zoom crops, a lower bound on where it looked, not live eye-tracking. Source: panels README, owid-r6-1.
+Now a 4-stage process grid. Honest notes to voice: stages 1 and 2 (calibration and nearest-color classification) are faithful reconstructions of the documented method, the agent saved no intermediate stage images for this chart; stages 3 and 4 are its own artifacts. On this chart the per-type scorer reports curve F1 0.34 despite the overlay-verified trace, a measurement-layer artifact (out-of-range plus tight tolerance), so report the verified trace, not a score. The stage-3 caption baked into the image contains an en dash ("0-2B"); the composite title was cropped off, it carried an em dash. Source: panels README, owid-r6-1.
 :::
 
 ## Also handled: grouped bars with error bars {.smaller}
 
-[Synthetic throughput benchmark, synthetic-r4-1]{.kicker}
+[Appendix &middot; Synthetic throughput benchmark, synthetic-r4-1]{.kicker}
 
 ```{=html}
 <img src="slide-assets/type4_grouped-bar.png" style="display:block;margin:0.35em auto 0.2em;max-width:100%;max-height:360px;border:1px solid #d8cfb6;border-radius:4px;">
