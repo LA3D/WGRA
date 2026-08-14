@@ -2,130 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://la3d.github.io/WGRA/blog/jargon.html</loc>
-    <lastmod>2026-07-20T21:55:32.363Z</lastmod>
+    <lastmod>2026-07-24T21:36:20.461Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/index.html</loc>
     <lastmod>2026-07-24T21:36:20.461Z</lastmod>
   </url>
   <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/variance-cascade/index.html</loc>
+    <lastmod>2026-08-05T18:09:41.090Z</lastmod>
+  </url>
+  <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/talking-to-a-research-agent/index.html</loc>
-    <lastmod>2026-07-22T01:04:24.350Z</lastmod>
+    <lastmod>2026-07-24T21:36:20.493Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/knowledge-graphs/index.html</loc>
-    <lastmod>2026-07-21T12:05:38.120Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/our-collaborative-recipe/index.html</loc>
-    <lastmod>2026-07-21T14:54:56.273Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/controlmaster-ssh/index.html</loc>
-    <lastmod>2026-07-21T12:39:18.632Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/data-fabrics/index.html</loc>
-    <lastmod>2026-07-21T14:38:27.588Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/knowledge-bundles/index.html</loc>
-    <lastmod>2026-07-21T14:38:33.620Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/decentralized-identifiers/index.html</loc>
-    <lastmod>2026-07-21T12:39:29.288Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/karpathy-llm-wiki/index.html</loc>
-    <lastmod>2026-07-21T12:39:08.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/ontologies/index.html</loc>
-    <lastmod>2026-07-21T12:02:44.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/connectors/index.html</loc>
-    <lastmod>2026-07-21T12:39:12.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/catalog-structural-content/index.html</loc>
-    <lastmod>2026-07-22T11:15:28.394Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/knowledge-expertise-experience/index.html</loc>
-    <lastmod>2026-07-22T03:00:49.698Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/index.html</loc>
-    <lastmod>2026-07-21T21:00:25.852Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/marketplace/index.html</loc>
-    <lastmod>2026-07-21T12:39:15.863Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/keep-what-you-got-wrong/index.html</loc>
-    <lastmod>2026-07-22T03:01:08.744Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/muscle-memory-is-not-knowledge/index.html</loc>
-    <lastmod>2026-07-22T02:17:58.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/the-deep-dives/index.html</loc>
-    <lastmod>2026-07-21T12:02:44.160Z</lastmod>
+    <lastmod>2026-07-24T21:36:20.478Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/wiki-front-matter/index.html</loc>
-    <lastmod>2026-07-21T12:05:01.061Z</lastmod>
+    <lastmod>2026-07-24T21:36:20.494Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/standing-up-a-research-wiki/index.html</loc>
-    <lastmod>2026-07-22T02:21:25.047Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/agent-federation/index.html</loc>
-    <lastmod>2026-07-21T12:39:24.174Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/about.html</loc>
-    <lastmod>2026-07-20T21:20:09.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/reading-the-wiki/index.html</loc>
-    <lastmod>2026-07-27T13:06:56.756Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/the-deep-dives/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.493Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/three-agents-one-training-run/index.html</loc>
     <lastmod>2026-07-25T00:40:22.325Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/the-shortcut-and-the-tutor/index.html</loc>
-    <lastmod>2026-07-25T01:13:04.177Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/software-2-5/index.html</loc>
+    <lastmod>2026-08-05T18:10:48.494Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/index.html</loc>
-    <lastmod>2026-08-05T18:10:54.459Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/keep-what-you-got-wrong/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.474Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/index.html</loc>
-    <lastmod>2026-08-05T18:10:59.624Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/marketplace/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/reading-the-wiki/index.html</loc>
+    <lastmod>2026-07-27T13:06:56.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/knowledge-expertise-experience/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/catalog-structural-content/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/connectors/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.465Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/index.html</loc>
     <lastmod>2026-08-05T18:11:04.305Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/software-2-5/index.html</loc>
-    <lastmod>2026-08-05T18:10:48.494Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/index.html</loc>
+    <lastmod>2026-08-05T18:10:59.624Z</lastmod>
   </url>
   <url>
-    <loc>https://la3d.github.io/WGRA/blog/posts/variance-cascade/index.html</loc>
-    <lastmod>2026-08-05T18:09:41.090Z</lastmod>
+    <loc>https://la3d.github.io/WGRA/blog/posts/ontologies/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/karpathy-llm-wiki/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/decentralized-identifiers/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.472Z</lastmod>
   </url>
   <url>
     <loc>https://la3d.github.io/WGRA/blog/posts/kinetic-pad/index.html</loc>
     <lastmod>2026-08-08T16:32:16.681Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/knowledge-bundles/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.474Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/data-fabrics/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/muscle-memory-is-not-knowledge/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.481Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/controlmaster-ssh/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/our-collaborative-recipe/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.489Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/the-shortcut-and-the-tutor/index.html</loc>
+    <lastmod>2026-07-25T01:13:04.177Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/standing-up-a-research-wiki/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.492Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/agent-federation/index.html</loc>
+    <lastmod>2026-07-24T21:36:20.464Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/index.html</loc>
+    <lastmod>2026-08-05T18:10:54.459Z</lastmod>
+  </url>
+  <url>
+    <loc>https://la3d.github.io/WGRA/blog/about.html</loc>
+    <lastmod>2026-07-24T21:36:20.458Z</lastmod>
   </url>
 </urlset>

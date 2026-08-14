@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Sweet">
-<meta name="dcterms.date" content="2026-07-18">
-<meta name="description" content="Online identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.">
+<meta name="dcterms.date" content="2026-08-02">
+<meta name="description" content="We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.">
 
-<title>Decentralized identifiers – WGRA Nuggets</title>
+<title>One run is one sample: the related-flood and the case for a Bayesian harness – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,41 +25,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -140,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="https://la3d.github.io/WGRA/research-agents-revolution/"> 
 <span class="menu-text">The ecosystem</span></a>
-  </li>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://la3d.github.io/WGRA/knowledge-fabric/"> 
 <span class="menu-text">Knowledge fabric</span></a>
@@ -174,8 +139,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#a-week-chasing-a-plugin-bug-that-was-not-there" id="toc-a-week-chasing-a-plugin-bug-that-was-not-there" class="nav-link active" data-scroll-target="#a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</a></li>
+  <li><a href="#the-instrument" id="toc-the-instrument" class="nav-link" data-scroll-target="#the-instrument">The instrument</a></li>
+  <li><a href="#the-noise-is-not-jitter-it-is-regime-choices" id="toc-the-noise-is-not-jitter-it-is-regime-choices" class="nav-link" data-scroll-target="#the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</a></li>
+  <li><a href="#the-scores-are-saturated-and-noisier-than-the-differences" id="toc-the-scores-are-saturated-and-noisier-than-the-differences" class="nav-link" data-scroll-target="#the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</a></li>
+  <li><a href="#confounds-can-look-like-real-effects" id="toc-confounds-can-look-like-real-effects" class="nav-link" data-scroll-target="#confounds-can-look-like-real-effects">Confounds can look like real effects</a></li>
+  <li><a href="#instrument-versus-statistics" id="toc-instrument-versus-statistics" class="nav-link" data-scroll-target="#instrument-versus-statistics">Instrument versus statistics</a></li>
+  <li><a href="#where-this-connects" id="toc-where-this-connects" class="nav-link" data-scroll-target="#where-this-connects">Where this connects</a></li>
   </ul>
 </nav>
     </div>
@@ -184,15 +154,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Decentralized identifiers</h1>
+<h1 class="title">One run is one sample: the related-flood and the case for a Bayesian harness</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">identity</div>
+    <div class="quarto-category">practice</div>
+    <div class="quarto-category">evidence</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Online identity today is issued and controlled by platforms; a decentralized identifier is one you own and can prove, and it is what would keep the federation’s discovery open while access stays gated.
+    We built a test harness for llm-wiki behaviour and learned the hard way that one run is one draw from a noisy process. A 434-versus-52 edge swing looked like a plugin defect for a week; it was the serving path all along. Here is what the instrument measures, why single runs mislead, and why the statistics belong in an outer layer.
   </div>
 </div>
 
@@ -209,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 18, 2026</p>
+      <p class="date">August 2, 2026</p>
     </div>
   </div>
   
@@ -221,38 +192,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>The problem, and what a DID is.</strong> Almost every identity you have online is issued and controlled by someone else. You “log in with Google,” your university account is created and revoked by IT, your GitHub identity belongs to GitHub. Convenient, but your identity, and everything attached to it, lives at the mercy of that platform: close the account and it is gone. A <strong>decentralized identifier (DID)</strong> inverts that. Defined by a <a href="https://www.w3.org/TR/did-1.1/">W3C standard</a> (a Recommendation since 2022), it is an identifier of the form <code>did:method:something</code> that <em>you</em> create and control with a cryptographic key, and that resolves to a small public document (the DID document) listing your keys and service endpoints, where to reach you, with no company or registry needed to issue it or vouch for it. That is the core of self-sovereign identity: the identifier is yours, portable, and no one can take it away by closing an account.</p>
-<p>The simplest method, <code>did:web</code>, needs no blockchain at all: the identifier <code>did:web:compchem.example.edu</code> just resolves to a JSON file served at <code>https://compchem.example.edu/.well-known/did.json</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"did:web:compchem.example.edu"</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"verificationMethod"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"did:web:compchem.example.edu#key-1"</span><span class="fu">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Ed25519VerificationKey2020"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"publicKeyMultibase"</span><span class="fu">:</span> <span class="st">"z6MkhaXgBZD..."</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"service"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"KnowledgeBundle"</span><span class="fu">,</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"serviceEndpoint"</span><span class="fu">:</span> <span class="st">"https://github.com/compchem/wiki"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Resolving the DID hands you a public key (to check the holder’s signatures) and a service endpoint (where their bundle lives), with no registry in the loop.</p>
-<p>DIDs travel with <strong>verifiable credentials</strong>. A verifiable credential is a cryptographically signed claim, a digital diploma, a driver’s license, or “this holder is a current faculty member”, following an issuer / holder / verifier model: an issuer signs it, you hold it, and any verifier checks the signature against the issuer’s DID <em>without contacting the issuer</em>. Trust is in the signature, not a central database.</p>
-<p><strong>Why it matters here.</strong> Today the federation’s discovery leans on a curated index and access on a GitHub credential, both tie identity to one platform’s account. DIDs make that identity portable, the fourth leg of “locked in on nothing” alongside a portable agent, memory, and tools. Concretely they do three jobs: a stable identifier that survives moving hosts (the “findable” part of FAIR, the Findable-Accessible-Interoperable-Reusable data principles, done without a central issuer); service endpoints in the DID document that double as a discovery primitive (resolve one identifier, get pointers to a participant’s catalog, agent card, and endpoints); and a trust anchor, a verifiable credential checked against a DID gates consumption while discovery stays open. A DID document is itself RDF, so identity, description, and discovery land in one graph rather than three systems.</p>
-<p><strong>Honest status:</strong> design and a plan, not something built. The cheapest test is <code>did:web</code> (the simplest DID method, where the DID document is just a file on a normal web domain, no blockchain) on the existing GitHub Pages, to prove portability before spending anything heavier.</p>
-<section id="related" class="level2">
-<h2 class="anchored" data-anchor-id="related">Related</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Developing with stochastic models: a series">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Developing with stochastic models: a series
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><a href="https://la3d.github.io/WGRA/blog/posts/software-2-5/">Software 2.5</a>. The shift from deterministic to stochastic development, and the three problems it creates.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
+<li><strong>One run is one sample</strong> <em>(this post)</em>. Measuring stability: why a single measurement misleads.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/variance-cascade/">The variance cascade</a>. How uncertainty compounds through a chain of agents.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">0.988 is not a win</a>. Deciding under noise: the Bayesian layer.</li>
+</ol>
+</div>
+</div>
+<p>This harness was built in response to <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">Paul Brenner’s issue on landscape llm-wikis</a>. The investigation below is a plugin-versus-template comparison run on it, and the whole thing turned into a lesson about how a single measurement lies.</p>
+<section id="a-week-chasing-a-plugin-bug-that-was-not-there" class="level2">
+<h2 class="anchored" data-anchor-id="a-week-chasing-a-plugin-bug-that-was-not-there">A week chasing a plugin bug that was not there</h2>
+<p>Two builds of the same wiki, from the same twelve papers, under byte-identical instructions. One came out with 52 <code>related:</code> frontmatter edges. The other came out with <strong>434</strong>. The high one was the <a href="https://la3d.github.io/WGRA/blog/posts/marketplace/">llm-wiki plugin</a>; the low one was the template it was supposed to replicate. An eight-fold difference in how densely the wiki cross-linked itself is exactly the kind of number that looks like a defect, so for the better part of a week the plugin wore the blame. There were theories: its <code>SessionStart</code> hook, its rule files, the way it assembled context.</p>
+<p>Then someone rebuilt the plugin arm changing exactly one thing: the <strong>serving path</strong>. The first build ran on an Anthropic API key; the rebuild ran on a Claude Max login. Same model id (<code>opus-4-8</code>), same plugin code, same corpus, same instructions. The 434 collapsed to <strong>52</strong>, matching the template.</p>
+<p>The cause was the auth path, not the plugin, and it had stayed hidden because nobody varies the thing they assume is inert. The lesson generalises: <strong>a single run is one sample from a noisy process, and the noise has structure that will fool you.</strong></p>
+</section>
+<section id="the-instrument" class="level2">
+<h2 class="anchored" data-anchor-id="the-instrument">The instrument</h2>
+<p>What we built is an inner measurement loop. Hold a corpus fixed (twelve papers), have Claude Code build a wiki from them, query that wiki, and measure the result on three metric families:</p>
+<pre><code>fixed 12-paper corpus
+      │  INGEST   Claude Code builds a wiki   (system under test = plugin or template)
+      ▼
+    a wiki
+      │  QUERY    40 questions via one fixed, read-only consultation mechanic
+      ▼
+   answers + full tool-call traces
+      │  MEASURE  1. ingestion stats (what got built)
+      ▼           2. answer stats (what it can answer)
+                  3. trajectory stats (how the agent read to answer)</code></pre>
+<p>The protocol is deterministic but the outcome is not: run the identical protocol twice and you get a different wiki and a different set of query trajectories. One execution produces exactly one sample, and everything else here follows from that.</p>
+<p>An <strong>arm</strong> is one system built and queried this way. A comparison is only meaningful when two arms differ in exactly one variable, which is precisely the discipline the related-flood violated.</p>
+</section>
+<section id="the-noise-is-not-jitter-it-is-regime-choices" class="level2">
+<h2 class="anchored" data-anchor-id="the-noise-is-not-jitter-it-is-regime-choices">The noise is not jitter, it is regime choices</h2>
+<p>The tempting mental model is that repeated runs scatter gaussian-ly around a true value, so a big enough single run is close enough. That model is wrong here, and the <code>related:</code> count shows why.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>build</th>
+<th>pages</th>
+<th>lateral (concept) pages</th>
+<th><code>related:</code> edges</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>template, Max login</td>
+<td>78</td>
+<td>58</td>
+<td>67</td>
+</tr>
+<tr class="even">
+<td>plugin, Max login</td>
+<td>71</td>
+<td>49</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td>plugin, <strong>API key</strong></td>
+<td>75</td>
+<td>46</td>
+<td><strong>434</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>related:</code> count is not a noisy measurement of one underlying quantity. Each build adopts a <strong>uniform per-page policy</strong> early and applies it throughout: one build settles on roughly one <code>related:</code> edge per page, another on roughly six, and then holds that convention for all seventy-odd pages. That is a discrete, run-level latent choice, closer to a coin landing on a face than to a thermometer wobbling. A single run does not average that away; it just shows you one face of the coin and lets you mistake it for the value.</p>
+<p>One more detail makes the flood clearly a measurement artifact: <strong>100% of <code>related:</code> edges duplicate a link the page body already makes.</strong> The edge adds no graph connectivity the wiki did not already have, so the 434-versus-52 swing changed a <em>count</em> and nothing about what the wiki could actually answer. The number that looked alarming was inert.</p>
+</section>
+<section id="the-scores-are-saturated-and-noisier-than-the-differences" class="level2">
+<h2 class="anchored" data-anchor-id="the-scores-are-saturated-and-noisier-than-the-differences">The scores are saturated, and noisier than the differences</h2>
+<p>If the structure is a red herring, surely the answer scores separate the arms. They do not. Graded CORRECT-only on 24 screened-answerable questions (plus 5 unanswerable controls, all passed), on the twelve-paper synthetic corpus:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>arm</th>
+<th>answer score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>template (Max)</td>
+<td>21/24</td>
+</tr>
+<tr class="even">
+<td>plugin (Max)</td>
+<td>19/24</td>
+</tr>
+<tr class="odd">
+<td>plugin (API)</td>
+<td>19/24</td>
+</tr>
+<tr class="even">
+<td>synopsis floor (broken ingest)</td>
+<td>5/24</td>
+</tr>
+</tbody>
+</table>
+<p>Every full-text arm lands in a narrow 19 to 21 band. A paired <strong>McNemar exact test</strong> on every pair of full-text arms is <strong>non-significant</strong> (p ≥ 0.5); the arms disagree on only about 4 of 24 questions. And that 4 is inside the noise: rerun the <em>same, unchanged</em> wiki and about <strong>10% of question verdicts flip</strong> anyway (measured over 21 genuine repeats). So a gap smaller than roughly four questions, or a non-significant McNemar, is not a difference at all.</p>
+<p>Two guards keep this from being circular. The <strong>synopsis floor</strong> (an ingest that scans rather than reads the papers) scores 5/24, so the metric is not simply insensitive: it detects a genuinely broken build with room to spare. And the controls (facts absent from all twelve papers) are all answered “not in the corpus,” so the arms are not bluffing.</p>
+<p>There is a second noise source layered on top: <strong>grading is subjective and was shown to be error-prone here.</strong> One answer was scored WRONG and only corrected to CORRECT after re-reading the source paper. The rule we enforce (grade blind, verify against the paper, never against the ground-truth label) is a mitigation, not a cure. Grader variance is real and has to live in the model of the noise, not be wished away.</p>
+</section>
+<section id="confounds-can-look-like-real-effects" class="level2">
+<h2 class="anchored" data-anchor-id="confounds-can-look-like-real-effects">Confounds can look like real effects</h2>
+<p>The deepest lesson is not “run it more times.” It is that some of the variation is <strong>not run noise at all</strong>, it is a fixed effect that shifts the whole distribution, and if you average over it you average two different distributions together. The related-flood was exactly this: an auth/serving-path effect wearing a plugin-defect costume. The factors that have to be held constant or modelled, never averaged over:</p>
 <ul>
-<li><a href="../data-fabrics/">Data fabrics</a>, where FAIR and portable identity meet.</li>
-<li><a href="../agent-federation/">Agent federation</a>, the discovery layer DIDs would open up.</li>
-<li><a href="../controlmaster-ssh/">ControlMaster</a>, the credential seam a DID would slot into.</li>
+<li><strong>Serving path.</strong> API key versus Max login moved the <code>related:</code> policy from 6-per-page to 1-per-page at a fixed model id. This is our single largest error to date and our top replication target. One honest caveat: it is currently <strong>one build per path</strong>, so read it as “the leading confound we have isolated once,” not as a settled claim that the API and the subscription differ in general. It is the first thing the outer harness should run repeatedly.</li>
+<li><strong>Model version.</strong> Answer scores, trajectories, and especially the prior-contamination screen drift as the model absorbs more of the literature. The screen has to be re-run whenever the model changes.</li>
+<li><strong>Tool-and-model entanglement.</strong> Cursor and Codex run their own models, so “assistant A versus assistant B” is unavoidably “A-plus-its-model versus B-plus-its-model.” That is a thing to state, not to launder into a pure tool comparison.</li>
 </ul>
 </section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<ul>
-<li><a href="https://www.w3.org/TR/did-1.1/">W3C Decentralized Identifiers (DIDs) v1.1</a> and the <a href="https://www.w3.org/press-releases/2022/did-rec/">2022 DID Recommendation announcement</a>, the standard.</li>
-<li><a href="https://www.w3.org/TR/vc-data-model-2.0/">W3C Verifiable Credentials Data Model</a>, the credential half.</li>
-</ul>
+<section id="instrument-versus-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="instrument-versus-statistics">Instrument versus statistics</h2>
+<p>Put together, the honest description of this repo is: it is an <strong>instrument.</strong> It produces one fully-captured, honestly-measured sample of llm-wiki behaviour under Claude Code. It is also, on its own, underpowered: every strong single-run conclusion in the investigation was wrong until it was replicated, and the related-flood is only the loudest example.</p>
+<p>What the instrument cannot do is decide. “Is arm X different from the baseline beyond run and grading noise?” is a question about distributions, and it wants a posterior, a credible interval, or a Bayes factor, not a raw score delta (which McNemar already shows is noise). That is the job of an <strong>outer statistical layer</strong> that runs the instrument many times, <strong>stratified</strong> on the systematic factors above, and reasons about the spread. The measured noise floor (the ~10% verdict-flip rate, the run-to-run structural spread) even gives it empirical priors to start from.</p>
+<p>That outer layer is a Bayesian test harness, and it is the subject of a <a href="https://la3d.github.io/WGRA/blog/posts/deciding-not-guessing/">companion post, <em>0.988 is not a win</em></a>. This one is deliberately about the instrument and its noise, because you cannot design the statistics until you have characterised what you are averaging over.</p>
+</section>
+<section id="where-this-connects" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-connects">Where this connects</h2>
+<p>This is the methodological floor under two other WGRA pieces. James Sweet’s <a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/"><em>Where harnesses overlap</em></a> argues that the same model gives different results because the harness authors most of the request; the related-flood is that argument with teeth, because the thing that moved the output was not even the harness surface but the serving path underneath it, and it was invisible enough to cost a week. And the <a href="https://la3d.github.io/WGRA/blog/posts/llm-wiki-vs-rag/">read-path measurement</a> carried a “not yet significant” caveat on a single run; this post is why that caveat is load-bearing and not a hedge.</p>
+<p>The transferable rule, for anyone measuring agents: <strong>one run is an anecdote.</strong> Report the noise floor, stratify the confounds you are tempted to assume are inert, and make decisions with statistics rather than with a delta. And note the version of everything, because these numbers are a 2026-08-02 snapshot on a synthetic corpus and will move.</p>
+<p><em>Harness and investigation: Chris Sweet. Built in response to Paul Brenner’s <a href="https://github.com/crcresearch/llm-wiki-memory-template/issues/79">landscape-wiki issue</a>. The outer Bayesian layer is James Sweet’s.</em></p>
 
 
 </section>

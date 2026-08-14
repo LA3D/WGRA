@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Chris Sweet">
-<meta name="dcterms.date" content="2026-05-29">
-<meta name="description" content="Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.">
+<meta name="author" content="James Sweet">
+<meta name="dcterms.date" content="2026-08-02">
+<meta name="description" content="A single answer count cannot tell a real improvement from run-to-run noise. This harness turns each trial into a (k,n) count, builds a posterior over the population success rate, stops sampling per input once the interval is tight, and only calls a winner when the evidence clears a deliberately high bar. In the worked example it refuses to: 0.988 is strong, and still not 0.99.">
 
-<title>Our recipe: the pattern made concrete – WGRA Nuggets</title>
+<title>0.988 is not a win: a Bayesian harness for agent evaluations – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="https://la3d.github.io/WGRA/research-agents-revolution/"> 
 <span class="menu-text">The ecosystem</span></a>
-  </li>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://la3d.github.io/WGRA/knowledge-fabric/"> 
 <span class="menu-text">Knowledge fabric</span></a>
@@ -139,8 +139,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#the-moment-the-harness-says-not-yet" id="toc-the-moment-the-harness-says-not-yet" class="nav-link active" data-scroll-target="#the-moment-the-harness-says-not-yet">The moment the harness says “not yet”</a></li>
+  <li><a href="#the-problem-it-inherits" id="toc-the-problem-it-inherits" class="nav-link" data-scroll-target="#the-problem-it-inherits">The problem it inherits</a></li>
+  <li><a href="#what-it-is" id="toc-what-it-is" class="nav-link" data-scroll-target="#what-it-is">What it is</a></li>
+  <li><a href="#the-data-contract" id="toc-the-data-contract" class="nav-link" data-scroll-target="#the-data-contract">The data contract</a></li>
+  <li><a href="#the-model-in-plain-language" id="toc-the-model-in-plain-language" class="nav-link" data-scroll-target="#the-model-in-plain-language">The model, in plain language</a></li>
+  <li><a href="#stop-when-you-are-sure-not-at-a-fixed-n" id="toc-stop-when-you-are-sure-not-at-a-fixed-n" class="nav-link" data-scroll-target="#stop-when-you-are-sure-not-at-a-fixed-n">Stop when you are sure, not at a fixed N</a></li>
+  <li><a href="#decision-not-point-estimate" id="toc-decision-not-point-estimate" class="nav-link" data-scroll-target="#decision-not-point-estimate">Decision, not point estimate</a></li>
+  <li><a href="#the-worked-example-end-to-end" id="toc-the-worked-example-end-to-end" class="nav-link" data-scroll-target="#the-worked-example-end-to-end">The worked example, end to end</a></li>
+  <li><a href="#old-runs-without-lying-about-drift" id="toc-old-runs-without-lying-about-drift" class="nav-link" data-scroll-target="#old-runs-without-lying-about-drift">Old runs, without lying about drift</a></li>
+  <li><a href="#where-this-lands" id="toc-where-this-lands" class="nav-link" data-scroll-target="#where-this-lands">Where this lands</a></li>
   </ul>
 </nav>
     </div>
@@ -149,15 +157,16 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Our recipe: the pattern made concrete</h1>
+<h1 class="title">0.988 is not a win: a Bayesian harness for agent evaluations</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">foundations</div>
+    <div class="quarto-category">practice</div>
+    <div class="quarto-category">evidence</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.
+    A single answer count cannot tell a real improvement from run-to-run noise. This harness turns each trial into a (k,n) count, builds a posterior over the population success rate, stops sampling per input once the interval is tight, and only calls a winner when the evidence clears a deliberately high bar. In the worked example it refuses to: 0.988 is strong, and still not 0.99.
   </div>
 </div>
 
@@ -167,14 +176,14 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Chris Sweet </p>
+             <p>James Sweet </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 29, 2026</p>
+      <p class="date">August 2, 2026</p>
     </div>
   </div>
   
@@ -186,36 +195,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Karpathy’s note is deliberately abstract. It says so outright: <em>“This document is intentionally abstract. It describes the idea, not a specific implementation… share it with your LLM agent and work together to instantiate a version that fits your needs.”</em> That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="architecture-diagram.png" class="img-fluid figure-img"></p>
-<figcaption>The architecture: the non-proprietary template instantiates your agent (you plus an LLM, with tools, gates, and hooks) and its llm-wiki memory (an RDF and SPARQL graph), and both tether to a shared data fabric. Marketplaces and connectors feed up into the fabric, connectors reach out to external data such as PAD, and the federation makes the memory reachable by peers and shared bundles, read through an MCP server by hosts like Claude Desktop and Cursor.</figcaption>
-</figure>
+<div class="callout callout-style-default callout-note callout-titled" title="Developing with stochastic models: a series">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><strong>A schema, not a suggestion.</strong> A <code>SCHEMA_&lt;repo&gt;.md</code> file is the authoritative conventions the agent follows: the page <code>type:</code> vocabulary, the required frontmatter (<code>type:</code>, <code>up:</code>), the typed-edge set (<code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>requires:</code>, <code>related:</code>), naming and cross-reference rules, and the special files, <code>index_&lt;repo&gt;.md</code> (the catalog of every page), <code>log_&lt;repo&gt;.md</code> (an append-only chronological record), and <code>Home_&lt;repo&gt;.md</code>. Karpathy leaves all of this to you; the template ships it and keeps it consistent.</p>
-<p><strong>Instance and wiki are separated.</strong> The project repo (the <em>instance</em>, where tools install) is distinct from the <em>wiki</em> itself, a nested, separately git-versioned directory that carries a subtype and is what gets published as a bundle. Tools install into the instance; subtype and sharing are properties of the wiki.</p>
-<p><strong>A reified knowledge graph, built in.</strong> A pipeline under <code>scripts/kg/</code> extracts the frontmatter and body links into RDF, validates them with SHACL against the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> ontology, and produces a SPARQL-queryable <code>graph.ttl</code> with a shipped library of canned queries. One command (<code>build-graph.sh</code>) rebuilds it after edits.</p>
-<p><strong>Discipline in the artifact.</strong> A <strong>verification gate</strong> blocks the agent from filing numerical results that are not backed by real script output. Named <strong>discipline gates</strong> pair each common rationalization (“this is basically what the data would show”) with the check that defeats it. A <strong>SessionStart hook</strong> reminds every new agent session, before it does anything, that the wiki is project memory. These are hooks and commands the harness runs, not habits a user has to remember.</p>
-<p><strong>Four operations as single commands.</strong> Ingest a source, query the wiki, lint for staleness, and verify a change before commit, each is one command the agent reaches for when the context calls for it. Karpathy describes these as workflows you develop yourself; the template makes them concrete and repeatable.</p>
-<p><strong>Multi-writer collision handling.</strong> A push protocol (<code>wiki_push</code>) pushes optimistically, and on a collision it fetches, union-merges the index and log automatically, routes genuine content conflicts to an LLM-assisted resolver, and retries, so two collaborators writing at once both land and neither overwrites the other. Every entry carries a <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution line, and git keeps the full amendment history.</p>
-<p><strong>Model-neutral overlays.</strong> Claude Code, Cursor, and whatever comes next each read the same wiki through their own commands and skills while sharing the policy files, gates, and schema. Swapping the model is a new overlay, not a migration; the wiki is the durable part, the model is disposable.</p>
-<p>Karpathy gives you the idea and says “your LLM can figure out the rest.” The recipe is the rest, figured out once, tested, and forkable. It is a template, not a platform: you own it, and you take your memory with you.</p>
-<section id="related" class="level2">
-<h2 class="anchored" data-anchor-id="related">Related</h2>
-<ul>
-<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the abstract idea this implements.</li>
-<li><a href="../wiki-front-matter/">Wiki front matter</a> and <a href="../knowledge-graphs/">the knowledge graph</a>, two of the things the schema pins down.</li>
-<li><a href="../agent-federation/">Agent federation</a>, how one group’s wiki reaches another’s.</li>
-</ul>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Developing with stochastic models: a series
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><a href="https://la3d.github.io/WGRA/blog/posts/software-2-5/">Software 2.5</a>. The shift from deterministic to stochastic development, and the three problems it creates.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/where-harnesses-overlap/">Where harnesses overlap</a>. One architecture, four harnesses; the surfaces converged, the wiring did not.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/one-run-one-sample/">One run is one sample</a>. Measuring stability: why a single measurement misleads.</li>
+<li><a href="https://la3d.github.io/WGRA/blog/posts/variance-cascade/">The variance cascade</a>. How uncertainty compounds through a chain of agents.</li>
+<li><strong>0.988 is not a win</strong> <em>(this post)</em>. Deciding under noise: the Bayesian layer.</li>
+</ol>
+</div>
+</div>
+<p>The first two posts established that harnesses differ, and that a single measurement of that difference lies and needs an outer statistical layer. This post is that layer.</p>
+<section id="the-moment-the-harness-says-not-yet" class="level2">
+<h2 class="anchored" data-anchor-id="the-moment-the-harness-says-not-yet">The moment the harness says “not yet”</h2>
+<p>Two scenarios on the web_forager extraction pipeline, Claude Sonnet against Claude Haiku, scored on how many answerable questions each actually answers (coverage). The harness pools the evidence, builds a posterior for each, and compares them over their posterior draws. The verdict:</p>
+<pre><code>P(sonnet &gt; haiku) = 0.988    mean difference = 0.180    95% interval on the difference = [0.026, 0.343]</code></pre>
+<p>The entire 95% interval on the difference sits above zero. Sonnet is almost certainly better. And the harness reports the pair as <strong>undecided.</strong></p>
+<p>The refusal is deliberate. The per-input decision layer only certifies a winner when the probability crosses <strong>0.99</strong>, and 0.988 lands just under it. A fixed-count evaluation would have rounded 0.988 up to “Sonnet wins” and moved on; this one holds back and asks for more inputs before calling it.</p>
 </section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<ul>
-<li><a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template (GitHub)</a>, the implementation described here.</li>
-<li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy, “llm-wiki” (gist)</a>, the abstract idea it instantiates.</li>
-<li><a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026, Zenodo)</a> and the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab ontology</a>.</li>
-</ul>
+<section id="the-problem-it-inherits" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-it-inherits">The problem it inherits</h2>
+<p>The companion post measured, on the llm-wiki instrument, that rerunning the <em>same</em> wiki flips about 10% of question verdicts. The forager pipeline has its own version of this: a roughly <strong>16% run-to-run flicker floor</strong> on single-run answer counts. When the thing you are measuring wobbles by 16% on a rerun, a raw score delta of a few points is not evidence of anything. You need an estimate that carries its own uncertainty, so that “how sure are we?” has an actual answer instead of a shrug.</p>
+<p>That is the harness’s one-line job: replace single-run answer counts with a posterior over the population success rate, and turn “A scored higher than B” into “here is the probability A is genuinely better, and by how much.”</p>
+</section>
+<section id="what-it-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-is">What it is</h2>
+<p>Each trial produces a small <code>(k, n)</code> count per criterion, k verdicts passed of n attempted. A hierarchical Bayesian model turns a handful of those counts into a posterior over the population rate, reports a credible interval instead of a point, adds trials per input until that interval is tight enough, and compares two scenarios over their posterior draws.</p>
+<p>It is split into a general engine and a per-pipeline adapter, which is what lets one statistics layer serve many pipelines:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bayesian engine</strong> (<code>Omegaice/blackbox-evaluation</code>)</td>
+<td>Pipeline-agnostic: hierarchical models, MCMC sampling, credible intervals, sequential stopping, scenario comparison, per-input decisions, evidence banking.</td>
+</tr>
+<tr class="even">
+<td><strong>Pipeline adapter</strong> (in-repo)</td>
+<td>Pipeline-specific: the frozen fixtures and ground truth, the scenario definitions, the runner, and the scoring matrix that emits <code>(k, n)</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>web_forager is one adapter (extraction quality on frozen screenshots). The llm-wiki instrument from the previous post is another adapter waiting to be written: the engine does not care what produced the counts, only that they are counts.</p>
+</section>
+<section id="the-data-contract" class="level2">
+<h2 class="anchored" data-anchor-id="the-data-contract">The data contract</h2>
+<p>Everything downstream is one atomic type: <code>Observation(k, n)</code>, the passed and attempted counts for a criterion on a trial. Observations add. A criterion with no applicable items on a trial returns <code>(0, 0)</code>, an <strong>abstain</strong>, which is dropped so it neither helps nor hurts that criterion’s posterior. Keys stay stable across trials; only the counts move.</p>
+<p>The web_forager adapter scores each question into one of five cells (<code>correct</code>, <code>facts_miss</code>, <code>miss</code>, <code>true_negative</code>, <code>inflated</code>) and rolls them into four <code>(k, n)</code> criteria:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>What it is</th>
+<th>Reads</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>coverage</code></td>
+<td>answered / answerable</td>
+<td>willingness to commit</td>
+</tr>
+<tr class="even">
+<td><code>precision</code></td>
+<td>correct / answered</td>
+<td>accuracy when it commits</td>
+</tr>
+<tr class="odd">
+<td><code>hedge</code></td>
+<td>declined / unanswerable</td>
+<td>discipline on the unanswerable</td>
+</tr>
+<tr class="even">
+<td><code>extraction</code></td>
+<td>any-page-correct / answerable</td>
+<td>capability ceiling before the fold</td>
+</tr>
+</tbody>
+</table>
+<p><code>coverage</code> and <code>hedge</code> pull in opposite directions on purpose (both are willingness to answer), so a scenario cannot look good on one without paying on the other. The point is that “quality” is several tensioned axes, not one number.</p>
+</section>
+<section id="the-model-in-plain-language" class="level2">
+<h2 class="anchored" data-anchor-id="the-model-in-plain-language">The model, in plain language</h2>
+<p>The estimand is <code>mu</code>, the population success rate for a criterion. The two-level model reads:</p>
+<pre><code>mu      ~ Beta(...)                       # population rate (what we report and compare)
+kappa   ~ Gamma(...)                      # concentration: how alike the inputs are
+theta_i ~ Beta(mu, kappa)                 # each input's own rate
+y_i     ~ Binomial(n_i, theta_i)          # each input's observed successes</code></pre>
+<p>The load-bearing idea is <strong>partial pooling</strong> through <code>kappa</code>: an input with only a few questions is shrunk toward the population estimate rather than trusted at face value, so one thin fixture cannot swing the result. When an input has several trials of its own, a three-level version adds a per-trial layer that models run-to-run spread <em>within</em> an input, which is exactly the flicker the whole exercise exists to handle. For fewer than three inputs the engine skips sampling entirely and uses the exact conjugate posterior, <code>Beta(1 + successes, 1 + failures)</code>, which is the path the worked example below runs, so its numbers are exact rather than sampled.</p>
+</section>
+<section id="stop-when-you-are-sure-not-at-a-fixed-n" class="level2">
+<h2 class="anchored" data-anchor-id="stop-when-you-are-sure-not-at-a-fixed-n">Stop when you are sure, not at a fixed N</h2>
+<p>Rather than a fixed number of trials, the engine adds trials <strong>per input</strong> until that input’s credible interval is narrow enough, then stops spending on it. A convergence policy governs multi-criterion runs (by default <em>every</em> criterion has to be tight, so a pair never stops on one lucky-narrow axis), and an abstention policy keeps a criterion that can never apply from holding the whole run hostage. You demand a tight estimate where it matters and accept a rough one where it does not, and you stop paying for trials the moment the answer is in hand.</p>
+</section>
+<section id="decision-not-point-estimate" class="level2">
+<h2 class="anchored" data-anchor-id="decision-not-point-estimate">Decision, not point estimate</h2>
+<p>The comparison works over the two posterior sample arrays: the difference of draws gives <code>P(A &gt; B)</code> and a real (often skewed) interval on the size of the difference. Then a per-input decision layer classifies each input exactly, from persisted streams, into <code>decided</code>, <code>equivalent</code> (the two rates are within a small margin with high confidence), <code>undecided</code>, or <code>no_evidence</code>, so a resumed run only spends on the inputs still in doubt.</p>
+<p>The 0.99 certification bar is not arbitrary. A simulation under the null (no real difference) found that a 0.95 stop rule <strong>falsely confirms a winner 30 to 35% of the time</strong> within the default budget; moving to 0.99 brings that down to single-look territory. That is the number that makes 0.988 read as “not yet” rather than “yes.”</p>
+</section>
+<section id="the-worked-example-end-to-end" class="level2">
+<h2 class="anchored" data-anchor-id="the-worked-example-end-to-end">The worked example, end to end</h2>
+<p>Two inputs, <code>itamco-com</code> and <code>schaferindustries-com</code>, one criterion (<code>coverage</code>), two scenarios, one trial each. Sonnet answers 16 of 17 answerable questions on the first and 19 of 20 on the second; Haiku answers 13 of 17 and 15 of 20. Two inputs triggers the exact pooled path, so these numbers are reproduced by running the harness’s own formulas (verified output):</p>
+<pre><code>SONNET coverage: 35/37 -&gt; Beta(36, 3)   mean 0.923   95% HDI [0.823, 0.983]   width 0.161
+HAIKU  coverage: 28/37 -&gt; Beta(29, 10)  mean 0.744   95% HDI [0.598, 0.866]   width 0.268
+
+compare(sonnet, haiku):  P(sonnet &gt; haiku) = 0.988   mean difference 0.180   95% diff interval [0.026, 0.343]</code></pre>
+<p>Sonnet’s coverage posterior is centered at 0.92 and reasonably tight; Haiku’s is at 0.74 and wider, because fewer successes leave more residual uncertainty. The comparison is strong, and by the harness’s own conservative rule it is still not a called result. The honest next move is more inputs or more trials before reporting a result. That is precisely the failure mode the sequential design exists to prevent: a 0.988 that a fixed-count eval would have written up as a win.</p>
+<p>At three or more inputs the exact shortcut gives way to the full sampled hierarchical model, <code>kappa</code> shrinks the thin fixtures toward the population, per-input stopping trims the trials once each interval is tight, and the decision layer marks which specific entities are already settled so a resumed comparison spends only on the rest.</p>
+</section>
+<section id="old-runs-without-lying-about-drift" class="level2">
+<h2 class="anchored" data-anchor-id="old-runs-without-lying-about-drift">Old runs, without lying about drift</h2>
+<p>Evidence from prior runs is not thrown away, but it is not treated as if the pipeline never changed either. Banked observations enter inference as <strong>drift-shifted</strong> terms: the old per-input rate is nudged by a random offset whose scale is calibrated to how far apart the two eras are. An old run informs a new one, discounted by how much has changed underneath it. That is how the harness accumulates confidence across a moving codebase instead of restarting from zero every time.</p>
+</section>
+<section id="where-this-lands" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-lands">Where this lands</h2>
+<p>The three posts make one argument. Harnesses differ, so the same model gives different results. A single run cannot tell that difference from noise, so one measurement can mislead. The fix replaces the single number with a posterior, a credible interval, a stopping rule, and a decision bar high enough that a strong-looking 0.988 is honestly reported as undecided.</p>
+<p>The engine is general, so the llm-wiki instrument plugs into the same statistics through its own adapter, and the noise floor that the second post measured is exactly the kind of prior this layer is built to consume. The instrument produces the measurements; this layer decides what they mean.</p>
+<p><em>Status and provenance: the harness lives on an unmerged branch (<code>origin/mcp-server</code>) plus the external engine dependency (<code>Omegaice/blackbox-evaluation</code>), not on <code>main</code> as of 2026-08-02. The worked-example numbers are the exact pooled-fallback path, reproduced from the engine’s own formulas and verified; full-corpus runs use the sampled hierarchical model, whose posteriors are not reproduced here. Harness and engine by James Sweet (Omegaice), on the web_forager pipeline.</em></p>
 
 
 </section>
