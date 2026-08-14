@@ -17,6 +17,12 @@ website:
         href: https://la3d.github.io/WGRA/research-agents-revolution/
       - text: "Knowledge fabric"
         href: https://la3d.github.io/WGRA/knowledge-fabric/
+      - text: "Talks"
+        menu:
+          - text: "Research memory that compounds"
+            href: https://la3d.github.io/WGRA/talks/quarto/llm-wiki-memory.html
+          - text: "Knowledge: Extract, Retrieve, Synthesize"
+            href: https://la3d.github.io/WGRA/talks/quarto/WGRA_talk.html
       - jargon.qmd
       - about.qmd
       - icon: github
