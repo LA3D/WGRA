@@ -482,6 +482,70 @@ fabricated, versus 10 for RAG.
           display:block!important;
       }</style></aside>
 </section>
+<section id="behavioral-salience-and-reducible-entropy" class="slide level2 smaller">
+<h2>Behavioral salience and reducible entropy</h2>
+<p><span class="kicker">The transcript is a saliency map; the loop reduces the uncertainty it can, ground-truth-free by construction</span></p>
+<style>
+.reveal .esl-cap{display:block;text-align:center;font-style:italic;font-size:0.62em;color:#333;margin:0.1em auto 0.2em;}
+.reveal .esl-bul{font-size:0.86em;}
+.reveal .esl-bul li{margin-bottom:0.25em;}
+.reveal .esl-box{margin-top:-0.5em;}
+</style>
+<img src="slide-assets/el94_entropy_loop_3panel.png" style="display:block;margin:0.1em auto 0.05em;max-width:100%;max-height:238px;border:1px solid #d8cfb6;border-radius:4px;">
+<p><span class="esl-cap">Locate the high-entropy band from the transcript, zoom 6x and re-extract, recover all 8 misses with zero hallucinations. <strong>89% to 100%, +8 points.</strong></span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Entropy</th>
+<th>Example</th>
+<th>Zoom + re-extract</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reducible, epistemic</td>
+<td>el-94 fused grayscale markers</td>
+<td>resolves, 8/8 recovered</td>
+</tr>
+<tr class="even">
+<td>Irreducible, aleatoric</td>
+<td>dots under an opaque bubble</td>
+<td>cannot, ~37% floor</td>
+</tr>
+</tbody>
+</table>
+<p>The method acts on the top row and stops on the bottom; the 100% versus 37% contrast is the evidence it tells them apart.</p>
+</div><div class="column esl-bul" style="width:50%;">
+<ul>
+<li><strong>Two kinds of “where to look.”</strong> Gradient saliency finds where the <em>target</em> is; <strong>behavioral salience</strong> reads the model’s own effort trace, where it was uncertain and worked hardest. No target required.</li>
+<li><strong>The objective is entropy reduction, not answer matching</strong>, so ground truth never enters the decision of where to act. The loop is GT-free by construction.</li>
+<li><strong>Epistemic resolves, aleatoric stalls</strong>, automatically.</li>
+</ul>
+</div></div>
+<div class="callout-highlight esl-box">
+<p>The loop: flag high entropy from the transcript, attempt reduction by zoom and re-extract, confirm the drop ground-truth-free, and loop.</p>
+</div>
+<aside class="notes">
+<p>Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/VISION-HANDOFF-reducible-entropy.md and the saliency wiki (Concept-Transcript-Saliency, Analysis-Attention-Predicts-Error, Analysis-Difficulty-Taxonomy). Use the term “behavioral salience” (where the model chose to look and spent effort), not gradient or encoder-internal saliency. Honest guardrails to voice: the 100% endpoint is a from-scratch recompute (all 8 within tolerance, 0 hallucinations); the evidence is n=2 charts (el-94 epistemic, life-exp aleatoric), a demonstration, not a benchmarked law. Scoring the result against ground truth (89 to 100) is ordinary validation, not supervision; the decision of where to act is ground-truth-free. Author’s original title phrasing was “Beyond analytics / behavioural saliency and epistemic/aleatoric entropy?” (with the question mark intended), confirm the final title.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="synthesis-where-linking-and-trust-happen" class="slide level2 smaller">
 <h2>Synthesis: where linking and trust happen</h2>
 <p><span class="kicker">The layer that sees every paper at once</span></p>

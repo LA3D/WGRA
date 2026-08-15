@@ -311,6 +311,48 @@ The model writes and runs its own extractor, then verifies it against the image.
 Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/HANDOFF.md and wiki pages Experiment-Free-Rein-Transcript-Review-2026-08-06 and Analysis-Attention-Map-Visualization-2026-08-12. el-94 = the aedes-aegypti-2014 survival combo chart. Real outputs: position F1 0.93 (recall 0.88, precision 0.99); this run wrote about 25 code executions and saved 21 zoom crops, 17 regions on the attention map; corpus-wide free-rein mean 0.940 vs a hand-written recipe's 0.891. This is the point-level digitization the tables-and-figures slide said it did not do; here the numbers are locked in the chart geometry, so the agent writes code to recover them. Honest caveats to say aloud: the heatmap is reconstructed post-hoc from saved crops (a lower bound on where it looked, not a live eye-tracker, no time order); scores use a per-type prototype scorer, not a hardened benchmark; a couple of dense multi-series line charts still expose a measurement-layer gap. Not from YARP; it shows the ingestion pattern generalizes.
 :::
 
+## Behavioral salience and reducible entropy {.smaller}
+
+[The transcript is a saliency map; the loop reduces the uncertainty it can, ground-truth-free by construction]{.kicker}
+
+```{=html}
+<style>
+.reveal .esl-cap{display:block;text-align:center;font-style:italic;font-size:0.62em;color:#333;margin:0.1em auto 0.2em;}
+.reveal .esl-bul{font-size:0.86em;}
+.reveal .esl-bul li{margin-bottom:0.25em;}
+.reveal .esl-box{margin-top:-0.5em;}
+</style>
+<img src="slide-assets/el94_entropy_loop_3panel.png" style="display:block;margin:0.1em auto 0.05em;max-width:100%;max-height:238px;border:1px solid #d8cfb6;border-radius:4px;">
+```
+[Locate the high-entropy band from the transcript, zoom 6x and re-extract, recover all 8 misses with zero hallucinations. **89% to 100%, +8 points.**]{.esl-cap}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+| Entropy | Example | Zoom + re-extract |
+|---|---|---|
+| Reducible, epistemic | el-94 fused grayscale markers | resolves, 8/8 recovered |
+| Irreducible, aleatoric | dots under an opaque bubble | cannot, ~37% floor |
+
+The method acts on the top row and stops on the bottom; the 100% versus 37% contrast is the evidence it tells them apart.
+:::
+
+::: {.column width="50%" .esl-bul}
+- **Two kinds of "where to look."** Gradient saliency finds where the *target* is; **behavioral salience** reads the model's own effort trace, where it was uncertain and worked hardest. No target required.
+- **The objective is entropy reduction, not answer matching**, so ground truth never enters the decision of where to act. The loop is GT-free by construction.
+- **Epistemic resolves, aleatoric stalls**, automatically.
+:::
+
+::::
+
+::: {.callout-highlight .esl-box}
+The loop: flag high entropy from the transcript, attempt reduction by zoom and re-extract, confirm the drop ground-truth-free, and loop.
+:::
+
+::: {.notes}
+Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/VISION-HANDOFF-reducible-entropy.md and the saliency wiki (Concept-Transcript-Saliency, Analysis-Attention-Predicts-Error, Analysis-Difficulty-Taxonomy). Use the term "behavioral salience" (where the model chose to look and spent effort), not gradient or encoder-internal saliency. Honest guardrails to voice: the 100% endpoint is a from-scratch recompute (all 8 within tolerance, 0 hallucinations); the evidence is n=2 charts (el-94 epistemic, life-exp aleatoric), a demonstration, not a benchmarked law. Scoring the result against ground truth (89 to 100) is ordinary validation, not supervision; the decision of where to act is ground-truth-free. Author's original title phrasing was "Beyond analytics / behavioural saliency and epistemic/aleatoric entropy?" (with the question mark intended), confirm the final title.
+:::
+
 ## Synthesis: where linking and trust happen {.smaller}
 
 [The layer that sees every paper at once]{.kicker}
