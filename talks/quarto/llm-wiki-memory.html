@@ -526,7 +526,7 @@ fabricated, versus 10 for RAG.
   box-sizing:border-box; width:100%; max-width:1180px; margin:0 auto;
   padding:20px 30px 12px; background:var(--navy); color:var(--fg);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  line-height:1.44; -webkit-font-smoothing:antialiased;
+  line-height:1.44; -webkit-font-smoothing:antialiased; position:relative;
 }
 .wt-root *{ box-sizing:border-box; }
 .wt-head{ margin-bottom:12px; }
@@ -537,8 +537,6 @@ fabricated, versus 10 for RAG.
 .wt-label{ font-size:11px; letter-spacing:.15em; text-transform:uppercase; font-weight:700; color:var(--gold); margin:0 0 5px 2px; }
 .wt-panel{ background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:11px 15px; }
 .wt-json{ margin:0; font-size:13.5px; white-space:pre-wrap; color:var(--mut); }   /* metadata dim by default */
-/* neutralize reveal.js default <pre> theme (white bg / shadow / padding) so the dark panel shows through */
-.reveal .wt-root pre.wt-json{ background:transparent !important; box-shadow:none !important; border:0 !important; margin:0 !important; padding:0 !important; width:auto !important; max-width:none !important; max-height:none !important; overflow:visible !important; font-size:13.5px; line-height:1.44; color:var(--mut); text-shadow:none; }
 .wt-key{ color:#7fa0c8; } .wt-role{ color:var(--act); } .wt-punc{ color:#455a7c; }
 .wt-content{ color:#f3e6bd; background:rgba(184,134,11,.14); padding:0 3px; border-radius:3px; }
 .wt-arrow{ text-align:center; color:var(--look); font-size:13px; letter-spacing:.05em; padding:7px 0 5px; }
@@ -562,6 +560,36 @@ fabricated, versus 10 for RAG.
   color:var(--gold-lit); background:rgba(11,20,36,.9); border:1px solid var(--gold);
   border-radius:999px; padding:3px 11px; font-variant-numeric:tabular-nums; }
 .wt-foot{ text-align:center; color:#8b96ac; font-size:12.5px; font-style:italic; padding-top:11px; }
+/* reveal.js: neutralize its <pre>/<code> theme inside our root (scoped) */
+.reveal .wt-root pre, .reveal .wt-root code{
+  background:transparent!important; box-shadow:none!important; border:0!important;
+  margin:0!important; padding:0!important; max-width:none!important; width:auto!important;
+  max-height:none!important; overflow:visible!important; font-size:inherit; text-shadow:none;
+}
+/* clickable ACT steps + code-card popup */
+.wt-has-code{ border-radius:5px; transition:background .12s; }
+.wt-has-code:hover{ background:rgba(91,199,230,.12); }
+.wt-glyph{ margin-left:9px; font:inherit; font-size:11px; color:var(--act); background:none; border:0;
+  opacity:.55; cursor:pointer; padding:0 3px; border-radius:4px; }
+.wt-has-code:hover .wt-glyph{ opacity:1; }
+.wt-glyph:focus-visible{ outline:2px solid var(--gold-lit); outline-offset:2px; opacity:1; }
+.wt-backdrop{ position:absolute; inset:0; z-index:9; background:rgba(6,11,22,.62); opacity:0; pointer-events:none; transition:opacity .18s; }
+.wt-backdrop.on{ opacity:1; pointer-events:auto; }
+.wt-codecard{ position:absolute; top:50%; left:50%; z-index:10; width:min(560px,88%);
+  transform:translate(-50%,-46%) scale(.94); opacity:0; pointer-events:none;
+  background:#0a1220; border:1px solid var(--gold); border-radius:10px;
+  box-shadow:0 20px 55px rgba(0,0,0,.6); transition:opacity .2s, transform .2s; }
+.wt-codecard.on{ transform:translate(-50%,-50%) scale(1); opacity:1; pointer-events:auto; }
+.wt-cc-bar{ display:flex; align-items:center; gap:9px; padding:9px 13px; border-bottom:1px solid #24314c; }
+.wt-cc-file{ color:#9db2d2; font-size:12.5px; }
+.wt-cc-badge{ margin-left:auto; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:700; }
+.wt-cc-close{ cursor:pointer; color:#8b96ac; font:inherit; font-size:17px; line-height:1; background:none; border:0; padding:0 4px; border-radius:4px; }
+.wt-cc-close:hover{ color:var(--fg); }
+.wt-cc-close:focus-visible{ outline:2px solid var(--gold-lit); outline-offset:2px; color:var(--fg); }
+.wt-cc-scroll{ max-height:262px; overflow:auto; padding:13px 15px; }   /* scroll on the container, not the pre */
+.wt-cc-body{ margin:0; font-size:12.5px; line-height:1.5; color:#cdd6e4; white-space:pre; }
+.c-com{ color:#5f6b82; font-style:italic; } .c-str{ color:#8fd6a0; } .c-kw{ color:#e0a44b; } .c-num{ color:#cba6e6; }
+@media (prefers-reduced-motion: reduce){ .wt-codecard, .wt-backdrop{ transition:none!important; } }
 /* keep every cycle readable; fade only the very last couple of lines to signal "it goes on" */
 .wt-cyc{ opacity:1 !important; }
 .wt-cyc:last-child .wt-line:nth-child(1){ opacity:.55; }
@@ -575,12 +603,12 @@ fabricated, versus 10 for RAG.
 
 <div class="wt-label">Raw — one line of agent-a8a14075….jsonl</div>
 <div class="wt-panel">
-<pre class="wt-json">{ <span class="wt-key">"agentId"</span>:"a8a14075…", <span class="wt-key">"isSidechain"</span>:true,
+<div class="wt-json">{ <span class="wt-key">"agentId"</span>:"a8a14075…", <span class="wt-key">"isSidechain"</span>:true,
   <span class="wt-key">"message"</span>:{ <span class="wt-key">"model"</span>:"claude-opus-4-8", <span class="wt-key">"role"</span>:<span class="wt-role">"assistant"</span>,
     <span class="wt-key">"content"</span>:[{ "type":"text", "text":
       <span class="wt-content">"The frame isn't a heavy box. Let me zoom into the axis
        regions to find ticks and the exact axis lines."</span> }] },
-  <span class="wt-key">"timestamp"</span>:"2026-08…", <span class="wt-key">"cwd"</span>:"…", <span class="wt-key">"gitBranch"</span>:"cv-oracle-recall" }</pre>
+  <span class="wt-key">"timestamp"</span>:"2026-08…", <span class="wt-key">"cwd"</span>:"…", <span class="wt-key">"gitBranch"</span>:"cv-oracle-recall" }</div>
 </div>
 
 <div class="wt-arrow"><span class="a">↓</span>decode</div>
@@ -640,17 +668,123 @@ fabricated, versus 10 for RAG.
   </div>
 </div>
 
-<div class="wt-foot">The transcript is where the model reasons, writes code, and looks: the record we mine for behavioral salience.</div>
+<div class="wt-backdrop"></div>
+<div class="wt-codecard" role="dialog" aria-label="Generated code">
+  <div class="wt-cc-bar">
+    <span class="wt-cc-file">code.py</span>
+    <span class="wt-cc-badge">Claude Code wrote this</span>
+    <button class="wt-cc-close" type="button" aria-label="Close" title="close">×</button>
+  </div>
+  <div class="wt-cc-scroll"><div class="wt-cc-body"></div></div>
+</div>
+
+<div class="wt-foot">The transcript is where the model reasons, writes code, and looks: the record we mine for behavioral salience.  <span style="opacity:.7">Click the <span style="color:var(--act)">&lt;/&gt;</span> on any <span style="color:var(--act)">ACT</span> to see the code it wrote.</span></div>
 
 <script>
 (function(){
   var root = document.currentScript.closest('.wt-root');
-  var vp = root.querySelector('#wt-vp');
-  var fired = false, userTook = false;
+  var vp   = root.querySelector('#wt-vp');
+  var card = root.querySelector('.wt-codecard');
+  var back = root.querySelector('.wt-backdrop');
+  var ccFile = root.querySelector('.wt-cc-file');
+  var ccBody = root.querySelector('.wt-cc-body');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // let manual input (wheel / drag / keys) take over from the auto-scroll cleanly
-  ['wheel','touchstart','pointerdown','keydown'].forEach(function(ev){
-    vp.addEventListener(ev, function(){ userTook = true; }, {passive:true});
+
+  // the code Claude Code generated at each ACT step
+  // (crop_axes and 08_circles are verbatim from the run; the rest are trimmed representatives)
+  var SNIPS = [
+    {file:'crop_axes.py', code:`from PIL import Image
+im = Image.open('inputs/image.png').convert('RGB')
+# bottom-left corner: x-axis ticks + origin
+im.crop((0,600,520,660)).save('work/crop_xaxis_left.png')
+im.crop((0, 60,120,660)).save('work/crop_yaxis.png')`},
+    {file:'probe_fills.py', code:`import cv2
+img = cv2.imread('inputs/image.png')
+# read the fill colour at a known circle / square
+print('circle', img[300,150], ' square', img[280,320])`},
+    {file:'work/08_circles.py', code:`import numpy as np, cv2
+import scipy.ndimage as ndi
+
+img  = cv2.imread('inputs/image.png', cv2.IMREAD_GRAYSCALE)
+dark = (img < 80).astype(np.float32)
+
+# disk matched-filter, radius 4
+r = 4
+yy, xx = np.mgrid[-r:r+1, -r:r+1]
+disk = ((xx**2 + yy**2) <= r*r).astype(np.float32)
+resp = ndi.convolve(dark, disk, mode='constant')
+
+# a circle centre = response near a full dark disk
+cand = resp >= 0.82 * disk.sum()
+lab, n = ndi.label(cand)
+cents = ndi.center_of_mass(np.ones_like(lab), lab, range(1, n+1))
+# -> 29 circle centres, days 9-37`},
+    {file:'work/09_squares.py', code:`gray = cv2.imread('inputs/image.png', 0)
+sq = (gray > 150) & (gray < 225)      # gray fill, not the black line
+tops = {}
+for col in range(56, 962):
+    rows = np.where(sq[:, col])[0]
+    if len(rows):
+        tops[col] = rows.min()        # the square sits on top`},
+    {file:'work/07_diamonds.py', code:`tpl = diamond_template(size=13)       # open glyph, hollow centre
+res = cv2.matchTemplate(gray, tpl, cv2.TM_CCOEFF_NORMED)
+ys, xs = np.where(res > 0.62)
+# -> 10 clean diamonds, days 19-28`},
+    {file:'split_fused.py', code:`mask = (gray < 90).astype('uint8')
+mask = cv2.erode(mask, np.ones((3,3), 'uint8'))
+dt   = cv2.distanceTransform(mask, cv2.DIST_L2, 5)
+peaks = peak_local_max(dt, min_distance=6)   # split fused markers`},
+    {file:'trace_curves.py', code:`for col in range(56, 962):
+    dark = np.where(gray[:, col] < 110)[0]
+    runs = group_runs(dark, max_gap=7)       # thin curve runs only
+    for t, run in assign_tracks(runs):       # 3 fit curves
+        curve[t].append((col, run.mean()))`},
+    {file:'fit_gap.py', code:`from scipy.optimize import curve_fit
+f = lambda d, Pinf, A, k: Pinf - A*np.exp(-k*d)
+popt, _ = curve_fit(f, days_clean, p_clean, p0=[0.98, 0.04, 0.1])
+# rms ~0.001 -- thread the gap, never invent points`},
+    {file:'verify_overlay.py', code:`vis = cv2.imread('inputs/image.png')
+for x, y, series in extracted:
+    col, row = to_pixel(x, y)
+    cv2.drawMarker(vis, (col,row), COLOR[series], cv2.MARKER_CROSS, 8, 1)
+cv2.imwrite('work/overlay_final.png', vis)   # eyeball every mark`}
+  ];
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function hl(code){
+    return esc(code)
+      .replace(/(#[^\n]*)/g, '<span class="c-com">$1</span>')
+      .replace(/('[^']*'|"[^"]*")/g, '<span class="c-str">$1</span>')
+      .replace(/\b(import|from|for|in|if|return|lambda|def|print|range|and|or|not|as)\b/g, '<span class="c-kw">$1</span>')
+      .replace(/\b(\d+\.?\d*)\b/g, '<span class="c-num">$1</span>');
+  }
+  function openCard(s){ ccFile.textContent = s.file; ccBody.innerHTML = hl(s.code);
+                        back.classList.add('on'); card.classList.add('on'); }
+  function closeCard(){ back.classList.remove('on'); card.classList.remove('on'); }
+  root.querySelector('.wt-cc-close').addEventListener('click', function(e){ e.stopPropagation(); closeCard(); });
+  back.addEventListener('click', function(e){ e.stopPropagation(); closeCard(); });
+  // keep reveal's keyboard/scroll/click nav from firing while the popup is engaged
+  ['click','wheel','keydown','pointerdown'].forEach(function(ev){
+    card.addEventListener(ev, function(e){ e.stopPropagation(); });
+  });
+
+  // real <button> trigger per ACT line -> opens its code
+  Array.prototype.slice.call(root.querySelectorAll('.wt-line'))
+    .filter(function(el){ return el.querySelector('.wt-tag.act'); })
+    .forEach(function(el, i){
+      var snip = SNIPS[i % SNIPS.length];
+      el.classList.add('wt-has-code');
+      var g = document.createElement('button');
+      g.type = 'button'; g.className = 'wt-glyph'; g.textContent = '</>';
+      g.setAttribute('aria-label', 'View the code Claude Code wrote for this step');
+      g.addEventListener('click', function(e){ e.stopPropagation(); openCard(snip); });
+      el.appendChild(g);
+    });
+
+  // scroll-in on entry, with manual takeover; stopPropagation so wheel/keys don't flip slides
+  var fired = false, userTook = false;
+  ['wheel','touchstart','keydown'].forEach(function(ev){
+    vp.addEventListener(ev, function(e){ userTook = true; e.stopPropagation(); });
   });
   function scrollIn(){
     if(fired) return; fired = true;
@@ -658,14 +792,13 @@ fabricated, versus 10 for RAG.
     if(reduce){ vp.scrollTop = Math.min(target, 40); return; }
     var dur = 4600, start = null;
     function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
-    function step(ts){
-      if(userTook) return;                 // hand off to the user
-      if(start===null) start = ts;
+    (function step(ts){
+      if(userTook) return;
+      if(start === null) start = ts;
       var t = Math.min((ts-start)/dur, 1);
       vp.scrollTop = target * ease(t);
       if(t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    })(performance.now());
   }
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(es){
