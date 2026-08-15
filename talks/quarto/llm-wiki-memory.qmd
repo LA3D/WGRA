@@ -311,16 +311,238 @@ The model writes and runs its own extractor, then verifies it against the image.
 Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/HANDOFF.md and wiki pages Experiment-Free-Rein-Transcript-Review-2026-08-06 and Analysis-Attention-Map-Visualization-2026-08-12. el-94 = the aedes-aegypti-2014 survival combo chart. Real outputs: position F1 0.93 (recall 0.88, precision 0.99); this run wrote about 25 code executions and saved 21 zoom crops, 17 regions on the attention map; corpus-wide free-rein mean 0.940 vs a hand-written recipe's 0.891. This is the point-level digitization the tables-and-figures slide said it did not do; here the numbers are locked in the chart geometry, so the agent writes code to recover them. Honest caveats to say aloud: the heatmap is reconstructed post-hoc from saved crops (a lower bound on where it looked, not a live eye-tracker, no time order); scores use a per-type prototype scorer, not a hardened benchmark; a couple of dense multi-series line charts still expose a measurement-layer gap. Not from YARP; it shows the ingestion pattern generalizes.
 :::
 
-## Behavioral salience and reducible entropy {.smaller}
+## Behavioral salience: formal interpretation {.smaller}
 
-[The transcript is a saliency map; the loop reduces the uncertainty it can, ground-truth-free by construction]{.kicker}
+[The heatmap you just saw is behavioral salience: where the model spent its effort]{.kicker}
+
+The heatmap looks like a chart-extraction detail, but it is vital to AI development, far beyond the analysis we showed.
+
+**The problem.** Prompt engineering cannot, on its own, separate instructed behavior from the model's implicit behavior. That one blind spot produces both failure modes: **tuning that does not converge** while you build the system (fix one case, regress another, whack-a-mole), and **silent brittleness once deployed,** where any model change, even a routine same-vendor update you did not choose, removes behavior the prompt was quietly relying on.
+
+Behavioral salience is the differential that separates them, and the field is converging on this trace-based read. The next four slides build it, ground-truth-free:
+
+- **What a transcript is:** the raw work-log every read is performed on.
+- **Disposition** (policy): surface the agent's implicit model of the task, then intervene on it.
+- **Reducible entropy** (artifact): flag where the model worked hardest, then resolve it without ground truth.
+- **Three levels:** the same read as a reference you can control, not whack-a-mole.
+
+::: {.notes}
+Opens the behavioral-salience arc: states the problem (prompt engineering cannot separate instructed from implicit behavior, giving non-convergent tuning and silent brittleness), then previews the next four slides as behavioral salience answering it. The kicker names the attention heatmap from the previous slide. For Q&A only, not on the slide: the convergence is independent and recent, MAST (trace-based failure taxonomy, Cemri et al.), TrajTune (trajectory-based prompt optimization), and the silent-failure / entropy work (Liu). Our differentiators are ground-truth-free control and separating instructed from implicit behavior; the others diagnose, describe, or optimize prompts against error metrics.
+:::
+
+## Behavioral salience: what a transcript is {.smaller}
+
+[Claude Code's own raw work-log: one chart extraction is **281 lines, 4.2 MB**]{.kicker}
+
+```{=html}
+<div class="wt-root">
+<style>
+.wt-root{
+  --navy:#14213d; --ground:#0b1424; --panel:#0c1528; --edge:#24314c;
+  --gold:#b8860b; --gold-lit:#e3b53d;
+  --think:#6ee0a0; --act:#5bc7e6; --look:#e0a44b;
+  --fg:#d7dee8; --txt:#cdd6e4; --mut:#7683a0;
+  box-sizing:border-box; width:100%; max-width:1180px; margin:0 auto;
+  padding:20px 30px 12px; background:var(--navy); color:var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  line-height:1.44; -webkit-font-smoothing:antialiased;
+}
+.wt-root *{ box-sizing:border-box; }
+.wt-head{ margin-bottom:12px; }
+.wt-eyebrow{ font-size:11px; letter-spacing:.24em; text-transform:uppercase; font-weight:700; color:var(--gold); margin:0 0 3px 1px; }
+.wt-h1{ font-size:25px; font-weight:800; color:var(--gold-lit); letter-spacing:.2px; margin:0; text-wrap:balance; }
+.wt-sub{ font-size:13px; color:var(--mut); margin-top:3px; }
+.wt-sub b{ color:var(--fg); font-weight:600; }
+.wt-label{ font-size:11px; letter-spacing:.15em; text-transform:uppercase; font-weight:700; color:var(--gold); margin:0 0 5px 2px; }
+.wt-panel{ background:var(--panel); border:1px solid var(--edge); border-radius:8px; padding:11px 15px; }
+.wt-json{ margin:0; font-size:13.5px; white-space:pre-wrap; color:var(--mut); }   /* metadata dim by default */
+/* neutralize reveal.js default <pre> theme (white bg / shadow / padding) so the dark panel shows through */
+.reveal .wt-root pre.wt-json{ background:transparent !important; box-shadow:none !important; border:0 !important; margin:0 !important; padding:0 !important; width:auto !important; max-width:none !important; max-height:none !important; overflow:visible !important; font-size:13.5px; line-height:1.44; color:var(--mut); text-shadow:none; }
+.wt-key{ color:#7fa0c8; } .wt-role{ color:var(--act); } .wt-punc{ color:#455a7c; }
+.wt-content{ color:#f3e6bd; background:rgba(184,134,11,.14); padding:0 3px; border-radius:3px; }
+.wt-arrow{ text-align:center; color:var(--look); font-size:13px; letter-spacing:.05em; padding:7px 0 5px; }
+.wt-arrow .a{ font-size:16px; display:block; line-height:1; margin-bottom:1px; opacity:.9; }
+.wt-vwrap{ position:relative; }
+.wt-viewport{ position:relative; height:232px; overflow-y:auto; overscroll-behavior:contain;
+  scrollbar-width:thin; scrollbar-color:rgba(184,134,11,.55) transparent;
+  -webkit-mask-image:linear-gradient(to bottom,#000 92%,transparent 100%);
+          mask-image:linear-gradient(to bottom,#000 92%,transparent 100%); }
+.wt-viewport::-webkit-scrollbar{ width:7px; }
+.wt-viewport::-webkit-scrollbar-thumb{ background:rgba(184,134,11,.5); border-radius:4px; }
+.wt-viewport::-webkit-scrollbar-track{ background:transparent; }
+.wt-scroll{ padding:2px 2px 40px; }
+.wt-cyc{ margin-bottom:9px; }
+.wt-line{ display:flex; gap:14px; font-size:13.5px; padding:1px 0; align-items:baseline; }
+.wt-tag{ flex:0 0 46px; font-weight:700; font-size:12px; letter-spacing:.05em; }
+.wt-tag.think{ color:var(--think); } .wt-tag.act{ color:var(--act); } .wt-tag.look{ color:var(--look); }
+.wt-txt{ color:var(--txt); }
+.wt-txt.code{ color:#9db2d2; }
+.wt-ribbon{ position:absolute; top:7px; right:9px; z-index:2; font-size:11px; letter-spacing:.06em;
+  color:var(--gold-lit); background:rgba(11,20,36,.9); border:1px solid var(--gold);
+  border-radius:999px; padding:3px 11px; font-variant-numeric:tabular-nums; }
+.wt-foot{ text-align:center; color:#8b96ac; font-size:12.5px; font-style:italic; padding-top:11px; }
+/* keep every cycle readable; fade only the very last couple of lines to signal "it goes on" */
+.wt-cyc{ opacity:1 !important; }
+.wt-cyc:last-child .wt-line:nth-child(1){ opacity:.55; }
+.wt-cyc:last-child .wt-line:nth-child(2){ opacity:.34; }
+.wt-cyc:last-child .wt-line:nth-child(3){ opacity:.18; }
+@media (prefers-reduced-motion: reduce){ .wt-viewport{ scroll-behavior:auto; } }
+/* uniform +10% scale; trimmed max-width so the zoomed figure still fits the 1280 slide */
+.reveal .wt-root{ zoom:1.10; max-width:1160px; }
+</style>
+
+
+<div class="wt-label">Raw &mdash; one line of agent-a8a14075&hellip;.jsonl</div>
+<div class="wt-panel">
+<pre class="wt-json">{ <span class="wt-key">"agentId"</span>:"a8a14075&hellip;", <span class="wt-key">"isSidechain"</span>:true,
+  <span class="wt-key">"message"</span>:{ <span class="wt-key">"model"</span>:"claude-opus-4-8", <span class="wt-key">"role"</span>:<span class="wt-role">"assistant"</span>,
+    <span class="wt-key">"content"</span>:[{ "type":"text", "text":
+      <span class="wt-content">"The frame isn't a heavy box. Let me zoom into the axis
+       regions to find ticks and the exact axis lines."</span> }] },
+  <span class="wt-key">"timestamp"</span>:"2026-08&hellip;", <span class="wt-key">"cwd"</span>:"&hellip;", <span class="wt-key">"gitBranch"</span>:"cv-oracle-recall" }</pre>
+</div>
+
+<div class="wt-arrow"><span class="a">&darr;</span>decode</div>
+
+<div class="wt-label">Decoded &mdash; the agent's reason &rarr; act &rarr; observe loop</div>
+<div class="wt-vwrap">
+  <div class="wt-ribbon">281 lines &middot; 52 scripts &middot; 21 zoom crops &middot; 4.2 MB</div>
+  <div class="wt-viewport" id="wt-vp">
+    <div class="wt-scroll">
+      <div class="wt-cyc" style="opacity:1">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">the frame isn't a heavy box &mdash; zoom into the axis regions to find the ticks.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">python3 &hellip; crop the bottom-left corner &rarr; crop_xaxis_left.png</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">opens crop_xaxis_left.png &mdash; reads the pixels back in.</span></div>
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">&hellip;and repeats: 52 scripts, 21 zoom crops, ending on the fused day 30&ndash;40 band it flags as partly unrecoverable.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.82">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">three marker shapes &mdash; black circles, gray squares, open diamonds.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">sample the fills; check scipy is available</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">circles ~30&ndash;70 dark, squares ~190&ndash;218 gray.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.70">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">circles touch the dashed curve; naive detection merges them.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">build a disk matched-filter</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">29 circles, days 9&ndash;37; one legend dot dropped.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.58">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">squares sit ON the solid curve; the centroid is pulled.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">take the topmost gray-fill run per column</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">25 squares, days 14&ndash;38; 4 gap days interpolated.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.47">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">diamonds are open; hole-fill leaks to background.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">template-match the diamond glyph</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">10 clean diamonds, days 19&ndash;28.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.37">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">at convergence the three shapes fuse.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">erosion + distance-transform peak finding</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">day-30 diamond hidden behind a circle &mdash; omit.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.28">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">the fit curves vanish in the marker cloud.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">3-track column tracer, mask the marker regions</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">solid curve clean; dashed/dotted lost day 22&ndash;37.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.20">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">fill the curve gaps without inventing points.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">fit p = Pinf &minus; A&middot;exp(&minus;k&middot;day)</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">rms ~0.001; threads both clean segments.</span></div>
+      </div>
+      <div class="wt-cyc" style="opacity:.13">
+        <div class="wt-line"><span class="wt-tag think">THINK</span><span class="wt-txt">verify nothing is fabricated.</span></div>
+        <div class="wt-line"><span class="wt-tag act">ACT</span><span class="wt-txt code">overlay every mark on the source image</span></div>
+        <div class="wt-line"><span class="wt-tag look">LOOK</span><span class="wt-txt">crosses centered; day 33&ndash;36 hits are bright gaps &mdash; dropped.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wt-foot">The transcript is where the model reasons, writes code, and looks: the record we mine for behavioral salience.</div>
+
+<script>
+(function(){
+  var root = document.currentScript.closest('.wt-root');
+  var vp = root.querySelector('#wt-vp');
+  var fired = false, userTook = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // let manual input (wheel / drag / keys) take over from the auto-scroll cleanly
+  ['wheel','touchstart','pointerdown','keydown'].forEach(function(ev){
+    vp.addEventListener(ev, function(){ userTook = true; }, {passive:true});
+  });
+  function scrollIn(){
+    if(fired) return; fired = true;
+    var target = vp.scrollHeight - vp.clientHeight;
+    if(reduce){ vp.scrollTop = Math.min(target, 40); return; }
+    var dur = 4600, start = null;
+    function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }
+    function step(ts){
+      if(userTook) return;                 // hand off to the user
+      if(start===null) start = ts;
+      var t = Math.min((ts-start)/dur, 1);
+      vp.scrollTop = target * ease(t);
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting && e.intersectionRatio > 0.35) scrollIn(); });
+    }, {threshold:[0,0.35,0.6]});
+    io.observe(root);
+  } else { scrollIn(); }
+})();
+</script>
+</div>
+```
+
+::: {.notes}
+Grounding slide for the arc: the transcript is the raw artifact behavioral salience is read from. Top cycle is the verbatim el-94 extraction step (the frame isn't a heavy box, zoom, crop, read pixels back); the faded cycles below are that same extraction continuing, shown to convey scale, not read aloud. The ribbon numbers are real (281 lines, 52 scripts, 21 zoom crops, 4.2 MB). It scrolls in once on slide-entry and hands off on any scroll; reduced-motion just shows it.
+:::
+
+## Behavioral salience: disposition {.smaller}
+
+[Same papers, same template: what changes the memory is the agent's model of the task]{.kicker}
+
+Twelve papers, one template, one schema, the same questions. Only the driving assistant changed, and Claude and Codex built different memories, because they hold different **dispositions**: implicit models of what the ingestion job is.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Codex's stance**
+
+Build a shallow taxonomy; specifics are subordinate, raw numbers get dropped. **44 pages, no results page.** Loss scales with particularity.
+:::
+
+::: {.column width="50%"}
+**Claude's stance**
+
+Preserve the paper's particulars as first-class, retrievable nodes, because that is what future questions turn on. **78 pages; it invents the results page nobody mandated.**
+:::
+
+::::
+
+::: {.callout-highlight}
+The result: one purpose-level paragraph, no fact or rule named, fixed symptoms nobody listed. Codex build, Claude querier held constant, **13 to 20 / 24, p = 0.0156.**
+
+*"Treat the wiki as durable, queryable memory, not a summary. Your work succeeds only if a future agent, reading only these pages, can recover this paper's specific claims, the exact quantities (with units), the named systems and methods, and the conditions, and see how they connect to other papers. Preserve those particulars as first-class, retrievable structure."*
+:::
+
+::: {.notes}
+Source: llm-wiki-test-harness, "From transcript to disposition to fix" (docs/behavioural-diagnostic-playbook.md, disposition-arms-full.md). The disposition is inferred from the transcript (particularity-fate, trajectory signature), a behavioral read weighted above self-report; the transfer test validates it (a purpose-level change fixes multiple unnamed symptoms). The intervention verbatim: "Treat the wiki as durable, queryable memory, not a summary. Your work succeeds only if a future agent, reading only these pages, can recover this paper's specific claims, the exact quantities with units, the named systems and methods, and how they connect; preserve those particulars as first-class retrievable structure." Honest bounds: n=1 run per arm on a saturated fixture (full-text arms cluster 17 to 21 / 24, about 10% flip on rerun), but this is the first non-saturated, significant, one-directional result, and the strongest evidence in the extraction story. This is the policy-level twin of the entropy loop: read the trace, control extraction without ground truth.
+:::
+
+## Behavioral salience: reducible entropy {.smaller}
+
+[The same behavioral read, now on a single figure: the loop reduces the uncertainty it can, ground-truth-free]{.kicker}
 
 ```{=html}
 <style>
 .reveal .esl-cap{display:block;text-align:center;font-style:italic;font-size:0.62em;color:#333;margin:0.1em auto 0.2em;}
 .reveal .esl-bul{font-size:0.86em;}
 .reveal .esl-bul li{margin-bottom:0.25em;}
-.reveal .esl-box{margin-top:-0.5em;}
+.reveal .esl-box{margin-top:-0.15em;}
 </style>
 <img src="slide-assets/el94_entropy_loop_3panel.png" style="display:block;margin:0.1em auto 0.05em;max-width:100%;max-height:238px;border:1px solid #d8cfb6;border-radius:4px;">
 ```
@@ -346,11 +568,45 @@ The method acts on the top row and stops on the bottom; the 100% versus 37% cont
 ::::
 
 ::: {.callout-highlight .esl-box}
-The loop: flag high entropy from the transcript, attempt reduction by zoom and re-extract, confirm the drop ground-truth-free, and loop.
+The loop: flag high entropy from the transcript, attempt reduction by zoom and re-extract, and loop.
 :::
 
 ::: {.notes}
 Source: figure-recovery-suite/docs/llm-wiki-deck-handoff/VISION-HANDOFF-reducible-entropy.md and the saliency wiki (Concept-Transcript-Saliency, Analysis-Attention-Predicts-Error, Analysis-Difficulty-Taxonomy). Use the term "behavioral salience" (where the model chose to look and spent effort), not gradient or encoder-internal saliency. Honest guardrails to voice: the 100% endpoint is a from-scratch recompute (all 8 within tolerance, 0 hallucinations); the evidence is n=2 charts (el-94 epistemic, life-exp aleatoric), a demonstration, not a benchmarked law. Scoring the result against ground truth (89 to 100) is ordinary validation, not supervision; the decision of where to act is ground-truth-free. Author's original title phrasing was "Beyond analytics / behavioural saliency and epistemic/aleatoric entropy?" (with the question mark intended), confirm the final title.
+:::
+
+## Behavioral salience: three levels {.smaller}
+
+[Every row is one loop: read the trace, localize the cause, intervene, verify without ground truth]{.kicker}
+
+```{=html}
+<style>
+.reveal table.glue{border-collapse:collapse;width:100%;font-family:"Helvetica Neue",Arial,sans-serif;margin:0.55em 0 0.2em;}
+.reveal table.glue th{font-size:0.82em;text-transform:uppercase;letter-spacing:0.04em;color:#8a8a8a;font-weight:700;text-align:left;padding:0.6em 0.85em;border-bottom:1.5px solid #cfc7b5;}
+.reveal table.glue td{font-size:1.2em;color:#3a3a3a;line-height:1.4;padding:1em 0.85em;border-bottom:1px solid #ece3cf;vertical-align:top;}
+.reveal table.glue td.lvl{font-weight:700;white-space:nowrap;}
+.reveal table.glue tr.p td.lvl{color:#0d666e;}
+.reveal table.glue tr.a td.lvl{color:#9a6626;}
+.reveal table.glue tr.s td.lvl{color:#69737e;}
+.reveal table.glue td.res{font-family:Menlo,Consolas,monospace;font-weight:700;color:#2c7a54;white-space:nowrap;font-size:0.94em;}
+.reveal table.glue tr.s td.res{color:#39434d;}
+</style>
+<table class="glue">
+  <thead><tr><th>level</th><th>reads the trace</th><th>intervenes</th><th>verifies without ground truth</th><th>result</th></tr></thead>
+  <tbody>
+    <tr class="p"><td class="lvl">Policy<br>disposition</td><td>the agent's model of the task, which particulars it drops</td><td>one purpose paragraph, no rule named</td><td>transfer test: fixes symptoms nobody named</td><td class="res">13 &rarr; 20 / 24<br>p = 0.0156</td></tr>
+    <tr class="a"><td class="lvl">Artifact<br>entropy</td><td>local effort, the high-uncertainty region</td><td>zoom and re-extract</td><td>pixel-check or consensus: did entropy drop</td><td class="res">89% &rarr; 100%<br>8/8, 0 halluc.</td></tr>
+    <tr class="s"><td class="lvl">Statistical<br>Bayesian</td><td>the loop's variance across reruns</td><td>decide runs-to-confidence</td><td>a posterior over the effect</td><td class="res">runs &rarr;<br>confidence</td></tr>
+  </tbody>
+</table>
+```
+
+::: {.callout-highlight}
+A patch fixes only what you named; a disposition change or an entropy reduction fixes the whole class and transfers. Ground truth is the reference you cannot have at scale, so behavioral salience is the reference: controllable, not whack-a-mole.
+:::
+
+::: {.notes}
+The payoff of the pair: disposition and the entropy loop are one method read across the columns, read the agent's own trace, localize the cause, intervene, verify without ground truth, and each row is a different level. Policy (disposition) is the statistically significant one (13 to 20 / 24, p = 0.0156); artifact (entropy) is the clean, vivid loop (89 to 100, 8 of 8, zero hallucinations); the statistical row (Bayesian runs-to-confidence) decides when a change is real. In the proposal: lead the rigor with disposition, lead the picture with entropy. Sources: llm-wiki-test-harness disposition arms; figure-recovery-suite reducible-entropy loop; James's runs-to-confidence harness.
 :::
 
 ## Synthesis: where linking and trust happen {.smaller}
