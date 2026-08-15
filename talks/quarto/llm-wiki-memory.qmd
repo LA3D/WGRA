@@ -321,10 +321,20 @@ The heatmap looks like a chart-extraction detail, but it is vital to AI developm
 
 Behavioral salience is the differential that separates them, and the field is converging on this trace-based read. The next four slides build it, ground-truth-free:
 
+:::: {.columns}
+
+::: {.column width="50%"}
 - **What a transcript is:** the raw work-log every read is performed on.
 - **Disposition** (policy): surface the agent's implicit model of the task, then intervene on it.
 - **Reducible entropy** (artifact): flag where the model worked hardest, then resolve it without ground truth.
 - **Three levels:** the same read as a reference you can control, not whack-a-mole.
+:::
+
+::: {.column width="50%"}
+<img src="slide-assets/el-94_heatmap_thumb.png" style="display:block;margin:0.4em auto 0;max-width:100%;max-height:300px;border:1px solid #d8cfb6;border-radius:4px;" alt="Attention heatmap: effort concentrates on the day 28 to 40 band">
+:::
+
+::::
 
 ::: {.notes}
 Opens the behavioral-salience arc: states the problem (prompt engineering cannot separate instructed from implicit behavior, giving non-convergent tuning and silent brittleness), then previews the next four slides as behavioral salience answering it. The kicker names the attention heatmap from the previous slide. For Q&A only, not on the slide: the convergence is independent and recent, MAST (trace-based failure taxonomy, Cemri et al.), TrajTune (trajectory-based prompt optimization), and the silent-failure / entropy work (Liu). Our differentiators are ground-truth-free control and separating instructed from implicit behavior; the others diagnose, describe, or optimize prompts against error metrics.
