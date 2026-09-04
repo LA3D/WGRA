@@ -22,7 +22,8 @@ format:
           <style>
           .reveal .rlh-img{ display:block; margin:0 auto; max-width:100%; max-height:400px; }
           .reveal .rlh-img.hero{ max-height:440px; }
-          .reveal .rlh-cap{ text-align:center; font-size:.8em; color:#555; margin-top:.3em; }
+          .reveal .rlh-img.big{ max-height:640px; }
+          .reveal .rlh-cap{ display:block; text-align:center; font-size:.8em; color:#555; margin-top:.3em; }
           /* title slide: force long text to wrap and never overflow the slide width (the recurring bug) */
           .reveal .slides section#title-slide{ overflow:hidden; }
           .reveal .slides section#title-slide h1.title,
@@ -48,17 +49,18 @@ format:
           .reveal .rlh-panel.ours .plbl{ color:#2c7a54; }
           .reveal .rlh-panel .pnote{ text-align:center; font-size:.55em; color:#555; margin-top:.2em; }
           /* slide 10: architecture ladder */
-          .reveal .rlh-arch{ display:flex; align-items:center; gap:.6em; font-size:.62em; }
-          .reveal .rlh-cands{ display:flex; flex-direction:column; gap:.3em; flex:0 0 42%; }
-          .reveal .rlh-cand{ background:#eef1f7; border:1px solid #14213d; border-radius:5px; padding:.28em .5em; }
-          .reveal .rlh-cand span{ display:block; font-size:.8em; color:#5a6576; }
+          .reveal .rlh-arch{ display:flex; flex-direction:column; align-items:stretch; gap:.3em; font-size:.56em; }
+          .reveal .rlh-cands{ display:flex; flex-direction:column; gap:.22em; }
+          .reveal .rlh-cand{ background:#eef1f7; border:1px solid #14213d; border-radius:5px; padding:.3em .55em; position:relative; }
+          .reveal .rlh-cand span{ display:block; font-size:.82em; color:#5a6576; }
           .reveal .rlh-cand.hl{ background:#fbf6ea; border-color:#b8860b; border-width:2px; }
           .reveal .rlh-cand.hl span{ color:#8a6626; }
-          .reveal .rlh-arrow{ font-size:1.6em; color:#8a7a4a; }
-          .reveal .rlh-exam{ flex:1; text-align:center; background:#14213d; color:#fff; border-radius:6px; padding:.6em .5em; font-weight:700; }
-          .reveal .rlh-exam span{ display:block; font-size:.8em; font-weight:400; color:#cdd6e4; margin-top:.2em; }
-          .reveal .rlh-win{ flex:0 0 20%; text-align:center; background:#2c7a54; color:#fff; border-radius:6px; padding:.6em .4em; font-weight:800; }
-          .reveal .rlh-win span{ display:block; font-size:.75em; font-weight:400; margin-top:.2em; }
+          .reveal .rlh-cand .tag{ position:absolute; top:.35em; right:.55em; font-size:.72em; font-weight:800; color:#b8860b; text-transform:uppercase; letter-spacing:.05em; }
+          .reveal .rlh-arrow{ text-align:center; font-size:1.05em; color:#8a7a4a; line-height:.85; }
+          .reveal .rlh-exam{ text-align:center; background:#14213d; color:#fff; border-radius:6px; padding:.45em .5em; font-weight:700; }
+          .reveal .rlh-exam span{ display:block; font-size:.82em; font-weight:400; color:#cdd6e4; margin-top:.15em; }
+          .reveal .rlh-win{ text-align:center; background:#2c7a54; color:#fff; border-radius:6px; padding:.45em .5em; font-weight:800; }
+          .reveal .rlh-win span{ display:block; font-size:.8em; font-weight:400; margin-top:.15em; }
           </style>
           <script>
           document.addEventListener('DOMContentLoaded', function () {
@@ -87,7 +89,7 @@ format:
 This is one synthetic sailor from the current corpus. A chronic family stressor builds for three and a half months. Routine care ticks along. At day 250 the sailor presents, and the C-SSRS records an aborted attempt. A mental-health follow-up happens. Ninety-nine days later, a second acute event, and an emergency contact. Every element is dated, typed, and validated. No real sailor appears here; that is the point, and it is what makes everything on the following slides possible.
 
 ::: {.notes}
-Do not define anything yet; let the room read the timeline. Member 0241 of corpus_out_p5h1: chronic family-and-upbringing stressor days 144 to 252, presentation day 250 (rung BehaviorAborted), repeat at +99 days. Source: corpus_out_p5h1/scenario_0241.ttl via the standard functional reader. One line on synthetic data if asked early: generated into a space the ontology defines, calibrated to published military studies; slide 4 covers it.
+Do not define anything yet; let the room read the timeline. Member 0241 of corpus_out_p5h1: chronic family-and-upbringing stressor days 144 to 252, presentation day 250 (rung BehaviorAborted), repeat at +99 days. Source: corpus_out_p5h1/scenario_0241.ttl via the standard functional reader. One line on synthetic data if asked early: generated into a space the ontology defines, calibrated to published military studies; slide 5 covers it.
 :::
 
 ## That record is a marked point process {.smaller}
@@ -96,7 +98,9 @@ Do not define anything yet; let the room read the timeline. Member 0241 of corpu
 
 <img class="rlh-img hero" src="slide-assets/rlh-member-timeline-annotated.png" alt="The same record with (t, m) notation and a shaded counting window">
 
-A marked point process: a set of timestamped events, each carrying a mark saying what kind of thing it is. That is the whole definition, and the record already is one. Statistics about it are counting functionals: pick a time window, pick a mark set, count the events. Prevalences, rates per person-year, odds ratios, lag quantiles: all are functions of these counts. Anything the record dates can be counted.
+A marked point process: a set of timestamped events, each carrying a mark saying what kind of thing it is. The record from the previous slide is redrawn here in exactly that language. Every dot is an event at a time t with a mark m naming its type, colored by kind: primary care, mental health, emergency. The first contact is the pair **(t<sub>1</sub>, m<sub>1</sub>)**, a later one is **(t<sub>i</sub>, m<sub>i</sub>)**, and the acute presentation is **(t<sub>n</sub>, m<sub>n</sub> = acute)**. The chronic stressor is the same idea over an interval rather than an instant. That is the whole definition, and the record already is one.
+
+Statistics about it are counting functionals. **N(A &times; B)** counts the events whose time falls in a window A and whose mark is in a set B. The shaded window above is one such count: **N(A &times; B) = 1**, a single event in the 30 days after the presentation. Prevalences, rates per person-year, odds ratios, and lag quantiles are all functions of these counts. Anything the record dates can be counted.
 
 ::: {.notes}
 Same image as slide 1 with notation added, deliberately: the formalism changes nothing about the record, only what can be asked of it. Definition and the "anything the graph dates can be counted" framing: docs/prism-collected-reports.md, Part II.
@@ -106,7 +110,7 @@ Same image as slide 1 with notation added, deliberately: the formalism changes n
 
 [The same mathematical object on both sides]{.kicker}
 
-Published military studies state their findings as counting functionals: a prevalence, an odds ratio, a rate per 100,000 person-years, a share within 30 days.
+A counting functional is just a recipe: count the events in a chosen time window and mark set, then combine the counts. Published military studies already report their findings this way. A prevalence is a count of members with a mark over the total; an odds ratio is a ratio of such counts, exposed versus not; a rate per 100,000 person-years is an event count divided by person-time; a share within 30 days is a count inside a window over the total. Every one is N(A &times; B), or a ratio of them, the object from the last slide.
 
 Choosing the MPP representation makes the corpus statistic and the published statistic the same mathematical object. Calibration becomes a solve-then-measure loop: declare the published target, solve the generator parameters, generate, measure from the re-parsed records, compare.
 
@@ -120,26 +124,50 @@ No bespoke bridge per source. Ten sources are planted this way today.
 The "why" slide for the entire approach; if the room absorbs one idea, make it this one. Ten anchored sources (MSMR, Na 2018, Nock 2018, Bernecker 2019, Stanley 2018, Gilman 2014, Ribeiro 2017, Carroll 2014, HEDIS FUM, DoDSER; STARRS-LS for timing). Example pair: Bernecker target ratio 3.0, corpus 3.169 (experiments/analysis/p5h1-functionals.json). Source tables: docs/prism-collected-reports.md.
 :::
 
+## What is an ontology? {.smaller}
+
+[The type system underneath the timeline]{.kicker}
+
+<img class="rlh-img" src="slide-assets/rlh-ontology-graph-excerpt.png" alt="The same sailor as a typed, rule-checked graph" style="max-height:450px">
+
+An ontology defines the kinds of entities a record may contain, the relations among them, and the rules that follow. Underneath the opening timeline sits exactly that: the same sailor as a typed, rule-checked graph, where the severity band and the recommended action are computed from the items and the rung, never written free-hand. The box lists what the ontology forbids by construction, including any diagnosis at all: characterizations describe functioning, never DSM or ICD.
+
+::: {.notes}
+The continuity is the pedagogy: the first two slides showed WHEN things happened to this sailor; this slide shows WHAT those things are and which configurations cannot exist. The next slide's claim ("the ontology defines what a scenario may say") now has content behind it. Node values verbatim from corpus_out_p5h1/scenario_0241.ttl: rung BehaviorAborted, band ModeratelySevere, action EscalateToCommand, follow-up day 257 with the followup_of edge. Non-diagnostic boundary enforced structurally (SHACL gates; functioning, not diagnosis): PRISM ontology-workstream wiki, Non-Diagnostic-Boundary. For Q&A: the forbidden list is verified by planting each violation and watching it rejected, and by removing one rule at a time and confirming exactly its error class returns.
+:::
+
 ## The synthetic approach in one loop {.smaller}
 
 [Ontology bounds it, sampler draws it, reasoner completes it]{.kicker}
 
 :::: {.columns}
 
-::: {.column width="52%"}
+::: {.column width="40%"}
 The ontology defines what a scenario may say and which inferences follow. A sampler draws only the free choices. A reasoner completes everything the pattern entails, and validation is an always-pass contract: zero rejections across every corpus, so the corpus distribution is exactly the sampler's law with no hidden conditioning.
 
 Where the loop shows the vocabulary cannot express something needed, the ontology grows additively, which is why it sits inside the loop rather than beside it.
 :::
 
-::: {.column width="48%"}
-<img class="rlh-img" src="slide-assets/rlh-system-diagram.png" alt="The generation and calibration loop around the ontology">
+::: {.column width="60%"}
+<img class="rlh-img big" src="slide-assets/rlh-system-diagram.png" alt="The generation and calibration loop around the ontology">
 :::
 
 ::::
 
 ::: {.notes}
 Keep short; most of this audience has seen the diagram. The load-bearing phrase is "the corpus law is exactly the sampler's law": it is what makes the calibration argument sound. Zero rejections; delete-a-shape and planted-violation verification. Source: docs/prism-collected-reports.md Part III.
+:::
+
+## How the MPP is used in synthesis: drawing a realization {.smaller}
+
+[Generation is placing governed events in time]{.kicker}
+
+<img class="rlh-img" src="slide-assets/rlh-member-timeline-governed.png" alt="The same sailor, each event annotated with the law that drew it" style="max-height:400px">
+
+Synthesizing a scenario means drawing one realization of the marked point process, event by event, and every draw is governed by a calibrated law, numbered on the record. The parameters are not typed in from the papers; they are solved so the corpus functionals land on the published values, then measured back from the generated records. Unsourced values are declared, labeled assumptions in a register, not silent guesses.
+
+::: {.notes}
+The bridge slide: earlier slides said records ARE marked point processes and the studies speak in its functionals; this shows synthesis as the constructive direction of the same fact. Say aloud: solve-then-measure means the published number is a TARGET the solved parameters must reproduce under measurement, which the next slide verifies corpus-wide. The five governing anchors: MSMR 2025 (stressor categories, prevalences), DoDSER-anchored utilization (routine contacts), Nock 2018 (rung mix) and Na 2018 (item sensitivity and specificity) at presentation, HEDIS FUM (follow-up), Carroll 2014 (repeat level), STARRS-LS kernel (repeat timing). Sources: docs/prism-collected-reports.md calibration sections; derivegen/spec.py constants. Declared placeholders live in assumption register A1 to A23.
 :::
 
 ## Proof it works: recover the studies, and the trap stays empty {.smaller}
@@ -198,13 +226,27 @@ Fits at small sample sizes, carries corpus-derived priors, and outputs risk over
 :::
 
 ::: {.column width="50%"}
-<img class="rlh-img" src="slide-assets/rlh-mmpp-illustration.png" alt="Illustrative MMPP simulation: hidden state and the events it drives">
+<img class="rlh-img" src="slide-assets/rlh-mmpp-inference.png" alt="Three panels: the true hidden state, the events alone, and the posterior recovered by the forward-backward algorithm">
+
+[Computed, not drawn: from the events alone, the forward-backward algorithm recovers the hidden elevated period.]{.rlh-cap}
 :::
 
 ::::
 
 ::: {.notes}
-Keep the math off this slide; the likelihood and generator matrix live in backup A. Illustration parameters (on the figure): event rates 0.01 / 0.06 / 0.35 per day by state. Source: docs/mpp-mmpp-talk/figures.py (simulation, seed 2).
+The figure is computed (forward-backward), not drawn: from the events alone it recovers the hidden elevated period. Two honest details are visible: a brief early excursion that emitted no events is unknowable in principle, and a single isolated event raises the posterior only politely, so the model is calibrated about its own uncertainty. Event rates 0.01 / 0.06 / 0.35 per day by state (figures.py, seed 2). Keep the math off the slide; the likelihood and generator matrix live in backup A.
+:::
+
+## How the hidden-state model is calibrated {.smaller}
+
+[Priors from the corpus, parameters from the records, truth recoverable]{.kicker}
+
+<img class="rlh-img" src="slide-assets/rlh-mmpp-calibration.png" alt="EM estimates converge to the true event rates as records grow from 25 to 200" style="max-height:400px">
+
+Calibration runs in two stages. First, the synthetic corpus hands the model its starting point: the calibrated generator supplies prior values for the state-dependent event rates and the transitions, because the corpus law and the model share the same objects. Second, the parameters are fitted to records by likelihood (the EM algorithm) and update as records accumulate: the figure is that process run for real, sailors simulated from known rates, fitted blind, with the estimates converging onto the truth as the record count grows from 25 to 200.
+
+::: {.notes}
+Two-stage story for sponsors: stage one is why the synthetic work is not a detour (it supplies the priors); stage two is why scarce real data suffices (tens of parameters, exact likelihood). Numbers: true rates 0.01 / 0.06 / 0.35 per day; at n = 200, estimates about 0.0085 / 0.055 / 0.34 across three replicate fits (calibration_experiment.py run log, 2026-09-04). Method note if a reviewer probes: an earlier version fixed the transition matrix and produced rates biased about 35 percent low; estimating transitions jointly (full Baum-Welch) removed the bias (script git history). It is the same discipline applied to the model as to the corpus: a wrong fit caught against known truth, exactly the exam the next slide generalizes.
 :::
 
 ## The exam no one else can give {.smaller}
@@ -235,14 +277,31 @@ The deck's peak claim and the strongest argument that synthetic-first changes wh
 
 [The architecture is a measurement result, not a preference]{.kicker}
 
-Candidates, simplest first. Every candidate takes the same exam on the synthetic corpus: recover the planted structure, hold the null, get the rare groups right, flag the concealers, stay calibrated. Margins declared before any run.
+:::: {.columns}
+
+::: {.column width="52%"}
+The **Markov-modulated point process** is the recommended candidate:
+
+- **Shaped like the problem:** risk is a latent state seen through an imperfect record, and only the MMPP models that blind spot.
+- **Answers leadership's question:** risk over time, aggregable to the unit, not a one-time score.
+- **Works at Navy data sizes:** tens of parameters, an exact likelihood, corpus priors, and principled small-data updates.
+- **Accountable:** states are the C-SSRS ladder, every parameter maps to a published quantity, same non-diagnostic gates.
+
+Falsifiable: every candidate takes the exam at right, where the true states are known. Lose it, lose the recommendation.
+:::
+
+::: {.column width="48%"}
 
 ```{=html}
-<div class="rlh-arch"><div class="rlh-cands"><div class="rlh-cand">Hazard regression<span>auditable baseline</span></div><div class="rlh-cand">Gradient-boosted trees<span>interactions, explainable</span></div><div class="rlh-cand hl">Markov-modulated point process<span>the hidden-state candidate</span></div><div class="rlh-cand">Event-sequence transformer<span>pretrain synthetic, fine-tune real</span></div><div class="rlh-cand">Relational GNN (R-GCN)<span>if unit structure demands it</span></div></div><div class="rlh-arrow">&rarr;</div><div class="rlh-exam">the exam<span>synthetic corpus, known ground truth</span></div><div class="rlh-arrow">&rarr;</div><div class="rlh-win">winner + score<span>per pre-declared margins</span></div></div>
+<div class="rlh-arch"><div class="rlh-cands"><div class="rlh-cand">Hazard regression<span>auditable, but static: no state, no trajectory</span></div><div class="rlh-cand">Gradient-boosted trees<span>interactions, but no time, no small-data update</span></div><div class="rlh-cand hl">Markov-modulated point process<span class="tag">recommended</span><span>latent state, state-driven events, concealment channel</span></div><div class="rlh-cand">Event-sequence transformer<span>needs data we will not have, explains nothing</span></div><div class="rlh-cand">Relational GNN (R-GCN)<span>reads topology, thin in schema-regular records</span></div></div><div class="rlh-arrow">&darr;</div><div class="rlh-exam">the exam<span>synthetic corpus, known ground truth</span></div><div class="rlh-arrow">&darr;</div><div class="rlh-win">winner + score<span>per pre-declared margins</span></div></div>
 ```
 
+:::
+
+::::
+
 ::: {.notes}
-Lands the GCN conversation graciously: it is on the ladder as R-GCN (typed edges make the relational variant the correct form) and takes the same exam as everything else. Exam criteria trace to the corpus validation machinery (TOST margins in derivegen/tost.py; falsifier in derivegen/p5_stage4.py).
+Full reasons for Q&A: (1) shaped like the problem, a latent state through an imperfect record, concealment the channel, no other candidate models the record's blind spot; (2) answers what leadership asked, risk over time and time-in-elevated-state across a deployment, aggregable to the unit, per the stakeholder interviews; (3) works at the data sizes the Navy will provide, tens of parameters, exact likelihood, corpus-supplied priors, principled updating from a handful of real records; (4) accountable, states are the C-SSRS ladder clinicians use, parameters map to named published quantities, same non-diagnostic gates. Rivals in one line: hazard regression auditable but static; boosted trees no time and no principled small-data update; sequence transformer needs data volumes we will not have and explains nothing; relational GNN reads topology, thin in schema-regular records (typed edges make R-GCN the correct relational form). Sources: concealment and observation kernel (compendium Part IV), stakeholder unit-and-climate guidance (Stakeholder-Interviews wiki), corpus-derived priors (derivegen/spec.py), state-recovery precedent (answer-key probe, 8 of 9 coefficients, corpus_out_u1/answer-key.json); exam margins TOST (derivegen/tost.py), falsifier (derivegen/p5_stage4.py).
 :::
 
 ## Backup slides {.center}
