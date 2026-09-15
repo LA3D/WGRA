@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Sweet">
-<meta name="dcterms.date" content="2026-07-21">
-<meta name="description" content="The template hands you an empty wiki. What goes in first decides whether it is useful. A concrete recipe, worked on a real chemistry codebase: ingest what already exists, let the runs deposit the rest, and the payoff arrives when the next person does.">
+<meta name="dcterms.date" content="2026-05-29">
+<meta name="description" content="Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.">
 
-<title>Standing up a research wiki – WGRA Nuggets</title>
+<title>Our recipe: the pattern made concrete – WGRA Nuggets</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -139,11 +139,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#ingest-what-already-exists-in-this-order" id="toc-ingest-what-already-exists-in-this-order" class="nav-link active" data-scroll-target="#ingest-what-already-exists-in-this-order">Ingest what already exists, in this order</a></li>
-  <li><a href="#keep-the-capture-honest" id="toc-keep-the-capture-honest" class="nav-link" data-scroll-target="#keep-the-capture-honest">Keep the capture honest</a></li>
-  <li><a href="#what-a-freshly-stood-up-research-wiki-looks-like" id="toc-what-a-freshly-stood-up-research-wiki-looks-like" class="nav-link" data-scroll-target="#what-a-freshly-stood-up-research-wiki-looks-like">What a freshly stood-up research wiki looks like</a></li>
-  <li><a href="#the-payoff-is-the-next-person" id="toc-the-payoff-is-the-next-person" class="nav-link" data-scroll-target="#the-payoff-is-the-next-person">The payoff is the next person</a></li>
-  <li><a href="#related" id="toc-related" class="nav-link" data-scroll-target="#related">Related</a></li>
+  <li><a href="#related" id="toc-related" class="nav-link active" data-scroll-target="#related">Related</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -153,15 +149,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Standing up a research wiki</h1>
+<h1 class="title">Our recipe: the pattern made concrete</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">practice</div>
+    <div class="quarto-category">foundations</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    The template hands you an empty wiki. What goes in first decides whether it is useful. A concrete recipe, worked on a real chemistry codebase: ingest what already exists, let the runs deposit the rest, and the payoff arrives when the next person does.
+    Karpathy’s note is deliberately ‘the idea, not a specific implementation.’ The llm-wiki-memory-template is the implementation: the schema, the graph pipeline, the discipline gates, the operations, and the multi-writer protocol, all decided and shipped.
   </div>
 </div>
 
@@ -178,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 21, 2026</p>
+      <p class="date">May 29, 2026</p>
     </div>
   </div>
   
@@ -190,68 +186,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>The empty wiki is the easy part.</strong> Forking the template, cloning, running the init script: that is a few minutes of mechanics. The real question is what you put in the wiki first, because a research wiki is only worth maintaining if it starts out denser than a blank page and gets denser from there. This post is a concrete recipe for the <em>content</em> setup, worked end to end on a real project: <strong>YARP</strong>, an automated reaction-prediction package from a computational chemistry group (the Savoie group), which an agent was tasked to drive on a university cluster in place of a graduate student.</p>
-<p>The short version: do not start by writing pages from scratch. Ingest what the project already has, then let real work deposit the rest.</p>
-<section id="ingest-what-already-exists-in-this-order" class="level2">
-<h2 class="anchored" data-anchor-id="ingest-what-already-exists-in-this-order">Ingest what already exists, in this order</h2>
-<section id="auto-generate-the-code-docs-then-ingest-a-synthesis-of-them" class="level3">
-<h3 class="anchored" data-anchor-id="auto-generate-the-code-docs-then-ingest-a-synthesis-of-them">1. Auto-generate the code docs, then ingest a synthesis of them</h3>
-<p>Most research codebases can already produce API documentation. YARP builds Sphinx docs with AutoAPI, and AutoAPI parses the source <em>statically</em>, so the docs build ran in a minimal environment without YARP’s heavy runtime dependencies. That gave architecture pages for free on day one. Two things made this worth doing beyond speed:</p>
-<ul>
-<li>The wiki got a hand-written <em>synthesis</em> of the docs (an overview page, a package-architecture page), not a dump of the 95 generated HTML pages. A wiki is compiled understanding, not a mirror.</li>
-<li>A clean docs build immediately surfaced the repo’s own defects: a version string that disagreed with the package version, a stale table of contents, dangling references. Standing up the wiki audited the code as a side effect.</li>
-</ul>
-</section>
-<section id="ingest-the-groups-papers-as-source-summaries-with-lineage" class="level3">
-<h3 class="anchored" data-anchor-id="ingest-the-groups-papers-as-source-summaries-with-lineage">2. Ingest the group’s papers as source summaries, with lineage</h3>
-<p>A research group’s published papers are its densest existing knowledge. YARP’s eight core papers each became one source-summary page: contribution, method, key results <em>as stated in the paper</em>, relevance to the codebase, and one short quote with a page number. DOIs were verified rather than trusted, and the papers were wired to each other with typed lineage edges (the v2 paper <code>extends:</code> the original, later application papers extend v2). The literature became the wiki’s foundation layer, not a reading list stapled to the side.</p>
-</section>
-<section id="correlate-the-papers-to-the-code" class="level3">
-<h3 class="anchored" data-anchor-id="correlate-the-papers-to-the-code">3. Correlate the papers to the code</h3>
-<p>This is the step most people skip, and it turned out to be the highest-value artifact of the whole setup. A single page mapped each paper to the module or model it actually underpins, and the finding was sharper than expected: <strong>several of the papers <em>are</em> the code</strong>. A machine-learning barrier model from one paper is the thing a specific module loads and runs; a conformational-sampling model from another ships as a serialized scikit-learn object, which means that paper silently dictates which library versions the cluster environment has to pin. Once that table exists, the literature stops being background and becomes a map of the codebase, and a dependency you would otherwise debug the hard way is written down.</p>
-</section>
-<section id="get-the-domain-expert-to-add-the-tutorial-and-the-roadmap" class="level3">
-<h3 class="anchored" data-anchor-id="get-the-domain-expert-to-add-the-tutorial-and-the-roadmap">4. Get the domain expert to add the tutorial and the roadmap</h3>
-<p>Auto-docs and papers give you knowledge and structure. They do not give you <em>experience</em>: how the software is actually meant to be used, what the near-term goals are, which test cases matter. On YARP that came from the group’s postdoc, who contributed a v3 tutorial draft and a short list of proposed test cases. Ingested honestly (the tutorial was flagged as an early skeleton, editorial notes and all), it seeded the terminology the rest of the wiki would use and the roadmap the experiments would follow. The expert does not have to write wiki pages; they have to hand over the material, and the agent turns it into pages.</p>
-</section>
-<section id="let-real-runs-deposit-the-operational-knowledge" class="level3">
-<h3 class="anchored" data-anchor-id="let-real-runs-deposit-the-operational-knowledge">5. Let real runs deposit the operational knowledge</h3>
-<p>Everything above is ingest. The other half of a research wiki is the hard-won operational knowledge that exists nowhere until someone hits the wall, and this is where an agent driving real jobs pays for itself. Running YARP on the cluster produced the two highest-reuse pages in the wiki, and neither could have been written in advance:</p>
-<ul>
-<li><strong>Storage.</strong> The working directory belongs on the fast flash tier, never on the NFS home. On metadata-heavy work (walking thousands of output files) the flash tier ran roughly <strong>eight times faster</strong>, about 340 ms versus 2,800 ms to walk 3,000 files, and it eliminated the process stalls that the NFS path caused. That single fact is now rule number one in the first-time guide.</li>
-<li><strong>Access.</strong> One authenticated login (password plus two-factor) opens a persistent connection that automated calls reuse for a day, so the agent drives the cluster over a single hop and every job survives the laptop going to sleep. The pattern is written down once so no one derives it again.</li>
-</ul>
-<p>The retrospective page names the shape of cluster bring-up honestly: a whack-a-mole where each layer (connection, then storage, then containers, then scheduler, then config, then the science) hides the next problem until the previous one clears. It even keeps a blame table, and the honest verdict was that the large majority of failures were environmental and first-time inexperience, not the software being broken. Writing that down is what stops the next person from re-suffering it.</p>
-</section>
-</section>
-<section id="keep-the-capture-honest" class="level2">
-<h2 class="anchored" data-anchor-id="keep-the-capture-honest">Keep the capture honest</h2>
-<p>The setup only compounds if what goes in is true. On YARP that discipline shows up as a claim that was <strong>retracted</strong> after a code read contradicted it, a latent bug that was <strong>flagged rather than silently fixed</strong>, and a paper PDF that was <strong>marked as a single-page abstract capture</strong> rather than presented as the full text. A wiki that quietly rounds things up is worse than no wiki, because a colleague’s agent will build on the rounding.</p>
-</section>
-<section id="what-a-freshly-stood-up-research-wiki-looks-like" class="level2">
-<h2 class="anchored" data-anchor-id="what-a-freshly-stood-up-research-wiki-looks-like">What a freshly stood-up research wiki looks like</h2>
-<p>After a couple of weeks, the YARP wiki settled into a balance that seems typical: roughly <strong>one-third literature</strong> (papers, the tutorial, a couple of concept break-outs), <strong>one-third operational and infrastructure</strong> (storage, access, config traps, run-monitoring, a first-time guide), and <strong>one-third project work-product</strong> (the experiment result pages and the project’s objective). Literature is the largest single ingest and forms the floor; the operational pages accrete from real runs and become the most-reused content.</p>
-</section>
-<section id="the-payoff-is-the-next-person" class="level2">
-<h2 class="anchored" data-anchor-id="the-payoff-is-the-next-person">The payoff is the next person</h2>
-<p>The point of all this is not tidiness. It showed up the moment a new team member joined: she was handed a one-page onboarding guide generated from the wiki, and her own agent could come up to speed on the cluster access, the storage rule, and the config traps without re-deriving any of it. The wiki’s value is realized at onboarding, human or AI. “Do not relearn the bring-up, it is filed” is the whole return on the setup work.</p>
-<p>So the recipe, compressed: <strong>ingest what exists (docs, papers, and the coupling between them), have the expert hand over the tutorial and the roadmap, let real runs deposit the operational knowledge, and keep every entry honest.</strong> The empty wiki takes minutes. The useful one takes a first real project, and pays for itself on the second.</p>
-</section>
+<p>Karpathy’s note is deliberately abstract. It says so outright: <em>“This document is intentionally abstract. It describes the idea, not a specific implementation… share it with your LLM agent and work together to instantiate a version that fits your needs.”</em> That is the gap our recipe fills. Every group that starts from the raw idea re-derives the same directory layout, conventions, and tooling. The <a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template</a> makes those decisions once, so you fork it and start filing sources on day one instead of co-designing a wiki first. Here is what it actually pins down.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="architecture-diagram.png" class="img-fluid figure-img"></p>
+<figcaption>The architecture: the non-proprietary template instantiates your agent (you plus an LLM, with tools, gates, and hooks) and its llm-wiki memory (an RDF and SPARQL graph), and both tether to a shared data fabric. Marketplaces and connectors feed up into the fabric, connectors reach out to external data such as PAD, and the federation makes the memory reachable by peers and shared bundles, read through an MCP server by hosts like Claude Desktop and Cursor.</figcaption>
+</figure>
+</div>
+<p><strong>A schema, not a suggestion.</strong> A <code>SCHEMA_&lt;repo&gt;.md</code> file is the authoritative conventions the agent follows: the page <code>type:</code> vocabulary, the required frontmatter (<code>type:</code>, <code>up:</code>), the typed-edge set (<code>extends:</code>, <code>supports:</code>, <code>criticizes:</code>, <code>requires:</code>, <code>related:</code>), naming and cross-reference rules, and the special files, <code>index_&lt;repo&gt;.md</code> (the catalog of every page), <code>log_&lt;repo&gt;.md</code> (an append-only chronological record), and <code>Home_&lt;repo&gt;.md</code>. Karpathy leaves all of this to you; the template ships it and keeps it consistent.</p>
+<p><strong>Instance and wiki are separated.</strong> The project repo (the <em>instance</em>, where tools install) is distinct from the <em>wiki</em> itself, a nested, separately git-versioned directory that carries a subtype and is what gets published as a bundle. Tools install into the instance; subtype and sharing are properties of the wiki.</p>
+<p><strong>A reified knowledge graph, built in.</strong> A pipeline under <code>scripts/kg/</code> extracts the frontmatter and body links into RDF, validates them with SHACL against the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab</a> ontology, and produces a SPARQL-queryable <code>graph.ttl</code> with a shipped library of canned queries. One command (<code>build-graph.sh</code>) rebuilds it after edits.</p>
+<p><strong>Discipline in the artifact.</strong> A <strong>verification gate</strong> blocks the agent from filing numerical results that are not backed by real script output. Named <strong>discipline gates</strong> pair each common rationalization (“this is basically what the data would show”) with the check that defeats it. A <strong>SessionStart hook</strong> reminds every new agent session, before it does anything, that the wiki is project memory. These are hooks and commands the harness runs, not habits a user has to remember.</p>
+<p><strong>Four operations as single commands.</strong> Ingest a source, query the wiki, lint for staleness, and verify a change before commit, each is one command the agent reaches for when the context calls for it. Karpathy describes these as workflows you develop yourself; the template makes them concrete and repeatable.</p>
+<p><strong>Multi-writer collision handling.</strong> A push protocol (<code>wiki_push</code>) pushes optimistically, and on a collision it fetches, union-merges the index and log automatically, routes genuine content conflicts to an LLM-assisted resolver, and retries, so two collaborators writing at once both land and neither overwrites the other. Every entry carries a <code>by: &lt;human&gt; via &lt;agent&gt;</code> attribution line, and git keeps the full amendment history.</p>
+<p><strong>Model-neutral overlays.</strong> Claude Code, Cursor, and whatever comes next each read the same wiki through their own commands and skills while sharing the policy files, gates, and schema. Swapping the model is a new overlay, not a migration; the wiki is the durable part, the model is disposable.</p>
+<p>Karpathy gives you the idea and says “your LLM can figure out the rest.” The recipe is the rest, figured out once, tested, and forkable. It is a template, not a platform: you own it, and you take your memory with you.</p>
 <section id="related" class="level2">
 <h2 class="anchored" data-anchor-id="related">Related</h2>
 <ul>
-<li><a href="../talking-to-a-research-agent/">How to talk to a research agent</a>, the researcher’s side of driving the work that fills the wiki.</li>
-<li><a href="../our-collaborative-recipe/">Our recipe: the pattern made concrete</a>, the template and conventions the pages sit in.</li>
-<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the shared-memory idea underneath.</li>
-<li><a href="../knowledge-bundles/">Knowledge bundles</a>, what a stood-up wiki becomes when it is packaged for others.</li>
+<li><a href="../karpathy-llm-wiki/">Karpathy’s llm-wiki</a>, the abstract idea this implements.</li>
+<li><a href="../wiki-front-matter/">Wiki front matter</a> and <a href="../knowledge-graphs/">the knowledge graph</a>, two of the things the schema pins down.</li>
+<li><a href="../agent-federation/">Agent federation</a>, how one group’s wiki reaches another’s.</li>
 </ul>
 </section>
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <ul>
-<li><a href="https://doi.org/10.1038/s43588-021-00101-3">Zhao and Savoie, “Simultaneously improving reaction coverage and computational cost in automated reaction prediction” (Nat. Comput. Sci. 2021)</a>, the original YARP paper, one of the eight ingested here.</li>
-<li><a href="https://sphinx-autoapi.readthedocs.io/">Sphinx AutoAPI</a>, the static-analysis doc generator that made step 1 cheap.</li>
-<li><a href="https://docs.crc.nd.edu/">Notre Dame Center for Research Computing docs</a>, the cluster documentation the operational pages were built against and, in places, corrected.</li>
+<li><a href="https://github.com/crcresearch/llm-wiki-memory-template">llm-wiki-memory-template (GitHub)</a>, the implementation described here.</li>
+<li><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Andrej Karpathy, “llm-wiki” (gist)</a>, the abstract idea it instantiates.</li>
+<li><a href="https://doi.org/10.5281/zenodo.21213175">Beyond Memory (Saboia Moreira et al., 2026, Zenodo)</a> and the <a href="https://la3d.github.io/llm-wiki-colab/">la3d/llm-wiki-colab ontology</a>.</li>
 </ul>
 
 
