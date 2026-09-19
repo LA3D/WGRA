@@ -677,56 +677,90 @@ James Sweet
 </section>
 <section id="does-the-memory-actually-work" class="slide level2 smaller">
 <h2>Does the memory actually work?</h2>
-<p><span class="kicker">A first controlled measurement, on a real research project</span></p>
-<p>Forty questions on one real project. Reading the llm-wiki answered <strong>90% correctly and fabricated nothing</strong>, roughly double RAG’s 42% (10 fabrications); the model with no context scored 2%.</p>
+<p><span class="kicker">Two measurements: head to head, and at scale</span></p>
+<p>Forty questions on one real project: reading the llm-wiki answered <strong>90% correctly and fabricated nothing</strong>, roughly double RAG’s 42% (10 fabrications); no-context scored 2%. And accuracy holds as the wiki grows to thousands of pages.</p>
 <div class="columns">
-<div class="column" style="width:55%;">
+<div class="column" style="width:46%;">
+<p><strong>Head to head</strong> (n=40, one project, blind judge)</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
 <th>Approach</th>
 <th>Correct</th>
-<th>Overall (0-3)</th>
-<th>Fabricated</th>
+<th>Overall</th>
+<th>Fabr.</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Model alone, no context</td>
+<td>Model alone</td>
 <td>2%</td>
 <td>0.10</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td>Plain RAG over the sources</td>
+<td>Plain RAG</td>
 <td>42%</td>
 <td>1.32</td>
 <td>10</td>
 </tr>
 <tr class="odd">
-<td><strong>llm-wiki read path</strong></td>
+<td><strong>llm-wiki</strong></td>
 <td><strong>90%</strong></td>
 <td><strong>2.65</strong></td>
 <td><strong>0</strong></td>
 </tr>
 </tbody>
 </table>
-</div><div class="column rag-stats" style="width:45%;">
-<div class="stat-big">
-90%
-</div>
-<div class="stat-caption">
-correct, versus 42% for RAG. Roughly double.
-</div>
-<div class="stat-big">
-0
-</div>
-<div class="stat-caption">
-fabricated, versus 10 for RAG.
-</div>
+</div><div class="column" style="width:54%;">
+<p><strong>At scale</strong> (500 to 4,000 real pages, Sonnet 5)</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">pages</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">reads</th>
+<th style="text-align: right;">greps</th>
+<th style="text-align: right;">index</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">90 KB</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1,077</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">199 KB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2,028</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">384 KB</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4,013</td>
+<td style="text-align: right;">98%</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">778 KB</td>
+</tr>
+</tbody>
+</table>
 </div></div>
+<div class="callout-highlight">
+<p>Recall stays near-perfect across 8x growth, and per-query cost stays flat, because the agent greps the index rather than reading it whole (retrieval is O(1) in corpus size).</p>
+</div>
 <aside class="notes">
-<p>Source: the WGRA post “llm-wiki vs RAG” and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG’s 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. This slide follows the honesty mechanism; the zero fabrications is the visible payoff of that discipline. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.</p>
+<p>Head-to-head source: the WGRA post “llm-wiki vs RAG” and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge; 90% vs RAG’s 42%, a perfect 3.00 on method/judgment questions, zero fabrications; model-alone 2% shows the wiki adds the value. Scaling source: <code>llm-wiki-test-harness/docs/scaling-report.md</code> (Chris Sweet, 2026-09-08), real Sonnet 5 query runs (not projections) over 500 to 4,013 real arXiv pages around a 12-paper gold set; current one-line index; recall by gold-keyword match on specific-fact questions. Headline: recall flat (100% to 98%) and per-query cost bounded (3-6 reads, 5-7 greps) across 8x growth because the agent greps the index. The two panels are DIFFERENT experiments (blind-judge QA vs retrieval-recall) and are labeled as such; do not merge the numbers.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

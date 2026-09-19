@@ -463,31 +463,41 @@ Corrected against Codex for accuracy on both harnesses: these are agent-followed
 
 ## Does the memory actually work? {.smaller}
 
-[A first controlled measurement, on a real research project]{.kicker}
+[Two measurements: head to head, and at scale]{.kicker}
 
-Forty questions on one real project. Reading the llm-wiki answered **90% correctly and fabricated nothing**, roughly double RAG's 42% (10 fabrications); the model with no context scored 2%.
+Forty questions on one real project: reading the llm-wiki answered **90% correctly and fabricated nothing**, roughly double RAG's 42% (10 fabrications); no-context scored 2%. And accuracy holds as the wiki grows to thousands of pages.
 
 :::: {.columns}
 
-::: {.column width="55%"}
-| Approach | Correct | Overall (0-3) | Fabricated |
+::: {.column width="46%"}
+**Head to head** (n=40, one project, blind judge)
+
+| Approach | Correct | Overall | Fabr. |
 |---|---|---|---|
-| Model alone, no context | 2% | 0.10 | 2 |
-| Plain RAG over the sources | 42% | 1.32 | 10 |
-| **llm-wiki read path** | **90%** | **2.65** | **0** |
+| Model alone | 2% | 0.10 | 2 |
+| Plain RAG | 42% | 1.32 | 10 |
+| **llm-wiki** | **90%** | **2.65** | **0** |
 :::
 
-::: {.column width="45%" .rag-stats}
-<div class="stat-big">90%</div>
-<div class="stat-caption">correct, versus 42% for RAG. Roughly double.</div>
-<div class="stat-big">0</div>
-<div class="stat-caption">fabricated, versus 10 for RAG.</div>
+::: {.column width="54%"}
+**At scale** (500 to 4,000 real pages, Sonnet 5)
+
+| pages | recall | reads | greps | index |
+|---:|---:|---:|---:|---:|
+| 500 | 100% | 5 | 5 | 90 KB |
+| 1,077 | 100% | 5 | 7 | 199 KB |
+| 2,028 | 100% | 3 | 5 | 384 KB |
+| 4,013 | 98% | 4 | 6 | 778 KB |
 :::
 
 ::::
 
+::: {.callout-highlight}
+Recall stays near-perfect across 8x growth, and per-query cost stays flat, because the agent greps the index rather than reading it whole (retrieval is O(1) in corpus size).
+:::
+
 ::: {.notes}
-Source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG's 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. This slide follows the honesty mechanism; the zero fabrications is the visible payoff of that discipline. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.
+Head-to-head source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge; 90% vs RAG's 42%, a perfect 3.00 on method/judgment questions, zero fabrications; model-alone 2% shows the wiki adds the value. Scaling source: `llm-wiki-test-harness/docs/scaling-report.md` (Chris Sweet, 2026-09-08), real Sonnet 5 query runs (not projections) over 500 to 4,013 real arXiv pages around a 12-paper gold set; current one-line index; recall by gold-keyword match on specific-fact questions. Headline: recall flat (100% to 98%) and per-query cost bounded (3-6 reads, 5-7 greps) across 8x growth because the agent greps the index. The two panels are DIFFERENT experiments (blind-judge QA vs retrieval-recall) and are labeled as such; do not merge the numbers.
 :::
 
 
