@@ -424,6 +424,25 @@ Write once, recall forever. The next session builds on the page instead of re-de
 Real recall run: the codex-llm-wiki-test session was asked "what did our chignolin run find, and why is the confidence what it is?", constrained to its `.llm-wiki` pages. It answered from Chignolin-AlphaFold-Prediction and AlphaFold-Limitations-and-Inference (pLDDT 93.4, pTM 0.06, max PAE 5.35 Angstrom; confident local geometry, poor global fold from the single-sequence MSA; static prediction, not dynamics) and confirmed it did not reopen the PDF or rerun. This is the read half of the read-write loop the deck opened with; the answer text is Codex's own, verbatim (wrapped only for width).
 :::
 
+## The wiki is git: commit, pull, push {.smaller}
+
+[Say it in plain language; the agent runs the git]{.kicker}
+
+The wiki is its own git repo, so every page is versioned, diffable, and reversible.
+
+- **Commits happen automatically.** After each ingest or experiment the agent commits to `.llm-wiki/`, no need to ask; local commits are cheap and reversible.
+- **Sync in plain language.** Say *"pull the wiki repo"* or *"push the wiki repo"* and the agent runs the git for you, no commands to remember.
+- **Pushing is collision-safe.** A push-with-retry protocol lets several people or agents push the same wiki without clobbering each other: append-only **index** and **log** files union-merge automatically, and a rare page conflict is left with markers for the agent to resolve on its next turn.
+- **The main repo too.** Your project's code repo (code, data, artifacts) is also git: commit, pull, and push it with the same plain-language commands.
+
+::: {.callout-highlight}
+"Push the wiki repo" lands it on GitHub, versioned and audit-ready, even when the team is writing at once.
+:::
+
+::: {.notes}
+Plugin guidance: every wiki edit ends with a local commit in `.llm-wiki/` (run without asking; reversible), and push only when the user asks; the user just says "pull/push the wiki repo" and the agent runs the git. The collision-safe push is the ecosystem's Wiki Write Protocol: the `wiki_push` wrapper (scripts/wiki-write-protocol/protocol.sh), optimistic push-with-retry, CI-validated on 9 scenarios; `index_*`/`log_*` merge via `.gitattributes` `merge=union` so concurrent appends never conflict; content conflicts leave markers for the agent's next turn (the `llm_resolve` no-op defers to the agent). Accuracy note: this wrapper lives in the project/template tooling (`wiki/agents/wiki-write-protocol.md` + `scripts/wiki-write-protocol/`), not verified in the base llm-wiki plugin 0.4.0, so it is described here as the ecosystem's write protocol, not a base-plugin feature.
+:::
+
 ## More skills: maintain, share, consult {.smaller}
 
 [Beyond building the wiki]{.kicker}

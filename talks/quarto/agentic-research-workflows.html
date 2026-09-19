@@ -703,6 +703,33 @@ James Sweet
           display:block!important;
       }</style></aside>
 </section>
+<section id="the-wiki-is-git-commit-pull-push" class="slide level2 smaller">
+<h2>The wiki is git: commit, pull, push</h2>
+<p><span class="kicker">Say it in plain language; the agent runs the git</span></p>
+<p>The wiki is its own git repo, so every page is versioned, diffable, and reversible.</p>
+<ul>
+<li><strong>Commits happen automatically.</strong> After each ingest or experiment the agent commits to <code>.llm-wiki/</code>, no need to ask; local commits are cheap and reversible.</li>
+<li><strong>Sync in plain language.</strong> Say <em>“pull the wiki repo”</em> or <em>“push the wiki repo”</em> and the agent runs the git for you, no commands to remember.</li>
+<li><strong>Pushing is collision-safe.</strong> A push-with-retry protocol lets several people or agents push the same wiki without clobbering each other: append-only <strong>index</strong> and <strong>log</strong> files union-merge automatically, and a rare page conflict is left with markers for the agent to resolve on its next turn.</li>
+<li><strong>The main repo too.</strong> Your project’s code repo (code, data, artifacts) is also git: commit, pull, and push it with the same plain-language commands.</li>
+</ul>
+<div class="callout-highlight">
+<p>“Push the wiki repo” lands it on GitHub, versioned and audit-ready, even when the team is writing at once.</p>
+</div>
+<aside class="notes">
+<p>Plugin guidance: every wiki edit ends with a local commit in <code>.llm-wiki/</code> (run without asking; reversible), and push only when the user asks; the user just says “pull/push the wiki repo” and the agent runs the git. The collision-safe push is the ecosystem’s Wiki Write Protocol: the <code>wiki_push</code> wrapper (scripts/wiki-write-protocol/protocol.sh), optimistic push-with-retry, CI-validated on 9 scenarios; <code>index_*</code>/<code>log_*</code> merge via <code>.gitattributes</code> <code>merge=union</code> so concurrent appends never conflict; content conflicts leave markers for the agent’s next turn (the <code>llm_resolve</code> no-op defers to the agent). Accuracy note: this wrapper lives in the project/template tooling (<code>wiki/agents/wiki-write-protocol.md</code> + <code>scripts/wiki-write-protocol/</code>), not verified in the base llm-wiki plugin 0.4.0, so it is described here as the ecosystem’s write protocol, not a base-plugin feature.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="more-skills-maintain-share-consult" class="slide level2 smaller">
 <h2>More skills: maintain, share, consult</h2>
 <p><span class="kicker">Beyond building the wiki</span></p>
