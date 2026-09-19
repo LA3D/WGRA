@@ -6,7 +6,8 @@ author:
   - name: "Charles Vardeman"
   - name: "Priscila Moreira"
   - name: "James Sweet"
-date: "Fall 2026"
+date: "2026-09-21"
+date-format: "MMMM D, YYYY"
 format:
   revealjs:
     theme: [default, custom.scss]
