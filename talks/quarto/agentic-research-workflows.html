@@ -615,14 +615,69 @@ James Sweet
           display:block!important;
       }</style></aside>
 </section>
+<section id="more-skills-maintain-share-consult" class="slide level2 smaller">
+<h2>More skills: maintain, share, consult</h2>
+<p><span class="kicker">Beyond building the wiki</span></p>
+<p>Building the wiki is the start. Three more skills keep it healthy and connect it to other projects:</p>
+<ul>
+<li><strong><code>wiki-lint</code></strong> — a health check over the wiki: finds orphan pages, dead links, stale claims, missing frontmatter, and one-way cross-references, then offers fixes. Keeps the compounding memory honest as it grows.</li>
+<li><strong><code>wiki-enroll</code></strong> — publishes an agent Card and a discovery topic so this wiki becomes findable by peer llm-wiki agents in the federation.</li>
+<li><strong><code>wiki-ask</code></strong> — consults another project’s wiki via the <em>ask</em> primitive: it clones that agent’s wiki and queries it, so you draw on another project’s durable memory without leaving your session.</li>
+</ul>
+<div class="callout-highlight">
+<p>One wiki you maintain (lint), publish (enroll), and query across (ask): durable memory that compounds and connects.</p>
+</div>
+<aside class="notes">
+<p>These round out the toolkit. wiki-lint is the periodic health pass (orphans, dead links, stale claims, missing back-references, run every several sessions or after a big ingest). wiki-enroll makes the repo discoverable in the LA3D federation by writing a Card and adding the nd-llm-wiki topic. wiki-ask is the federation consumer: clone-and-invoke another agent’s wiki to answer a question from its memory, direct mode (name the agent) or discovery mode (pick from candidates). Not covered here: message/post async modes are not part of ask.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="turning-results-into-knowledge" class="slide level2 smaller">
+<h2>Turning results into knowledge</h2>
+<p><span class="kicker">The discipline, made concrete</span></p>
+<style>
+.reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
+.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.86em; margin-bottom:0.25em; }
+.reveal .ctl-box span { color:#cdd6e0; font-size:0.74em; line-height:1.32; }
+.reveal .ed-flow { display:flex; align-items:stretch; gap:0.3em; margin:0.5em 0 0.35em; }
+.reveal .ed-flow .step { flex:1; background:#f4f1ea; border:1px solid #d8cfb6; border-top:3px solid #b8860b; border-radius:6px; padding:0.4em 0.5em; font-size:0.74em; line-height:1.3; text-align:left; }
+.reveal .ed-flow .step b { display:block; color:#14213d; font-size:1.05em; margin-bottom:0.15em; }
+.reveal .ed-flow .step span { color:#5a4a4a; }
+.reveal .ed-flow .arrow { align-self:center; color:#b8860b; font-weight:800; font-size:1em; }
+.reveal .ctl-row { display:flex; gap:0.4em; align-items:stretch; margin-top:0.35em; }
+.reveal .ctl-row .ctl-box { flex:1; height:auto; }
+</style>
+<p>Trustworthy results are not automatic enforcement; they come from encoded discipline the agent follows, plus reminders, run by the harness:</p>
+<div class="ctl-row"><div class="ctl-box"><strong>1 · Real-output guidance</strong><span>use real outputs; scope every number to its corpus; report failures truthfully</span></div><div class="ctl-box"><strong>2 · Verification gate</strong><span>before committing, the agent re-reads each page against a checklist and fixes failures</span></div><div class="ctl-box"><strong>3 · Discipline gates</strong><span>a named list of always-wrong shortcuts the agent must reject</span></div><div class="ctl-box"><strong>4 · Advisory hooks</strong><span>session-start and post-edit hooks inject context and reminders; the gate does the content check</span></div></div>
+<p><strong>How it runs, one loop:</strong></p>
+<div class="ed-flow"><div class="step"><b>1 · Session start</b><span>a hook loads the guidance + the wiki's index and recent log into the agent</span></div><div class="arrow">→</div><div class="step"><b>2 · Work</b><span>skills carry the read and write procedures for pages</span></div><div class="arrow">→</div><div class="step"><b>3 · After an edit</b><span>a hook reminds; the agent runs the gate and fixes failures</span></div><div class="arrow">→</div><div class="step"><b>4 · Commit</b><span>to git; plain Markdown, so every step is auditable</span></div></div>
+<p><em>A chat app runs none of this loop, which is why we build in Codex and Claude Code.</em></p>
+<aside class="notes">
+<p>Corrected against Codex for accuracy on both harnesses: these are agent-followed discipline plus advisory reminders, not automated blocking. Box 1 guidance lives in the plugin (<code>core/templates/guidance.md</code>, <code>core/agents/discipline-gates.md</code>, skill instructions), injected at session start. Box 2 verification gate is an agent-run pre-commit checklist (<code>core/agents/verification-gate.md</code>): re-read each page, apply the criteria, fix, then commit, not an automatic blocker. Box 3 discipline-gates names the “Universal Rationalizations (Always Wrong)”. Box 4: the PostToolUse hook is advisory and exits 0, it does not inspect content or block writes, it only reminds the agent to run the gate; headless <code>codex exec</code> runs no hooks and is a separate mode. This slide is the payoff of the epistemic-discipline setup on “What epistemic discipline is”, and it precedes the measurement so the zero fabrications arrives already explained.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="does-the-memory-actually-work" class="slide level2 smaller">
 <h2>Does the memory actually work?</h2>
 <p><span class="kicker">A first controlled measurement, on a real research project</span></p>
-<style>
-.reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
-.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.72em; margin-bottom:0.25em; }
-.reveal .ctl-box span { color:#cdd6e0; font-size:0.62em; line-height:1.32; }
-</style>
 <p>Forty questions on one real project. Reading the llm-wiki answered <strong>90% correctly and fabricated nothing</strong>, roughly double RAG’s 42% (10 fabrications); the model with no context scored 2%.</p>
 <div class="columns">
 <div class="column" style="width:55%;">
@@ -670,28 +725,8 @@ correct, versus 42% for RAG. Roughly double.
 fabricated, versus 10 for RAG.
 </div>
 </div></div>
-<p><strong>The zero is by design, a layered control stack that keeps every claim honest:</strong></p>
-<div class="columns">
-<div class="column" style="width:25%;">
-<div class="ctl-box">
-<strong>1 · Honest-reporting rules</strong><span>real outputs only; tag every number’s corpus; file failures truthfully</span>
-</div>
-</div><div class="column" style="width:25%;">
-<div class="ctl-box">
-<strong>2 · Verification gate</strong><span>blocks unsupported claims and untagged numbers before a commit</span>
-</div>
-</div><div class="column" style="width:25%;">
-<div class="ctl-box">
-<strong>3 · Discipline gates</strong><span>name the always-wrong shortcuts so the agent self-catches</span>
-</div>
-</div><div class="column" style="width:25%;">
-<div class="ctl-box">
-<strong>4 · Blocking hooks</strong><span>fire the checks and can halt a bad write, exit-code enforced</span>
-</div>
-</div></div>
-<p><em>Gates and hooks need an agentic harness that can run them, which is why we build in Claude Code and Codex, not the Claude or ChatGPT chat apps. Plain Markdown keeps every claim auditable.</em></p>
 <aside class="notes">
-<p>Source: the WGRA post “llm-wiki vs RAG” and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG’s 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.</p>
+<p>Source: the WGRA post “llm-wiki vs RAG” and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG’s 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. This slide follows the honesty mechanism; the zero fabrications is the visible payoff of that discipline. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

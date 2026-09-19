@@ -406,17 +406,64 @@ End of demo. The run, its numbers, and its images are now one linked, queryable 
 The before/after image is an AI-generated illustration: asked to "generate a pre and post image for the molecule," Codex used its image-generation tool to make a side-by-side unfolded/folded depiction of chignolin (beta-hairpin), saved to experiments/chignolin-prediction/chignolin-before-after.png. It is explicitly not a measured folding trajectory, an MD result, or a rendering of the AlphaFold PDB.
 :::
 
-## Does the memory actually work? {.smaller}
+## More skills: maintain, share, consult {.smaller}
 
-[A first controlled measurement, on a real research project]{.kicker}
+[Beyond building the wiki]{.kicker}
+
+Building the wiki is the start. Three more skills keep it healthy and connect it to other projects:
+
+- **`wiki-lint`** — a health check over the wiki: finds orphan pages, dead links, stale claims, missing frontmatter, and one-way cross-references, then offers fixes. Keeps the compounding memory honest as it grows.
+- **`wiki-enroll`** — publishes an agent Card and a discovery topic so this wiki becomes findable by peer llm-wiki agents in the federation.
+- **`wiki-ask`** — consults another project's wiki via the *ask* primitive: it clones that agent's wiki and queries it, so you draw on another project's durable memory without leaving your session.
+
+::: {.callout-highlight}
+One wiki you maintain (lint), publish (enroll), and query across (ask): durable memory that compounds and connects.
+:::
+
+::: {.notes}
+These round out the toolkit. wiki-lint is the periodic health pass (orphans, dead links, stale claims, missing back-references, run every several sessions or after a big ingest). wiki-enroll makes the repo discoverable in the LA3D federation by writing a Card and adding the nd-llm-wiki topic. wiki-ask is the federation consumer: clone-and-invoke another agent's wiki to answer a question from its memory, direct mode (name the agent) or discovery mode (pick from candidates). Not covered here: message/post async modes are not part of ask.
+:::
+
+## Turning results into knowledge {.smaller}
+
+[The discipline, made concrete]{.kicker}
 
 ```{=html}
 <style>
 .reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
-.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.72em; margin-bottom:0.25em; }
-.reveal .ctl-box span { color:#cdd6e0; font-size:0.62em; line-height:1.32; }
+.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.86em; margin-bottom:0.25em; }
+.reveal .ctl-box span { color:#cdd6e0; font-size:0.74em; line-height:1.32; }
+.reveal .ed-flow { display:flex; align-items:stretch; gap:0.3em; margin:0.5em 0 0.35em; }
+.reveal .ed-flow .step { flex:1; background:#f4f1ea; border:1px solid #d8cfb6; border-top:3px solid #b8860b; border-radius:6px; padding:0.4em 0.5em; font-size:0.74em; line-height:1.3; text-align:left; }
+.reveal .ed-flow .step b { display:block; color:#14213d; font-size:1.05em; margin-bottom:0.15em; }
+.reveal .ed-flow .step span { color:#5a4a4a; }
+.reveal .ed-flow .arrow { align-self:center; color:#b8860b; font-weight:800; font-size:1em; }
+.reveal .ctl-row { display:flex; gap:0.4em; align-items:stretch; margin-top:0.35em; }
+.reveal .ctl-row .ctl-box { flex:1; height:auto; }
 </style>
 ```
+
+Trustworthy results are not automatic enforcement; they come from encoded discipline the agent follows, plus reminders, run by the harness:
+
+```{=html}
+<div class="ctl-row"><div class="ctl-box"><strong>1 &middot; Real-output guidance</strong><span>use real outputs; scope every number to its corpus; report failures truthfully</span></div><div class="ctl-box"><strong>2 &middot; Verification gate</strong><span>before committing, the agent re-reads each page against a checklist and fixes failures</span></div><div class="ctl-box"><strong>3 &middot; Discipline gates</strong><span>a named list of always-wrong shortcuts the agent must reject</span></div><div class="ctl-box"><strong>4 &middot; Advisory hooks</strong><span>session-start and post-edit hooks inject context and reminders; the gate does the content check</span></div></div>
+```
+
+**How it runs, one loop:**
+
+```{=html}
+<div class="ed-flow"><div class="step"><b>1 &middot; Session start</b><span>a hook loads the guidance + the wiki's index and recent log into the agent</span></div><div class="arrow">&rarr;</div><div class="step"><b>2 &middot; Work</b><span>skills carry the read and write procedures for pages</span></div><div class="arrow">&rarr;</div><div class="step"><b>3 &middot; After an edit</b><span>a hook reminds; the agent runs the gate and fixes failures</span></div><div class="arrow">&rarr;</div><div class="step"><b>4 &middot; Commit</b><span>to git; plain Markdown, so every step is auditable</span></div></div>
+```
+
+*A chat app runs none of this loop, which is why we build in Codex and Claude Code.*
+
+::: {.notes}
+Corrected against Codex for accuracy on both harnesses: these are agent-followed discipline plus advisory reminders, not automated blocking. Box 1 guidance lives in the plugin (`core/templates/guidance.md`, `core/agents/discipline-gates.md`, skill instructions), injected at session start. Box 2 verification gate is an agent-run pre-commit checklist (`core/agents/verification-gate.md`): re-read each page, apply the criteria, fix, then commit, not an automatic blocker. Box 3 discipline-gates names the "Universal Rationalizations (Always Wrong)". Box 4: the PostToolUse hook is advisory and exits 0, it does not inspect content or block writes, it only reminds the agent to run the gate; headless `codex exec` runs no hooks and is a separate mode. This slide is the payoff of the epistemic-discipline setup on "What epistemic discipline is", and it precedes the measurement so the zero fabrications arrives already explained.
+:::
+
+## Does the memory actually work? {.smaller}
+
+[A first controlled measurement, on a real research project]{.kicker}
 
 Forty questions on one real project. Reading the llm-wiki answered **90% correctly and fabricated nothing**, roughly double RAG's 42% (10 fabrications); the model with no context scored 2%.
 
@@ -439,32 +486,8 @@ Forty questions on one real project. Reading the llm-wiki answered **90% correct
 
 ::::
 
-**The zero is by design, a layered control stack that keeps every claim honest:**
-
-:::: {.columns}
-
-::: {.column width="25%"}
-<div class="ctl-box"><strong>1 · Honest-reporting rules</strong><span>real outputs only; tag every number's corpus; file failures truthfully</span></div>
-:::
-
-::: {.column width="25%"}
-<div class="ctl-box"><strong>2 · Verification gate</strong><span>blocks unsupported claims and untagged numbers before a commit</span></div>
-:::
-
-::: {.column width="25%"}
-<div class="ctl-box"><strong>3 · Discipline gates</strong><span>name the always-wrong shortcuts so the agent self-catches</span></div>
-:::
-
-::: {.column width="25%"}
-<div class="ctl-box"><strong>4 · Blocking hooks</strong><span>fire the checks and can halt a bad write, exit-code enforced</span></div>
-:::
-
-::::
-
-*Gates and hooks need an agentic harness that can run them, which is why we build in Claude Code and Codex, not the Claude or ChatGPT chat apps. Plain Markdown keeps every claim auditable.*
-
 ::: {.notes}
-Source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG's 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.
+Source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG's 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. This slide follows the honesty mechanism; the zero fabrications is the visible payoff of that discipline. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.
 :::
 
 
