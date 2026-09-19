@@ -239,27 +239,23 @@ Transition. The rest is not slides, it is the thing itself. If running live is r
 
 [One marketplace, two commands]{.kicker}
 
-:::: {.columns}
+Our implementation of llm-wiki provides our own **marketplace**, a storefront for plugins, and we have versions for the AI harnesses Codex, Claude, and Cursor.
 
-::: {.column width="56%"}
-Install the llm-wiki plugin from the LA3D marketplace:
+Install the plugin from the LA3D marketplace:
 
 ```{=html}
-<div class="ed-term"><div><span class="cmd">codex plugin marketplace add LA3D-LLM-Agents/llm-wiki-colab</span></div><div><span class="cmd">codex plugin add llm-wiki@llm-wiki-colab</span></div></div>
+<div class="ed-term"><div><span class="cmd">$ codex plugin marketplace add LA3D-LLM-Agents/llm-wiki-colab</span></div><div><span class="pass">Marketplace `llm-wiki-colab` added.</span></div><div><span class="cmd">$ codex plugin add llm-wiki@llm-wiki-colab</span></div><div><span class="pass">Added plugin `llm-wiki` from marketplace `llm-wiki-colab` (0.4.0).</span></div></div>
 ```
 
-- Codex needs a **restart** after a plugin change.
-- Its hooks are **trust-gated**: approve them in the startup-hooks review.
-- Then create an empty GitHub repo: **chrissweet/codex-llm-wiki-test**.
-:::
+Codex loads plugins at startup, so **exit and restart Codex**, and **accept the plugin's hooks** when prompted. Then create the project repo:
 
-::: {.column width="44%"}
+```{=html}
+<div class="ed-term"><div><span class="cmd">$ gh repo create chrissweet/codex-llm-wiki-test --public</span></div><div><span class="pass">✓ Created repository chrissweet/codex-llm-wiki-test on GitHub</span></div></div>
+```
+
 ::: {.ed-tip}
-**Same wiki, either harness.** The identical plugin installs in Claude Code with `/plugin marketplace add` and `/plugin install`.
+**Same wiki, any harness.** The identical plugin installs in Claude Code (`/plugin marketplace add`, `/plugin install`), Codex (`codex plugin marketplace add`, `codex plugin add`), and Cursor (`cursor-agent plugin marketplace add`).
 :::
-:::
-
-::::
 
 ::: {.notes}
 The marketplace is the LA3D-LLM-Agents/llm-wiki-colab repo; the plugin is llm-wiki. Restart and the hook-trust prompt are the two Codex-specific gotchas. The empty repo is where the wiki will attach.
