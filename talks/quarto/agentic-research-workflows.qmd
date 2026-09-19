@@ -505,7 +505,9 @@ Head-to-head source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-R
 
 [Thank you]{.kicker}
 
-**Agentic research workflows.** In one session in Codex we installed a plugin, stood up a durable llm-wiki, ingested a paper, ran a real AlphaFold prediction, and recorded it as a linked, queryable page. And the memory measurably works: it beat plain RAG and fabricated nothing.
+**Agentic research workflows.** In one Codex session we installed the plugin, built a durable llm-wiki, ingested a paper, ran a real AlphaFold prediction, and recorded it as a linked, queryable page. That discipline turns results into knowledge you can trust, and it measurably works: it beat plain RAG with zero fabrications, and held near-perfect recall to thousands of pages.
+
+Build one: `github.com/chrissweet/codex-llm-wiki-test/wiki`
 
 Chris Sweet, Charles Vardeman, Priscila Moreira, James Sweet
 
