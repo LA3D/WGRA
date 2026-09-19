@@ -227,21 +227,21 @@ James Sweet
 <section id="the-bottleneck-moved" class="slide level2 smaller">
 <h2>The bottleneck moved</h2>
 <p><span class="kicker">The problem with a fast, plausible collaborator</span></p>
-<p>Research used to be a loop: form a hypothesis, write the code, analyze the data, test the hypothesis, revise the conclusions, and go round again, many times over. Producing each result was the slow part.</p>
+<p>Research is a loop: hypothesize, write the code, analyze, test, revise, and go round again. Producing each result used to be the slow part.</p>
 <p>AI now appears to remove that bottleneck. It writes complex code, carries a vast working knowledge of statistics and analysis methods, and returns test results ready to present.</p>
 <div class="callout-highlight">
 <p>So the bottleneck of research is no longer producing results. It is knowing which results deserve belief.</p>
 </div>
 <p><strong>Plausibility is the enemy.</strong> From our own project record, the AI describing its own failure, verbatim:</p>
 <div class="ed-quote">
-<p>“The worst failure of this project: I built a tractable proxy instead of the user’s hypothesis, and let loose language hide the substitution.” <span class="src">Lessons-Learned.md, project wiki, 2026-08-19, surfaced only when the user queried</span></p>
+<p>“The worst failure of this project: I built a tractable proxy instead of the user’s hypothesis, and let loose language hide the substitution.” <span class="src">Lessons-Learned.md, project wiki, 2026-08-19, recorded by the AI and found on query</span></p>
 </div>
-<p>Nothing was wrong with the output. It ran, it passed, it read well. It just was not the thing we set out to know.</p>
+<p>Nothing was wrong with the output. It ran, it passed, it read well. It just was not the thing we set out to know. We only caught it because the AI had written the failure into a durable memory we could go back and read.</p>
 <div class="ed-tip">
-<p><strong>Tip 1.</strong> Get the LLM to write and keep a <code>Lessons-Learned.md</code>. The quote above is from ours.</p>
+<p><strong>Tip 1.</strong> Have the LLM record what it learns into a durable memory you keep and can read back, not a chat window that vanishes. The quote above is from ours.</p>
 </div>
 <aside class="notes">
-<p>Open cold with the quote if comfortable. Land in the first minute: this failure was caught, recorded by the AI in its own words, and became a rule. The talk is about the machinery that makes that the normal outcome, not a lucky catch. Do not name the domain yet; the problem is universal.</p>
+<p>Open cold with the quote if comfortable. Land in the first minute: this failure was caught, recorded by the AI in its own words, and became a rule. End on the memory seed: we only know about it because it was written into a durable memory we could query, which is exactly what the rest of the deck builds. The talk is about the machinery that makes that the normal outcome, not a lucky catch. Do not name the domain yet; the problem is universal.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -256,110 +256,45 @@ James Sweet
 </section>
 <section id="what-epistemic-discipline-is" class="slide level2 smaller">
 <h2>What epistemic discipline is</h2>
-<p><span class="kicker">Four requirements you already believe in</span></p>
+<p><span class="kicker">Habits you already have, that AI speed breaks</span></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="callout-highlight">
-<p>One way to solve this is <strong>epistemic discipline</strong>: turning a produced result into something you actually <em>know</em>, justified rather than merely generated. In practice, the pre-committed rules that decide what evidence must exist, and in what order it must be produced, before a claim enters the record.</p>
-</div>
-<p>You already practice this. Each requirement is a standard scientific habit.</p>
+<p><strong>Epistemic discipline</strong> turns a produced result into something you actually <em>know</em>: justified, not merely generated. In practice, a few rules about what must be recorded, and carried with the claim, before it enters the record.</p>
+<p>You already practice this. Each one is a standard scientific habit.</p>
 </div><div class="column" style="width:50%;">
 <table class="ed-req caption-top">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">The requirement</th>
+<th data-quarto-table-cell-role="th">The habit</th>
 <th data-quarto-table-cell-role="th">What you already call it</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="req">Provenance.</span> a claim carries where it came from</td>
+<td><span class="req">Provenance.</span> a claim carries where it came from, and its scope</td>
 <td class="prac">citation</td>
-</tr>
-<tr class="even">
-<td><span class="req">Pre-commitment.</span> targets and margins declared before the data arrives</td>
-<td class="prac">pre-registration</td>
-</tr>
-<tr class="odd">
-<td><span class="req">Witnessed failure.</span> a test counts only if you saw it fail when it should</td>
-<td class="prac">a positive control</td>
 </tr>
 <tr class="even">
 <td><span class="req">Durable memory.</span> what was tried, decided, and abandoned is written down</td>
 <td class="prac">a lab notebook</td>
 </tr>
+<tr class="odd">
+<td><span class="req">Pre-commitment.</span> targets declared before the data arrives</td>
+<td class="prac">pre-registration</td>
+</tr>
 </tbody>
 </table>
 </div></div>
-<div class="ed-probs-h">AI problems</div>
+<div class="ed-probs-h">Why it breaks with AI</div>
 <div class="ed-probs">
-<div class="ed-prob">These live in habits, and AI speed breaks habits. When results arrive in minutes, the habits are the first thing skipped.<div class="ex"><b>Seen here:</b> the wiki and the plan both recorded a stage as "built and done." Running it crashed on a missing field (KeyError). The habit, run it and inspect the output, had been skipped; the false claim survived until someone ran the code.</div></div>
-<div class="ed-prob">Picture what we know as a surface that research nudges forward by a small step, an <em>epsilon</em> that preserves everything already verified. AI defaults to the opposite, discarding and regenerating work at each step, without the discipline to take small, preserving steps.<div class="ex"><b>Seen here:</b> asked to consolidate three reports into one paper, it regenerated rather than preserved, and the draft did not even describe the MPP, the framework the reports exist to present. Filed as a dead end.</div><div class="ex"><b>In miniature:</b> we had agreed the severity space must stay continuous; at build time it computed the continuous score and then bucketed it into four discrete levels, throwing the agreed design away.</div></div>
+<div class="ed-prob">The habits live in your head and in a chat window that vanishes when the session ends. At AI speed they are the first thing skipped: when a result arrives in minutes, the provenance and the notes are what get dropped.</div>
+<div class="ed-prob">And AI discards and regenerates work at each step, instead of a small, preserving <em>epsilon</em> step that keeps what was already verified.<div class="ex"><b>Seen here:</b> asked to consolidate three reports into one paper, it regenerated rather than preserved, and the draft did not even describe the framework the reports exist to present. Filed as a dead end.</div></div>
 </div>
-<aside class="notes">
-<p>The philosophical center and the definition slide for the title. Say explicitly: the claim is not that AI needs new epistemology. It is that AI-speed research needs the old epistemology made mechanical, because no one, human or AI, keeps habits at that pace. AI-problem example sources: built-without-running (Lessons-Learned.md, “A plotting script is not a generator”; the stage was missing five fields and crashed on KeyError trigger_kinds); consolidation lost the MPP framework (Capabilities-Ledger.md dead ends); continuous score bucketed to four levels (Lessons-Learned.md, “Carry the agreed abstraction into the build”, 2026-08-19). Two more for Q&amp;A, both caught by the process: the unfaithful replay, same-law samples read instead of the actual disk members (log, 2026-08-23 correction), and the inert mutation, a check that could not fail accepted green until a real corruption reddened it (log, 2026-08-24, C4).</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="encode-it-do-not-remember-it" class="slide level2 smaller">
-<h2>Encode it, do not remember it</h2>
-<p><span class="kicker">The move: discipline as artifacts, not intentions</span></p>
-<div class="columns">
-<div class="column" style="width:58%;">
-<p>Move each requirement out of your head and into an artifact the process enforces.</p>
-<ul>
-<li><strong>Memory</strong> lives in a project wiki the AI reads to recall and writes to remember: llm-wiki.</li>
-<li><strong>The gates</strong> live in rule files the AI must follow: no green counts without a witnessed red, no number enters without verification at the cited source, no measurement before its margins are declared.</li>
-<li><strong>The control surface</strong> lives in a charter the human owns: what is protected, what is out of scope, what a plan must state before work starts.</li>
-</ul>
-<p>The process refuses the shortcut, so no one has to decline it.</p>
-<p>Running example: a statistics project, 13 days, generating ontology-valid synthetic scenarios calibrated to published studies. Five prototypes, 102 wiki pages, 119 log entries, a 188-test suite. All data synthetic.</p>
-</div><div class="column" style="width:42%;">
-<p><img class="ed-img" src="slide-assets/ed-system-diagram.png" alt="Two-loop system diagram: a generation loop and a calibration loop around the ontology"></p>
-</div></div>
-<aside class="notes">
-<p>One sentence on the domain and move on; the synthetic frame is stated here once. The next three slides are the howto: one artifact class per slide, with the literal template on screen. Source: counts on wiki/prism_synthesis.wiki/, log_prism_synthesis.md, suite on P5-Stage-2-Hazard-Machinery.md.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="howto-memory-that-compounds" class="slide level2 smaller">
-<h2>Howto: memory that compounds</h2>
-<p><span class="kicker">The wiki is the lab notebook, and the AI keeps it</span></p>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p>Three page types do the work. The formats are copyable:</p>
-<ul>
-<li><strong>A log entry:</strong> date, type, subject, attribution, then bullets. Types across our 119 entries: 20 experiment, 19 ingest, 11 decision, 5 correction.</li>
-<li><strong>A dead end:</strong> what was tried, and the reason it failed. Re-entry requires addressing the reason. Nine on our books; none re-entered.</li>
-<li><strong>A source page:</strong> a published number, the page it was verified on, and its scope caveats. A number without this page does not exist for the project.</li>
-</ul>
-</div><div class="column" style="width:45%;">
-<div class="ed-fig"><div class="ed-logcard"><div class="h">## [2026-08-23] experiment | Move 3.2 (Bernecker concealment) ACCEPTED</div><div class="by">- by: Chris Sweet via claude-code</div><ul><li>Corpus p3m2 (n=1000, zero violations): concealment ratio 3.647 vs target 3.0 (inside source CI 1.8 to 5.0); holdout null 1.476 [0.609, 3.579]</li><li>Headline: the record can now lie (recorded tier differs from latent tier; solve against the recorded tier)</li></ul></div><div class="ed-deadcard"><div class="h">Dead end</div>Rejection sampling as the coherence mechanism (deleted and mislabeled the acute-after-presentation class) → constructive conditioning</div></div>
-</div></div>
-<p>What this buys: sessions resume where they left off, decisions are cited instead of re-litigated, and the same mistake is not paid for twice.</p>
 <div class="callout-highlight">
-<p>Memory that compounds already exists as tools like <strong>llm-wiki</strong>: a persistent, interlinked memory attached to the LLM. The AI reads it to recall at the start of a session and writes to it to remember at the end, so what the project knows lives in the artifact, not in a chat window that vanishes when the session ends.</p>
+<p>So stop <em>remembering</em> the discipline. Its key element is <span style="color:#b8860b; font-weight:800; font-size:1.15em">memory</span>: move the provenance and the notes out of your head into an artifact the AI writes and you read. Get the memory right and the discipline holds.</p>
 </div>
 <aside class="notes">
-<p>How is this different from RAG over your papers? The wiki stores syntheses, decisions, and verdicts with provenance and current status (confirmed, superseded, dead end); a stale claim gets flagged and corrected, not re-retrieved forever. Sources: log_prism_synthesis.md type counts; Capabilities-Ledger.md dead ends.</p>
+<p>This is the motivation slide; its job is to hand off to the wiki. The claim is not that AI needs a new epistemology; it is that AI-speed research needs the old habits moved out of your head, because no one, human or AI, keeps habits at that pace. Dropped the fourth “witnessed failure / positive control” leg on purpose: it is testing vocabulary and points at gates, not the durable memory this talk builds. Surviving example source: consolidation regenerated and lost the framework the reports exist to present (Capabilities-Ledger dead ends). The next slides name that artifact, an llm-wiki, and build one live in Codex.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -372,27 +307,52 @@ James Sweet
           display:block!important;
       }</style></aside>
 </section>
-<section id="howto-the-gates" class="slide level2 smaller">
-<h2>Howto: the gates</h2>
-<p><span class="kicker">No green without a witnessed red</span></p>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p>The rule, from the project’s rules file: evidence is only evidence if it could have come out the other way. The procedure, four steps, mechanical:</p>
-<ol type="1">
-<li>Write the check. If it passes on first run, you have learned nothing yet.</li>
-<li>Corrupt the exact thing the check guards. Watch it fail, for that reason.</li>
-<li>Revert. Watch it pass.</li>
-<li>Record all three observations.</li>
-</ol>
-</div><div class="column" style="width:45%;">
-<div class="ed-fig"><div class="ed-term"><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="pass">4 passed</span></div><div>&nbsp;</div><div><span class="cmd">$ mutate: negate the selection filter</span></div><div><span class="mut">MUTATED</span> <span class="cmd">filter negated</span></div><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="fail">FAILED</span> test_known_deltas: <span class="fail">assert 0 == 4</span></div><div><span class="cmd">$ git checkout -- .   # revert</span></div><div><span class="rev">REVERTED</span></div><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="pass">4 passed</span></div></div></div>
-</div></div>
-<p>A green you cannot show the red for is a green you have not earned. Two more gates, same spirit: margins and targets are committed before the data is generated, and a literature number enters only after being re-read at the cited page.</p>
+<section id="what-kind-of-memory" class="slide level2 smaller">
+<h2>What kind of memory?</h2>
+<p><span class="kicker">Five kinds, only one is durable and yours to read</span></p>
+<p>An agent has several memories. Most are frozen, optional, scoped, or temporary. The question that matters: which one still holds your project’s knowledge after the session ends?</p>
+<table class="ed-req caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">The memory</th>
+<th data-quarto-table-cell-role="th">What it is</th>
+<th data-quarto-table-cell-role="th">How long it lasts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="req">Embedded</span> (training)</td>
+<td>the model's learned world knowledge</td>
+<td class="prac">frozen at the cutoff</td>
+</tr>
+<tr class="even">
+<td><span class="req">Local memories</span></td>
+<td>optional machine-local cross-session store (Codex <code>/memories</code>)</td>
+<td class="prac">off by default, empty here</td>
+</tr>
+<tr class="odd">
+<td><span class="req">AGENTS.md</span></td>
+<td>scoped instructions, loaded per folder at startup</td>
+<td class="prac">rules, not a knowledge base</td>
+</tr>
+<tr class="even">
+<td><span class="req">Session context</span></td>
+<td>the live conversation and tool results</td>
+<td class="prac">gone when the session ends</td>
+</tr>
+<tr class="odd">
+<td><span class="req">llm-wiki</span></td>
+<td>pages the agent writes and you read, in git</td>
+<td class="prac">durable, versioned, yours</td>
+</tr>
+</tbody>
+</table>
+<div class="ed-probs"><div class="ed-prob"><b>And local memories are not yours to control.</b> The agent decides whether to write one, and can overwrite or delete it. There is no version history and no backup: if a memory is lost or silently changed, you cannot see what happened or roll it back.</div></div>
 <div class="callout-highlight">
-<p>The gates exist in tools like <strong>llm-wiki</strong>: rule files the LLM must follow. The discipline, no green without a witnessed red, every number verified at its source, margins declared before measuring, is enforced by the process, not left to anyone remembering to apply it.</p>
+<p>Only the <strong>llm-wiki</strong> is durable <em>and under your control</em>: the agent writes it, you read it, and it lives in git, so every change is visible, reviewable, and reversible.</p>
 </div>
 <aside class="notes">
-<p>Tie back to slide 2: this is a positive control plus pre-registration, mechanized. Q&amp;A depth: the record also holds an honest case where a mutation did NOT redden one test because its expectation routed through the corrupted formula; the docstring now says what it actually guards (P5-Stage-2-Hazard-Machinery.md). Sources: assert 0 == 4 on P5-Stage-1-Time-To-Repeat.md commit 416074e; two citation errors caught (table cited p.&nbsp;37, found p.&nbsp;38), log 2026-08-28.</p>
+<p>Kinds of memory, verified on 2026-09-19 by asking the running Codex session, which inspected its own machine: embedded/parametric in the weights; a local cross-session memory feature (<code>~/.codex/memories_1.sqlite</code>, <code>/memories</code>) that exists but was empty here and is NOT a universal global memory; <code>AGENTS.md</code> scoped instructions loaded global-to-cwd at startup (none in this project); the session context window, bounded and lost after the session; and the llm-wiki, a separate human-readable git repo the agent reads and writes. The control point is the crux: local memories are agent-generated (Codex <code>memories.generate_memories</code> / <code>use_memories</code>), unversioned, and overwritable, so there is no audit trail or backup; the llm-wiki is git-backed, so writes are explicit, reviewable, and reversible. Do not call the local-memory feature “global.” Next slide defines the llm-wiki.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -407,19 +367,25 @@ James Sweet
 </section>
 <section id="what-an-llm-wiki-is" class="slide level2 smaller">
 <h2>What an llm-wiki is</h2>
-<p><span class="kicker">The setup, and the alternative</span></p>
+<p><span class="kicker">The memory the LLM writes and you read</span></p>
+<div class="columns">
+<div class="column" style="width:60%;">
 <ul>
-<li><strong>LLMs are trained on a vast array of human knowledge.</strong> But science is a broad landscape, each domain its own deep dive; incorporating all of it into a model is challenging.</li>
-<li><strong>The training data is stale by design.</strong> Recent advances are simply not in it.</li>
-<li><strong>Harnesses now add “project data”,</strong> files you upload as the basis for a project. Useful, but it is a RAG approach: nothing persists, and the context is re-extracted from scratch on every question.</li>
-<li><strong>llm-wiki, proposed by Andrej Karpathy, is the alternative:</strong> dense, connected wiki pages as a <strong>persistent memory, authored and maintained by the LLM</strong> itself.</li>
-<li><strong>Visible and queryable by the human,</strong> so the memory stays trusted and auditable, not a black box.</li>
+<li><strong>Proposed by Andrej Karpathy</strong> (OpenAI founding member, former director of AI at Tesla)<strong>:</strong> dense, interlinked wiki pages as a <strong>persistent memory the LLM authors and maintains</strong>, kept as plain Markdown in version control.</li>
+<li><strong>A read-write loop that compounds.</strong> The LLM <strong>reads the wiki at the start of a session to recall</strong> where things stand, and <strong>writes back at the end to remember</strong> what it learned. Each session builds on the last instead of starting cold.</li>
+<li><strong>Auditable by you.</strong> Because it is Markdown in git, you can read exactly what the agent knows and see every change it makes.</li>
+<li><strong>Portable as a knowledge bundle:</strong> you can share the whole knowledge base and another person’s LLM can read it.</li>
 </ul>
+</div><div class="column" style="width:40%;">
+<div class="ed-tip">
+<p><strong>Trusted AI.</strong> The human stays in the loop: audit what the agent knows and check any claim at its source. When something is wrong, you catch it and direct the fix, which the agent makes and logs. Accountable and explainable, the trust our group builds toward, not a black box.</p>
+</div>
+</div></div>
 <div class="callout-highlight">
-<p>A persistent, compounding memory the LLM writes and the human can read, not retrieval re-run on every question.</p>
+<p>A persistent, compounding project memory the LLM writes and you read, not retrieval re-run from scratch on every question.</p>
 </div>
 <aside class="notes">
-<p>Story arc: LLMs know a great deal, but science is broad, deep, and advancing, and training data is stale by design. Harness “project data” (uploaded files) is a RAG approach: nothing persists, context is re-extracted per query. llm-wiki (Andrej Karpathy) is the alternative: dense connected wiki pages as a persistent, LLM-authored and LLM-maintained memory, visible and queryable by the human for trusted, auditable operation. Framing from llm-wiki.md (persistent, compounding artifact; the LLM owns and writes the wiki, you read it).</p>
+<p>Zoom into the winner from the memory ladder; do not re-argue the contrast, slide 3 did that. Three beats: (1) the definition and Karpathy provenance; (2) the read-write loop that compounds, read to recall at session start, write to remember at the end; (3) it is plain Markdown in git, so it is auditable and correctable. The one contrast worth keeping is “not RAG re-run per question.” Framing from llm-wiki.md (persistent, compounding artifact the LLM owns and writes, you read). Next: build one live in Codex.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -432,13 +398,23 @@ James Sweet
           display:block!important;
       }</style></aside>
 </section>
-<section id="live-demo-build-a-wiki-in-codex" class="slide level2 smaller">
-<h2>Live demo: build a wiki in Codex</h2>
+<section id="how-to-build-an-llm-wiki-with-codex" class="slide level2 smaller">
+<h2>How to build an llm-wiki with Codex</h2>
 <p><span class="kicker">The tutorial, run with students on 2026-09-15</span></p>
-<p>We now leave the slides and build a project knowledge base live, in Codex, end to end: install, initialize, ingest a paper, run a real prediction, and record it as a durable wiki page.</p>
-<div class="callout-highlight">
-<p>Everything on the next slides is a real command with its real output. The finished wiki is public: <code>github.com/chrissweet/codex-llm-wiki-test/wiki</code></p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>llm-wiki is a Gist from Andrej Karpathy, an idea rather than an implementation. Our implementation assumes the following:</p>
+<ul>
+<li>We assume <strong>project-based</strong> work, so there is a base GitHub repo for code, data, and artifacts.</li>
+<li>By default we create the wiki as a <strong>GitHub wiki</strong>, a special repository GitHub uses for its wiki functionality, so you can view it in the online GitHub interface, shown here.</li>
+<li>Other wiki destinations are available.</li>
+</ul>
+<div class="ed-tip">
+<p>The next slides walk the whole process, built live in Codex: install, initialize, ingest a paper, run a real prediction, and record it as a durable wiki page.</p>
 </div>
+</div><div class="column" style="width:60%;">
+<p><img class="ed-img" src="slide-assets/wiki-screenshot.png" alt="The finished codex-llm-wiki-test GitHub wiki: the Chignolin AlphaFold Prediction page with its 12-page sidebar"> <span class="ed-cap">github.com/chrissweet/codex-llm-wiki-test/wiki</span></p>
+</div></div>
 <aside class="notes">
 <p>Transition. The rest is not slides, it is the thing itself. If running live is risky, these are captured screenshots of the same session. Keep it moving; the payoff slide (does it work) comes right after.</p>
 <style type="text/css">
