@@ -373,12 +373,25 @@ Exact run (for Q&A). Full command: `MPLCONFIGDIR=/tmp/chignolin-mpl JAX_PLATFORM
 
 :::: {.columns}
 
-::: {.column width="56%"}
+::: {.column width="42%"}
 <img class="ed-img" src="slide-assets/chignolin-before-after.png" alt="Chignolin before and after AlphaFold prediction">
+
+One plain-language line produced the figure:
+
+> *can you generate a pre and post image for the molecule?*
+
+Codex used its built-in image tool to make this unfolded &rarr; folded illustration of chignolin.
 :::
 
-::: {.column width="44%"}
-`$llm-wiki:wiki-experiment` filed **Chignolin-AlphaFold-Prediction**: the input, the configuration, the measured metrics, the images, and the interpretation limits, cross-linked and logged.
+::: {.column width="58%"}
+`$llm-wiki:wiki-experiment` filed **Chignolin-AlphaFold-Prediction**. The skill:
+
+- captures the **configuration and metrics**: parameters, seeds, dataset, headline numbers;
+- keeps the **interpretation limits with the numbers**, filing results honestly;
+- notes **what changed** vs. a previous run, and anything surprising;
+- records **provenance**: links to the results directory and the commit;
+- **integrates** with related pages and reconciles contradictions;
+- updates the **index and log**, runs the **verification gate**, then commits.
 
 ::: {.ed-tip}
 **Live page:** `github.com/chrissweet/codex-llm-wiki-test/wiki`
@@ -389,6 +402,8 @@ Exact run (for Q&A). Full command: `MPLCONFIGDIR=/tmp/chignolin-mpl JAX_PLATFORM
 
 ::: {.notes}
 End of demo. The run, its numbers, and its images are now one linked, queryable page, not scattered files that vanish when the session ends. Hand to the payoff: does this memory actually work?
+
+The before/after image is an AI-generated illustration: asked to "generate a pre and post image for the molecule," Codex used its image-generation tool to make a side-by-side unfolded/folded depiction of chignolin (beta-hairpin), saved to experiments/chignolin-prediction/chignolin-before-after.png. It is explicitly not a measured folding trajectory, an MD result, or a rendering of the AlphaFold PDB.
 :::
 
 ## Does the memory actually work? {.smaller}

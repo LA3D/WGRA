@@ -579,16 +579,30 @@ James Sweet
 <h2>Demo 5: the result becomes a wiki page</h2>
 <p><span class="kicker">Run in, durable page out</span></p>
 <div class="columns">
-<div class="column" style="width:56%;">
+<div class="column" style="width:42%;">
 <p><img class="ed-img" src="slide-assets/chignolin-before-after.png" alt="Chignolin before and after AlphaFold prediction"></p>
-</div><div class="column" style="width:44%;">
-<p><code>$llm-wiki:wiki-experiment</code> filed <strong>Chignolin-AlphaFold-Prediction</strong>: the input, the configuration, the measured metrics, the images, and the interpretation limits, cross-linked and logged.</p>
+<p>One plain-language line produced the figure:</p>
+<blockquote>
+<p><em>can you generate a pre and post image for the molecule?</em></p>
+</blockquote>
+<p>Codex used its built-in image tool to make this unfolded → folded illustration of chignolin.</p>
+</div><div class="column" style="width:58%;">
+<p><code>$llm-wiki:wiki-experiment</code> filed <strong>Chignolin-AlphaFold-Prediction</strong>. The skill:</p>
+<ul>
+<li>captures the <strong>configuration and metrics</strong>: parameters, seeds, dataset, headline numbers;</li>
+<li>keeps the <strong>interpretation limits with the numbers</strong>, filing results honestly;</li>
+<li>notes <strong>what changed</strong> vs.&nbsp;a previous run, and anything surprising;</li>
+<li>records <strong>provenance</strong>: links to the results directory and the commit;</li>
+<li><strong>integrates</strong> with related pages and reconciles contradictions;</li>
+<li>updates the <strong>index and log</strong>, runs the <strong>verification gate</strong>, then commits.</li>
+</ul>
 <div class="ed-tip">
 <p><strong>Live page:</strong> <code>github.com/chrissweet/codex-llm-wiki-test/wiki</code></p>
 </div>
 </div></div>
 <aside class="notes">
 <p>End of demo. The run, its numbers, and its images are now one linked, queryable page, not scattered files that vanish when the session ends. Hand to the payoff: does this memory actually work?</p>
+<p>The before/after image is an AI-generated illustration: asked to “generate a pre and post image for the molecule,” Codex used its image-generation tool to make a side-by-side unfolded/folded depiction of chignolin (beta-hairpin), saved to experiments/chignolin-prediction/chignolin-before-after.png. It is explicitly not a measured folding trajectory, an MD result, or a rendering of the AlphaFold PDB.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
