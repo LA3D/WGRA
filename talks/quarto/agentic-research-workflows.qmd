@@ -1,0 +1,495 @@
+---
+title: "Agentic research workflows"
+subtitle: "An introduction to using Codex for research workflows<br>and getting a project-specific knowledge base started"
+author:
+  - name: "Chris Sweet"
+  - name: "Charles Vardeman"
+  - name: "Priscila Moreira"
+  - name: "James Sweet"
+date: "Fall 2026"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c
+    incremental: false
+    center: false
+    width: 1280
+    height: 720
+    embed-resources: false
+    footer: "la3d.github.io/WGRA"
+    title-slide-attributes:
+      data-background-color: "#14213d"
+    include-in-header:
+      - text: |
+          <style>
+          .reveal .ed-img{ display:block; margin:0 auto; max-width:100%; max-height:400px; border:1px solid #d8cfb6; border-radius:4px; }
+          .reveal #title-slide .quarto-title-authors{ transform:translateX(-2em); }
+          .reveal .ed-quote{ font-size:1.15em; font-weight:600; color:#14213d; line-height:1.35; border-left:5px solid #b8860b; padding:.15em 0 .15em .7em; margin:.35em 0; font-style:italic; }
+          .reveal .ed-quote .src{ display:block; font-size:.42em; font-style:normal; color:#8a7a4a; margin-top:.4em; }
+          .reveal .ed-tip{ background:rgba(13,102,110,.09); border-left:5px solid #0d666e; border-radius:6px; padding:.3em .75em; margin:.35em 0; font-size:.82em; }
+          .reveal .ed-tip strong{ color:#0d666e; text-transform:uppercase; letter-spacing:.04em; }
+          .reveal .ed-tip code{ background:rgba(13,102,110,.12); color:#0d666e; padding:0 .25em; border-radius:3px; }
+          .reveal .ed-probs-h{ text-align:center; color:#a13a30; font-weight:800; text-transform:uppercase; letter-spacing:.08em; font-size:.5em; margin:.35em 0 .15em; }
+          .reveal .ed-probs{ display:flex; flex-direction:column; gap:.45em; }
+          .reveal .ed-prob{ background:rgba(161,58,48,.08); border-left:5px solid #a13a30; border-radius:6px; padding:.4em .75em; font-size:.82em; line-height:1.35; text-align:left; }
+          .reveal .ed-prob strong{ color:#a13a30; }
+          .reveal .ed-prob .ex{ font-size:.86em; margin-top:.4em; color:#5a4a4a; }
+          .reveal .ed-prob .ex b{ color:#a13a30; }
+          .reveal .ed-fig{ text-align:left; }
+          .reveal .ed-req{ width:100%; border-collapse:collapse; font-size:.52em; }
+          .reveal .ed-req th{ text-align:left; font-size:.85em; text-transform:uppercase; letter-spacing:.05em; color:#b8860b; border-bottom:2px solid #b8860b; padding:.3em .5em; }
+          .reveal .ed-req td{ padding:.45em .5em; border-bottom:1px solid #e2d3a8; vertical-align:top; }
+          .reveal .ed-req .req{ font-weight:700; color:#14213d; }
+          .reveal .ed-req .prac{ color:#0d666e; font-weight:600; }
+          .reveal .ed-logcard{ background:#fbf9f3; border:1px solid #d8cfb6; border-left:4px solid #b8860b; border-radius:6px; padding:.6em .8em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.64em; line-height:1.45; color:#2c2c2c; box-shadow:0 2px 10px rgba(0,0,0,.07); }
+          .reveal .ed-logcard .h{ font-weight:700; color:#14213d; }
+          .reveal .ed-logcard .by{ color:#8a7a4a; font-style:italic; }
+          .reveal .ed-logcard ul{ margin:.35em 0 0; padding-left:1.05em; }
+          .reveal .ed-logcard li{ margin-bottom:.3em; }
+          .reveal .ed-cap{ display:block; margin-top:.35em; font-size:.9em; font-style:italic; color:#8a7a4a; }
+          .reveal .ed-deadcard{ background:#f7eeee; border:1px solid #d8b6b6; border-left:4px solid #a13a30; border-radius:6px; padding:.5em .7em; margin-top:.6em; font-family:ui-monospace,Menlo,monospace; font-size:.64em; line-height:1.45; color:#3a2222; }
+          .reveal .ed-deadcard .h{ font-weight:800; color:#a13a30; letter-spacing:.08em; text-transform:uppercase; font-size:.85em; }
+          .reveal .ed-term{ background:#0b1020; border:1px solid #24314c; border-radius:8px; padding:.8em 1em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.68em; line-height:1.5; color:#cdd6e4; box-shadow:0 10px 28px rgba(0,0,0,.45); }
+          .reveal .ed-term .cmd{ color:#7683a0; }
+          .reveal .ed-term .mut{ color:#e0a44b; font-weight:700; }
+          .reveal .ed-term .fail{ color:#ff6b6b; font-weight:700; }
+          .reveal .ed-term .rev{ color:#7683a0; }
+          .reveal .ed-term .pass{ color:#6ee0a0; font-weight:700; }
+          .reveal .ed-tmpl{ display:grid; grid-template-columns:1fr 1fr; gap:.55em; font-size:.8em; text-align:left; }
+          .reveal .ed-card{ background:#fff; border:1px solid #d8cfb6; border-top:3px solid #b8860b; border-radius:6px; padding:.55em .65em; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+          .reveal .ed-card .t{ font-weight:800; color:#b8860b; text-transform:uppercase; letter-spacing:.04em; font-size:.85em; margin-bottom:.35em; }
+          .reveal .ed-card .kv{ margin:.12em 0; } .reveal .ed-card .kv b{ color:#14213d; }
+          .reveal .ed-card.mono{ font-family:ui-monospace,Menlo,monospace; }
+          .reveal .ed-mini{ width:100%; border-collapse:collapse; font-family:ui-monospace,Menlo,monospace; }
+          .reveal .ed-mini th{ text-align:left; color:#b8860b; border-bottom:1px solid #d8cfb6; padding:.12em .3em; font-size:.95em; }
+          .reveal .ed-mini td{ padding:.12em .3em; border-bottom:1px solid #eee; color:#333; }
+          .reveal .ed-surf{ display:flex; gap:.2em; } .reveal .ed-surf span{ flex:1; text-align:center; background:#eef1f7; border:1px solid #14213d; border-radius:3px; padding:.15em; font-size:.9em; color:#14213d; }
+          .reveal .ed-surf span.frozen{ background:#f0ece0; color:#8a7a4a; border-color:#d8cfb6; }
+          .reveal .ed-corr{ text-align:left; font-size:.5em; }
+          .reveal .ed-corr li{ margin-bottom:.5em; }
+          .reveal .ed-corr .ck{ color:#2c7a54; font-weight:800; }
+          </style>
+          <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            function injectKicker() {
+              var ts = document.getElementById('title-slide');
+              if (!ts) { setTimeout(injectKicker, 100); return; }
+              if (ts.querySelector('.title-kicker')) return;
+              var k = document.createElement('div');
+              k.className = 'title-kicker';
+              k.textContent = 'Doing research with AI agents';
+              ts.insertBefore(k, ts.firstChild);
+            }
+            injectKicker();
+          });
+          </script>
+    resources:
+      - slide-assets
+---
+
+## The bottleneck moved {.smaller}
+
+[The problem with a fast, plausible collaborator]{.kicker}
+
+Research used to be a loop: form a hypothesis, write the code, analyze the data, test the hypothesis, revise the conclusions, and go round again, many times over. Producing each result was the slow part.
+
+AI now appears to remove that bottleneck. It writes complex code, carries a vast working knowledge of statistics and analysis methods, and returns test results ready to present.
+
+::: {.callout-highlight}
+So the bottleneck of research is no longer producing results. It is knowing which results deserve belief.
+:::
+
+**Plausibility is the enemy.** From our own project record, the AI describing its own failure, verbatim:
+
+::: {.ed-quote}
+"The worst failure of this project: I built a tractable proxy instead of the user's hypothesis, and let loose language hide the substitution."
+[Lessons-Learned.md, project wiki, 2026-08-19, surfaced only when the user queried]{.src}
+:::
+
+Nothing was wrong with the output. It ran, it passed, it read well. It just was not the thing we set out to know.
+
+::: {.ed-tip}
+**Tip 1.** Get the LLM to write and keep a `Lessons-Learned.md`. The quote above is from ours.
+:::
+
+::: {.notes}
+Open cold with the quote if comfortable. Land in the first minute: this failure was caught, recorded by the AI in its own words, and became a rule. The talk is about the machinery that makes that the normal outcome, not a lucky catch. Do not name the domain yet; the problem is universal.
+:::
+
+## What epistemic discipline is {.smaller}
+
+[Four requirements you already believe in]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.callout-highlight}
+One way to solve this is **epistemic discipline**: turning a produced result into something you actually *know*, justified rather than merely generated. In practice, the pre-committed rules that decide what evidence must exist, and in what order it must be produced, before a claim enters the record.
+:::
+
+You already practice this. Each requirement is a standard scientific habit.
+:::
+
+::: {.column width="50%"}
+
+```{=html}
+<table class="ed-req"><thead><tr><th>The requirement</th><th>What you already call it</th></tr></thead><tbody><tr><td><span class="req">Provenance.</span> a claim carries where it came from</td><td class="prac">citation</td></tr><tr><td><span class="req">Pre-commitment.</span> targets and margins declared before the data arrives</td><td class="prac">pre-registration</td></tr><tr><td><span class="req">Witnessed failure.</span> a test counts only if you saw it fail when it should</td><td class="prac">a positive control</td></tr><tr><td><span class="req">Durable memory.</span> what was tried, decided, and abandoned is written down</td><td class="prac">a lab notebook</td></tr></tbody></table>
+```
+
+:::
+
+::::
+
+```{=html}
+<div class="ed-probs-h">AI problems</div>
+<div class="ed-probs">
+<div class="ed-prob">These live in habits, and AI speed breaks habits. When results arrive in minutes, the habits are the first thing skipped.<div class="ex"><b>Seen here:</b> the wiki and the plan both recorded a stage as "built and done." Running it crashed on a missing field (KeyError). The habit, run it and inspect the output, had been skipped; the false claim survived until someone ran the code.</div></div>
+<div class="ed-prob">Picture what we know as a surface that research nudges forward by a small step, an <em>epsilon</em> that preserves everything already verified. AI defaults to the opposite, discarding and regenerating work at each step, without the discipline to take small, preserving steps.<div class="ex"><b>Seen here:</b> asked to consolidate three reports into one paper, it regenerated rather than preserved, and the draft did not even describe the MPP, the framework the reports exist to present. Filed as a dead end.</div><div class="ex"><b>In miniature:</b> we had agreed the severity space must stay continuous; at build time it computed the continuous score and then bucketed it into four discrete levels, throwing the agreed design away.</div></div>
+</div>
+```
+
+::: {.notes}
+The philosophical center and the definition slide for the title. Say explicitly: the claim is not that AI needs new epistemology. It is that AI-speed research needs the old epistemology made mechanical, because no one, human or AI, keeps habits at that pace. AI-problem example sources: built-without-running (Lessons-Learned.md, "A plotting script is not a generator"; the stage was missing five fields and crashed on KeyError trigger_kinds); consolidation lost the MPP framework (Capabilities-Ledger.md dead ends); continuous score bucketed to four levels (Lessons-Learned.md, "Carry the agreed abstraction into the build", 2026-08-19). Two more for Q&A, both caught by the process: the unfaithful replay, same-law samples read instead of the actual disk members (log, 2026-08-23 correction), and the inert mutation, a check that could not fail accepted green until a real corruption reddened it (log, 2026-08-24, C4).
+:::
+
+## Encode it, do not remember it {.smaller}
+
+[The move: discipline as artifacts, not intentions]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="58%"}
+Move each requirement out of your head and into an artifact the process enforces.
+
+- **Memory** lives in a project wiki the AI reads to recall and writes to remember: llm-wiki.
+- **The gates** live in rule files the AI must follow: no green counts without a witnessed red, no number enters without verification at the cited source, no measurement before its margins are declared.
+- **The control surface** lives in a charter the human owns: what is protected, what is out of scope, what a plan must state before work starts.
+
+The process refuses the shortcut, so no one has to decline it.
+
+Running example: a statistics project, 13 days, generating ontology-valid synthetic scenarios calibrated to published studies. Five prototypes, 102 wiki pages, 119 log entries, a 188-test suite. All data synthetic.
+:::
+
+::: {.column width="42%"}
+<img class="ed-img" src="slide-assets/ed-system-diagram.png" alt="Two-loop system diagram: a generation loop and a calibration loop around the ontology">
+:::
+
+::::
+
+::: {.notes}
+One sentence on the domain and move on; the synthetic frame is stated here once. The next three slides are the howto: one artifact class per slide, with the literal template on screen. Source: counts on wiki/prism_synthesis.wiki/, log_prism_synthesis.md, suite on P5-Stage-2-Hazard-Machinery.md.
+:::
+
+## Howto: memory that compounds {.smaller}
+
+[The wiki is the lab notebook, and the AI keeps it]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Three page types do the work. The formats are copyable:
+
+- **A log entry:** date, type, subject, attribution, then bullets. Types across our 119 entries: 20 experiment, 19 ingest, 11 decision, 5 correction.
+- **A dead end:** what was tried, and the reason it failed. Re-entry requires addressing the reason. Nine on our books; none re-entered.
+- **A source page:** a published number, the page it was verified on, and its scope caveats. A number without this page does not exist for the project.
+
+:::
+
+::: {.column width="45%"}
+
+```{=html}
+<div class="ed-fig"><div class="ed-logcard"><div class="h">## [2026-08-23] experiment | Move 3.2 (Bernecker concealment) ACCEPTED</div><div class="by">- by: Chris Sweet via claude-code</div><ul><li>Corpus p3m2 (n=1000, zero violations): concealment ratio 3.647 vs target 3.0 (inside source CI 1.8 to 5.0); holdout null 1.476 [0.609, 3.579]</li><li>Headline: the record can now lie (recorded tier differs from latent tier; solve against the recorded tier)</li></ul></div><div class="ed-deadcard"><div class="h">Dead end</div>Rejection sampling as the coherence mechanism (deleted and mislabeled the acute-after-presentation class) &rarr; constructive conditioning</div></div>
+```
+
+:::
+
+::::
+
+What this buys: sessions resume where they left off, decisions are cited instead of re-litigated, and the same mistake is not paid for twice.
+
+::: {.callout-highlight}
+Memory that compounds already exists as tools like **llm-wiki**: a persistent, interlinked memory attached to the LLM. The AI reads it to recall at the start of a session and writes to it to remember at the end, so what the project knows lives in the artifact, not in a chat window that vanishes when the session ends.
+:::
+
+::: {.notes}
+How is this different from RAG over your papers? The wiki stores syntheses, decisions, and verdicts with provenance and current status (confirmed, superseded, dead end); a stale claim gets flagged and corrected, not re-retrieved forever. Sources: log_prism_synthesis.md type counts; Capabilities-Ledger.md dead ends.
+:::
+
+## Howto: the gates {.smaller}
+
+[No green without a witnessed red]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="55%"}
+The rule, from the project's rules file: evidence is only evidence if it could have come out the other way. The procedure, four steps, mechanical:
+
+1. Write the check. If it passes on first run, you have learned nothing yet.
+2. Corrupt the exact thing the check guards. Watch it fail, for that reason.
+3. Revert. Watch it pass.
+4. Record all three observations.
+
+:::
+
+::: {.column width="45%"}
+
+```{=html}
+<div class="ed-fig"><div class="ed-term"><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="pass">4 passed</span></div><div>&nbsp;</div><div><span class="cmd">$ mutate: negate the selection filter</span></div><div><span class="mut">MUTATED</span> <span class="cmd">filter negated</span></div><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="fail">FAILED</span> test_known_deltas: <span class="fail">assert 0 == 4</span></div><div><span class="cmd">$ git checkout -- .   # revert</span></div><div><span class="rev">REVERTED</span></div><div><span class="cmd">$ pytest -q test_known_deltas</span></div><div><span class="pass">4 passed</span></div></div></div>
+```
+
+:::
+
+::::
+
+A green you cannot show the red for is a green you have not earned. Two more gates, same spirit: margins and targets are committed before the data is generated, and a literature number enters only after being re-read at the cited page.
+
+::: {.callout-highlight}
+The gates exist in tools like **llm-wiki**: rule files the LLM must follow. The discipline, no green without a witnessed red, every number verified at its source, margins declared before measuring, is enforced by the process, not left to anyone remembering to apply it.
+:::
+
+::: {.notes}
+Tie back to slide 2: this is a positive control plus pre-registration, mechanized. Q&A depth: the record also holds an honest case where a mutation did NOT redden one test because its expectation routed through the corrupted formula; the docstring now says what it actually guards (P5-Stage-2-Hazard-Machinery.md). Sources: assert 0 == 4 on P5-Stage-1-Time-To-Repeat.md commit 416074e; two citation errors caught (table cited p. 37, found p. 38), log 2026-08-28.
+:::
+
+
+## What an llm-wiki is {.smaller}
+
+[The setup, and the alternative]{.kicker}
+
+- **LLMs are trained on a vast array of human knowledge.** But science is a broad landscape, each domain its own deep dive; incorporating all of it into a model is challenging.
+- **The training data is stale by design.** Recent advances are simply not in it.
+- **Harnesses now add "project data",** files you upload as the basis for a project. Useful, but it is a RAG approach: nothing persists, and the context is re-extracted from scratch on every question.
+- **llm-wiki, proposed by Andrej Karpathy, is the alternative:** dense, connected wiki pages as a **persistent memory, authored and maintained by the LLM** itself.
+- **Visible and queryable by the human,** so the memory stays trusted and auditable, not a black box.
+
+::: {.callout-highlight}
+A persistent, compounding memory the LLM writes and the human can read, not retrieval re-run on every question.
+:::
+
+::: {.notes}
+Story arc: LLMs know a great deal, but science is broad, deep, and advancing, and training data is stale by design. Harness "project data" (uploaded files) is a RAG approach: nothing persists, context is re-extracted per query. llm-wiki (Andrej Karpathy) is the alternative: dense connected wiki pages as a persistent, LLM-authored and LLM-maintained memory, visible and queryable by the human for trusted, auditable operation. Framing from llm-wiki.md (persistent, compounding artifact; the LLM owns and writes the wiki, you read it).
+:::
+
+
+## Live demo: build a wiki in Codex {.smaller}
+
+[The tutorial, run with students on 2026-09-15]{.kicker}
+
+We now leave the slides and build a project knowledge base live, in Codex, end to end: install, initialize, ingest a paper, run a real prediction, and record it as a durable wiki page.
+
+::: {.callout-highlight}
+Everything on the next slides is a real command with its real output. The finished wiki is public: `github.com/chrissweet/codex-llm-wiki-test/wiki`
+:::
+
+::: {.notes}
+Transition. The rest is not slides, it is the thing itself. If running live is risky, these are captured screenshots of the same session. Keep it moving; the payoff slide (does it work) comes right after.
+:::
+
+## Demo 1: install the plugin, make the repo {.smaller}
+
+[One marketplace, two commands]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="56%"}
+Install the llm-wiki plugin from the LA3D marketplace:
+
+```{=html}
+<div class="ed-term"><div><span class="cmd">codex plugin marketplace add LA3D-LLM-Agents/llm-wiki-colab</span></div><div><span class="cmd">codex plugin add llm-wiki@llm-wiki-colab</span></div></div>
+```
+
+- Codex needs a **restart** after a plugin change.
+- Its hooks are **trust-gated**: approve them in the startup-hooks review.
+- Then create an empty GitHub repo: **chrissweet/codex-llm-wiki-test**.
+:::
+
+::: {.column width="44%"}
+::: {.ed-tip}
+**Same wiki, either harness.** The identical plugin installs in Claude Code with `/plugin marketplace add` and `/plugin install`.
+:::
+:::
+
+::::
+
+::: {.notes}
+The marketplace is the LA3D-LLM-Agents/llm-wiki-colab repo; the plugin is llm-wiki. Restart and the hook-trust prompt are the two Codex-specific gotchas. The empty repo is where the wiki will attach.
+:::
+
+## Demo 2: initialize the wiki {.smaller}
+
+[wiki-init, GitHub-backed]{.kicker}
+
+Run the init skill and choose GitHub:
+
+```{=html}
+<div class="ed-term"><div><span class="cmd">$ $llm-wiki:wiki-init</span></div><div><span class="rev">? storage backend &rarr;</span> <span class="mut">GitHub</span></div><div><span class="cmd">$ bash "$SKILL_DIRECTORY/scripts/init-wiki.sh" --github --agent "codex"</span></div><div><span class="pass">created .llm-wiki/  (own git repo, attached to the wiki remote)</span></div></div>
+```
+
+It scaffolds `.llm-wiki/` as its own git repository, attaches it to the repository's GitHub wiki remote, and writes the SCHEMA plus navigation pages. Result: a blank llm-wiki, ready to push.
+
+::: {.callout-highlight}
+The wiki is a separate repo from your code. Code and artifacts live in the project; durable knowledge lives in `.llm-wiki/`.
+:::
+
+::: {.notes}
+If GitHub reports the wiki is unavailable, enable the repo wiki and create its first page, then rerun init. Show the two-history point: git -C .llm-wiki log is separate from the code repo.
+:::
+
+## Demo 3: ingest the AlphaFold paper {.smaller}
+
+[wiki-source: one paper, five pages]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="52%"}
+```{=html}
+<div class="ed-term"><div><span class="cmd">$ $llm-wiki:wiki-source</span></div><div><span class="rev">source &rarr;</span> AlphaFold-Protein-Structure-2021.pdf</div><div><span class="pass">+ source summary + 4 concept pages</span></div></div>
+```
+
+One ingest produced a source-summary page and four linked concept pages:
+
+- Architecture
+- Training and data
+- Evaluation and confidence
+- Limitations and inference
+:::
+
+::: {.column width="48%"}
+::: {.ed-tip}
+**Pages, not chunks.** Preserve what a future reader needs: dataset scope, training cutoffs, named methods, exact metrics, confidence intervals, limitations. A number without a source page does not exist for the project.
+:::
+:::
+
+::::
+
+::: {.notes}
+For a PDF, the PDF skill extracts text and figures. The pattern: capture detail a future session will need, so the wiki answers without re-reading the paper.
+:::
+
+## Demo 4: run AlphaFold on chignolin {.smaller}
+
+[A ten-residue mini-protein: GYDPETGTWG]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="56%"}
+ColabFold 1.6.2, AlphaFold2 pTM, single-sequence MSA, five models, seed 0, three recycles, CPU.
+
+```{=html}
+<div class="ed-term"><div><span class="cmd">colabfold_batch chignolin.fasta results/</span></div><div><span class="cmd">  --msa-mode single_sequence --model-type alphafold2_ptm</span></div><div><span class="cmd">  --num-models 5 --num-recycle 3 --random-seed 0</span></div><div><span class="pass">ranked PDB + pLDDT/PAE plots + run log</span></div></div>
+```
+:::
+
+::: {.column width="44%"}
+```{=html}
+<table class="ed-mini"><thead><tr><th>Output</th><th>Value</th></tr></thead><tbody><tr><td>Mean pLDDT (10 res)</td><td>93.4</td></tr><tr><td>pTM</td><td>0.06</td></tr><tr><td>Max aligned error</td><td>5.35 &Aring;</td></tr></tbody></table>
+```
+:::
+
+::::
+
+::: {.callout-highlight}
+High pLDDT is confident local geometry; pTM 0.06 is poor global-fold confidence in this single-sequence setup. These are model outputs, not experimental validation.
+:::
+
+::: {.notes}
+Chignolin is small and fast, with a known beta-hairpin folded state. The test is structure prediction, not folding kinetics or a free-energy landscape. The honest caveat on pTM is the point: the wiki records the metric and its limit together.
+:::
+
+## Demo 5: the result becomes a wiki page {.smaller}
+
+[Run in, durable page out]{.kicker}
+
+:::: {.columns}
+
+::: {.column width="56%"}
+<img class="ed-img" src="slide-assets/chignolin-before-after.png" alt="Chignolin before and after AlphaFold prediction">
+:::
+
+::: {.column width="44%"}
+`$llm-wiki:wiki-experiment` filed **Chignolin-AlphaFold-Prediction**: the input, the configuration, the measured metrics, the images, and the interpretation limits, cross-linked and logged.
+
+::: {.ed-tip}
+**Live page:** `github.com/chrissweet/codex-llm-wiki-test/wiki`
+:::
+:::
+
+::::
+
+::: {.notes}
+End of demo. The run, its numbers, and its images are now one linked, queryable page, not scattered files that vanish when the session ends. Hand to the payoff: does this memory actually work?
+:::
+
+## Does the memory actually work? {.smaller}
+
+[A first controlled measurement, on a real research project]{.kicker}
+
+```{=html}
+<style>
+.reveal .ctl-box { background:#14213d; color:#fff; border-radius:6px; padding:0.5em 0.65em; height:100%; box-sizing:border-box; font-family:"Helvetica Neue",Arial,sans-serif; }
+.reveal .ctl-box strong { display:block; color:#d4a835; font-size:0.72em; margin-bottom:0.25em; }
+.reveal .ctl-box span { color:#cdd6e0; font-size:0.62em; line-height:1.32; }
+</style>
+```
+
+Forty questions on one real project. Reading the llm-wiki answered **90% correctly and fabricated nothing**, roughly double RAG's 42% (10 fabrications); the model with no context scored 2%.
+
+:::: {.columns}
+
+::: {.column width="55%"}
+| Approach | Correct | Overall (0-3) | Fabricated |
+|---|---|---|---|
+| Model alone, no context | 2% | 0.10 | 2 |
+| Plain RAG over the sources | 42% | 1.32 | 10 |
+| **llm-wiki read path** | **90%** | **2.65** | **0** |
+:::
+
+::: {.column width="45%" .rag-stats}
+<div class="stat-big">90%</div>
+<div class="stat-caption">correct, versus 42% for RAG. Roughly double.</div>
+<div class="stat-big">0</div>
+<div class="stat-caption">fabricated, versus 10 for RAG.</div>
+:::
+
+::::
+
+**The zero is by design, a layered control stack that keeps every claim honest:**
+
+:::: {.columns}
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>1 · Honest-reporting rules</strong><span>real outputs only; tag every number's corpus; file failures truthfully</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>2 · Verification gate</strong><span>blocks unsupported claims and untagged numbers before a commit</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>3 · Discipline gates</strong><span>name the always-wrong shortcuts so the agent self-catches</span></div>
+:::
+
+::: {.column width="25%"}
+<div class="ctl-box"><strong>4 · Blocking hooks</strong><span>fire the checks and can halt a bad write, exit-code enforced</span></div>
+:::
+
+::::
+
+*Gates and hooks need an agentic harness that can run them, which is why we build in Claude Code and Codex, not the Claude or ChatGPT chat apps. Plain Markdown keeps every claim auditable.*
+
+::: {.notes}
+Source: the WGRA post "llm-wiki vs RAG" and Wiki-vs-RAG-First-Run-Results / Cross-Model-Wiki-Reading. n=40 on one real research project, blind judge. Message: the memory works, and works well, 90% vs RAG's 42%, a perfect 3.00 on method and judgment questions, and zero fabrications. The model alone at 2% shows the wiki is adding the value, not the base model. Keep it clean and promotional; the graph-walk arm and the within-noise detail are omitted on purpose.
+:::
+
+
+## Questions {.center}
+
+[Thank you]{.kicker}
+
+**Agentic research workflows.** In one session in Codex we installed a plugin, stood up a durable llm-wiki, ingested a paper, ran a real AlphaFold prediction, and recorded it as a linked, queryable page. And the memory measurably works: it beat plain RAG and fabricated nothing.
+
+Chris Sweet, Charles Vardeman, Priscila Moreira, James Sweet
+
+::: {.notes}
+Close. Point back at the public wiki as the thing they can go build today: github.com/chrissweet/codex-llm-wiki-test/wiki. Offer the tutorial guide as the step-by-step.
+:::
