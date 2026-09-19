@@ -460,6 +460,13 @@ James Sweet
 <p>Run the init skill and choose GitHub:</p>
 <div class="ed-term"><div><span class="cmd">$ $llm-wiki:wiki-init</span></div><div><span class="rev">? storage backend →</span> <span class="mut">GitHub</span></div><div><span class="cmd">$ bash "$SKILL_DIRECTORY/scripts/init-wiki.sh" --github --agent "codex"</span></div><div><span class="pass">created .llm-wiki/  (own git repo, attached to the wiki remote)</span></div></div>
 <p>It scaffolds <code>.llm-wiki/</code> as its own git repository, attaches it to the repository’s GitHub wiki remote, and writes the SCHEMA plus navigation pages. Result: a blank llm-wiki, ready to push.</p>
+<p>Those pages make the wiki self-describing:</p>
+<ul>
+<li><strong>SCHEMA</strong>: the conventions, page format, required frontmatter, and the typed links between pages.</li>
+<li><strong>index</strong>: the catalog of every page, the wiki’s table of contents.</li>
+<li><strong>log</strong>: the append-only, dated record of what was done, by who and using which agent.</li>
+</ul>
+<p>Each is namespaced to the project (<code>index_codex-llm-wiki-test</code>, <code>SCHEMA_codex-llm-wiki-test</code>, <code>log_codex-llm-wiki-test</code>), so pages stay unambiguous when wikis are shared or merged.</p>
 <div class="callout-highlight">
 <p>The wiki is a separate repo from your code. Code and artifacts live in the project; durable knowledge lives in <code>.llm-wiki/</code>.</p>
 </div>

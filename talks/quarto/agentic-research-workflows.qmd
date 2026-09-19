@@ -273,6 +273,14 @@ Run the init skill and choose GitHub:
 
 It scaffolds `.llm-wiki/` as its own git repository, attaches it to the repository's GitHub wiki remote, and writes the SCHEMA plus navigation pages. Result: a blank llm-wiki, ready to push.
 
+Those pages make the wiki self-describing:
+
+- **SCHEMA**: the conventions, page format, required frontmatter, and the typed links between pages.
+- **index**: the catalog of every page, the wiki's table of contents.
+- **log**: the append-only, dated record of what was done, by who and using which agent.
+
+Each is namespaced to the project (`index_codex-llm-wiki-test`, `SCHEMA_codex-llm-wiki-test`, `log_codex-llm-wiki-test`), so pages stay unambiguous when wikis are shared or merged.
+
 ::: {.callout-highlight}
 The wiki is a separate repo from your code. Code and artifacts live in the project; durable knowledge lives in `.llm-wiki/`.
 :::
