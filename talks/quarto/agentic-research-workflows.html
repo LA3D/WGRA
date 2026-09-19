@@ -487,19 +487,25 @@ James Sweet
 <section id="demo-3-ingest-the-alphafold-paper" class="slide level2 smaller">
 <h2>Demo 3: ingest the AlphaFold paper</h2>
 <p><span class="kicker">wiki-source: one paper, five pages</span></p>
+<p><strong>Ingest</strong> turns an external source into wiki pages: the agent reads it and writes summarized, linked, cited pages. <strong>AlphaFold</strong> is DeepMind’s protein-structure predictor; our source is its 2021 Nature paper.</p>
 <div class="columns">
 <div class="column" style="width:52%;">
-<div class="ed-term"><div><span class="cmd">$ $llm-wiki:wiki-source</span></div><div><span class="rev">source →</span> AlphaFold-Protein-Structure-2021.pdf</div><div><span class="pass">+ source summary + 4 concept pages</span></div></div>
-<p>One ingest produced a source-summary page and four linked concept pages:</p>
+<div class="ed-term"><div><span class="cmd">ingest paper AlphaFold-Protein-Structure-2021.pdf</span></div><div><span class="pass">+ source summary + 4 concept pages</span></div></div>
+<p>Plain language is enough: asking to <em>ingest</em> makes Codex call the <code>$llm-wiki:wiki-source</code> skill.</p>
+<p>One ingest produced a <strong>source summary</strong> plus four linked concept pages:</p>
 <ul>
-<li>Architecture</li>
-<li>Training and data</li>
-<li>Evaluation and confidence</li>
-<li>Limitations and inference</li>
+<li><strong>Architecture</strong> — Evoformer and structure module.</li>
+<li><strong>Training and data</strong> — datasets and training cutoff.</li>
+<li><strong>Evaluation and confidence</strong> — the pLDDT and pTM metrics.</li>
+<li><strong>Limitations and inference</strong> — where it is unreliable.</li>
+<li>All <strong>cross-linked wiki style</strong>, with links typed where the relationship is clear.</li>
 </ul>
 </div><div class="column" style="width:48%;">
 <div class="ed-tip">
 <p><strong>Pages, not chunks.</strong> Preserve what a future reader needs: dataset scope, training cutoffs, named methods, exact metrics, confidence intervals, limitations. A number without a source page does not exist for the project.</p>
+</div>
+<div class="callout-highlight">
+<p>The ingested pages integrate into the existing wiki: related pages are updated, any contradiction with what the wiki already claims is reconciled, and back-references are fixed both ways. The ingest is recorded in the index and log, then a verification gate checks every page for unsupported claims and missing provenance before it is committed.</p>
 </div>
 </div></div>
 <aside class="notes">
@@ -519,10 +525,11 @@ James Sweet
 <section id="demo-4-run-alphafold-on-chignolin" class="slide level2 smaller">
 <h2>Demo 4: run AlphaFold on chignolin</h2>
 <p><span class="kicker">A ten-residue mini-protein: GYDPETGTWG</span></p>
+<p>The power of AI removes friction and accelerates understanding. Just from the paper, I can test the ideas by getting Codex to find the code repository, install the software, and run it locally without intervention. In this demonstration I asked it to find a small molecule (it suggested chignolin) and get it to fold it.</p>
 <div class="columns">
 <div class="column" style="width:56%;">
 <p>ColabFold 1.6.2, AlphaFold2 pTM, single-sequence MSA, five models, seed 0, three recycles, CPU.</p>
-<div class="ed-term"><div><span class="cmd">colabfold_batch chignolin.fasta results/</span></div><div><span class="cmd">  --msa-mode single_sequence --model-type alphafold2_ptm</span></div><div><span class="cmd">  --num-models 5 --num-recycle 3 --random-seed 0</span></div><div><span class="pass">ranked PDB + pLDDT/PAE plots + run log</span></div></div>
+<div class="ed-term"><div><span class="cmd">JAX_PLATFORMS=cpu colabfold_batch chignolin.fasta results/</span></div><div><span class="cmd">  --msa-mode single_sequence --model-type alphafold2_ptm</span></div><div><span class="cmd">  --num-models 5 --num-recycle 3 --random-seed 0 --max-msa 1:1</span></div><div><span class="pass">ranked PDB + pLDDT/PAE plots + run log</span></div></div>
 </div><div class="column" style="width:44%;">
 <table class="ed-mini caption-top">
 <thead>
@@ -548,10 +555,14 @@ James Sweet
 </table>
 </div></div>
 <div class="callout-highlight">
-<p>High pLDDT is confident local geometry; pTM 0.06 is poor global-fold confidence in this single-sequence setup. These are model outputs, not experimental validation.</p>
+<p>High pLDDT is confident local geometry; pTM 0.06 is poor global-fold confidence, expected here because a single-sequence MSA gives AlphaFold no evolutionary signal. These are model outputs, not experimental validation.</p>
+</div>
+<div class="ed-tip">
+<p><strong>Experiment skill.</strong> The llm-wiki plugin includes an Experiment skill that documents an activity like this as a scientific experiment. It is called silently when a run produces results worth keeping.</p>
 </div>
 <aside class="notes">
 <p>Chignolin is small and fast, with a known beta-hairpin folded state. The test is structure prediction, not folding kinetics or a free-energy landscape. The honest caveat on pTM is the point: the wiki records the metric and its limit together.</p>
+<p>Exact run (for Q&amp;A). Full command: <code>MPLCONFIGDIR=/tmp/chignolin-mpl JAX_PLATFORMS=cpu .venv-colabfold/bin/colabfold_batch experiments/chignolin-prediction/chignolin.fasta experiments/chignolin-prediction/results --msa-mode single_sequence --model-type alphafold2_ptm --num-models 5 --num-recycle 3 --random-seed 0 --max-msa 1:1 --data .cache-colabfold</code>. Input FASTA: <code>&gt;chignolin / GYDPETGTWG</code>. Inspect the outputs with <code>find experiments/chignolin-prediction/results -maxdepth 2 -type f -print | sort</code>, then a small <code>python3</code> json reader over <code>*scores*.json</code> / <code>*rank_001*.json</code> for <code>ptm</code>, <code>iptm</code>, <code>mean_plddt</code>, <code>max_pae</code>. Measured: mean pLDDT 93.4, pTM 0.06, max PAE 5.34765625 Angstrom. Outputs in <code>experiments/chignolin-prediction/results/</code>.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
