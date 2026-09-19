@@ -406,6 +406,24 @@ End of demo. The run, its numbers, and its images are now one linked, queryable 
 The before/after image is an AI-generated illustration: asked to "generate a pre and post image for the molecule," Codex used its image-generation tool to make a side-by-side unfolded/folded depiction of chignolin (beta-hairpin), saved to experiments/chignolin-prediction/chignolin-before-after.png. It is explicitly not a measured folding trajectory, an MD result, or a rendering of the AlphaFold PDB.
 :::
 
+## Demo 6: recall, the loop closes {.smaller}
+
+[Ask the wiki, not the paper]{.kicker}
+
+A later session asks about the run. The agent answers from the page it wrote, no paper, no rerun:
+
+```{=html}
+<div class="ed-term"><div><span class="cmd">what did our chignolin run find, and why is the confidence what it is?</span></div><div>Our single-sequence ColabFold run produced a top chignolin model with</div><div>mean pLDDT 93.4, but pTM 0.06 and maximum PAE 5.35 &Aring;. It was confident</div><div>in local geometry, but not the overall fold. The low global confidence</div><div>reflects the absence of evolutionary MSA information; this was a static</div><div>prediction, not folding dynamics.</div><div>&nbsp;</div><div>Wiki pages read:</div><div>- .llm-wiki/Chignolin-AlphaFold-Prediction.md</div><div>- .llm-wiki/AlphaFold-Limitations-and-Inference.md</div><div>&nbsp;</div><div>I did not reopen the AlphaFold PDF or rerun the experiment.</div></div>
+```
+
+::: {.callout-highlight}
+Write once, recall forever. The next session builds on the page instead of re-deriving it: the read half of the loop, closed.
+:::
+
+::: {.notes}
+Real recall run: the codex-llm-wiki-test session was asked "what did our chignolin run find, and why is the confidence what it is?", constrained to its `.llm-wiki` pages. It answered from Chignolin-AlphaFold-Prediction and AlphaFold-Limitations-and-Inference (pLDDT 93.4, pTM 0.06, max PAE 5.35 Angstrom; confident local geometry, poor global fold from the single-sequence MSA; static prediction, not dynamics) and confirmed it did not reopen the PDF or rerun. This is the read half of the read-write loop the deck opened with; the answer text is Codex's own, verbatim (wrapped only for width).
+:::
+
 ## More skills: maintain, share, consult {.smaller}
 
 [Beyond building the wiki]{.kicker}

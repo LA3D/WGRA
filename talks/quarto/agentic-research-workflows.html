@@ -681,6 +681,28 @@ James Sweet
           display:block!important;
       }</style></aside>
 </section>
+<section id="demo-6-recall-the-loop-closes" class="slide level2 smaller">
+<h2>Demo 6: recall, the loop closes</h2>
+<p><span class="kicker">Ask the wiki, not the paper</span></p>
+<p>A later session asks about the run. The agent answers from the page it wrote, no paper, no rerun:</p>
+<div class="ed-term"><div><span class="cmd">what did our chignolin run find, and why is the confidence what it is?</span></div><div>Our single-sequence ColabFold run produced a top chignolin model with</div><div>mean pLDDT 93.4, but pTM 0.06 and maximum PAE 5.35 Å. It was confident</div><div>in local geometry, but not the overall fold. The low global confidence</div><div>reflects the absence of evolutionary MSA information; this was a static</div><div>prediction, not folding dynamics.</div><div>&nbsp;</div><div>Wiki pages read:</div><div>- .llm-wiki/Chignolin-AlphaFold-Prediction.md</div><div>- .llm-wiki/AlphaFold-Limitations-and-Inference.md</div><div>&nbsp;</div><div>I did not reopen the AlphaFold PDF or rerun the experiment.</div></div>
+<div class="callout-highlight">
+<p>Write once, recall forever. The next session builds on the page instead of re-deriving it: the read half of the loop, closed.</p>
+</div>
+<aside class="notes">
+<p>Real recall run: the codex-llm-wiki-test session was asked “what did our chignolin run find, and why is the confidence what it is?”, constrained to its <code>.llm-wiki</code> pages. It answered from Chignolin-AlphaFold-Prediction and AlphaFold-Limitations-and-Inference (pLDDT 93.4, pTM 0.06, max PAE 5.35 Angstrom; confident local geometry, poor global fold from the single-sequence MSA; static prediction, not dynamics) and confirmed it did not reopen the PDF or rerun. This is the read half of the read-write loop the deck opened with; the answer text is Codex’s own, verbatim (wrapped only for width).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="more-skills-maintain-share-consult" class="slide level2 smaller">
 <h2>More skills: maintain, share, consult</h2>
 <p><span class="kicker">Beyond building the wiki</span></p>
