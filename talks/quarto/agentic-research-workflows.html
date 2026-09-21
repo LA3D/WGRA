@@ -737,7 +737,7 @@ James Sweet
 <ul>
 <li><strong><code>wiki-lint</code></strong> — a health check over the wiki: finds orphan pages, dead links, stale claims, missing frontmatter, and one-way cross-references, then offers fixes. Keeps the compounding memory honest as it grows.</li>
 <li><strong><code>wiki-enroll</code></strong> — publishes an agent Card and a discovery topic so this wiki becomes findable by peer llm-wiki agents in the federation.</li>
-<li><strong><code>wiki-ask</code></strong> — consults another project’s wiki via the <em>ask</em> primitive: it clones that agent’s wiki and queries it, so you draw on another project’s durable memory without leaving your session.</li>
+<li><strong><code>wiki-ask</code></strong> — consults another project’s wiki via the <em>ask</em> primitive: it clones that agent’s wiki and queries it, so you draw on another project’s durable memory without leaving your session. It authenticates via GitHub, so without at least read access to that wiki you cannot query it.</li>
 </ul>
 <div class="callout-highlight">
 <p>One wiki you maintain (lint), publish (enroll), and query across (ask): durable memory that compounds and connects.</p>
@@ -931,6 +931,59 @@ James Sweet
 <span id="cb1-7"><a href=""></a>    kg:mentions  wiki:LLM-Wiki-Read-Path , wiki:Vision .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>LA3D-LLM-Agents/llm-wiki-marketplace lists two plugins, wiki-kg (build/query/visualize the KG) and wiki-agent-msg (cross-harness messaging), with a shared plugin tree carrying both <code>.claude-plugin</code> and <code>.codex-plugin</code> manifests. Same marketplace-add / plugin-add pattern as the core plugin from llm-wiki-colab; swap the plugin name. This is where the graph on the previous slide came from. The Turtle snippet is a real node from the wiki’s graph (Constraining-the-Field-for-Trust: type Synthesis, extends Lightweight-Structural-Graphs, mentions LLM-Wiki-Read-Path/Vision).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="read-more-the-wgra-nuggets-blog" class="slide level2 smaller">
+<h2>Read more: the WGRA Nuggets blog</h2>
+<p><span class="kicker">The ideas behind this, one nugget at a time</span></p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p>The <strong>WGRA Nuggets</strong> blog collects the ideas behind this work as short, self-contained posts you can graze in any order, across evidence, foundations, retrieval, graph, and practice.</p>
+<p>Start anywhere; the lineage traces back to Karpathy’s llm-wiki.</p>
+<div class="ed-tip">
+<p><code>la3d.github.io/WGRA/blog</code></p>
+</div>
+</div><div class="column" style="width:58%;">
+<p><img class="ed-img" src="slide-assets/wgra-blog.png" alt="The WGRA Nuggets blog: browsable one-idea posts with a categories sidebar"></p>
+</div></div>
+<aside class="notes">
+<p>The blog is browsable bites on the WGRA ideas, one idea per post, grouped by category (evidence, foundations, ecosystem, graph, practice, retrieval, and more). Point people at it as the middle ground between the one-page flyer and the long deep-dive pages.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="part-of-a-series" class="slide level2 smaller">
+<h2>Part of a series</h2>
+<p><span class="kicker">Talks, deep dives, and the paper</span></p>
+<p>This talk sits alongside two others and a set of written deep dives, all linked from the site:</p>
+<ul>
+<li><strong>Agentic research workflows</strong> (this talk) — using Codex to start a project knowledge base.</li>
+<li><strong>Research memory that compounds</strong> — extracting sources into a durable, queryable llm-wiki.</li>
+<li><strong>Knowledge: Extract, Retrieve, Synthesize</strong> — the extract, retrieve, synthesize flow and the knowledge graph.</li>
+</ul>
+<div class="callout-highlight">
+<p>Everything lives at <code>la3d.github.io/WGRA</code>: the landing page, the Nuggets blog, the deep dives, and the paper <em>Beyond Memory</em> (Saboia Moreira et al., 2026).</p>
+</div>
+<aside class="notes">
+<p>The three talks are in the site’s Talks menu. Deep dives (Memory that compounds, Team scale, Agent capability, The knowledge graph, Knowledge Bundles) and the paper are linked from the WGRA landing page. Use this slide to send people somewhere after the talk.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
