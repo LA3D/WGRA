@@ -499,6 +499,24 @@ Trustworthy results are not automatic enforcement; they come from encoded discip
 These are agent-followed discipline plus advisory reminders, not automated blocking. Box 1 guidance lives in the plugin (`core/templates/guidance.md`, `core/agents/discipline-gates.md`, skill instructions), injected at session start. Box 2 verification gate is an agent-run pre-commit checklist (`core/agents/verification-gate.md`): re-read each page, apply the criteria, fix, then commit, not an automatic blocker. Box 3 discipline-gates names the "Universal Rationalizations (Always Wrong)". Box 4: the PostToolUse hook is advisory and exits 0, it does not inspect content or block writes, it only reminds the agent to run the gate; headless `codex exec` runs no hooks and is a separate mode. This slide is the payoff of the epistemic-discipline setup on "What epistemic discipline is", and it precedes the measurement so the zero fabrications arrives already explained.
 :::
 
+## Discipline gates: the shortcuts we reject {.smaller}
+
+[Named always-wrong rationalizations, caught before the write]{.kicker}
+
+The plugin names the excuses an agent might use to cut a corner, so it self-catches before committing. A few:
+
+```{=html}
+<table class="ed-req"><thead><tr><th>The shortcut</th><th>Why it is rejected</th></tr></thead><tbody><tr><td><em>"I'll add the corpus tag or cross-links later"</em></td><td>Later never comes; do it now while context is fresh.</td></tr><tr><td><em>"The estimate or projection is fine to file"</em></td><td>Numbers must be real outputs or citations; projections are marked as such, never slipped in as fact.</td></tr><tr><td><em>"Close enough to compare these two corpora directly"</em></td><td>A gap between numbers on different corpora is not a gap; tag each with its corpus.</td></tr><tr><td><em>"Good enough to commit"</em></td><td>Run the verification gate first; it costs seconds.</td></tr><tr><td><em>"These changes don't need a log entry"</em></td><td>The log is the next session's input; skipping it makes the change invisible.</td></tr></tbody></table>
+```
+
+::: {.callout-highlight}
+The list is meant to grow: each real mistake that traces back to a rationalization becomes a new row.
+:::
+
+::: {.notes}
+From the plugin's `core/agents/discipline-gates.md` "Universal Rationalizations (Always Wrong)" table. These are the counters the agent applies before a write commits, the discipline half of turning results into knowledge. Also in that file: three gate types (Design, Verification, Sequential) and a skill-dependency chain (a new typed edge must update the reciprocal edge; a numbered claim must append a dated log entry).
+:::
+
 ## Does the memory actually work? {.smaller}
 
 [Two measurements: head to head, and at scale]{.kicker}
