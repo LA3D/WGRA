@@ -19,6 +19,8 @@ website:
         href: https://la3d.github.io/WGRA/knowledge-fabric/
       - text: "Talks"
         menu:
+          - text: "Agentic research workflows"
+            href: https://la3d.github.io/WGRA/talks/quarto/agentic-research-workflows.html
           - text: "Research memory that compounds"
             href: https://la3d.github.io/WGRA/talks/quarto/llm-wiki-memory.html
           - text: "Knowledge: Extract, Retrieve, Synthesize"
