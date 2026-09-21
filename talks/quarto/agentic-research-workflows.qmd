@@ -185,7 +185,7 @@ Kinds of memory: embedded/parametric in the weights; a local cross-session memor
 
 ::: {.column width="60%"}
 - **Proposed by Andrej Karpathy** (OpenAI founding member, former director of AI at Tesla)**:** dense, interlinked wiki pages as a **persistent memory the LLM authors and maintains**, kept as plain Markdown in version control.
-- **A read-write loop that compounds.** The LLM **reads the wiki at the start of a session to recall** where things stand, and **writes back at the end to remember** what it learned. Each session builds on the last instead of starting cold.
+- **A read-write loop that compounds.** The LLM **reads the wiki at the start of a session to recall** where things stand, and **writes back during the session to remember** what it learned. Each session builds on the last instead of starting cold.
 - **Auditable by you.** Because it is Markdown in git, you can read exactly what the agent knows and see every change it makes.
 - **Portable as a knowledge bundle:** you can share the whole knowledge base and another person's LLM can read it.
 :::
