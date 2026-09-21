@@ -597,18 +597,22 @@ LA3D-LLM-Agents/llm-wiki-marketplace lists two plugins, wiki-kg (build/query/vis
 
 :::: {.columns}
 
-::: {.column width="42%"}
-The **WGRA Nuggets** blog collects the ideas behind this work as short, self-contained posts you can graze in any order, across evidence, foundations, retrieval, graph, and practice.
+::: {.column width="45%"}
+<img class="ed-img" src="slide-assets/wgra-blog.png" alt="The WGRA Nuggets blog: browsable one-idea posts with a categories sidebar">
+:::
 
-Start anywhere; the lineage traces back to Karpathy's llm-wiki.
+::: {.column width="55%"}
+Short, self-contained posts you can graze in any order. The lineage traces back to Karpathy's llm-wiki. Topics include:
+
+- **Foundations** — why agentic software breaks deterministic habits.
+- **Evidence** — llm-wiki vs RAG, and a Bayesian harness for honest evaluation.
+- **The knowledge graph** — typed edges, small ontologies, catalog to content.
+- **Ecosystem** — federation, connectors, data fabrics, a tools marketplace, bundles.
+- **Practice** — standing up a wiki, and how to talk to a research agent.
 
 ::: {.ed-tip}
 `la3d.github.io/WGRA/blog`
 :::
-:::
-
-::: {.column width="58%"}
-<img class="ed-img" src="slide-assets/wgra-blog.png" alt="The WGRA Nuggets blog: browsable one-idea posts with a categories sidebar">
 :::
 
 ::::
@@ -619,16 +623,30 @@ The blog is browsable bites on the WGRA ideas, one idea per post, grouped by cat
 
 ## Part of a series {.smaller}
 
-[Talks, deep dives, and the paper]{.kicker}
+[Talks, and where to read more]{.kicker}
 
-This talk sits alongside two others and a set of written deep dives, all linked from the site:
+:::: {.columns}
 
-- **Agentic research workflows** (this talk) — using Codex to start a project knowledge base.
-- **Research memory that compounds** — extracting sources into a durable, queryable llm-wiki.
-- **Knowledge: Extract, Retrieve, Synthesize** — the extract, retrieve, synthesize flow and the knowledge graph.
+::: {.column width="50%"}
+**Talks**
+
+- **Agentic research workflows** (this talk) — Codex to start a project knowledge base.
+- **Research memory that compounds** — sources into a durable, queryable llm-wiki.
+- **Knowledge: Extract, Retrieve, Synthesize** — the flow and the knowledge graph.
+:::
+
+::: {.column width="50%"}
+**Pages**
+
+- The **WGRA** overview and the **Nuggets** blog.
+- Ecosystem: **Research Agents** (the competitive edge), the **Knowledge Fabric**.
+- Deep dives: memory that compounds, team scale, agent capability, the knowledge graph, knowledge bundles.
+:::
+
+::::
 
 ::: {.callout-highlight}
-Everything lives at `la3d.github.io/WGRA`: the landing page, the Nuggets blog, the deep dives, and the paper *Beyond Memory* (Saboia Moreira et al., 2026).
+All at `la3d.github.io/WGRA`, plus the paper *Beyond Memory* (Saboia Moreira et al., 2026).
 :::
 
 ::: {.notes}
